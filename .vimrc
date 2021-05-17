@@ -1,6 +1,9 @@
 set nu
 "set relativenumber
 
+set title
+set ruler 
+
 set showcmd
 
 syntax on
@@ -13,7 +16,7 @@ set shiftwidth=4
 set smartindent
 set hidden
 set noerrorbells
-set nowrap
+set wrap
 set ignorecase
 set smartcase
 set incsearch
