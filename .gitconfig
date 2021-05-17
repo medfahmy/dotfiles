@@ -4,6 +4,10 @@
 [user]
 	email = medfahmy99@gmail.com
 	name = medfahmy
+
+[core]
+	editor=vim
+
 #[user]
 #	email = mohamed.fahmy@digitransform.co
 #	name = mohamedfahmy-dt
