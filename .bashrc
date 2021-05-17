@@ -99,9 +99,6 @@ source $OSH/oh-my-bash.sh
 # users are encouraged to define aliases within the OSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias bashconfig="mate ~/.bashrc"
-# alias ohmybash="mate ~/.oh-my-bash"
 
 alias py=python
 alias x="cd /home/mf/workspace"
