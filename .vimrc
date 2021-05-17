@@ -22,6 +22,7 @@ set smartcase
 set incsearch
 set scrolloff=8
 set signcolumn=yes
+set noswapfile
 
 syntax enable
 
