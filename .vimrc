@@ -2,7 +2,7 @@
 set nu
 set laststatus=2
 set statusline=%F
-"set relativenumber
+set relativenumber
 set title
 set ruler 
 set showcmd
