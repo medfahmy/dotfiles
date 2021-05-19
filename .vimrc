@@ -39,11 +39,14 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'ayu-theme/ayu.vim'
 	"Plug 'ptzz/lf.vim'
 	"Plug 'voldikss/vim-floaterm'
-call plug#end()
+	Plug 'prettier/vim-prettier', {'do':'npm install'}
+	call plug#end()
 
 "Colorscheme
+let g:gruvbox_contrast_dark='hard' 
 colorscheme gruvbox
 set background=dark
+
 "set termguicolors
 "let ayucolor="dark"
 "colorscheme ayu
