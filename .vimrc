@@ -26,16 +26,19 @@ syntax enable
 "Plugins
 call plug#begin('~/.vim/plugged')
 	Plug 'morhetz/gruvbox'
+	Plug 'jiangmiao/auto-pairs'
 	Plug 'leafgarland/typescript-vim'
-	Plug 'mbbill/undotree'
+	"Plug 'mbbill/undotree'
 	Plug 'neoclide/coc.nvim',  {'branch':'release'}
-	Plug 'scrooloose/nerdtree'
+	Plug 'preservim/nerdtree'
 	Plug 'Xuyuanp/nerdtree-git-plugin'
 	Plug 'airblade/vim-gitgutter'
-	Plug 'ryanoasis/vim-devicons'
+	"Plug 'ryanoasis/vim-devicons'
 	Plug 'scrooloose/nerdcommenter'
-	Plug 'HerringtonDerkholme/yats.vim'
+	Plug 'HerringtonDarkholme/yats.vim'
 	"Plug 'ayu-theme/ayu.vim'
+	"Plug 'ptzz/lf.vim'
+	"Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 "Colorscheme
@@ -46,3 +49,7 @@ set background=dark
 "colorscheme ayu
 "colorscheme monokai 
 "colorscheme vimvscode 
+
+"Remaps
+"let mapleader=""
+nnoremap <C-n> :NERDTree<CR>
