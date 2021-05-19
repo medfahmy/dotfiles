@@ -1,8 +1,8 @@
 "General
 set nu
+set relativenumber
 set laststatus=2
 set statusline=%F
-set relativenumber
 set title
 set ruler 
 set showcmd
@@ -21,8 +21,6 @@ set incsearch
 set scrolloff=8
 set signcolumn=yes
 "set noswapfile
-
-
 syntax enable
 
 "Plugins
@@ -40,7 +38,7 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'ayu-theme/ayu.vim'
 call plug#end()
 
-"colorscheme
+"Colorscheme
 colorscheme gruvbox
 set background=dark
 "set termguicolors
