@@ -109,3 +109,4 @@ alias rl="source ~/.bashrc"
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 alias fm=thunar
+alias vrc='vim ~/.vimrc'
