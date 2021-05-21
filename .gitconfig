@@ -8,6 +8,5 @@
 [core]
 	editor=vim
 
-#[user]
-#	email = mohamed.fahmy@digitransform.co
-#	name = mohamedfahmy-dt
+[init]
+	defaultBranch = main
