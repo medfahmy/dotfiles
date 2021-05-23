@@ -45,8 +45,17 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'google/vim-glaive'
 	Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 	Plug 'junegunn/fzf.vim'
+	Plug 'rust-lang/rust.vim'
+	Plug 'preservim/tagbar'
 	call plug#end()
 	
+
+syntax enable
+filetype plugin indent on
+filetype plugin on
+
+let g:rustfmt_autosave = 1
+
 "call glaive#Install()
 
 "Glaive codefmt plugin[mappings]
@@ -70,9 +79,9 @@ set background=dark
 "nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-p> :Prettier <CR>
 nnoremap <C-f> :Files <CR>
-inoremap ² <Esc>
-vnoremap ² <Esc>
-nnoremap à 0
+"inoremap ² <Esc>
+"vnoremap ² <Esc>
+"nnoremap à 0
 
 
 "augroup autoformat_settings
