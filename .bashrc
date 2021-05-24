@@ -103,13 +103,14 @@ source $OSH/oh-my-bash.sh
 alias py=python
 alias x="cd /home/mf/workspace"
 alias rs="cd /home/mf/workspace/rust"
-alias v=vim
+#alias v=vim
 alias D="cd /home/mf/Desktop"
 alias rl="source ~/.bashrc"
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 alias fm=thunar
-alias vrc='vim ~/.vimrc'
+#alias vrc='vim ~/.vimrc'
+alias vrc='nvim ~/.dotfiles/init.vim'
 
 #determines search program for fzf
 if type ag &> /dev/null; then
