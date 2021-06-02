@@ -29,17 +29,17 @@ syntax enable
 call plug#begin('~/.vim/plugged')
 	Plug 'gruvbox-community/gruvbox'
 	Plug 'jiangmiao/auto-pairs'
-	Plug 'tpope/vim-surround'
+	"Plug 'tpope/vim-surround'
 	Plug 'leafgarland/typescript-vim'
 	"Plug 'nvim-telescope/telescope.nvim'
-	Plug 'mbbill/undotree'
-	Plug 'neoclide/coc.nvim',  {'branch':'release'}
+	"Plug 'mbbill/undotree'
+	"Plug 'neoclide/coc.nvim',  {'branch':'release'}
 	Plug 'preservim/nerdtree'
-	Plug 'Xuyuanp/nerdtree-git-plugin'
-	Plug 'airblade/vim-gitgutter'
+	"Plug 'Xuyuanp/nerdtree-git-plugin'
+	Plug 'airblade/vim-gitgutter' "git signcolumn 
 	"Plug 'ryanoasis/vim-devicons'
-	Plug 'scrooloose/nerdcommenter'
-	Plug 'HerringtonDarkholme/yats.vim'
+	"Plug 'scrooloose/nerdcommenter' "commenting
+	"Plug 'HerringtonDarkholme/yats.vim' "typescript highlighting
 	"Plug 'ayu-theme/ayu.vim'
 	"Plug 'ptzz/lf.vim'
 	"Plug 'voldikss/vim-floaterm'
@@ -50,13 +50,21 @@ call plug#begin('~/.vim/plugged')
 	Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 	Plug 'junegunn/fzf.vim'
 	Plug 'rust-lang/rust.vim'
-	Plug 'preservim/tagbar'
-	Plug 'hoob3rt/lualine.nvim'
-	" If you want to have icons in your statusline choose one of these
-	Plug 'kyazdani42/nvim-web-devicons'
+	"Plug 'preservim/tagbar'
+	"Plug 'hoob3rt/lualine.nvim'
+	"Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	call plug#end()
+
+" Syntastic
+"let g:syntastic_error_symbol = 'EE'
+"let g:syntastic_style_error_symbol = 'E>'
+"let g:syntastic_warning_symbol = 'WW'
+"let g:syntastic_style_warning_symbol = 'W>'
+"
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_rust_checkers = ['cargo']
 	
 
 syntax enable

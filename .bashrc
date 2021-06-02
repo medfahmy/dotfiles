@@ -111,12 +111,19 @@ alias pbpaste='xsel --clipboard --output'
 alias fm=thunar
 #alias vrc='vim ~/.vimrc'
 alias vrc='nvim ~/.dotfiles/init.vim'
+alias grep=rg
 
 #determines search program for fzf
-if type ag &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
-fi
-#refer rg over ag
-if type rg &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='rg --files --hidden'
-fi
+#if type ag &> /dev/null; then
+#    export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
+#fi
+##refer rg over ag
+#if type rg &> /dev/null; then
+#    export FZF_DEFAULT_COMMAND='rg --files --hidden'
+#fi
+export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,target/*}"'
+
+export PATH="~/bin:$PATH"
+
+export GOPATH="$HOME/go"
+PATH="$GOPATH/bin:$PATH"
