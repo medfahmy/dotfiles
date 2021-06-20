@@ -6,14 +6,14 @@ export OSH=/home/mf/.oh-my-bash
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="iterate"
+OSH_THEME="garo"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -25,10 +25,10 @@ OSH_THEME="iterate"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
+#DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -102,8 +102,9 @@ source $OSH/oh-my-bash.sh
 
 alias py=python
 alias x="cd /home/mf/workspace"
+alias react="cd /home/mf/workspace/react"
 alias rs="cd /home/mf/workspace/rust"
-#alias v=vim
+alias v=nvim
 alias D="cd /home/mf/Desktop"
 alias rl="source ~/.bashrc"
 alias pbcopy='xsel --clipboard --input'
@@ -112,6 +113,7 @@ alias fm=thunar
 #alias vrc='vim ~/.vimrc'
 alias vrc='nvim ~/.dotfiles/init.vim'
 alias grep=rg
+alias code=vscodium
 
 #determines search program for fzf
 #if type ag &> /dev/null; then
@@ -127,3 +129,5 @@ export PATH="~/bin:$PATH"
 
 export GOPATH="$HOME/go"
 PATH="$GOPATH/bin:$PATH"
+
+export PATH=/usr/lib/jvm/java-16-openjdk/bin:$PATH
