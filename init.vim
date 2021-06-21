@@ -21,6 +21,8 @@ set hidden
 set ignorecase
 set smartcase
 
+set autoread
+
 set noerrorbells
 set wrap
 set incsearch
@@ -29,6 +31,10 @@ set signcolumn=yes
 	set colorcolumn=80 
 set termguicolors
 set noswapfile
+
+set re=0
+set conceallevel=1
+
 syntax enable
 
 "Plugins
@@ -45,10 +51,10 @@ call plug#begin('~/.vim/plugged')
 	Plug 'airblade/vim-gitgutter' "git signcolumn 
 	"Plug 'ryanoasis/vim-devicons'
 	"Plug 'scrooloose/nerdcommenter' "commenting
-	"Plug 'HerringtonDarkholme/yats.vim' "typescript highlighting
+	Plug 'HerringtonDarkholme/yats.vim' "typescript highlighting
 	"Plug 'ayu-theme/ayu.vim'
-	"Plug 'ptzz/lf.vim'
-	"Plug 'voldikss/vim-floaterm'
+	Plug 'ptzz/lf.vim'
+	Plug 'voldikss/vim-floaterm'
 	Plug 'prettier/vim-prettier', {'do':'yarn install'}
 	"Plug 'google/vim-maktaba'
 	"Plug 'google/vim-codefmt'
@@ -61,6 +67,8 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
+
+
 	call plug#end()
 
 " Syntastic
@@ -82,6 +90,16 @@ let g:rustfmt_autosave = 1
 ret g:airline#extensions#tabline#enabled = 1
 
 let NERDTreeShowHidden=1
+
+let g:yats_host_keyword=1
+let g:typescript_conceal_function             = "ƒ"
+let g:typescript_conceal_null                 = "ø"
+let g:typescript_conceal_undefined            = "¿"
+let g:typescript_conceal_this                 = "@"
+let g:typescript_conceal_return               = "⇚"
+let g:typescript_conceal_prototype            = "¶"
+let g:typescript_conceal_super                = "Ω"
+
 
 "call glaive#Install()
 
@@ -107,7 +125,8 @@ set background=dark
 "let mapleader=""
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-p> :Prettier <CR>
-nnoremap <C-f> :Files <CR>
+"nnoremap <C-f> :Files <CR>
+nnoremap <C-f> :Lf <CR>
 "inoremap ² <Esc>
 "vnoremap ² <Esc>
 "nnoremap à 0
