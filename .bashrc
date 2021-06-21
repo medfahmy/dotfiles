@@ -3,6 +3,10 @@
 export OSH=/home/mf/.oh-my-bash
 
 
+set -o vi
+set show-mode-in-propmt on
+set vi-ins-mode-string "+"
+set vi-cmd-mode-string ":"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
