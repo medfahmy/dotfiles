@@ -1,12 +1,58 @@
 
+PS1='$(eval "sps")$ '
+sps() {
+   echo "$PWD" | sed -r 's|/(.)[^/]*|/\1|g'
+}
+
+alias py=python
+alias x="cd /home/mf/workspace"
+alias rct="cd /home/mf/workspace/react"
+alias rs="cd /home/mf/workspace/rust"
+alias v=nvim
+alias D="cd /home/mf/Desktop"
+alias rl="source ~/.bashrc"
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
+alias fm=thunar
+#alias vrc='vim ~/.vimrc'
+alias vrc='nvim ~/.dotfiles/init.vim'
+alias grep=rg
+alias code=vscodium
+alias brc='nvim ~/.dotfiles/.bashrc'
+alias cra=create-react-app
+
+#determines search program for fzf
+#if type ag &> /dev/null; then
+#    export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
+#fi
+##refer rg over ag
+#if type rg &> /dev/null; then
+#    export FZF_DEFAULT_COMMAND='rg --files --hidden'
+#fi
+
+export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,target/*}"'
+
+export PATH="~/bin:$PATH"
+
+export GOPATH="$HOME/go"
+PATH="$GOPATH/bin:$PATH"
+
+export PATH=/usr/lib/jvm/java-16-openjdk/bin:$PATH
+
+set -o vi
+set show-mode-in-propmt on
+set vi-ins-mode-string "+"
+set vi-cmd-mode-string ":"
+
+function jcurl() {
+    curl "$@" | json_pp | pygmentize -l json
+}
+ 
+export jcurl
 # Path to your oh-my-bash installation.
 export OSH=/home/mf/.oh-my-bash
 
 
-set -o vi
-#set show-mode-in-propmt on
-#set vi-ins-mode-string "+"
-#set vi-cmd-mode-string ":"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -104,34 +150,3 @@ source $OSH/oh-my-bash.sh
 # For a full list of active aliases, run `alias`.
 #
 
-alias py=python
-alias x="cd /home/mf/workspace"
-alias react="cd /home/mf/workspace/react"
-alias rs="cd /home/mf/workspace/rust"
-alias v=nvim
-alias D="cd /home/mf/Desktop"
-alias rl="source ~/.bashrc"
-alias pbcopy='xsel --clipboard --input'
-alias pbpaste='xsel --clipboard --output'
-alias fm=thunar
-#alias vrc='vim ~/.vimrc'
-alias vrc='nvim ~/.dotfiles/init.vim'
-alias grep=rg
-alias code=vscodium
-
-#determines search program for fzf
-#if type ag &> /dev/null; then
-#    export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
-#fi
-##refer rg over ag
-#if type rg &> /dev/null; then
-#    export FZF_DEFAULT_COMMAND='rg --files --hidden'
-#fi
-export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,target/*}"'
-
-export PATH="~/bin:$PATH"
-
-export GOPATH="$HOME/go"
-PATH="$GOPATH/bin:$PATH"
-
-export PATH=/usr/lib/jvm/java-16-openjdk/bin:$PATH
