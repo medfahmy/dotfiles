@@ -19,7 +19,7 @@ alias vrc='nvim ~/.dotfiles/init.vim'
 alias grep=rg
 alias code=vscodium
 alias brc='nvim ~/.dotfiles/.bashrc'
-alias cra=create-react-app
+alias cra="create-react-app --template=typescript"
 
 #determines search program for fzf
 #if type ag &> /dev/null; then
