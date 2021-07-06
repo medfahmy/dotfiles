@@ -5,7 +5,7 @@ sps() {
 }
 
 alias py=python
-alias x="cd /home/mf/workspace"
+alias x="cd /mnt/data/workspace"
 alias rct="cd /mnt/data/workspace/react"
 alias rs="cd /home/mf/workspace/rust"
 alias v=nvim
