@@ -8,7 +8,7 @@ set mouse+=a
 set ruler 
 set showcmd
 syntax on
-"set guicursor=
+set guicursor=
 set tabstop=2 softtabstop=2
 set shiftwidth=2
 "set expandtab
