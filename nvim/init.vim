@@ -67,6 +67,7 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
+	
 
 
 	call plug#end()
@@ -87,18 +88,18 @@ filetype plugin on
 
 let g:rustfmt_autosave = 1
 
-ret g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 
 let NERDTreeShowHidden=1
 
-let g:yats_host_keyword=1
-let g:typescript_conceal_function             = "ƒ"
-let g:typescript_conceal_null                 = "ø"
-let g:typescript_conceal_undefined            = "¿"
-let g:typescript_conceal_this                 = "@"
-let g:typescript_conceal_return               = "⇚"
-let g:typescript_conceal_prototype            = "¶"
-let g:typescript_conceal_super                = "Ω"
+"let g:yats_host_keyword=1
+"let g:typescript_conceal_function             = "ƒ"
+"let g:typescript_conceal_null                 = "ø"
+"let g:typescript_conceal_undefined            = "¿"
+"let g:typescript_conceal_this                 = "@"
+"let g:typescript_conceal_return               = "⇚"
+"let g:typescript_conceal_prototype            = "¶"
+"let g:typescript_conceal_super                = "Ω"
 
 
 "call glaive#Install()

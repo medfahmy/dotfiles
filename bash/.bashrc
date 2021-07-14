@@ -4,7 +4,6 @@ sps() {
    echo "$PWD" | sed -r 's|/(.)[^/]*|/\1|g'
 }
 
-alias py=python
 alias x="cd /mnt/data/workspace"
 alias rct="cd /mnt/data/workspace/react"
 alias rs="cd /home/mf/workspace/rust"
@@ -20,6 +19,8 @@ alias grep=rg
 alias code=vscodium
 alias brc='nvim ~/.dotfiles/.bashrc'
 alias cra="create-react-app --template=typescript"
+alias py=python
+
 
 #determines search program for fzf
 #if type ag &> /dev/null; then
@@ -150,3 +151,4 @@ source $OSH/oh-my-bash.sh
 # For a full list of active aliases, run `alias`.
 #
 
+. ~/.ghcup/env
