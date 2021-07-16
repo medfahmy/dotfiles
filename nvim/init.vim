@@ -15,7 +15,7 @@ set shiftwidth=2
 set smartindent
 set hidden
 
-"set nohlsearch
+set nohlsearch
 
 "case insensitive search
 set ignorecase
@@ -28,9 +28,11 @@ set wrap
 set incsearch
 set scrolloff=8
 set signcolumn=yes
-	set colorcolumn=80 
+set colorcolumn=80 
 set termguicolors
+
 set noswapfile
+
 
 set re=0
 set conceallevel=1
@@ -40,27 +42,30 @@ syntax enable
 "Plugins
 call plug#begin('~/.vim/plugged')
 	Plug 'gruvbox-community/gruvbox'
+	Plug 'nvim-lua/popup.nvim'
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
 	Plug 'jiangmiao/auto-pairs'
 	"Plug 'tpope/vim-surround'
 	Plug 'leafgarland/typescript-vim'
 	"Plug 'nvim-telescope/telescope.nvim'
 	"Plug 'mbbill/undotree'
 	"Plug 'neoclide/coc.nvim',  {'branch':'release'}
-	Plug 'preservim/nerdtree'
+	"Plug 'preservim/nerdtree'
 	"Plug 'Xuyuanp/nerdtree-git-plugin'
 	Plug 'airblade/vim-gitgutter' "git signcolumn 
 	"Plug 'ryanoasis/vim-devicons'
 	"Plug 'scrooloose/nerdcommenter' "commenting
 	Plug 'HerringtonDarkholme/yats.vim' "typescript highlighting
 	"Plug 'ayu-theme/ayu.vim'
-	Plug 'ptzz/lf.vim'
-	Plug 'voldikss/vim-floaterm'
+	"Plug 'ptzz/lf.vim'
+	"Plug 'voldikss/vim-floaterm'
 	Plug 'prettier/vim-prettier', {'do':'yarn install'}
 	"Plug 'google/vim-maktaba'
 	"Plug 'google/vim-codefmt'
 	"Plug 'google/vim-glaive'
-	Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
-	Plug 'junegunn/fzf.vim'
+	"Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
+	"Plug 'junegunn/fzf.vim'
 	Plug 'rust-lang/rust.vim'
 	"Plug 'preservim/tagbar'
 	"Plug 'hoob3rt/lualine.nvim'
@@ -81,6 +86,8 @@ call plug#begin('~/.vim/plugged')
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_rust_checkers = ['cargo']
 	
+"Telescope
+nnoremap ff <cmd>Telescope find_files<cr>
 
 syntax enable
 filetype plugin indent on
@@ -90,7 +97,7 @@ let g:rustfmt_autosave = 1
 
 let g:airline#extensions#tabline#enabled = 1
 
-let NERDTreeShowHidden=1
+"let NERDTreeShowHidden=1
 
 "let g:yats_host_keyword=1
 "let g:typescript_conceal_function             = "ƒ"
@@ -124,10 +131,10 @@ set background=dark
 
 "Remaps
 "let mapleader=""
-nnoremap <C-n> :NERDTree<CR>
+"nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-p> :Prettier <CR>
 "nnoremap <C-f> :Files <CR>
-nnoremap <C-f> :Lf <CR>
+"nnoremap <C-f> :Lf <CR>
 "inoremap ² <Esc>
 "vnoremap ² <Esc>
 "nnoremap à 0
