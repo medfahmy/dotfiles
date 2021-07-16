@@ -1,37 +1,22 @@
-
-PS1='$(eval "sps")$ '
-sps() {
-   echo "$PWD" | sed -r 's|/(.)[^/]*|/\1|g'
-}
-
 alias x="cd /mnt/data/workspace"
 alias rct="cd /mnt/data/workspace/react"
 alias rs="cd /home/mf/workspace/rust"
-alias v=nvim
+alias hs="cd /home/mf/workspace/haskell"
+
 alias D="cd /home/mf/Desktop"
+
 alias rl="source ~/.bashrc"
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 alias fm=thunar
 #alias vrc='vim ~/.vimrc'
-alias vrc='nvim ~/.dotfiles/init.vim'
 alias grep=rg
 alias code=vscodium
-alias brc='nvim ~/.dotfiles/.bashrc'
+alias brc='nvim ~/dotfiles/bash/.bashrc'
+alias vrc='nvim ~/dotfiles/nvim/init.vim'
 alias cra="create-react-app --template=typescript"
-alias py=python
 
 
-#determines search program for fzf
-#if type ag &> /dev/null; then
-#    export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
-#fi
-##refer rg over ag
-#if type rg &> /dev/null; then
-#    export FZF_DEFAULT_COMMAND='rg --files --hidden'
-#fi
-
-export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,target/*}"'
 
 export PATH="~/bin:$PATH"
 
@@ -45,11 +30,7 @@ set show-mode-in-propmt on
 set vi-ins-mode-string "+"
 set vi-cmd-mode-string ":"
 
-function jcurl() {
-    curl "$@" | json_pp | pygmentize -l json
-}
  
-export jcurl
 # Path to your oh-my-bash installation.
 export OSH=/home/mf/.oh-my-bash
 
