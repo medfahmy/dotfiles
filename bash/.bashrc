@@ -1,7 +1,7 @@
 alias x="cd /mnt/data/workspace"
 alias rct="cd /mnt/data/workspace/react"
-alias rs="cd /home/mf/workspace/rust"
-alias hs="cd /home/mf/workspace/haskell"
+alias rs="cd /mnt/data/workspace/rust"
+alias hs="cd /mnt/data/workspace/haskell"
 
 alias D="cd /home/mf/Desktop"
 
