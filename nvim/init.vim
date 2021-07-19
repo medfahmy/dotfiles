@@ -1,3 +1,4 @@
+syntax on
 set nu
 set relativenumber
 set laststatus=2
@@ -5,7 +6,7 @@ set statusline=%F
 set mouse+=a
 set ruler 
 set showcmd
-set guicursor=
+"set guicursor=
 set tabstop=2 softtabstop=2
 set shiftwidth=2
 "set expandtab
@@ -26,6 +27,9 @@ set termguicolors
 set noswapfile
 set re=0
 set conceallevel=1
+set clipboard=unnamedplus
+
+set re=0
 
 "Plugins
 call plug#begin('~/.vim/plugged')
@@ -43,7 +47,26 @@ call plug#begin('~/.vim/plugged')
 	Plug 'neovimhaskell/haskell-vim'
 	"Plug 'alx741/vim-hindent'
 	Plug 'alx741/vim-stylishask'
+	Plug 'neovim/nvim-lspconfig'
+	"Plug 'nvim-lua/completion-nvim'
+
 	call plug#end()
+
+
+"autocmd BufEnter * lua require'completion'.on_attach()
+
+lua << EOF
+
+require'lspconfig'.tsserver.setup{}
+
+require'lspconfig'.hls.setup{}
+
+require('telescope').setup{
+	defaults = {
+		prompt_prefix =">>"
+	}
+}
+EOF
 
 syntax enable
 filetype plugin indent on
@@ -73,7 +96,7 @@ let g:airline#extensions#tabline#enabled = 1
 "Colorscheme
 let g:gruvbox_contrast_dark='hard' 
 colorscheme gruvbox
-set background=dark
+"set background=dark
 
 
 "lua require('lualine').setup()
@@ -87,6 +110,5 @@ nnoremap <C-f> <cmd>Telescope find_files<cr>
 "Netrw
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
+"let g:netrw_browse_split = 4
 let g:netrw_winsize = 20
-
