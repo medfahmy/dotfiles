@@ -6,7 +6,7 @@ set statusline=%F
 set mouse+=a
 set ruler 
 set showcmd
-"set guicursor=
+set guicursor+=n-v-c:blinkon0
 set tabstop=2 softtabstop=2
 set shiftwidth=2
 "set expandtab
@@ -29,7 +29,9 @@ set re=0
 set conceallevel=1
 set clipboard=unnamedplus
 
-set re=0
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
+
 
 "Plugins
 call plug#begin('~/.vim/plugged')
@@ -48,29 +50,34 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'alx741/vim-hindent'
 	Plug 'alx741/vim-stylishask'
 	Plug 'neovim/nvim-lspconfig'
-	"Plug 'nvim-lua/completion-nvim'
+	Plug 'nvim-lua/completion-nvim'
 
 	call plug#end()
 
 
-"autocmd BufEnter * lua require'completion'.on_attach()
+autocmd BufEnter * lua require'completion'.on_attach()
 
-lua << EOF
-
-require'lspconfig'.tsserver.setup{}
-
-require'lspconfig'.hls.setup{}
-
-require('telescope').setup{
-	defaults = {
-		prompt_prefix =">>"
-	}
-}
-EOF
+lua require("neovim")
 
 syntax enable
 filetype plugin indent on
 filetype plugin on
+
+"Autocomplete
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
+"By default auto popup is enabled, turn it off by
+"let g:completion_enable_auto_popup = 0
+
+
 
 let g:haskell_enable_quantification = 1   
 " to enable highlighting of `forall`
