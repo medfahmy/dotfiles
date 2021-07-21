@@ -29,8 +29,8 @@ set re=0
 set conceallevel=1
 set clipboard=unnamedplus
 
-autocmd InsertEnter * set cul
-autocmd InsertLeave * set nocul
+"autocmd InsertEnter * set cul
+"autocmd InsertLeave * set nocul
 
 
 "Plugins
@@ -39,7 +39,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
-	Plug 'jiangmiao/auto-pairs'
+	"Plug 'jiangmiao/auto-pairs'
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'airblade/vim-gitgutter' "git signcolumn 
 	Plug 'prettier/vim-prettier', {'do':'yarn install'}
@@ -47,8 +47,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'neovimhaskell/haskell-vim'
-	"Plug 'alx741/vim-hindent'
-	Plug 'alx741/vim-stylishask'
+	Plug 'alx741/vim-hindent'
+	"Plug 'alx741/vim-stylishask'
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'nvim-lua/completion-nvim'
 
@@ -74,10 +74,14 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
+let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
+
 "By default auto popup is enabled, turn it off by
 "let g:completion_enable_auto_popup = 0
 
-
+"Prettier on save
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
 
 let g:haskell_enable_quantification = 1   
 " to enable highlighting of `forall`
@@ -101,17 +105,19 @@ let g:rustfmt_autosave = 1
 let g:airline#extensions#tabline#enabled = 1
 
 "Colorscheme
-let g:gruvbox_contrast_dark='hard' 
+let g:gruvbox_contrast_dark='dark' 
+let g:gruvbox_invert_selection='0'
 colorscheme gruvbox
-"set background=dark
+set background=dark
+hi Normal guibg=NONE ctermbg=NONE
+
 
 
 "lua require('lualine').setup()
 "options = {theme = 'gruvbox'}
 
 "Remaps
-let mapleader=" "
-nnoremap <C-p> :Prettier <CR>
+nnoremap <C-p> :PrettierAsync <CR>
 nnoremap <C-f> <cmd>Telescope find_files<cr>
 
 "Netrw

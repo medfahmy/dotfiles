@@ -1,5 +1,6 @@
 alias x="cd /mnt/data/workspace"
 alias rct="cd /mnt/data/workspace/react"
+alias ts="cd /mnt/data/workspace/typescript"
 alias rs="cd /mnt/data/workspace/rust"
 alias hs="cd /mnt/data/workspace/haskell"
 
