@@ -51,13 +51,29 @@ call plug#begin('~/.vim/plugged')
 	"Plug 'alx741/vim-stylishask'
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'nvim-lua/completion-nvim'
+	Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+	Plug 'jparise/vim-graphql'
 
 	call plug#end()
 
 
 autocmd BufEnter * lua require'completion'.on_attach()
 
-lua require("neovim")
+
+lua  << EOF
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.graphql.setup{}
+
+require'lspconfig'.hls.setup{
+	on_attach = require'completion'.on_attach
+}
+
+require('telescope').setup{
+	defaults = {
+		prompt_prefix =">>  "
+	}
+}
+EOF
 
 syntax enable
 filetype plugin indent on
@@ -117,8 +133,11 @@ hi Normal guibg=NONE ctermbg=NONE
 "options = {theme = 'gruvbox'}
 
 "Remaps
-nnoremap <C-p> :PrettierAsync <CR>
 nnoremap <C-f> <cmd>Telescope find_files<cr>
+"nnoremap <C-n> :bnext<CR>
+"nnoremap <C-p> :bprevious<CR>
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 
 "Netrw
 let g:netrw_banner = 0
