@@ -53,6 +53,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'nvim-lua/completion-nvim'
 	Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 	Plug 'jparise/vim-graphql'
+	Plug 'luochen1990/rainbow'
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 	call plug#end()
 
@@ -84,7 +86,9 @@ filetype plugin on
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" Set completeopt to have a better completion experience
+
+
+
 set completeopt=menuone,noinsert,noselect
 
 " Avoid showing message extra message when using completion
@@ -126,8 +130,16 @@ let g:gruvbox_invert_selection='0'
 colorscheme gruvbox
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
+hi MatchParen cterm=none ctermbg=green ctermfg=blue
 
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+" Set completeopt to have a better completion experience
 
+let g:rainbow#max_level = 16
+
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+
+autocmd FileType * RainbowToggle
 
 "lua require('lualine').setup()
 "options = {theme = 'gruvbox'}
