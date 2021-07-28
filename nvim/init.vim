@@ -5,6 +5,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
+  
+	Plug 'tpope/vim-commentary'
 
 	"Plug 'jiangmiao/auto-pairs'
   
@@ -12,7 +14,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'nvim-lua/completion-nvim'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'folke/trouble.nvim'
-  Plug 'kyazdani42/nvim-web-devicons'
   Plug 'folke/lsp-colors.nvim'
 
 	Plug 'airblade/vim-gitgutter' "git signcolumn 
@@ -21,32 +22,74 @@ call plug#begin('~/.vim/plugged')
 
 	Plug 'rust-lang/rust.vim'
 
-	Plug 'vim-airline/vim-airline'
-	Plug 'vim-airline/vim-airline-themes'
-
 	Plug 'neovimhaskell/haskell-vim'
 	Plug 'alx741/vim-hindent'
 	"Plug 'alx741/vim-stylishask'
-  "
-	Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-
+  
 	Plug 'jparise/vim-graphql'
   
-	Plug 'luochen1990/rainbow'
-
   Plug 'leafgarland/typescript-vim'
   Plug 'maxmellon/vim-jsx-pretty'
-  
+	Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
+  Plug 'hoob3rt/lualine.nvim'
+  " If you want to have icons in your statusline choose one of these
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'arkav/lualine-lsp-progress'
+  Plug 'voldikss/vim-floaterm'
+  Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'romgrk/barbar.nvim'
 
 	call plug#end()
 
-" colorscheme
-let g:gruvbox_contrast_dark='dark' 
-let g:gruvbox_invert_selection='0'
-colorscheme gruvbox
-set background=dark
-hi Normal guibg=NONE ctermbg=NONE
-hi MatchParen cterm=none ctermbg=green ctermfg=blue
+" nvim tree
+let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
+let g:nvim_tree_highlight_opened_files = 1
+let g:nvim_tree_tab_open = 1
+let g:nvim_tree_group_empty = 1
+let g:nvim_tree_auto_open = 1 " open tree when file not specified
+let g:nvim_tree_quit_on_open = 1
+let g:nvim_tree_show_icons = {
+      \ 'git': 0,
+      \ 'folders': 0,
+      \ 'files': 0,
+      \ 'folder_arrows': 1,
+      \ }
+
+" barbar
+" NOTE: If barbar's option dict isn't created yet, create it
+let bufferline = get(g:, 'bufferline', {})
+
+" Enable/disable animations
+let bufferline.animation = v:false
+
+" Enable/disable auto-hiding the tab bar when there is a single buffer
+let bufferline.auto_hide = v:false
+
+" Enable/disable current/total tabpages indicator (top right corner)
+let bufferline.tabpages = v:true
+
+" Enable/disable close button
+let bufferline.closable = v:false
+
+" Enables/disable clickable tabs
+"  - left-click: go to buffer
+"  - middle-click: delete buffer
+let bufferline.clickable = v:true
+
+" Enable/disable icons
+" if set to 'numbers', will show buffer index in the tabline
+" if set to 'both', will show buffer index and icons in the tabline
+let bufferline.icons = v:false
+
+
+" Sets the maximum padding width with which to surround each tab.
+let bufferline.maximum_padding = 2
+
+" Sets the maximum buffer name length.
+let bufferline.maximum_length = 30
+
+
 
 
 " settings
@@ -93,7 +136,6 @@ set wildignore=.git,.hg,*.o,*.a,*.class,*.jar,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*
 "autocmd InsertEnter * set cul
 "autocmd InsertLeave * set nocul
 
-autocmd BufEnter * lua require'completion'.on_attach()
 
 
 
@@ -102,11 +144,13 @@ syntax enable
 filetype plugin indent on
 filetype plugin on
 
-"Autocomplete
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+let g:gruvbox_contrast_dark='dark' 
+let g:gruvbox_invert_selection='0'
+colorscheme gruvbox
+set background=dark
+hi Normal guibg=NONE ctermbg=NONE
+hi MatchParen cterm=none ctermbg=green ctermfg=blue
 
 
 
@@ -124,79 +168,144 @@ let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
 
-let g:haskell_enable_quantification = 1   
-" to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      
-" to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      
-" to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 
-" to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        
-" to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  
-" to enable highlighting of `static`
-let g:haskell_backpack = 1                
-" to enable highlighting of backpack keywords
 
-let g:hindent_on_save = 1
 
 let g:rustfmt_autosave = 1
 
-let g:airline#extensions#tabline#enabled = 1
 
 
-let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
-" Set completeopt to have a better completion experience
-
-let g:rainbow#max_level = 16
-
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-
-autocmd FileType * RainbowToggle
-
-"lua require('lualine').setup()
-"options = {theme = 'gruvbox'}
 
 "Remaps
-nnoremap <C-f> <cmd>Telescope find_files<cr>
+
+nnoremap <C-f> <cmd>Telescope find_files theme=get_dropdown<cr>
 "nnoremap <C-n> :bnext<CR>
 "nnoremap <C-p> :bprevious<CR>
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
+nnoremap <Tab> :BufferNext<CR>
+nnoremap <S-Tab> :BufferPrevious<CR>
 nnoremap ; :
+vnoremap ; :
 nnoremap - <cmd>TroubleToggle<cr>
 nnoremap Y y$
 map q: <Nop>
 nnoremap Q <nop>
+"Autocomplete
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
+nnoremap <C-n> :NvimTreeToggle<CR>
 
-"Netrw
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-"let g:netrw_browse_split = 4
-let g:netrw_winsize = 20
 
-" lua
+" Lua
 lua  << EOF
+
+-- Color table for highlights
+local colors = {
+  bg = '#202328',
+  fg = '#bbc2cf',
+  yellow = '#ECBE7B',
+  cyan = '#008080',
+  darkblue = '#081633',
+  green = '#98be65',
+  orange = '#FF8800',
+  violet = '#a9a1e1',
+  magenta = '#c678dd',
+  blue = '#51afef',
+  red = '#ec5f67'
+}
+
+require'lualine'.setup {
+  options = {
+    icons_enabled = true,
+    theme = 'gruvbox',
+    component_separators = {'', ''},
+    section_separators = {'', ''},
+    disabled_filetypes = {}
+  },
+sections = {
+  lualine_a = {'mode'},
+
+
+  lualine_b ={
+  'branch',
+    {
+      'filename',
+      path=1
+    },
+  'diff'
+  },
+
+  lualine_x = {
+    {
+        'diagnostics',
+        sources = {'nvim_lsp'},
+        symbols = {error = '', warn = '', info = ''},
+        color_error = colors.red,
+        color_warn = colors.yellow,
+        color_info = colors.cyan
+    },
+    function()
+      local msg = 'no lsp'
+      local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+      local clients = vim.lsp.get_active_clients()
+      if next(clients) == nil then return msg end
+        for _, client in ipairs(clients) do
+          local filetypes = client.config.filetypes
+          if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+            return client.name
+          end
+        end
+        return msg
+      end,
+      color = {fg = '#ffffff'}
+      },
+
+    lualine_y = {
+      {
+      'filetype',
+      colored=true
+      }
+      },
+
+    lualine_z = {'location'}
+    },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+    },
+  extensions = {}
+  }
+
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.graphql.setup{}
-
 require'lspconfig'.hls.setup{
 	on_attach = require'completion'.on_attach
 }
-
 require('telescope').setup{
 	defaults = {
-		prompt_prefix =">>  "
+		prompt_prefix ="> "
 	}
 }
-require("trouble").setup {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  }
+require("trouble").setup {}
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+require'lspconfig'.cssls.setup {
+  capabilities = capabilities,
+}
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.html.setup {
+  capabilities = capabilities,
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -206,4 +315,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
     }
 )
+
+
+
+
 EOF
+
+
+autocmd BufEnter * lua require'completion'.on_attach()
