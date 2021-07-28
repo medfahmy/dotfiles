@@ -1,21 +1,22 @@
-alias x="cd /mnt/data/workspace"
-alias rct="cd /mnt/data/workspace/react"
-alias ts="cd /mnt/data/workspace/typescript"
-alias rs="cd /mnt/data/workspace/rust"
-alias hs="cd /mnt/data/workspace/haskell"
-
-alias D="cd /home/mf/Desktop"
-
-alias rl="source ~/.bashrc"
-alias pbcopy='xsel --clipboard --input'
-alias pbpaste='xsel --clipboard --output'
-alias fm=thunar
+#aliases
+#alias x="cd /mnt/data/workspace"
+#alias rct="cd /mnt/data/workspace/react"
+#alias ts="cd /mnt/data/workspace/typescript"
+#alias rs="cd /mnt/data/workspace/rust"
+#alias hs="cd /mnt/data/workspace/haskell"
+#alias D="cd /home/mf/Desktop"
+#alias rl="source ~/.bashrc"
+#alias pbcopy='xsel --clipboard --input'
+#alias pbpaste='xsel --clipboard --output'
+#alias fm=thunar
 #alias vrc='vim ~/.vimrc'
-alias grep=rg
-alias code=vscodium
-alias brc='nvim ~/dotfiles/bash/.bashrc'
-alias vrc='nvim ~/dotfiles/nvim/init.vim'
-alias cra="create-react-app --template=typescript"
+#alias grep=rg
+#alias code=vscodium
+#alias brc='nvim ~/dotfiles/bash/.bashrc'
+#alias vrc='nvim ~/dotfiles/nvim/init.vim'
+#alias cra="create-react-app --template=typescript"
+#alias tree="tree -I node_modules"
+#alias ls="ls -A"
 
 
 
