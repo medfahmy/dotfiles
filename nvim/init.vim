@@ -18,7 +18,6 @@ call plug#begin('~/.vim/plugged')
 
 	Plug 'airblade/vim-gitgutter' "git signcolumn 
 
-	Plug 'prettier/vim-prettier', {'do':'yarn install'}
 
 	Plug 'rust-lang/rust.vim'
 
@@ -29,18 +28,20 @@ call plug#begin('~/.vim/plugged')
 	Plug 'jparise/vim-graphql'
   
   Plug 'leafgarland/typescript-vim'
+  Plug 'pangloss/vim-javascript'
+	Plug 'prettier/vim-prettier', {'do':'yarn install'}
   Plug 'maxmellon/vim-jsx-pretty'
 	Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
   Plug 'hoob3rt/lualine.nvim'
-  " If you want to have icons in your statusline choose one of these
-  Plug 'kyazdani42/nvim-web-devicons'
   Plug 'arkav/lualine-lsp-progress'
   Plug 'voldikss/vim-floaterm'
   Plug 'kyazdani42/nvim-tree.lua'
   Plug 'romgrk/barbar.nvim'
 
 	call plug#end()
+  
+let g:javascript_plugin_jsdoc = 1
 
 " nvim tree
 let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
@@ -177,13 +178,14 @@ let g:rustfmt_autosave = 1
 
 "Remaps
 
-nnoremap <C-f> <cmd>Telescope find_files theme=get_dropdown<cr>
+nnoremap <C-c> <Esc>
+nnoremap <C-p> <cmd>Telescope find_files theme=get_dropdown<cr>
 "nnoremap <C-n> :bnext<CR>
 "nnoremap <C-p> :bprevious<CR>
-nnoremap <Tab> :BufferNext<CR>
-nnoremap <S-Tab> :BufferPrevious<CR>
-nnoremap ; :
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 vnoremap ; :
+nnoremap ; :
 nnoremap - <cmd>TroubleToggle<cr>
 nnoremap Y y$
 map q: <Nop>
@@ -195,6 +197,8 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 imap <tab> <Plug>(completion_smart_tab)
 imap <s-tab> <Plug>(completion_smart_s_tab)
 nnoremap <C-n> :NvimTreeToggle<CR>
+vnoremap < <gv
+vnoremap > >gv
 
 
 " Lua
@@ -204,29 +208,35 @@ lua  << EOF
 local colors = {
   bg = '#202328',
   fg = '#bbc2cf',
-  yellow = '#ECBE7B',
+  yellow = '#fabd2f',
   cyan = '#008080',
   darkblue = '#081633',
-  green = '#98be65',
-  orange = '#FF8800',
-  violet = '#a9a1e1',
+  green = '#b8bb26',
+  orange = '#fe8019',
+  violet = '#d3869b',
   magenta = '#c678dd',
   blue = '#51afef',
-  red = '#ec5f67'
+  red = '#fb4934'
 }
+local custom_gruvbox = require'lualine.themes.gruvbox'
+-- Change the background of lualine_c section for normal mode
+custom_gruvbox.normal.a.bg = colors.yellow -- rgb colors are supported
+custom_gruvbox.insert.a.bg = colors.red -- rgb colors are supported
+custom_gruvbox.visual.a.bg = colors.orange -- rgb colors are supported
+custom_gruvbox.command.a.bg = colors.green -- rgb colors are supported
 
 require'lualine'.setup {
   options = {
     icons_enabled = true,
-    theme = 'gruvbox',
-    component_separators = {'', ''},
-    section_separators = {'', ''},
+    theme = custom_gruvbox,
+    section_separators = '',
+    component_separators = '|',
+    -- component_separators = {'', ''},
+    -- section_separators = {'', ''},
     disabled_filetypes = {}
-  },
+    },
 sections = {
-  lualine_a = {'mode'},
-
-
+  lualine_a = {'mode' },
   lualine_b ={
   'branch',
     {
@@ -270,6 +280,7 @@ sections = {
 
     lualine_z = {'location'}
     },
+  tabline={},
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
@@ -286,12 +297,22 @@ require'lspconfig'.graphql.setup{}
 require'lspconfig'.hls.setup{
 	on_attach = require'completion'.on_attach
 }
+require'lspconfig'.vimls.setup{}
+require'lspconfig'.rust_analyzer.setup{}
 require('telescope').setup{
 	defaults = {
 		prompt_prefix ="> "
 	}
 }
-require("trouble").setup {}
+require'lspconfig'.jsonls.setup {
+    commands = {
+      Format = {
+        function()
+          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+        end
+      }
+    }
+}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -312,14 +333,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         virtual_text = false,
         --update_in_insert=true,
         signs=true
-
     }
 )
 
-
-
-
+require("trouble").setup {}
 EOF
 
-
 autocmd BufEnter * lua require'completion'.on_attach()
+

@@ -1,22 +1,4 @@
-#aliases
-#alias x="cd /mnt/data/workspace"
-#alias rct="cd /mnt/data/workspace/react"
-#alias ts="cd /mnt/data/workspace/typescript"
-#alias rs="cd /mnt/data/workspace/rust"
-#alias hs="cd /mnt/data/workspace/haskell"
-#alias D="cd /home/mf/Desktop"
-#alias rl="source ~/.bashrc"
-#alias pbcopy='xsel --clipboard --input'
-#alias pbpaste='xsel --clipboard --output'
-#alias fm=thunar
-#alias vrc='vim ~/.vimrc'
-#alias grep=rg
-#alias code=vscodium
-#alias brc='nvim ~/dotfiles/bash/.bashrc'
-#alias vrc='nvim ~/dotfiles/nvim/init.vim'
-#alias cra="create-react-app --template=typescript"
-#alias tree="tree -I node_modules"
-#alias ls="ls -A"
+
 
 
 
@@ -94,9 +76,9 @@ completions=(
 # Custom aliases may be added to ~/.oh-my-bash/custom/aliases/
 # Example format: aliases=(vagrant composer git-avh)
 # Add wisely, as too many aliases slow down shell startup.
-aliases=(
-  general
-)
+# aliases=(
+#   general
+# )
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)
 # Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
@@ -128,10 +110,25 @@ source $OSH/oh-my-bash.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-bash libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-bash
-# users are encouraged to define aliases within the OSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
 
 . ~/.ghcup/env
+
+
+# Aliases
+
+alias fm=thunar
+alias grep=rg
+alias code=vscodium
+
+alias cp='cp -iv'                           # Preferred 'cp' implementation
+alias mv='mv -iv'                           # Preferred 'mv' implementation
+alias rm='rm -iv'
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias ls='ls --color=auto --group-directories-first -A'                         # Preferred 'ls' implementation
+alias tree="tree -I 'node_modules*|target'"
+alias wget='wget -c'                        # Preferred 'wget' implementation (resume download)
+alias c='clear'                             # c:            Clear terminal display
+alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+alias src='source ~/.bashrc'                # src:          Reload .bashrc file
+#alias pbcopy='xsel --clipboard --input'
+#alias pbpaste='xsel --clipboard --output'
