@@ -1,5 +1,6 @@
 " plugins
 call plug#begin('~/.vim/plugged')
+
 	Plug 'gruvbox-community/gruvbox'
 
 	Plug 'nvim-lua/popup.nvim'
@@ -8,7 +9,7 @@ call plug#begin('~/.vim/plugged')
   
 	Plug 'tpope/vim-commentary'
 
-	"Plug 'jiangmiao/auto-pairs'
+	Plug 'jiangmiao/auto-pairs'
   
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'nvim-lua/completion-nvim'
@@ -41,56 +42,6 @@ call plug#begin('~/.vim/plugged')
 
 	call plug#end()
   
-let g:javascript_plugin_jsdoc = 1
-
-" nvim tree
-let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
-let g:nvim_tree_highlight_opened_files = 1
-let g:nvim_tree_tab_open = 1
-let g:nvim_tree_group_empty = 1
-let g:nvim_tree_auto_open = 1 " open tree when file not specified
-let g:nvim_tree_quit_on_open = 1
-let g:nvim_tree_show_icons = {
-      \ 'git': 0,
-      \ 'folders': 0,
-      \ 'files': 0,
-      \ 'folder_arrows': 1,
-      \ }
-
-" barbar
-" NOTE: If barbar's option dict isn't created yet, create it
-let bufferline = get(g:, 'bufferline', {})
-
-" Enable/disable animations
-let bufferline.animation = v:false
-
-" Enable/disable auto-hiding the tab bar when there is a single buffer
-let bufferline.auto_hide = v:false
-
-" Enable/disable current/total tabpages indicator (top right corner)
-let bufferline.tabpages = v:true
-
-" Enable/disable close button
-let bufferline.closable = v:false
-
-" Enables/disable clickable tabs
-"  - left-click: go to buffer
-"  - middle-click: delete buffer
-let bufferline.clickable = v:true
-
-" Enable/disable icons
-" if set to 'numbers', will show buffer index in the tabline
-" if set to 'both', will show buffer index and icons in the tabline
-let bufferline.icons = v:false
-
-
-" Sets the maximum padding width with which to surround each tab.
-let bufferline.maximum_padding = 2
-
-" Sets the maximum buffer name length.
-let bufferline.maximum_length = 30
-
-
 
 
 " settings
@@ -134,8 +85,6 @@ set wildmode=list:full            " Complete files like a shell.
 set wildignore=.git,.hg,*.o,*.a,*.class,*.jar,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,**/cache/*,**/logs/*,**/target/*,*.hi,tags,**/dist/*,**/public/**/vendor/**,**/public/vendor/**,**/node_modules/**
 
 
-"autocmd InsertEnter * set cul
-"autocmd InsertLeave * set nocul
 
 
 
@@ -152,6 +101,42 @@ colorscheme gruvbox
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
 hi MatchParen cterm=none ctermbg=green ctermfg=blue
+
+
+
+" autocommands
+
+autocmd BufEnter * lua require'completion'.on_attach()
+
+" highlight yanked text
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
+augroup END
+
+"autocmd InsertEnter * set cul
+"autocmd InsertLeave * set nocul
+
+
+let g:javascript_plugin_jsdoc = 1
+
+" nvim tree
+let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
+let g:nvim_tree_highlight_opened_files = 1
+let g:nvim_tree_tab_open = 1
+let g:nvim_tree_group_empty = 1
+let g:nvim_tree_auto_open = 1 " open tree when file not specified
+let g:nvim_tree_quit_on_open = 1
+let g:nvim_tree_show_icons = {
+      \ 'git': 0,
+      \ 'folders': 0,
+      \ 'files': 0,
+      \ 'folder_arrows': 1,
+      \ }
+
+
+
+
 
 
 
@@ -176,17 +161,23 @@ let g:rustfmt_autosave = 1
 
 
 
-"Remaps
+"mappings
 
-nnoremap <C-c> <Esc>
-nnoremap <C-p> <cmd>Telescope find_files theme=get_dropdown<cr>
+let mapleader = " "
+
+nnoremap <silent> <C-p> <cmd>Telescope find_files theme=get_dropdown<cr>
+
 "nnoremap <C-n> :bnext<CR>
 "nnoremap <C-p> :bprevious<CR>
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
+nnoremap <silent> <Tab> :bnext<CR>
+nnoremap <silent> <S-Tab> :bprevious<CR>
+
 vnoremap ; :
 nnoremap ; :
-nnoremap - <cmd>TroubleToggle<cr>
+
+nnoremap <silent> - <cmd>TroubleToggle<cr>
+
+
 nnoremap Y y$
 map q: <Nop>
 nnoremap Q <nop>
@@ -196,13 +187,71 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 imap <tab> <Plug>(completion_smart_tab)
 imap <s-tab> <Plug>(completion_smart_s_tab)
-nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <silent> <C-n> :NvimTreeToggle<CR>
+
+" moving text
+vnoremap <silent> J :m '>+1<CR>gv=gv
+vnoremap <silent> K :m '<-2<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==
+inoremap <C-k> <esc>:m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
+
+
+" indenting selection while staying in visual mode
 vnoremap < <gv
 vnoremap > >gv
 
+" keeping it centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
 
-" Lua
-lua  << EOF
+
+" " undo break points
+" inoremap , ,<c-g>u
+" inoremap . .<c-g>u
+" inoremap ! !<c-g>u
+" inoremap ? ?<c-g>u
+" inoremap ( (<c-g>u
+" inoremap ) )<c-g>u
+" inoremap { {<c-g>u
+" inoremap } }<c-g>u
+" inoremap [ [<c-g>u
+" inoremap ] ]<c-g>u
+" inoremap < <<c-g>u
+" inoremap > ><c-g>u
+
+" jumplist mutations
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
+
+vnoremap " <esc>`>a"<esc>`<i"<esc>
+vnoremap ( <esc>`>a)<esc>`<i(<esc>
+vnoremap [ <esc>`>a]<esc>`<i[<esc>
+vnoremap ' <esc>`>a'<esc>`<i'<esc>
+vnoremap { <esc>`>a}<esc>`<i{<esc>
+
+" Move to previous/next
+"nnoremap <silent>    <A-,> :BufferPrevious<CR>
+"nnoremap <silent>    <A-.> :BufferNext<CR>
+" Re-order to previous/next
+nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
+nnoremap <silent>    <A->> :BufferMoveNext<CR>
+" Goto buffer in position...
+nnoremap <silent>    <A-1> :BufferGoto 1<CR>
+nnoremap <silent>    <A-2> :BufferGoto 2<CR>
+nnoremap <silent>    <A-3> :BufferGoto 3<CR>
+nnoremap <silent>    <A-4> :BufferGoto 4<CR>
+nnoremap <silent>    <A-5> :BufferGoto 5<CR>
+nnoremap <silent>    <A-6> :BufferGoto 6<CR>
+nnoremap <silent>    <A-7> :BufferGoto 7<CR>
+nnoremap <silent>    <A-8> :BufferGoto 8<CR>
+nnoremap <silent>    <A-9> :BufferLast<CR>
+" Close buffer
+nnoremap <silent>    <leader>c :BufferClose<CR>
+
+lua << EOF
 
 -- Color table for highlights
 local colors = {
@@ -218,6 +267,10 @@ local colors = {
   blue = '#51afef',
   red = '#fb4934'
 }
+
+
+-- lualine
+
 local custom_gruvbox = require'lualine.themes.gruvbox'
 -- Change the background of lualine_c section for normal mode
 custom_gruvbox.normal.a.bg = colors.yellow -- rgb colors are supported
@@ -229,10 +282,10 @@ require'lualine'.setup {
   options = {
     icons_enabled = true,
     theme = custom_gruvbox,
-    section_separators = '',
-    component_separators = '|',
-    -- component_separators = {'', ''},
-    -- section_separators = {'', ''},
+    -- section_separators = '',
+    -- component_separators = '|',
+    component_separators = {'', ''},
+    section_separators = {'', ''},
     disabled_filetypes = {}
     },
 sections = {
@@ -292,8 +345,75 @@ sections = {
   extensions = {}
   }
 
+
+-- barbar
+vim.g.bufferline = {
+  -- Enable/disable animations
+  animation = false,
+
+  -- Enable/disable auto-hiding the tab bar when there is a single buffer
+  auto_hide = false,
+
+  -- Enable/disable current/total tabpages indicator (top right corner)
+  tabpages = true,
+
+  -- Enable/disable close button
+  closable = true,
+
+  -- Enables/disable clickable tabs
+  --  - left-click: go to buffer
+  --  - middle-click: delete buffer
+  clickable = true,
+
+  -- Excludes buffers from the tabline
+  -- exclude_ft = ['javascript'],
+  -- exclude_name = ['package.json'],
+
+  -- Enable/disable icons
+  -- if set to 'numbers', will show buffer index in the tabline
+  -- if set to 'both', will show buffer index and icons in the tabline
+  icons = false,
+
+  -- If set, the icon color will follow its corresponding buffer
+  -- highlight group. By default, the Buffer*Icon group is linked to the
+  -- Buffer* group (see Highlighting below). Otherwise, it will take its
+  -- default value as defined by devicons.
+  icon_custom_colors = false,
+
+  -- Configure icons on the bufferline.
+  icon_separator_active = '',
+  icon_separator_inactive = '',
+  -- component_separators = {'', ''},
+  -- section_separators = {'', ''},
+  icon_close_tab = 'x',
+  icon_close_tab_modified = 'ø',
+
+  -- Sets the maximum padding width with which to surround each tab
+  maximum_padding = 1,
+
+  -- Sets the maximum buffer name length.
+  maximum_length = 30,
+
+  -- If set, the letters for each buffer in buffer-pick mode will be
+  -- assigned based on their name. Otherwise or in case all letters are
+  -- already assigned, the behavior is to assign letters in order of
+  -- usability (see order below)
+  semantic_letters = true,
+
+  -- New buffer letters are assigned in this order. This order is
+  -- optimal for the qwerty keyboard layout but might need adjustement
+  -- for other layouts.
+  letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
+
+  -- Sets the name of unnamed buffers. By default format is "[Buffer X]"
+  -- where X is the buffer number. But only a static string is accepted here.
+  no_name_title = "untitled",
+}
+
 require'lspconfig'.tsserver.setup{}
-require'lspconfig'.graphql.setup{}
+require'lspconfig'.graphql.setup{
+
+}
 require'lspconfig'.hls.setup{
 	on_attach = require'completion'.on_attach
 }
@@ -304,6 +424,8 @@ require('telescope').setup{
 		prompt_prefix ="> "
 	}
 }
+
+require'lspconfig'.gopls.setup{}
 require'lspconfig'.jsonls.setup {
     commands = {
       Format = {
@@ -314,6 +436,7 @@ require'lspconfig'.jsonls.setup {
     }
 }
 
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -321,23 +444,24 @@ require'lspconfig'.cssls.setup {
   capabilities = capabilities,
 }
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 require'lspconfig'.html.setup {
   capabilities = capabilities,
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false,
+        virtual_text = true,
         --update_in_insert=true,
         signs=true
     }
 )
 
 require("trouble").setup {}
-EOF
 
-autocmd BufEnter * lua require'completion'.on_attach()
 
+require'nvim-treesitter.configs'.setup {
+  autotag = {
+    enable = true,
+  }
+}
+EOF 
