@@ -6,42 +6,40 @@ call plug#begin('~/.vim/plugged')
 	Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
-  
 	Plug 'tpope/vim-commentary'
-
 	Plug 'jiangmiao/auto-pairs'
-  
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'nvim-lua/completion-nvim'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'folke/trouble.nvim'
   Plug 'folke/lsp-colors.nvim'
-
 	Plug 'airblade/vim-gitgutter' "git signcolumn 
 
 
+  Plug 'HerringtonDarkholme/yats.vim'
+  " Plug 'leafgarland/typescript-vim'
+  Plug 'pangloss/vim-javascript'
+  Plug 'prettier/vim-prettier', {'do':'yarn install'}
+  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 	Plug 'rust-lang/rust.vim'
+  Plug 'fatih/vim-go'
 
 	Plug 'neovimhaskell/haskell-vim'
 	Plug 'alx741/vim-hindent'
 	"Plug 'alx741/vim-stylishask'
-  
 	Plug 'jparise/vim-graphql'
-  
-  Plug 'leafgarland/typescript-vim'
-  Plug 'pangloss/vim-javascript'
-	Plug 'prettier/vim-prettier', {'do':'yarn install'}
-  Plug 'maxmellon/vim-jsx-pretty'
-	Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
   Plug 'hoob3rt/lualine.nvim'
-  Plug 'arkav/lualine-lsp-progress'
-  Plug 'voldikss/vim-floaterm'
-  Plug 'kyazdani42/nvim-tree.lua'
-  Plug 'romgrk/barbar.nvim'
+  Plug 'bling/vim-bufferline'
+  "Plug 'voldikss/vim-floaterm'
+  "Plug 'kyazdani42/nvim-tree.lua'
 
 	call plug#end()
+
   
+let g:bufferline_echo = 1
+let g:bufferline_show_bufnr = 0
 
 
 " settings
@@ -100,7 +98,7 @@ let g:gruvbox_invert_selection='0'
 colorscheme gruvbox
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
-hi MatchParen cterm=none ctermbg=green ctermfg=blue
+" hi MatchParen cterm=none ctermbg=green ctermfg=blue
 
 
 
@@ -114,26 +112,26 @@ augroup highlight_yank
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
 augroup END
 
-"autocmd InsertEnter * set cul
-"autocmd InsertLeave * set nocul
+
+" autocmd InsertEnter * set cul
+" autocmd InsertLeave * set nocul
 
 
 let g:javascript_plugin_jsdoc = 1
 
-" nvim tree
-let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
-let g:nvim_tree_highlight_opened_files = 1
-let g:nvim_tree_tab_open = 1
-let g:nvim_tree_group_empty = 1
-let g:nvim_tree_auto_open = 1 " open tree when file not specified
-let g:nvim_tree_quit_on_open = 1
-let g:nvim_tree_show_icons = {
-      \ 'git': 0,
-      \ 'folders': 0,
-      \ 'files': 0,
-      \ 'folder_arrows': 1,
-      \ }
-
+"nvim tree
+" let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
+" let g:nvim_tree_highlight_opened_files = 1
+" let g:nvim_tree_tab_open = 1
+" let g:nvim_tree_group_empty = 1
+" let g:nvim_tree_auto_open = 0 " open tree when file not specified
+" let g:nvim_tree_quit_on_open = 1
+" let g:nvim_tree_show_icons = {
+"       \ 'git': 0,
+"       \ 'folders': 0,
+"       \ 'files': 0,
+"       \ 'folder_arrows': 1,
+"       \ }
 
 
 
@@ -141,29 +139,19 @@ let g:nvim_tree_show_icons = {
 
 
 set completeopt=menuone,noinsert,noselect
-
 " Avoid showing message extra message when using completion
 set shortmess+=c
-
 let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
 
-"By default auto popup is enabled, turn it off by
-"let g:completion_enable_auto_popup = 0
 
-"Prettier on save
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
-
-
-
 let g:rustfmt_autosave = 1
-
-
 
 
 "mappings
 
-let mapleader = " "
+let mapleader = ","
 
 nnoremap <silent> <C-p> <cmd>Telescope find_files theme=get_dropdown<cr>
 
@@ -177,6 +165,8 @@ nnoremap ; :
 
 nnoremap <silent> - <cmd>TroubleToggle<cr>
 
+tnoremap <C-[> <C-\><C-N>
+
 
 nnoremap Y y$
 map q: <Nop>
@@ -187,7 +177,7 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 imap <tab> <Plug>(completion_smart_tab)
 imap <s-tab> <Plug>(completion_smart_s_tab)
-nnoremap <silent> <C-n> :NvimTreeToggle<CR>
+nnoremap <silent> <leader>n :NvimTreeToggle<CR>
 
 " moving text
 vnoremap <silent> J :m '>+1<CR>gv=gv
@@ -248,8 +238,10 @@ nnoremap <silent>    <A-6> :BufferGoto 6<CR>
 nnoremap <silent>    <A-7> :BufferGoto 7<CR>
 nnoremap <silent>    <A-8> :BufferGoto 8<CR>
 nnoremap <silent>    <A-9> :BufferLast<CR>
+
 " Close buffer
 nnoremap <silent>    <leader>c :BufferClose<CR>
+
 
 lua << EOF
 
@@ -280,7 +272,7 @@ custom_gruvbox.command.a.bg = colors.green -- rgb colors are supported
 
 require'lualine'.setup {
   options = {
-    icons_enabled = true,
+    icons_enabled = false,
     theme = custom_gruvbox,
     -- section_separators = '',
     -- component_separators = '|',
@@ -292,10 +284,6 @@ sections = {
   lualine_a = {'mode' },
   lualine_b ={
   'branch',
-    {
-      'filename',
-      path=1
-    },
   'diff'
   },
 
@@ -309,17 +297,15 @@ sections = {
         color_info = colors.cyan
     },
     function()
-      local msg = 'no lsp'
       local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
       local clients = vim.lsp.get_active_clients()
-      if next(clients) == nil then return msg end
+      if next(clients) == nil then end
         for _, client in ipairs(clients) do
           local filetypes = client.config.filetypes
           if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
             return client.name
           end
         end
-        return msg
       end,
       color = {fg = '#ffffff'}
       },
@@ -333,86 +319,15 @@ sections = {
 
     lualine_z = {'location'}
     },
-  tabline={},
+  --tabline={},
   inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-    },
+        },
   extensions = {}
   }
 
-
--- barbar
-vim.g.bufferline = {
-  -- Enable/disable animations
-  animation = false,
-
-  -- Enable/disable auto-hiding the tab bar when there is a single buffer
-  auto_hide = false,
-
-  -- Enable/disable current/total tabpages indicator (top right corner)
-  tabpages = true,
-
-  -- Enable/disable close button
-  closable = true,
-
-  -- Enables/disable clickable tabs
-  --  - left-click: go to buffer
-  --  - middle-click: delete buffer
-  clickable = true,
-
-  -- Excludes buffers from the tabline
-  -- exclude_ft = ['javascript'],
-  -- exclude_name = ['package.json'],
-
-  -- Enable/disable icons
-  -- if set to 'numbers', will show buffer index in the tabline
-  -- if set to 'both', will show buffer index and icons in the tabline
-  icons = false,
-
-  -- If set, the icon color will follow its corresponding buffer
-  -- highlight group. By default, the Buffer*Icon group is linked to the
-  -- Buffer* group (see Highlighting below). Otherwise, it will take its
-  -- default value as defined by devicons.
-  icon_custom_colors = false,
-
-  -- Configure icons on the bufferline.
-  icon_separator_active = '',
-  icon_separator_inactive = '',
-  -- component_separators = {'', ''},
-  -- section_separators = {'', ''},
-  icon_close_tab = 'x',
-  icon_close_tab_modified = 'ø',
-
-  -- Sets the maximum padding width with which to surround each tab
-  maximum_padding = 1,
-
-  -- Sets the maximum buffer name length.
-  maximum_length = 30,
-
-  -- If set, the letters for each buffer in buffer-pick mode will be
-  -- assigned based on their name. Otherwise or in case all letters are
-  -- already assigned, the behavior is to assign letters in order of
-  -- usability (see order below)
-  semantic_letters = true,
-
-  -- New buffer letters are assigned in this order. This order is
-  -- optimal for the qwerty keyboard layout but might need adjustement
-  -- for other layouts.
-  letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
-
-  -- Sets the name of unnamed buffers. By default format is "[Buffer X]"
-  -- where X is the buffer number. But only a static string is accepted here.
-  no_name_title = "untitled",
-}
-
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.graphql.setup{
-
+  filetypes = {"graphql", "graphqls"}
 }
 require'lspconfig'.hls.setup{
 	on_attach = require'completion'.on_attach
@@ -426,6 +341,7 @@ require('telescope').setup{
 }
 
 require'lspconfig'.gopls.setup{}
+
 require'lspconfig'.jsonls.setup {
     commands = {
       Format = {
@@ -456,7 +372,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     }
 )
 
-require("trouble").setup {}
+require("trouble").setup {
+  icons=false
+  }
 
 
 require'nvim-treesitter.configs'.setup {
@@ -464,4 +382,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   }
 }
-EOF 
+EOF
+
+
+
