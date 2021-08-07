@@ -81,6 +81,7 @@ set undolevels=2000
 set undofile
 set wildmode=list:full            " Complete files like a shell.
 set wildignore=.git,.hg,*.o,*.a,*.class,*.jar,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,**/cache/*,**/logs/*,**/target/*,*.hi,tags,**/dist/*,**/public/**/vendor/**,**/public/vendor/**,**/node_modules/**
+set splitbelow splitright
 
 
 
@@ -111,6 +112,17 @@ augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
 augroup END
+
+augroup exe_code
+  autocmd Filetype javascript nnoremap <silent> <leader>r :sp<CR> :term deno run %<CR> :startinsert<CR>
+  autocmd Filetype typescript nnoremap <silent> <leader>r :sp<CR> :term deno run %<CR> :startinsert<CR>
+augroup END
+
+" augroup exe_code
+"   autocmd Filetype typescript nnoremap <silent> <leader>r :sp<CR> :term ts-node %<CR> :startinsert<CR>
+" augroup END
+
+
 
 
 " autocmd InsertEnter * set cul
@@ -153,6 +165,7 @@ let g:rustfmt_autosave = 1
 
 let mapleader = ","
 
+
 nnoremap <silent> <C-p> <cmd>Telescope find_files theme=get_dropdown<cr>
 
 "nnoremap <C-n> :bnext<CR>
@@ -163,7 +176,8 @@ nnoremap <silent> <S-Tab> :bprevious<CR>
 vnoremap ; :
 nnoremap ; :
 
-nnoremap <silent> - <cmd>TroubleToggle<cr>
+nnoremap <silent> <leader>- <cmd>TroubleToggle<cr>
+nnoremap <silent> <leader>m <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
 
 tnoremap <C-[> <C-\><C-N>
 
@@ -366,7 +380,7 @@ require'lspconfig'.html.setup {
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = true,
+        virtual_text = false,
         --update_in_insert=true,
         signs=true
     }

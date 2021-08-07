@@ -13,9 +13,6 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # bindkey -M menuselect 'j' vi-down-line-or-history
 # bindkey -v '^?' backward-delete-char
 
-# bindkey '^P' history-beginning-search-backward
-# bindkey '^N' history-beginning-search-forward
-
 CASE_SENSITIVE="false"
 HYPHEN_INSENSITIVE="true"
 DISABLE_AUTO_TITLE="true"
@@ -78,15 +75,6 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# Load aliases and shortcuts if existent.
-[ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc"
-[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
-
-
-#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-
-[ -f "/home/mf/.ghcup/env" ] && source "/home/mf/.ghcup/env" # ghcup-env
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -95,6 +83,22 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
+# if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+#     tmux attach -t default || tmux new -s default
+# fi
+
+# Load aliases and shortcuts if existent.
+[ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc"
+[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
+
+
+
+[ -f "/home/mf/.ghcup/env" ] && source "/home/mf/.ghcup/env" # ghcup-env
+
+
+
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
