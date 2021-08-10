@@ -19,7 +19,10 @@ DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git npm)
+plugins=(
+  git 
+  zsh-navigation-tools
+  )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,7 +101,7 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 
 
 #source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+#source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
