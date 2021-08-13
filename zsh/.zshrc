@@ -1,10 +1,11 @@
 
-export ZSH="/home/mf/.oh-my-zsh"
+export ZSH="/home/mfahmy/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
 
 # Use vim keys in tab complete menu:
 # bindkey -M menuselect 'h' vi-backward-char
@@ -27,12 +28,12 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 
-. ~/.ghcup/env
+#. ~/.ghcup/env
 
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
+HISTFILE=~/.zsh_history
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -83,20 +84,18 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down
+bindkey "^P" up-line-or-beginning-search # Up
+bindkey "^N" down-line-or-beginning-search # Down
+# bindkey "^[[A" up-line-or-beginning-search # Up
+# bindkey "^[[B" down-line-or-beginning-search # Down
 
 # if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
 #     tmux attach -t default || tmux new -s default
 # fi
 
-# Load aliases and shortcuts if existent.
-[ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc"
-[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
 
-
-[ -f "/home/mf/.ghcup/env" ] && source "/home/mf/.ghcup/env" # ghcup-env
+#[ -f "/home/mfahmy/.ghcup/env" ] && source "/home/mf/.ghcup/env" # ghcup-env
 
 
 
@@ -105,3 +104,27 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+
+# Aliases
+
+alias c=clear
+alias ls="ls -A --color=auto --group-directories-first"
+alias src= "source ~/.zshrc"
+
+
+
+alias fm=thunar
+alias grep=rg
+alias code=vscodium
+
+alias cp='cp -iv'                           # Preferred 'cp' implementation
+alias mv='mv -iv'                           # Preferred 'mv' implementation
+alias rm='rm -iv'
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias ls='ls --color=auto --group-directories-first -A'                         # Preferred 'ls' implementation
+alias tree="tree -I 'node_modules*|target'"
+alias wget='wget -c'                        # Preferred 'wget' implementation (resume download)
+alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+#alias pbcopy='xsel --clipboard --input'
+#alias pbpaste='xsel --clipboard --output'
