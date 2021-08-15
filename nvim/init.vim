@@ -173,9 +173,6 @@ nnoremap <silent> <C-p> <cmd>Telescope find_files theme=get_dropdown<cr>
 nnoremap <silent> <Tab> :bnext<CR>
 nnoremap <silent> <S-Tab> :bprevious<CR>
 
-vnoremap ; :
-nnoremap ; :
-
 nnoremap <silent> <leader>- <cmd>TroubleToggle<cr>
 nnoremap <silent> <leader>m <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
 

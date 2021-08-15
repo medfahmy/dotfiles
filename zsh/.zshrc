@@ -118,9 +118,9 @@ alias fm=thunar
 alias grep=rg
 alias code=vscodium
 
-alias cp='cp -iv'                           # Preferred 'cp' implementation
-alias mv='mv -iv'                           # Preferred 'mv' implementation
-alias rm='rm -iv'
+alias cp='cp -v'                           # Preferred 'cp' implementation
+alias mv='mv -v'                           # Preferred 'mv' implementation
+alias rm='rm -v'
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ls='ls --color=auto --group-directories-first -A'                         # Preferred 'ls' implementation
 alias tree="tree -I 'node_modules*|target'"
