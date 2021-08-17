@@ -1,0 +1,32 @@
+{
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontSize": 15,
+  "vim.camelCaseMotion.enable": true,
+  "vim.enableNeovim": true,
+  "vim.highlightedyank.duration": 500,
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.textColor": "orange",
+  "vim.neovimPath": "/usr/bin/nvim",
+  "vim.neovimUseConfigFile": true,
+  "vim.searchHighlightColor": "yellow",
+  "vim.smartRelativeLine": true,
+  "vim.useSystemClipboard": true,
+  "vim.vimrc.enable": true,
+  "vim.vimrc.path": "~/.config/nvim/init.vim",
+  "editor.formatOnSave": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.cursorSurroundingLines": 10,
+  "editor.tabSize": 2,
+  "editor.fontFamily": "'monospace', 'Droid Sans Mono',   monospace, 'Droid Sans Fallback'",
+  "emmet.excludeLanguages": ["markdown", "javascriptreact", "typescriptreact"],
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.wordWrap": "on",
+  "files.exclude": {
+    "**/node_modules": true
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always"
+}
