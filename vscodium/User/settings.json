@@ -29,8 +29,10 @@
     "**/node_modules": true
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "editor.linkedEditing": true,
   "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

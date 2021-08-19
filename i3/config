@@ -54,7 +54,7 @@ floating_modifier $mod
 bindsym $mod+Return exec kitty
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # start program launcher
 bindsym $mod+d exec --no-startup-id dmenu_recency
@@ -128,7 +128,7 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 # split orientation
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+q split toggle
+bindsym $mod+Shift+q split toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -178,6 +178,17 @@ set $ws5 " 5 "
 set $ws6 " 6 "
 set $ws7 " 7 "
 set $ws8 " 8 "
+
+# set $ws1  "1:  "
+# set $ws2  "2:  "
+# set $ws3  "3:  "
+# set $ws4  "4:  "
+# set $ws5  "5:  "
+# set $ws6  "6:  "
+# set $ws7  "7:  "
+# set $ws8  "8:  "
+# set $ws9  "9:  "
+# set $ws10 "10:  "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -366,7 +377,8 @@ bar {
 
     colors {
         background #222D31
-        statusline #F9FAF9
+        # statusline #F9FAF9
+        statusline #11edcc
         separator  #454947
 
 #                      border  backgr. text
