@@ -2,6 +2,7 @@
 call plug#begin('~/.vim/plugged')
 
 	Plug 'gruvbox-community/gruvbox'
+  Plug 'tomasiser/vim-code-dark'
 
 	Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'
@@ -25,17 +26,20 @@ call plug#begin('~/.vim/plugged')
 	Plug 'rust-lang/rust.vim'
   Plug 'fatih/vim-go'
 
-	Plug 'neovimhaskell/haskell-vim'
-	Plug 'alx741/vim-hindent'
+	" Plug 'neovimhaskell/haskell-vim'
+	" Plug 'alx741/vim-hindent'
 	"Plug 'alx741/vim-stylishask'
-	Plug 'jparise/vim-graphql'
+	" Plug 'jparise/vim-graphql'
 
   Plug 'hoob3rt/lualine.nvim'
   Plug 'bling/vim-bufferline'
   "Plug 'voldikss/vim-floaterm'
   "Plug 'kyazdani42/nvim-tree.lua'
 
-	call plug#end()
+
+  Plug 'mhinz/vim-startify'
+
+  call plug#end()
 
   
 let g:bufferline_echo = 1
@@ -94,13 +98,18 @@ filetype plugin indent on
 filetype plugin on
 
 
-let g:gruvbox_contrast_dark='dark' 
-let g:gruvbox_invert_selection='0'
-colorscheme gruvbox
+ let g:gruvbox_contrast_dark='dark' 
+ let g:gruvbox_invert_selection='0'
+ colorscheme gruvbox
 set background=dark
-hi Normal guibg=NONE ctermbg=NONE
-" hi MatchParen cterm=none ctermbg=green ctermfg=blue
+ hi Normal guibg=NONE ctermbg=NONE
 
+
+" set t_Co=256
+" set t_ut=
+" colorscheme codedark
+" hi Normal guibg=NONE ctermbg=NONE
+" hi NonText guibg=NONE ctermbg=NONE
 
 
 " autocommands
@@ -166,7 +175,8 @@ let g:rustfmt_autosave = 1
 let mapleader = ","
 
 
-nnoremap <silent> <C-p> <cmd>Telescope find_files theme=get_dropdown<cr>
+" nnoremap <silent> <C-p> <cmd>Telescope find_files theme=get_dropdown<cr>
+nnoremap <silent> <C-p> <cmd>Telescope find_files <cr>
 
 "nnoremap <C-n> :bnext<CR>
 "nnoremap <C-p> :bprevious<CR>
@@ -347,7 +357,8 @@ require'lspconfig'.vimls.setup{}
 require'lspconfig'.rust_analyzer.setup{}
 require('telescope').setup{
 	defaults = {
-		prompt_prefix ="> "
+		prompt_prefix ="> ",
+    file_ignore_patterns = {"node_modules","dist"}
 	}
 }
 
@@ -393,6 +404,8 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   }
 }
+
+
 EOF
 
 

@@ -19,14 +19,18 @@
   },
   "editor.cursorSurroundingLines": 10,
   "editor.tabSize": 2,
-  "editor.fontFamily": "'monospace', 'Droid Sans Mono',   monospace, 'Droid Sans Fallback'",
+  "editor.fontFamily": "monospace, 'Droid Sans Mono', 'Droid Sans Fallback'",
   "emmet.excludeLanguages": ["markdown", "javascriptreact", "typescriptreact"],
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.wordWrap": "on",
   "files.exclude": {
-    "**/node_modules": true
+    "**/node_modules": true,
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
   "[html]": {
@@ -34,5 +38,11 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "thunder-client.codeSnippetLanguage": "cs-httpclient",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.minimap.enabled": false
 }
