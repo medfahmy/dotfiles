@@ -1,12 +1,15 @@
-" plugins
+" Plugins
 call plug#begin('~/.vim/plugged')
 
 	Plug 'gruvbox-community/gruvbox'
-  Plug 'tomasiser/vim-code-dark'
+  " Plug 'tomasiser/vim-code-dark'
 
 	Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
+
+  Plug 'rafaqz/ranger.vim'
+
 	Plug 'tpope/vim-commentary'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'neovim/nvim-lspconfig'
@@ -17,35 +20,32 @@ call plug#begin('~/.vim/plugged')
 	Plug 'airblade/vim-gitgutter' "git signcolumn 
 
 
-  Plug 'HerringtonDarkholme/yats.vim'
+  " Plug 'HerringtonDarkholme/yats.vim'
   " Plug 'leafgarland/typescript-vim'
-  Plug 'pangloss/vim-javascript'
+  " Plug 'pangloss/vim-javascript'
   Plug 'prettier/vim-prettier', {'do':'yarn install'}
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-	Plug 'rust-lang/rust.vim'
-  Plug 'fatih/vim-go'
+	" Plug 'rust-lang/rust.vim'
+  " Plug 'fatih/vim-go'
 
 	" Plug 'neovimhaskell/haskell-vim'
 	" Plug 'alx741/vim-hindent'
-	"Plug 'alx741/vim-stylishask'
+	" Plug 'alx741/vim-stylishask'
 	" Plug 'jparise/vim-graphql'
 
   Plug 'hoob3rt/lualine.nvim'
   Plug 'bling/vim-bufferline'
-  "Plug 'voldikss/vim-floaterm'
-  "Plug 'kyazdani42/nvim-tree.lua'
+  " Plug 'voldikss/vim-floaterm'
+  " Plug 'kyazdani42/nvim-tree.lua'
 
 
   Plug 'mhinz/vim-startify'
   
-  Plug 'lukas-reineke/headlines.nvim'
 
   call plug#end()
 
   
-let g:bufferline_echo = 1
-let g:bufferline_show_bufnr = 0
 
 
 " settings
@@ -89,23 +89,16 @@ set wildmode=list:full            " Complete files like a shell.
 set wildignore=.git,.hg,*.o,*.a,*.class,*.jar,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,**/cache/*,**/logs/*,**/target/*,*.hi,tags,**/dist/*,**/public/**/vendor/**,**/public/vendor/**,**/node_modules/**
 set splitbelow splitright
 
-
-
-
-
-
-
 syntax enable
 filetype plugin indent on
 filetype plugin on
 
 
- let g:gruvbox_contrast_dark='dark' 
- let g:gruvbox_invert_selection='0'
- colorscheme gruvbox
+let g:gruvbox_contrast_dark='dark' 
+let g:gruvbox_invert_selection='0'
+colorscheme gruvbox
 set background=dark
- hi Normal guibg=NONE ctermbg=NONE
-
+ " hi Normal guibg=NONE ctermbg=NONE
 
 " set t_Co=256
 " set t_ut=
@@ -114,33 +107,19 @@ set background=dark
 " hi NonText guibg=NONE ctermbg=NONE
 
 
-" autocommands
-
-autocmd BufEnter * lua require'completion'.on_attach()
-
-" highlight yanked text
-augroup highlight_yank
-    autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
-augroup END
-
-augroup exe_code
-  autocmd Filetype javascript nnoremap <silent> <leader>r :sp<CR> :term deno run %<CR> :startinsert<CR>
-  autocmd Filetype typescript nnoremap <silent> <leader>r :sp<CR> :term deno run %<CR> :startinsert<CR>
-augroup END
-
-" augroup exe_code
-"   autocmd Filetype typescript nnoremap <silent> <leader>r :sp<CR> :term ts-node %<CR> :startinsert<CR>
-" augroup END
-
-
-
-
-" autocmd InsertEnter * set cul
-" autocmd InsertLeave * set nocul
-
-
 let g:javascript_plugin_jsdoc = 1
+set completeopt=menuone,noinsert,noselect
+" Avoid showing message extra message when using completion
+set shortmess+=c
+let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
+
+
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+" let g:rustfmt_autosave = 1
+
+let g:bufferline_echo = 1
+let g:bufferline_show_bufnr = 0
 
 "nvim tree
 " let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
@@ -157,33 +136,54 @@ let g:javascript_plugin_jsdoc = 1
 "       \ }
 
 
+" Autocommands
+
+autocmd BufEnter * lua require'completion'.on_attach()
+
+" highlight yanked text
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
+augroup END
+
+" augroup exe_code
+"   autocmd Filetype javascript nnoremap <silent> <leader>r :sp<CR> :term deno run %<CR> :startinsert<CR>
+"   autocmd Filetype typescript nnoremap <silent> <leader>r :sp<CR> :term deno run %<CR> :startinsert<CR>
+" augroup END
+
+" augroup exe_code
+"   autocmd Filetype typescript nnoremap <silent> <leader>r :sp<CR> :term ts-node %<CR> :startinsert<CR>
+" augroup END
+
+augroup MF
+  autocmd InsertEnter * set nocul
+  autocmd InsertLeave * set cul
+augroup END
 
 
+"Mappings
 
+let mapleader = " "
 
-set completeopt=menuone,noinsert,noselect
-" Avoid showing message extra message when using completion
-set shortmess+=c
-let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
-
-
-let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
-let g:rustfmt_autosave = 1
-
-
-"mappings
-
-let mapleader = ","
-
+map <leader>rr :RangerEdit<cr>
+map <leader>rv :RangerVSplit<cr>
+map <leader>rs :RangerSplit<cr>
+map <leader>rt :RangerTab<cr>
+map <leader>ri :RangerInsert<cr>
+map <leader>ra :RangerAppend<cr>
+map <leader>rc :set operatorfunc=RangerChangeOperator<cr>g@
+map <leader>rd :RangerCD<cr>
+map <leader>rld :RangerLCD<cr>
 
 " nnoremap <silent> <C-p> <cmd>Telescope find_files theme=get_dropdown<cr>
-nnoremap <silent> <C-p> <cmd>Telescope find_files <cr>
+nnoremap <silent> <leader>p <cmd>Telescope find_files <cr>
+nnoremap <silent> <leader>b <cmd>Telescope buffers <cr>
 
 "nnoremap <C-n> :bnext<CR>
 "nnoremap <C-p> :bprevious<CR>
-nnoremap <silent> <Tab> :bnext<CR>
-nnoremap <silent> <S-Tab> :bprevious<CR>
+nnoremap <silent> <Tab> :bnext<cr>
+nnoremap <silent> <S-Tab> :bprevious<cr>
+nnoremap <silent> <leader>c :bd<cr>
 
 nnoremap <silent> <leader>- <cmd>TroubleToggle<cr>
 nnoremap <silent> <leader>m <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
@@ -194,13 +194,14 @@ tnoremap <C-[> <C-\><C-N>
 nnoremap Y y$
 map q: <Nop>
 nnoremap Q <nop>
+
 "Autocomplete
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
 nnoremap <silent> <leader>n :NvimTreeToggle<CR>
+imap <s-tab> <Plug>(completion_smart_s_tab)
 
 " moving text
 vnoremap <silent> J :m '>+1<CR>gv=gv
@@ -245,26 +246,6 @@ vnoremap [ <esc>`>a]<esc>`<i[<esc>
 vnoremap ' <esc>`>a'<esc>`<i'<esc>
 vnoremap { <esc>`>a}<esc>`<i{<esc>
 
-" Move to previous/next
-"nnoremap <silent>    <A-,> :BufferPrevious<CR>
-"nnoremap <silent>    <A-.> :BufferNext<CR>
-" Re-order to previous/next
-nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
-nnoremap <silent>    <A->> :BufferMoveNext<CR>
-" Goto buffer in position...
-nnoremap <silent>    <A-1> :BufferGoto 1<CR>
-nnoremap <silent>    <A-2> :BufferGoto 2<CR>
-nnoremap <silent>    <A-3> :BufferGoto 3<CR>
-nnoremap <silent>    <A-4> :BufferGoto 4<CR>
-nnoremap <silent>    <A-5> :BufferGoto 5<CR>
-nnoremap <silent>    <A-6> :BufferGoto 6<CR>
-nnoremap <silent>    <A-7> :BufferGoto 7<CR>
-nnoremap <silent>    <A-8> :BufferGoto 8<CR>
-nnoremap <silent>    <A-9> :BufferLast<CR>
-
-" Close buffer
-nnoremap <silent>    <leader>c :BufferClose<CR>
-
 
 lua << EOF
 
@@ -297,10 +278,10 @@ require'lualine'.setup {
   options = {
     icons_enabled = false,
     theme = custom_gruvbox,
-    -- section_separators = '',
-    -- component_separators = '|',
-    component_separators = {'', ''},
-    section_separators = {'', ''},
+    section_separators = '',
+    component_separators = '|',
+    --component_separators = {'', ''},
+    --section_separators = {'', ''},
     disabled_filetypes = {}
     },
 sections = {
@@ -349,19 +330,36 @@ sections = {
   }
 
 require'lspconfig'.tsserver.setup{}
+
 require'lspconfig'.graphql.setup{
   filetypes = {"graphql", "graphqls"}
 }
+
 require'lspconfig'.hls.setup{
 	on_attach = require'completion'.on_attach
 }
+
 require'lspconfig'.vimls.setup{}
+
 require'lspconfig'.rust_analyzer.setup{}
+
 require('telescope').setup{
 	defaults = {
 		prompt_prefix ="> ",
-    file_ignore_patterns = {"node_modules","dist"}
-	}
+    file_ignore_patterns = {"node_modules","dist","build",".git"}
+	},
+  pickers = {
+    buffers = {
+      sort_lastused = true,
+      theme = "dropdown",
+      previewer = false,
+      },
+    find_files = {
+      theme = "dropdown",
+      previewer = false,
+      hidden = true
+      }
+  }
 }
 
 require'lspconfig'.gopls.setup{}
@@ -424,10 +422,4 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 
-require("headlines").setup()
-
-
 EOF
-
-
-
