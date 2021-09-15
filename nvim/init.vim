@@ -3,10 +3,12 @@ call plug#begin('~/.vim/plugged')
 
 	Plug 'gruvbox-community/gruvbox'
   " Plug 'tomasiser/vim-code-dark'
-
-	Plug 'nvim-lua/popup.nvim'
+  
+  Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
+
+  Plug 'nvim-neorg/neorg'
 
   Plug 'rafaqz/ranger.vim'
 
@@ -18,6 +20,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'folke/trouble.nvim'
   Plug 'folke/lsp-colors.nvim'
 	Plug 'airblade/vim-gitgutter' "git signcolumn 
+
 
 
   " Plug 'HerringtonDarkholme/yats.vim'
@@ -43,7 +46,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mhinz/vim-startify'
   
 
-  call plug#end()
+call plug#end()
 
   
 
@@ -200,8 +203,9 @@ nnoremap Q <nop>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 imap <tab> <Plug>(completion_smart_tab)
-nnoremap <silent> <leader>n :NvimTreeToggle<CR>
 imap <s-tab> <Plug>(completion_smart_s_tab)
+
+" nnoremap <silent> <leader>n :NvimTreeToggle<CR>
 
 " moving text
 vnoremap <silent> J :m '>+1<CR>gv=gv
@@ -412,8 +416,19 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 
+local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
+
+parser_configs.norg = {
+    install_info = {
+        url = "https://github.com/nvim-neorg/tree-sitter-norg",
+        files = { "src/parser.c", "src/scanner.cc" },
+        branch = "main"
+    },
+}
+
 require'nvim-treesitter.configs'.setup {
   --ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = { "norg", "typescript", "javascript"},
   ignore_install = {}, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
@@ -428,5 +443,25 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   }
 }
+
+--[[  require('neorg').setup {
+    -- Tell Neorg what modules to load
+    load = {
+        ["core.defaults"] = {}, -- Load all the default modules
+        ["core.norg.concealer"] = {}, -- Allows for use of icons
+        ["core.norg.dirman"] = { -- Manage your directories with Neorg
+            config = {
+                workspaces = {
+                    my_workspace = "~/neorg"
+                }
+            }
+        },
+        ["core.norg.completion"] = {
+          config = {
+            engine = "nvim-compe" | "nvim-cmp" -- We current support nvim-compe and nvim-cmp only
+          }
+        }
+    },
+} ]]--
 
 EOF
