@@ -1,2 +1,1 @@
 # dotfiles
-my beloved dotfiles

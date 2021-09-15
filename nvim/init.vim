@@ -155,10 +155,10 @@ augroup END
 "   autocmd Filetype typescript nnoremap <silent> <leader>r :sp<CR> :term ts-node %<CR> :startinsert<CR>
 " augroup END
 
-augroup MF
-  autocmd InsertEnter * set nocul
-  autocmd InsertLeave * set cul
-augroup END
+" augroup MF
+"   autocmd InsertEnter * set nocul
+"   autocmd InsertLeave * set cul
+" augroup END
 
 
 "Mappings
@@ -286,9 +286,16 @@ require'lualine'.setup {
     },
 sections = {
   lualine_a = {'mode' },
-  lualine_b ={
-  'branch',
-  'diff'
+  lualine_b = {
+    'branch',
+    'diff',
+  },
+  lualine_c = {
+    {
+      'filename',
+      file_status = true,
+      path = 2
+    }
   },
 
   lualine_x = {

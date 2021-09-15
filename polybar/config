@@ -21,16 +21,33 @@
 ; background = #222
 background = #111
 ; background-alt = #444
+background-alt = #928374
 ;foreground = ${xrdb:color7:#222}
 ; foreground = #dfdfdf
+foreground = #eee
+foreground-alt = #e2e5de
 ; foreground-alt = #555
 ; primary = #ffb52a
 primary = #11edcc 
 secondary = #e60053
 alert = #bd2c40
+black = #111
+white = #eee
+fg1 = #b2beb5
+bg = #202328
+fg = #bbc2cf
+yellow = #fabd2f
+cyan = #008080
+darkblue = #081633
+green = #b8bb26
+orange = #fe8019
+violet = #d3869b
+magenta = #c678dd
+blue = #51afef
+red = #fb4934
 
 
-foreground = #eee
+
 ; linecolor = #fba922
 
 linecolor = #11edcc 
@@ -38,47 +55,48 @@ bordercolor = #333
 accent = #e60053
 
 [bar/main]
-monitor = ${env:MONITOR:}
+; monitor = ${env:MONITOR:}
 width = 100%
 height = 25
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 6.0
+radius = 0.0
 fixed-center = false
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-separator = %{F#RRGGBB}|%{F-}
+; separator = %{F#RRGGBB}|%{F-}
 
 
 line-size = 5
 ; line-color = #f00
 line-color = ${colors.linecolor}
-underline-size = 3
+underline-size = 2
 overline-size = 2
 
 border-size = 0
-border-color = #00000000
+border-color = #00bfa5
 
 padding-left = 0
 padding-right = 2
 
 module-margin-left = 0
-module-margin-right = 3
+module-margin-right = 2
 
 ; font-0 = fixed:pixelsize=11;1
 ; font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 ; font-2 = siji:pixelsize=10;1
 
 
-font-0 = dina:pixelsize=20;1
-font-1 = siji:pixelsize=10;1
-font-2 = unifont:size=6;1
+; font-0 = Material:style=Regular
+font-0 = Siji:pixelsize=12;2
+; font-1 = monospace:pixelsize=10;1
+font-1 = dina:pixelsize=20;1
 
 modules-left = bspwm i3
 ; modules-center = xwindow
-modules-right = memory cpu temperature filesystem realtek-wifi eth battery date 
+modules-right = cpu memory temperature filesystem battery date time
 
 tray-position = right
 tray-padding = 2
@@ -134,6 +152,9 @@ mount-0 = /
 ; label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 
 label-mounted = %free%
+; label-mounted-underline = ${colors.violet}
+label-mounted-underline = #00bfa5
+; label-mounted-overline = #00bfa5
 
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
@@ -167,7 +188,7 @@ index-sort = true
 wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+pin-workspaces = true
 
 label-mode-padding = 2
 label-mode-foreground = #000
@@ -175,8 +196,10 @@ label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+; label-focused-background = ${colors.black}
+; label-focused-foreground = ${colors.c}
+label-focused-underline= #00bfa5
+; label-focused-overline= #00bfa5
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
@@ -243,18 +266,43 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = ""
-format-prefix-foreground = ${colors.foreground-alt}
-; format-underline = #f90000
-label = " %percentage:2%%"
+; format-prefix = " "
+; format-prefix-foreground = ${colors.foreground-alt}
+; format-underline = ${colors.green}
+
+format-underline = #00bfa5
+; format-overline = #00bfa5
+label = %percentage%%
+
+format = <ramp-load> <label>
+
+
+ramp-load-0 = ""
+ramp-load-0-foreground = #0f0
+ramp-load-1 = ""
+ramp-load-1-foreground = #ff0
+ramp-load-2 = ""
+ramp-load-2-foreground = #f00
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-; format-underline = #4bffdc
+; format-prefix = " "
+; format-prefix-foreground = ${colors.foreground-alt}
+; format-underline = ${colors.yellow}
+format-underline = #00bfa5
+; format-overline = #00bfa5
 label = %percentage_used%%
+
+
+format = <ramp-used> <label>
+
+ramp-used-0 = ""
+ramp-used-0-foreground = #0f0
+ramp-used-1 = ""
+ramp-used-1-foreground = #ff0
+ramp-used-2 = ""
+ramp-used-2-foreground = #f00
 
 [module/realtek-wifi]
 type = internal/network
@@ -266,7 +314,7 @@ format-connected = <ramp-signal> <label-connected>
 ; label-connected = %essid%
 label-connected = %essid%
 
-format-disconnected =
+format-disconnected = 
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
@@ -311,7 +359,6 @@ format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
-format-disconnected =
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
@@ -321,18 +368,28 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date = "%a, %d/%m "
+date = "%a, %d/%m"
 ; date-alt = " %Y-%m-%d"
 ; date-alt = %A, %d %B %Y
 
-time = %H:%M
 ; time-alt = %H:%M:%S
 
 ; format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-; format-underline = #0a6cf5
+; format-underline = ${colors.blue}
+format-underline = #00bfa5
+; format-overline = #00bfa5
 
-label = %date% %time%
+label = %date%
+
+[module/time]
+type = internal/date
+interval = 60
+
+time = %H:%M
+format-underline = #00bfa5
+
+label = %time%
 
 [module/volume]
 type = internal/pulseaudio
@@ -397,13 +454,21 @@ full-at = 98
 
 format-charging = <animation-charging> <label-charging>
 ; format-charging-underline = #ffb52a
+; format-charging-underline = ${colors.orange}
+format-charging-underline = #00bfa5
+; format-charging-overline = #00bfa5
 
 format-discharging = <animation-discharging> <label-discharging>
 ; format-discharging-underline = ${self.format-charging-underline}
+; format-discharging-underline = ${colors.orange}
+format-discharging-underline = #00bfa5
+; format-discharging-overline = #00bfa5
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
-; format-full-underline = ${self.format-charging-underline}
+; format-full-underline = ${colors.orange}
+format-full-underline = #00bfa5
+; format-full-overline = #00bfa5
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -426,11 +491,15 @@ animation-discharging-framerate = 750
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
+interval = 2
 
 format = <ramp> <label>
-; format-underline = #f50a4d
+; format-underline = ${colors.cyan}
+format-underline = #00bfa5
+; format-overline = #00bfa5
 format-warn = <ramp> <label-warn>
-; format-warn-underline = ${self.format-underline}
+format-warn-underline = ${self.format-underline}
+; format-warn-overline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
@@ -476,7 +545,7 @@ type = custom/script
 ; Available tokens:
 ;   %counter%
 ; Command to be executed (using "/bin/sh -c [command]")
-exec = uptime -p
+; exec = uptime -p
 
 ; Conditional command that, if defined, needs to exit successfully
 ; before the main exec command is invoked.
