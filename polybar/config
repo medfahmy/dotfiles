@@ -55,7 +55,7 @@ bordercolor = #333
 accent = #e60053
 
 [bar/main]
-; monitor = ${env:MONITOR:}
+monitor = DP-1
 width = 100%
 height = 25
 ;offset-x = 1%
@@ -79,10 +79,73 @@ border-size = 0
 border-color = #00bfa5
 
 padding-left = 0
-padding-right = 2
+padding-right = 3
 
 module-margin-left = 0
-module-margin-right = 2
+module-margin-right = 3
+
+; font-0 = fixed:pixelsize=11;1
+; font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+; font-2 = siji:pixelsize=10;1
+
+
+; font-0 = dina:pixelsize=50;1
+font-0 = terminus:size=16;1
+font-1 = Siji:size=30;2
+; font-1 = monospace:pixelsize=10;1
+
+modules-left = i3
+; modules-center = xwindow
+modules-right = cpu memory temperature filesystem battery date time
+
+tray-position = right
+tray-padding = 2
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+[bar/secondary]
+monitor = eDP-1
+width = 100%
+height = 25
+;offset-x = 1%
+;offset-y = 1%
+radius = 0.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+; separator = %{F#RRGGBB}|%{F-}
+
+
+line-size = 5
+; line-color = #f00
+line-color = ${colors.linecolor}
+underline-size = 2
+overline-size = 2
+
+border-size = 0
+border-color = #00bfa5
+
+padding-left = 0
+padding-right = 3
+
+module-margin-left = 0
+module-margin-right = 3
 
 ; font-0 = fixed:pixelsize=11;1
 ; font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
@@ -92,7 +155,7 @@ module-margin-right = 2
 ; font-0 = Material:style=Regular
 font-0 = Siji:size=30;2
 ; font-1 = monospace:pixelsize=10;1
-font-1 = dina:size=26;1
+font-1 = dina:pixelsize=50;1
 
 modules-left = i3
 ; modules-center = xwindow
@@ -465,7 +528,7 @@ format-discharging-underline = #00bfa5
 ; format-discharging-overline = #00bfa5
 
 format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-foreground = #0f0
 ; format-full-underline = ${colors.orange}
 format-full-underline = #00bfa5
 ; format-full-overline = #00bfa5
@@ -478,13 +541,13 @@ ramp-capacity-foreground = ${colors.foreground-alt}
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-foreground = #ff0
 animation-charging-framerate = 750
 
 animation-discharging-0 = 
 animation-discharging-1 = 
 animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-foreground = #f00
 animation-discharging-framerate = 750
 
 [module/temperature]
