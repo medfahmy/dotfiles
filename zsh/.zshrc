@@ -108,23 +108,22 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # Aliases
 
+
+
+
+
 alias c=clear
-alias ls="ls -A --color=auto --group-directories-first"
+alias ls="exa -a --color=auto --group-directories-first"
 alias src= "source ~/.zshrc"
-
-
-
-alias fm=thunar
-alias grep=rg
-alias code=vscodium
-
-alias cp='cp -v'                           # Preferred 'cp' implementation
-alias mv='mv -v'                           # Preferred 'mv' implementation
+alias cp='cp -v'
+alias mv='mv -v'
 alias rm='rm -v'
-alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ls='ls --color=auto --group-directories-first -A'                         # Preferred 'ls' implementation
+alias mkdir='mkdir -pv'
 alias tree="tree -I 'node_modules*|target'"
-alias wget='wget -c'                        # Preferred 'wget' implementation (resume download)
-alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+alias wget='wget -c'                        # resume download
+alias path='echo -e ${PATH//:/\\n}'         # echo all executable paths
 #alias pbcopy='xsel --clipboard --input'
 #alias pbpaste='xsel --clipboard --output'
+
+alias grep=rg
+alias code=vscodium

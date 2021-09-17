@@ -2,7 +2,8 @@
 call plug#begin('~/.vim/plugged')
 
 	Plug 'gruvbox-community/gruvbox'
-  " Plug 'tomasiser/vim-code-dark'
+  Plug 'tomasiser/vim-code-dark'
+  Plug 'ayu-theme/ayu-vim' 
   
   Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'
@@ -97,11 +98,17 @@ filetype plugin indent on
 filetype plugin on
 
 
-let g:gruvbox_contrast_dark='dark' 
+" let g:gruvbox_contrast_dark='dark' 
 let g:gruvbox_invert_selection='0'
 colorscheme gruvbox
 set background=dark
  " hi Normal guibg=NONE ctermbg=NONE
+ 
+" set termguicolors     " enable true colors support
+" let ayucolor="light"  " for light version of theme
+" let ayucolor="mirage" " for mirage version of theme
+" let ayucolor="dark"   " for dark version of theme
+" colorscheme ayu
 
 " set t_Co=256
 " set t_ut=
@@ -186,7 +193,7 @@ nnoremap <silent> <leader>b <cmd>Telescope buffers <cr>
 "nnoremap <C-p> :bprevious<CR>
 nnoremap <silent> <Tab> :bnext<cr>
 nnoremap <silent> <S-Tab> :bprevious<cr>
-nnoremap <silent> <leader>c :bd<cr>
+nnoremap <silent> <leader>d :bd<cr>
 
 nnoremap <silent> <leader>- <cmd>TroubleToggle<cr>
 nnoremap <silent> <leader>m <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
