@@ -63,10 +63,10 @@ bindsym $mod+q kill
 bindsym $mod+z exec --no-startup-id morc_menu
 
 #launch rofi application launcher
-bindsym $mod+d exec "rofi -modi drun -show drun -sidebar-mode -terminal termite -color-window '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
+bindsym $mod+d exec "rofi -modi drun -show drun -sidebar-mode -color-window -show-icons '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
 
 # launch rofi window switcher
-bindsym $mod+p exec "rofi -modi window -show window -sidebar-mode -terminal kitty -color-window '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
+bindsym $mod+p exec "rofi -modi window -show window -sidebar-mode -terminal kitty -color-window -show-icons '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
 
 
 ################################################################################################
