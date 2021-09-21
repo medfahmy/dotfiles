@@ -1,10 +1,7 @@
-
 export ZSH="/home/mfahmy/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 
 # Use vim keys in tab complete menu:
@@ -33,7 +30,7 @@ source $ZSH/oh-my-zsh.sh
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.cache/.zsh_history
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -95,14 +92,16 @@ bindkey "^N" down-line-or-beginning-search # Down
 
 
 
-#[ -f "/home/mfahmy/.ghcup/env" ] && source "/home/mf/.ghcup/env" # ghcup-env
-
-
-
 #source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-# Load zsh-syntax-highlighting; should be last.
+
+#[ -f "/home/mfahmy/.ghcup/env" ] && source "/home/mf/.ghcup/env" # ghcup-env
+#
+# export GOPATH=$HOME/go
+# export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+# Load zsh-syntax-highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 
@@ -114,7 +113,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 alias c=clear
 alias ls="exa -a --color=auto --group-directories-first"
-alias src= "source ~/.zshrc"
+alias src= "source ~/.config/zsh/.zshrc"
 alias cp='cp -v'
 alias mv='mv -v'
 alias rm='rm -v'
@@ -125,5 +124,6 @@ alias path='echo -e ${PATH//:/\\n}'         # echo all executable paths
 #alias pbcopy='xsel --clipboard --input'
 #alias pbpaste='xsel --clipboard --output'
 
-alias grep=rg
+# alias grep=rg
 alias code=vscodium
+
