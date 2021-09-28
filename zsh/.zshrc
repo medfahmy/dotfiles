@@ -116,7 +116,7 @@ alias ls="exa -a --color=auto --group-directories-first"
 alias src= "source ~/.config/zsh/.zshrc"
 alias cp='cp -v'
 alias mv='mv -v'
-alias rm='rm -v'
+alias rm='rm -iv'
 alias mkdir='mkdir -pv'
 alias tree="tree -I 'node_modules*|target'"
 alias wget='wget -c'                        # resume download

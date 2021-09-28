@@ -5,7 +5,6 @@ killall -q polybar
 # If all your bars have ipc enabled, you can also use 
 # polybar-msg cmd quit
 
-fc-cache -rv
 
 # Launch bar1 and bar2
 echo "---" | tee -a /tmp/polybar.log /tmp/polybar.log
