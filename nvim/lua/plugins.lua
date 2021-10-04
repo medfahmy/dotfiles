@@ -104,9 +104,10 @@ end
 require'lualine'.setup {
     options = {
         icons_enabled = true,
-        padding = 2,
-        theme = custom_gruvbox,
+        padding = 1,
+        -- theme = custom_gruvbox,
         -- theme = 'dracula',
+        theme = 'tokyonight',
         section_separators = {'█'},
         component_separators = '▎',
         -- component_separators = {'', ''},
@@ -225,10 +226,8 @@ cmp.setup({
     },
     sources = {
         { name = 'nvim_lsp' },
-
         { name = 'luasnip' },
-
-        { name = 'buffer' }
+        -- { name = 'buffer' }
     }
 })
 
@@ -239,9 +238,9 @@ require'lspconfig'.tsserver.setup{
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 }
 
--- require'lspconfig'.graphql.setup{
---   filetypes = {"graphql", "graphqls"}
--- }
+require'lspconfig'.graphql.setup{
+  filetypes = {"graphql", "graphqls"}
+}
 
 -- require'lspconfig'.hls.setup{
 -- 	on_attach = require'completion'.on_attach
@@ -361,7 +360,7 @@ require'nvim-treesitter.configs'.setup {
         additional_vim_regex_highlighting = true,
     },
     indent = {
-        enable = true,
+        enable = false,
     },
     rainbow = {
         enable = true,

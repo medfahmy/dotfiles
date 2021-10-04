@@ -5,7 +5,7 @@ call plug#begin('~/.vim/plugged')
     "Plug 'gruvbox-community/gruvbox'
     Plug 'morhetz/gruvbox'
     Plug 'sainnhe/gruvbox-material'
-    Plug 'dracula/vim', { 'as': 'dracula' } 
+    Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     Plug 'fenetikm/falcon'
 
@@ -14,38 +14,22 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'kyazdani42/nvim-web-devicons'
 
-    Plug 'nvim-neorg/neorg'
-
-    Plug 'tpope/vim-commentary' 
-    " Plug 'jiangmiao/auto-pairs'
+    " LSP
     Plug 'neovim/nvim-lspconfig'
-    " Plug 'nvim-lua/completion-nvim'
-
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'folke/trouble.nvim'
     Plug 'folke/lsp-colors.nvim'
-    Plug 'airblade/vim-gitgutter' "git signcolumn 
 
-    " NVIM CMP
+    " CMP
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'L3MON4D3/LuaSnip'
     Plug 'saadparwaiz1/cmp_luasnip'
 
-    " LANGUAGE SERVERS, HIGHLIGHTERS, FORMATTERS
-    Plug 'prettier/vim-prettier', {'do':'yarn install'}
-    " Plug 'maxmellon/vim-jsx-pretty'
-    " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-    " Plug 'rust-lang/rust.vim'
-    " Plug 'fatih/vim-go'
-    " Plug 'neovimhaskell/haskell-vim'
-    " Plug 'alx741/vim-hindent'
-    " Plug 'alx741/vim-stylishask'
-    " Plug 'jparise/vim-graphql'
-    " Plug 'sbdchd/neoformat'
-
     " UTILITIES
+    Plug 'sbdchd/neoformat'
+    Plug 'tpope/vim-commentary'
     Plug 'mhinz/vim-startify'
     Plug 'hoob3rt/lualine.nvim'
     Plug 'kdheepak/tabline.nvim'
@@ -54,11 +38,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'NTBBloodbath/rest.nvim'
     Plug 'windwp/nvim-ts-autotag'
     Plug 'windwp/nvim-autopairs'
-    Plug 'Yggdroot/indentLine'
+    Plug 'nvim-neorg/neorg'
+    Plug 'airblade/vim-gitgutter' "git signcolumn
 
 call plug#end()
-
-
 
 " SETTINGS
 syntax on
@@ -68,7 +51,7 @@ set relativenumber
 "set laststatus=2
 "set statusline=%F
 set mouse+=a "mouse support
-set ruler 
+set ruler
 set showcmd
 set guicursor+=n-v-c:blinkon0
 " set cursorline
@@ -86,16 +69,16 @@ set wrap "wrap long lines
 set incsearch "incrementally highlight while typing search command
 set nohlsearch "remove highlight after searching
 set ignorecase "case insensitive search
-set smartcase "case sensitive if capital 
+set smartcase "case sensitive if capital
 set scrolloff=8
 " set signcolumn=yes
-" set colorcolumn=80 
+" set colorcolumn=80
 set termguicolors
 set noswapfile
 set re=0
 set conceallevel=1
 " set clipboard=unnamedplus "use system clipboard
-set noshowmode " dont show mode on command line 
+set noshowmode " dont show mode on command line
 set history=9000
 set undolevels=2000
 set undofile
@@ -112,12 +95,9 @@ set sessionoptions+=tabpages,globals
 syntax enable
 filetype plugin indent on
 
-
-
-
 " COLORSCHEME
 
-" let g:gruvbox_contrast_dark='dark' 
+" let g:gruvbox_contrast_dark='dark'
 " let g:gruvbox_invert_selection='0'
 " let g:gruvbox_bold='0'
 " set background=dark
@@ -127,7 +107,7 @@ filetype plugin indent on
 
 " set background=dark
 " let g:gruvbox_material_palette = 'original'
-" let g:gruvbox_material_background = 'hard'
+" " let g:gruvbox_material_background = 'hard'
 " " let g:gruvbox_material_enable_bold = 1
 " let g:gruvbox_material_enable_italic = 1
 " let g:gruvbox_material_cursor = 'yellow'
@@ -141,14 +121,15 @@ filetype plugin indent on
 
 " colorscheme gruvbox-material
 
+colorscheme tokyonight
 
-let g:falcon_italic = 1
-let g:falcon_bold = 1
-let g:falcon_background = 0
-let g:falcon_inactive = 0
-colorscheme falcon
+" let g:falcon_italic = 1
+" let g:falcon_bold = 1
+" let g:falcon_background = 0
+" let g:falcon_inactive = 0
+" colorscheme falcon
 
-hi LineNr ctermbg=NONE guibg=NONE
+" hi LineNr ctermbg=NONE guibg=NONE
 hi Normal guibg=NONE ctermbg=NONE
 
 " COMPLETION
@@ -157,18 +138,9 @@ set completeopt=menu,menuone,noselect,noinsert
 set shortmess+=c
 " let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
 
+let g:python3_host_prog="/usr/bin/python"
 
-" PRETTIER
-let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
-
-"RLS
-
-" let g:rustfmt_autosave = 1
-
-" BUFFERLINE
-" let g:bufferline_echo = 1
-" let g:bufferline_show_bufnr = 0
+let g:vim_json_conceal=0
 
 " NVIM TREE
 
@@ -199,25 +171,25 @@ let g:nvim_tree_icon_padding = '  ' "one space by default, used for rendering th
 " let g:nvim_tree_respect_buf_cwd = 1 "0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
 " let g:nvim_tree_refresh_wait = 100 "1000 by default, control how often the tree can be refreshed, 1000 means the tree can be refresh once per 1000ms.
 let g:nvim_tree_window_picker_exclude = {
-    \   'filetype': [
-    \     'notify',
-    \     'packer',
-    \     'qf'
-    \   ],
-    \   'buftype': [
-    \     'terminal'
-    \   ]
-    \ }
+            \   'filetype': [
+                \     'notify',
+                \     'packer',
+                \     'qf'
+                \   ],
+                \   'buftype': [
+                    \     'terminal'
+                    \   ]
+                    \ }
 " Dictionary of buffer option names mapped to a list of option values that
 " indicates to the window picker that the buffer's window should not be
 " selectable.
 let g:nvim_tree_special_files = { 'README.md': 1, 'Makefile': 1, 'MAKEFILE': 1 } " List of filenames that gets highlighted with NvimTreeSpecialFile
 let g:nvim_tree_show_icons = {
-    \ 'git': 1,
-    \ 'folders': 1,
-    \ 'files': 1,
-    \ 'folder_arrows': 0,
-    \ }
+            \ 'git': 1,
+            \ 'folders': 1,
+            \ 'files': 1,
+            \ 'folder_arrows': 0,
+            \ }
 "If 0, do not show the icons for one of 'git' 'folder' and 'files'
 "1 by default, notice that if 'files' is 1, it will only display
 "if nvim-web-devicons is installed and on your runtimepath.
@@ -227,37 +199,35 @@ let g:nvim_tree_show_icons = {
 " default will show icon by default if no icon is provided
 " default shows no icon by default
 let g:nvim_tree_icons = {  'default': '' ,
-    \ 'symlink': '',
-    \ 'git': {
-    \   'unstaged': "✗",
-    \   'staged': "✓",
-    \   'unmerged': "",
-    \   'renamed': "➜",
-    \   'untracked': "★",
-    \   'deleted': "",
-    \   'ignored': "◌"
-    \   },
-    \ 'folder': {
-    \   'arrow_open': "",
-    \   'arrow_closed': "",
-    \   'default': "",
-    \   'open': "",
-    \   'empty': "",
-    \   'empty_open': "",
-    \   'symlink': "",
-    \   'symlink_open': "",
-    \   },
-    \   'lsp': {
-    \     'hint': "",
-    \     'info': "",
-    \     'warning': "",
-    \     'error': "",
-    \   }
-    \ }
+            \ 'symlink': '',
+            \ 'git': {
+                \   'unstaged': "✗",
+                \   'staged': "✓",
+                \   'unmerged': "",
+                \   'renamed': "➜",
+                \   'untracked': "★",
+                \   'deleted': "",
+                \   'ignored': "◌"
+                \   },
+                \ 'folder': {
+                    \   'arrow_open': "",
+                    \   'arrow_closed': "",
+                    \   'default': "",
+                    \   'open': "",
+                    \   'empty': "",
+                    \   'empty_open': "",
+                    \   'symlink': "",
+                    \   'symlink_open': "",
+                    \   },
+                    \   'lsp': {
+                        \     'hint': "",
+                        \     'info': "",
+                        \     'warning': "",
+                        \     'error': "",
+                        \   }
+                        \ }
 " a list of groups can be found at `:help nvim_tree_highlight`
 " highlight NvimTreeFolderIcon guibg=blue
-
-
 
 " AUTOCOMMANDS
 
@@ -271,46 +241,31 @@ augroup format_options
     autocmd BufNewFile,BufRead,BufEnter * setlocal formatoptions-=ro
 augroup END
 
-" augroup Neoformat
-"     autocmd BufWritePre *.js,*.ts,*.tsx,*.json,*.css,*.html Neoformat prettier
-" augroup END
-
-augroup IndentLine
-    autocmd FileType startify :IndentLinesToggle
+augroup Neoformat
+    autocmd BufWritePre *.js,*.ts,*.tsx,*.json,*.css,*.html Neoformat prettier
 augroup END
 
-" augroup exe_code
-"   autocmd Filetype javascript nnoremap <silent> <leader>r :sp<CR> :term deno run %<CR> :startinsert<CR>
-"   autocmd Filetype typescript nnoremap <silent> <leader>r :sp<CR> :term deno run %<CR> :startinsert<CR>
-" augroup END
+augroup exe_code
+    " autocmd Filetype javascript,typescript nnoremap <silent> <leader>r :sp<CR> :term deno run %<CR> :startinsert<CR>
+    " autocmd Filetype typescript nnoremap <silent> <leader>r :sp<CR> :term ts-node %<CR> :startinsert<CR>
+    autocmd Filetype lua nnoremap <silent> <leader>rt :sp<cr> :term lua %<cr> :startinsert<cr> 
+    autocmd Filetype lua nnoremap <silent> <leader>r <cmd>!lua %<cr>
+augroup END
 
-" augroup exe_code
-"   autocmd Filetype typescript nnoremap <silent> <leader>r :sp<CR> :term ts-node %<CR> :startinsert<CR>
-" augroup END
+augroup cursorline
+    autocmd InsertEnter * set nocul
+    autocmd InsertLeave * set cul
+augroup END
 
-" augroup cursorline
-"   autocmd InsertEnter * set nocul
-"   autocmd InsertLeave * set cul
-" augroup END
-
-
-
-" STARTIFY
-
-let g:startify_session_dir = '~/.vim/session'
-
-" let g:startify_custom_header = startify#pad(split(system('figlet -w 100 VIM2020'), \n))
-" let g:startify_custom_header = 'startify#pad(startify#fortune#cowsay())'
-
-let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'}, 
+let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'},
             \{'l': '~/.config/nvim/lua/plugins.lua'} ,
             \{'z':'~/.config/zsh/.zshrc' },
             \{'p':'~/.config/polybar/config'}
             \]
 
-let g:startify_files_number=5
-" let g:startify_files_number = 
-" let g:startify_commands = 
+let g:startify_files_number=10
+" let g:startify_files_number =
+" let g:startify_commands =
 
 " returns all modified files of the current git repo
 " `2>/dev/null` makes the command fail quietly, so that when we are not
@@ -320,7 +275,7 @@ function! s:gitModified()
     return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
-" same as above, but show untracked files, honouring .gitignore
+" same as above, but show untracked files respecting .gitignore
 function! s:gitUntracked()
     let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
     return map(files, "{'line': v:val, 'path': v:val}")
@@ -330,13 +285,13 @@ let g:startify_lists = [
             \ { 'type': 'files',     'header': ['   MRU']            },
             \ { 'type': 'sessions',  'header': ['   Sessions']       },
             \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-            \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
-            \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
             \ { 'type': 'commands',  'header': ['   Commands']       },
             \ ]
 
 " \ { 'type': function('s:foobar'), 'header': ['foo', ' and', '  bar'] },
 " \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+" \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+" \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
 
 let g:ascii = [
             \ '       ____   ___   ____   __  __  __  ___ ___  ',
@@ -352,28 +307,23 @@ let g:ascii = [
 let g:startify_custom_header = startify#center(g:ascii) + startify#center(startify#fortune#boxed())
 
 
-" INDENTLINE
-let g:indentLine_char = '▏'
-let g:indentLine_first_char = '▏'
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_setColors = 0
-
 " TABLINE
 
 " let g:tabline_show_devicons = 0
 " let g:tabline_show_filename_only = 1
 
-
 " PLUGINS LUA SETUP
 
 lua require('plugins')
 
-
-" MAPPINGS 
+" KEYMAPS
 
 let mapleader = " "
 
+imap <c-c> <esc>
+vmap <c-c> <esc>
 
+nnoremap <cmd>w <cmd>w<cmd>e
 nnoremap <leader>S <cmd>Startify<cr>
 
 " nvim-tree
@@ -388,21 +338,18 @@ nnoremap <leader>ff <cmd>Telescope find_files <cr>
 nnoremap <leader>b <cmd>Telescope buffers <cr>
 nnoremap <leader>fb <cmd>Telescope file_browser <cr>
 nnoremap <leader>cs <cmd>Telescope colorscheme <cr>
+nnoremap <leader>lg <cmd>Telescope live_grep <cr>
 
 " buffers
 "nnoremap <C-n> :bnext<CR>
 "nnoremap <C-p> :bprevious<CR>
 " nnoremap <silent> <Tab> :bnext<cr>
 " nnoremap <silent> <S-Tab> :bprevious<cr>
+nnoremap <leader>x <cmd>bd<cr>
 
 " tabline
 nnoremap <Tab> <cmd>TablineBufferNext<cr>
 nnoremap <S-Tab> <cmd>TablineBufferPrevious<cr>
-
-" barbar
-" nnoremap  <Tab> :BufferNext<cr>
-" nnoremap  <S-Tab> :BufferPrevious<cr>
-" nnoremap  <leader>bc :BufferClose<cr>
 
 " lsp
 nnoremap <leader>tb <cmd>TroubleToggle<cr>
@@ -436,10 +383,10 @@ nnoremap Q <nop>
 " moving text
 vnoremap <silent> J :m '>+1<CR>gv=gv
 vnoremap <silent> K :m '<-2<CR>gv=gv
-inoremap <C-j> <esc>:m .+1<CR>==
-inoremap <C-k> <esc>:m .-2<CR>==
-nnoremap <leader>j :m .+1<CR>==
-nnoremap <leader>k :m .-2<CR>==
+" inoremap <C-j> <esc>:m .+1<CR>==
+" inoremap <C-k> <esc>:m .-2<CR>==
+" nnoremap <leader>j :m .+1<CR>==
+" nnoremap <leader>k :m .-2<CR>==
 
 " indenting selection while staying in visual mode
 vnoremap < <gv
