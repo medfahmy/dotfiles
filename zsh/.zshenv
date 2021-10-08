@@ -14,3 +14,4 @@ export XDG_RUNTIME_DIR=~/.xdg
 #   export XDG_PICTURES_DIR=~/Pictures
 #   export XDG_VIDEOS_DIR=~/Videos
 # fi
+. "$HOME/.cargo/env"

@@ -28,7 +28,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'saadparwaiz1/cmp_luasnip'
 
     " UTILITIES
-    Plug 'sbdchd/neoformat'
+    " Plug 'sbdchd/neoformat'
+    Plug 'mhartington/formatter.nvim'
     Plug 'tpope/vim-commentary'
     Plug 'mhinz/vim-startify'
     Plug 'hoob3rt/lualine.nvim'
@@ -40,6 +41,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'windwp/nvim-autopairs'
     Plug 'nvim-neorg/neorg'
     Plug 'airblade/vim-gitgutter' "git signcolumn
+    " Plug 'wellle/context.vim'
 
 call plug#end()
 
@@ -50,7 +52,7 @@ set nu
 set relativenumber
 "set laststatus=2
 "set statusline=%F
-set mouse+=a "mouse support
+set mouse+=a
 set ruler
 set showcmd
 set guicursor+=n-v-c:blinkon0
@@ -88,6 +90,7 @@ set showmatch
 set wildmode=list:lastused            " complete files like a shell.
 set wildignore=.git,.hg,*.o,*.a,*.class,*.jar,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,**/cache/*,**/logs/*,**/target/*,*.hi,tags,**/dist/*,**/public/**/vendor/**,**/public/vendor/**,**/node_modules/**
 set splitbelow splitright
+cabbrev h tab h
 
 set guioptions-=e
 set sessionoptions+=tabpages,globals
@@ -99,7 +102,7 @@ filetype plugin indent on
 
 " let g:gruvbox_contrast_dark='dark'
 " let g:gruvbox_invert_selection='0'
-" let g:gruvbox_bold='0'
+" " let g:gruvbox_bold='0'
 " set background=dark
 " colorscheme gruvbox
 
@@ -121,13 +124,13 @@ filetype plugin indent on
 
 " colorscheme gruvbox-material
 
-colorscheme tokyonight
+" colorscheme tokyonight
 
-" let g:falcon_italic = 1
-" let g:falcon_bold = 1
-" let g:falcon_background = 0
-" let g:falcon_inactive = 0
-" colorscheme falcon
+let g:falcon_italic = 1
+let g:falcon_bold = 1
+let g:falcon_background = 0
+let g:falcon_inactive = 0
+colorscheme falcon
 
 " hi LineNr ctermbg=NONE guibg=NONE
 hi Normal guibg=NONE ctermbg=NONE
@@ -241,29 +244,40 @@ augroup format_options
     autocmd BufNewFile,BufRead,BufEnter * setlocal formatoptions-=ro
 augroup END
 
-augroup Neoformat
-    autocmd BufWritePre *.js,*.ts,*.tsx,*.json,*.css,*.html Neoformat prettier
+" augroup Neoformat
+"     " autocmd BufWritePre *.js,*.ts,*.tsx,*.json,*.css,*.html,*.graphql Neoformat prettier
+"     autocmd BufWritePre * Neoformat
+" augroup END
+
+augroup Formatter
+    " autocmd!
+    autocmd BufWritePost *.js,*.ts,*.tsx,*.json,*.css,*.html,*.graphql,*.lua,*.rs FormatWrite
 augroup END
 
-augroup exe_code
+augroup run
     " autocmd Filetype javascript,typescript nnoremap <silent> <leader>r :sp<CR> :term deno run %<CR> :startinsert<CR>
-    " autocmd Filetype typescript nnoremap <silent> <leader>r :sp<CR> :term ts-node %<CR> :startinsert<CR>
-    autocmd Filetype lua nnoremap <silent> <leader>rt :sp<cr> :term lua %<cr> :startinsert<cr> 
-    autocmd Filetype lua nnoremap <silent> <leader>r <cmd>!lua %<cr>
+    " autocmd Filetype typescript nnoremap <silent> <leader>r :vsp<CR> :term deno run %<CR> :startinsert<CR>
+    autocmd Filetype lua nnoremap <silent> <leader>r <cmd>term lua %<cr> <cmd>startinsert<cr> 
+    " autocmd Filetype lua nnoremap <silent> <leader>r <cmd>!lua %<cr>
+    autocmd Filetype rust nnoremap <silent> <leader>r <cmd>term cargo run<cr> <cmd>startinsert<cr>
 augroup END
 
-augroup cursorline
-    autocmd InsertEnter * set nocul
-    autocmd InsertLeave * set cul
-augroup END
+" augroup cursorline
+"     autocmd InsertEnter * set nocul
+"     autocmd InsertLeave * set cul
+" augroup END
 
 let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'},
             \{'l': '~/.config/nvim/lua/plugins.lua'} ,
+            \{'i':'~/.i3/config'},
             \{'z':'~/.config/zsh/.zshrc' },
             \{'p':'~/.config/polybar/config'}
             \]
+let g:startify_commands = [
+        \ {'f': ['Telescope find_files', 'Telescope find_files']},
+        \ ]
 
-let g:startify_files_number=10
+let g:startify_files_number=5
 " let g:startify_files_number =
 " let g:startify_commands =
 
@@ -282,12 +296,13 @@ function! s:gitUntracked()
 endfunction
 
 let g:startify_lists = [
-            \ { 'type': 'files',     'header': ['   MRU']            },
-            \ { 'type': 'sessions',  'header': ['   Sessions']       },
-            \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
             \ { 'type': 'commands',  'header': ['   Commands']       },
+            \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
             \ ]
 
+
+" \ { 'type': 'sessions',  'header': ['   Sessions']       },
+" \ { 'type': 'files',     'header': ['   MRU']            },
 " \ { 'type': function('s:foobar'), 'header': ['foo', ' and', '  bar'] },
 " \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
 " \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
@@ -298,13 +313,13 @@ let g:ascii = [
             \ '      / __ \ / _ \ / __ \ | | / / / / / __  __ \',
             \ '     / / / //  __ / /_/ / | |/ / / / / / / / / /',
             \ '    /_/ /_/ \___/ \____/  |___/ /_/ /_/ /_/ /_/ ',
-            \ '                                                ',
             \ ]
 
 " let g:startify_custom_header = g:ascii + startify#fortune#boxed()
 " let g:startify_custom_header =
 "             \   'startify#pad(g:ascii + startify#fortune#boxed())'
-let g:startify_custom_header = startify#center(g:ascii) + startify#center(startify#fortune#boxed())
+" let g:startify_custom_header = startify#center(g:ascii) + startify#center(startify#fortune#boxed())
+let g:startify_custom_header = startify#center(startify#fortune#boxed())
 
 
 " TABLINE
@@ -318,51 +333,56 @@ lua require('plugins')
 
 " KEYMAPS
 
-let mapleader = " "
+let mapleader = "\<Space>"
 
-imap <c-c> <esc>
-vmap <c-c> <esc>
+nnoremap <Space> <NOP>
 
-nnoremap <cmd>w <cmd>w<cmd>e
+inoremap <c-c> <esc>
+vnoremap <c-c> <esc>
+nnoremap <c-c> <esc>
+
+" nnoremap <cmd>w <cmd>w<cmd>e
 nnoremap <leader>S <cmd>Startify<cr>
 
 " nvim-tree
-nnoremap <leader>tt <cmd>NvimTreeToggle<CR>
-nnoremap <leader>tr <cmd>NvimTreeRefresh<CR>
+nnoremap <leader>tt <cmd> NvimTreeToggle  <CR>
+" nnoremap <leader>tr <cmd> NvimTreeRefresh <CR>
 " nnoremap <leader>n :NvimTreeFindFile<CR>
 " NvimTreeOpen, NvimTreeClose and NvimTreeFocus are also available if you need them
 
 " telescope
 " nnoremap <silent> <C-p> <cmd>Telescope find_files theme=get_dropdown<cr>
-nnoremap <leader>ff <cmd>Telescope find_files <cr>
-nnoremap <leader>b <cmd>Telescope buffers <cr>
-nnoremap <leader>fb <cmd>Telescope file_browser <cr>
-nnoremap <leader>cs <cmd>Telescope colorscheme <cr>
-nnoremap <leader>lg <cmd>Telescope live_grep <cr>
+nnoremap <leader>ff <cmd> Telescope find_files   <cr>
+nnoremap <leader>b  <cmd> Telescope buffers      <cr>
+nnoremap <leader>fb <cmd> Telescope file_browser <cr>
+nnoremap <leader>tc <cmd> Telescope colorscheme  <cr>
+nnoremap <leader>lg <cmd> Telescope live_grep    <cr>
 
 " buffers
-"nnoremap <C-n> :bnext<CR>
-"nnoremap <C-p> :bprevious<CR>
 " nnoremap <silent> <Tab> :bnext<cr>
 " nnoremap <silent> <S-Tab> :bprevious<cr>
-nnoremap <leader>x <cmd>bd<cr>
+" nnoremap <leader>x <cmd> bd <cr>
 
 " tabline
-nnoremap <Tab> <cmd>TablineBufferNext<cr>
-nnoremap <S-Tab> <cmd>TablineBufferPrevious<cr>
+nnoremap <Tab>   <cmd> TablineBufferNext     <cr>
+nnoremap <S-Tab> <cmd> TablineBufferPrevious <cr>
 
 " lsp
-nnoremap <leader>tb <cmd>TroubleToggle<cr>
-nnoremap <leader>ld <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
-nnoremap <leader>d <cmd>lua vim.lsp.buf.definition()<cr>
-nnoremap <leader>h <cmd>lua vim.lsp.buf.hover()<cr>
-nnoremap <leader>rs <cmd>lua require('rest-nvim').run()<cr>
-nnoremap <leader>rn <cmd>lua vim.lsp.buf.rename()<cr>
+nnoremap <leader>tb  <cmd>TroubleToggle <cr>
+nnoremap <leader>ld  <cmd>lua vim.lsp.diagnostic.show_line_diagnostics() <cr>
+nnoremap <leader>d   <cmd>lua vim.lsp.buf.definition() <cr>
+nnoremap <leader>h   <cmd>lua vim.lsp.buf.hover() <cr>
+nnoremap <leader>rs  <cmd>lua require('rest-nvim').run() <cr>
+nnoremap <leader>rn  <cmd>lua vim.lsp.buf.rename() <cr>
+
+vnoremap <leader>c gc
 
 " using system clipboard
 nnoremap <leader>y "+y
+nnoremap <leader>Y "+y$
 nnoremap <leader>p "+p
 vnoremap <leader>y "+y
+nnoremap <leader>Y "+y$
 vnoremap <leader>p "+p
 
 tnoremap <C-[> <C-\><C-N>
@@ -371,18 +391,9 @@ nnoremap Y y$
 map q: <Nop>
 nnoremap Q <nop>
 
-" autocomplete
-" Use <Tab> and <S-Tab> to navigate through popup menu
-" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" imap <tab> <Plug>(completion_smart_tab)
-" imap <s-tab> <Plug>(completion_smart_s_tab)
-
-" nnoremap <silent> <leader>n :NvimTreeToggle<CR>
-
 " moving text
-vnoremap <silent> J :m '>+1<CR>gv=gv
-vnoremap <silent> K :m '<-2<CR>gv=gv
+" vnoremap <silent> J :m '>+1<CR>gv=gv
+" vnoremap <silent> K :m '<-2<CR>gv=gv
 " inoremap <C-j> <esc>:m .+1<CR>==
 " inoremap <C-k> <esc>:m .-2<CR>==
 " nnoremap <leader>j :m .+1<CR>==
@@ -397,19 +408,19 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap J mzJ`z
 
-" " undo break points
-" inoremap , ,<c-g>u
-" inoremap . .<c-g>u
-" inoremap ! !<c-g>u
-" inoremap ? ?<c-g>u
-" inoremap ( (<c-g>u
-" inoremap ) )<c-g>u
-" inoremap { {<c-g>u
-" inoremap } }<c-g>u
-" inoremap [ [<c-g>u
-" inoremap ] ]<c-g>u
-" inoremap < <<c-g>u
-" inoremap > ><c-g>u
+" undo break points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+inoremap ( (<c-g>u
+inoremap ) )<c-g>u
+inoremap { {<c-g>u
+inoremap } }<c-g>u
+inoremap [ [<c-g>u
+inoremap ] ]<c-g>u
+inoremap < <<c-g>u
+inoremap > ><c-g>u
 
 " jumplist mutations
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
