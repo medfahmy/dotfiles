@@ -30,7 +30,7 @@ require'lualine'.setup {
     options = {
         icons_enabled = true,
         padding = 1,
-        theme = custom_gruvbox,
+        theme = 'material',
         section_separators = {'█'},
         component_separators = '▎',
         -- component_separators = {'', ''},
@@ -39,7 +39,7 @@ require'lualine'.setup {
     },
     sections = {
         lualine_a = {'mode'},
-        lualine_b = {
+        lualine_c = {
             'branch', {
                 'diff',
                 colored = true, -- displays diff status in color if set to true
@@ -54,7 +54,7 @@ require'lualine'.setup {
                 } -- changes diff symbols
             }
         },
-        lualine_c = {
+        lualine_b = {
             -- directory,
             {
                 'filename',
@@ -78,9 +78,7 @@ require'lualine'.setup {
                 if next(clients) == nil then end
                 for _, client in ipairs(clients) do
                     local filetypes = client.config.filetypes
-                    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                        return client.name
-                    end
+                    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then return client.name end
                 end
             end,
             color = {
@@ -108,9 +106,13 @@ require'tabline'.setup {
 }
 
 -- NVIM-CMP
+local lspkind = require('lspkind')
 local cmp = require 'cmp'
 
 cmp.setup({
+    formatting = {
+        format = lspkind.cmp_format({with_text = false, maxwidth = 50})
+    },
     snippet = {
         expand = function(args) require('luasnip').lsp_expand(args.body) end
     },
@@ -130,29 +132,30 @@ cmp.setup({
             name = 'nvim_lsp'
         }, {
             name = 'luasnip'
-        }
-        -- { name = 'buffer' }
+        } 
+    },
+    experimental = {
+        native_menu = false,
+        ghost_text = true
     }
 })
 
 -- LSP
 
 require'lspconfig'.tsserver.setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol
-                                                                   .make_client_capabilities())
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 }
 
 require'lspconfig'.graphql.setup {
     filetypes = {'graphql', 'graphqls'}
 }
 
--- require'lspconfig'.hls.setup{
--- 	on_attach = require'completion'.on_attach
--- }
+require'lspconfig'.hls.setup {
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+}
 
 require'lspconfig'.vimls.setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol
-                                                                   .make_client_capabilities())
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 }
 
 require'lspconfig'.rust_analyzer.setup {}
@@ -173,11 +176,7 @@ require'lspconfig'.html.setup {
 
 require'lspconfig'.jsonls.setup {
     commands = {
-        Format = {
-            function()
-                vim.lsp.buf.range_formatting({}, {0, 0}, {vim.fn.line('$'), 0})
-            end
-        }
+        Format = {function() vim.lsp.buf.range_formatting({}, {0, 0}, {vim.fn.line('$'), 0}) end}
     },
     capabilities = capabilities
 }
@@ -191,17 +190,21 @@ require('telescope').setup {
     },
     pickers = {
         buffers = {
+            theme = 'dropdown',
             sort_lastused = true,
             previewer = false
         },
         find_files = {
+            theme = 'dropdown',
             hidden = true
         },
         file_browser = {
+            theme = 'dropdown',
             sort_lastused = true,
             hidden = true
         },
         live_grep = {
+            theme = 'dropdown',
             sort_lastused = true,
             hidden = true
         }
@@ -210,12 +213,12 @@ require('telescope').setup {
 
 -- LSP CONFIG
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false,
-        -- update_in_insert=true,
-        signs = true
-    })
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = true,
+    update_in_insert = false,
+    underline = false,
+    signs = true
+})
 
 require('trouble').setup {
     icons = true
@@ -246,13 +249,11 @@ parser_configs.http = {
 
 require'nvim-treesitter.configs'.setup {
     -- ensure_installed = 'all', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
-    ensure_installed = {
-        'norg', 'http', 'typescript', 'javascript', 'tsx', 'lua'
-    },
+    ensure_installed = {'typescript', 'javascript', 'tsx', 'lua', 'haskell', 'norg', 'http'},
     ignore_install = {}, -- List of parsers to ignore installing
     highlight = {
-        enable = true, -- false will disable the whole extension
-        -- disable = {'tsx', 'typescript', 'javascript'},  -- list of language that will be disabled
+        enable = true,
+        -- disable = {'tsx', 'typescript'}, -- list of language that will be disabled
         disable = {},
         -- disable = true,
         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -262,7 +263,7 @@ require'nvim-treesitter.configs'.setup {
         additional_vim_regex_highlighting = true
     },
     indent = {
-        enable = true
+        enable = false
     },
     rainbow = {
         enable = true,
@@ -273,10 +274,7 @@ require'nvim-treesitter.configs'.setup {
     },
     autotag = {
         enable = true,
-        filetypes = {
-            'html', 'javascript', 'javascriptreact', 'typescriptreact',
-            'svelte', 'tsx'
-        }
+        filetypes = {'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'tsx'}
     }
 }
 
@@ -411,9 +409,8 @@ local prettier = function()
         exe = 'prettier',
         -- args = {vim.api.nvim_buf_get_name(0)},
         args = {
-            '--stdin-filepath',
-            vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote',
-            '--printwidth', 100, '--tab-width', 4
+            '--stdin-filepath', vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote', '--print-width', 80,
+            '--tab-width', 4, '--arrow-parens', 'avoid'
         },
         stdin = true
     }
@@ -431,8 +428,7 @@ local luaformat = function()
     return {
         exe = 'lua-format',
         args = {
-            vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-            '--double-quote-to-single-quote'
+            vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--double-quote-to-single-quote', '--column-limit=80'
         },
         stdin = true
     }
@@ -449,13 +445,13 @@ end
 require('formatter').setup({
     logging = true,
     filetype = {
-        javascript = {prettierd},
+        javascript = {prettier},
         typescript = {prettier},
-        typescriptreact = {prettierd},
-        graphql = {prettierd},
-        html = {prettierd},
-        css = {prettierd},
-        json = {prettierd},
+        typescriptreact = {prettier},
+        graphql = {prettier},
+        html = {prettier},
+        css = {prettier},
+        json = {prettier},
         lua = {luaformat},
         rust = {rustfmt}
     }

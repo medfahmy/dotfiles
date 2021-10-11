@@ -2,12 +2,17 @@
 call plug#begin('~/.vim/plugged')
 
     " COLORSCEMES
-    "Plug 'gruvbox-community/gruvbox'
-    Plug 'morhetz/gruvbox'
+    Plug 'gruvbox-community/gruvbox'
+    " Plug 'morhetz/gruvbox'
     Plug 'sainnhe/gruvbox-material'
-    Plug 'dracula/vim', { 'as': 'dracula' }
+    " Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'Mofiqul/dracula.nvim'
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     Plug 'fenetikm/falcon'
+    Plug 'dikiaap/minimalist'
+    Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+    " Plug 'marko-cerovac/material.nvim'
+
 
     " DEPENDENCIES
     Plug 'nvim-lua/popup.nvim'
@@ -20,14 +25,21 @@ call plug#begin('~/.vim/plugged')
     Plug 'folke/trouble.nvim'
     Plug 'folke/lsp-colors.nvim'
 
+    " Plug 'HerringtonDarkholme/yats.vim'
+    " Plug 'leafgarland/typescript-vim'
+    Plug 'peitalin/vim-jsx-typescript'
+    Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
     " CMP
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'L3MON4D3/LuaSnip'
     Plug 'saadparwaiz1/cmp_luasnip'
+    Plug 'onsails/lspkind-nvim'
 
     " UTILITIES
+    Plug 'nvim-telescope/telescope.nvim'
     " Plug 'sbdchd/neoformat'
     Plug 'mhartington/formatter.nvim'
     Plug 'tpope/vim-commentary'
@@ -35,7 +47,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'hoob3rt/lualine.nvim'
     Plug 'kdheepak/tabline.nvim'
     Plug 'kyazdani42/nvim-tree.lua'
-    Plug 'nvim-telescope/telescope.nvim'
     Plug 'NTBBloodbath/rest.nvim'
     Plug 'windwp/nvim-ts-autotag'
     Plug 'windwp/nvim-autopairs'
@@ -73,8 +84,8 @@ set nohlsearch "remove highlight after searching
 set ignorecase "case insensitive search
 set smartcase "case sensitive if capital
 set scrolloff=8
-" set signcolumn=yes
-" set colorcolumn=80
+set signcolumn=yes
+set colorcolumn=120
 set termguicolors
 set noswapfile
 set re=0
@@ -85,60 +96,70 @@ set history=9000
 set undolevels=2000
 set undofile
 " set timeoutlen=750
-set lazyredraw
+" set lazyredraw
 set showmatch
-set wildmode=list:lastused            " complete files like a shell.
+set wildmode=list:lastused " complete files like a shell.
 set wildignore=.git,.hg,*.o,*.a,*.class,*.jar,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,**/cache/*,**/logs/*,**/target/*,*.hi,tags,**/dist/*,**/public/**/vendor/**,**/public/vendor/**,**/node_modules/**
 set splitbelow splitright
-cabbrev h tab h
-
 set guioptions-=e
-set sessionoptions+=tabpages,globals
+" set sessionoptions+=tabpages,globals
+set completeopt=menu,menuone,noselect,noinsert
 
 syntax enable
 filetype plugin indent on
 
 " COLORSCHEME
 
+" colorscheme minimalist
+
+ let g:material_terminal_italics = 0
+ let g:material_theme_style = 'darker-community' 
+" | 'palenight' | 'ocean' | 'lighter' | 'darker' | 'default-community' | 'palenight-community' | 'ocean-community' | 'lighter-community' | 'darker-community'
+ colorscheme material
+
 " let g:gruvbox_contrast_dark='dark'
 " let g:gruvbox_invert_selection='0'
-" " let g:gruvbox_bold='0'
+" let g:gruvbox_bold='1'
 " set background=dark
+
 " colorscheme gruvbox
 
 " colorscheme dracula
 
 " set background=dark
-" let g:gruvbox_material_palette = 'original'
-" " let g:gruvbox_material_background = 'hard'
-" " let g:gruvbox_material_enable_bold = 1
-" let g:gruvbox_material_enable_italic = 1
+" let g:gruvbox_material_palette = 'mix'
+" let g:gruvbox_material_background = 'hard'
+" let g:gruvbox_material_enable_bold = 1
+" let g:gruvbox_material_enable_italic = 0
+" let g:gruvbox_material_disable_italic_comment = 1
 " let g:gruvbox_material_cursor = 'yellow'
-" " let g:gruvbox_material_transparent_background = 1
+" let g:gruvbox_material_transparent_background = 1
 " let g:gruvbox_material_visual = 'green background'
 " let g:gruvbox_material_ui_contrast = 'high'
 " let g:gruvbox_material_diagnostic_text_highlight = 1
 " let g:gruvbox_material_diagnostic_line_highlight = 1
 " let g:gruvbox_material_diagnostic_virtual_text = 'colored'
 " let g:gruvbox_material_better_performance = 1
+" let g:gruvbox_material_cursor = 'yellow'
+" let g:gruvbox_material_ui_contrast = 'high'
+" let g:gruvbox_material_show_eob = 0
 
 " colorscheme gruvbox-material
 
 " colorscheme tokyonight
 
-let g:falcon_italic = 1
-let g:falcon_bold = 1
-let g:falcon_background = 0
-let g:falcon_inactive = 0
-colorscheme falcon
+" let g:falcon_italic = 1
+" let g:falcon_bold = 1
+" let g:falcon_background = 0
+" let g:falcon_inactive = 0
+" colorscheme falcon
 
-" hi LineNr ctermbg=NONE guibg=NONE
+hi LineNr ctermbg=NONE guibg=NONE
 hi Normal guibg=NONE ctermbg=NONE
+hi SignColumn guibg=NONE ctermbg=NONE
 
 " COMPLETION
-set completeopt=menu,menuone,noselect,noinsert
 " Avoid showing message extra message when using completion
-set shortmess+=c
 " let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
 
 let g:python3_host_prog="/usr/bin/python"
@@ -234,9 +255,11 @@ let g:nvim_tree_icons = {  'default': '' ,
 
 " AUTOCOMMANDS
 
+autocmd BufNewFile,BufRead *.tsx set filetype=typescriptreact
+
 augroup highlight_yank
     autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=200}
 augroup END
 
 augroup format_options
@@ -245,14 +268,14 @@ augroup format_options
 augroup END
 
 " augroup Neoformat
-"     " autocmd BufWritePre *.js,*.ts,*.tsx,*.json,*.css,*.html,*.graphql Neoformat prettier
+"     autocmd BufWritePre *.js,*.ts,*.tsx,*.json,*.css,*.html,*.graphql Neoformat prettier
 "     autocmd BufWritePre * Neoformat
 " augroup END
 
-augroup Formatter
-    " autocmd!
-    autocmd BufWritePost *.js,*.ts,*.tsx,*.json,*.css,*.html,*.graphql,*.lua,*.rs FormatWrite
-augroup END
+" augroup Formatter
+"     " autocmd!
+"     autocmd BufWritePost *.js,*.ts,*.tsx,*.json,*.css,*.html,*.graphql,*.lua,*.rs FormatWrite
+" augroup END
 
 augroup run
     " autocmd Filetype javascript,typescript nnoremap <silent> <leader>r :sp<CR> :term deno run %<CR> :startinsert<CR>
@@ -273,9 +296,6 @@ let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'},
             \{'z':'~/.config/zsh/.zshrc' },
             \{'p':'~/.config/polybar/config'}
             \]
-let g:startify_commands = [
-        \ {'f': ['Telescope find_files', 'Telescope find_files']},
-        \ ]
 
 let g:startify_files_number=5
 " let g:startify_files_number =
@@ -296,17 +316,17 @@ function! s:gitUntracked()
 endfunction
 
 let g:startify_lists = [
-            \ { 'type': 'commands',  'header': ['   Commands']       },
-            \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+            \ { 'type': 'bookmarks', 'header': ['   bookmarks']      },
+            \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+            \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
             \ ]
 
 
+" \ { 'type': 'commands',  'header': ['   Commands']       },
 " \ { 'type': 'sessions',  'header': ['   Sessions']       },
 " \ { 'type': 'files',     'header': ['   MRU']            },
 " \ { 'type': function('s:foobar'), 'header': ['foo', ' and', '  bar'] },
 " \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-" \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
-" \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
 
 let g:ascii = [
             \ '       ____   ___   ____   __  __  __  ___ ___  ',
@@ -324,8 +344,8 @@ let g:startify_custom_header = startify#center(startify#fortune#boxed())
 
 " TABLINE
 
-" let g:tabline_show_devicons = 0
-" let g:tabline_show_filename_only = 1
+let g:tabline_show_devicons = 0
+let g:tabline_show_filename_only = 1
 
 " PLUGINS LUA SETUP
 
@@ -345,18 +365,22 @@ nnoremap <c-c> <esc>
 nnoremap <leader>S <cmd>Startify<cr>
 
 " nvim-tree
-nnoremap <leader>tt <cmd> NvimTreeToggle  <CR>
+nnoremap <leader>n <cmd> NvimTreeToggle  <CR>
+nnoremap <leader>m <cmd> NvimTreeFocus  <CR>
 " nnoremap <leader>tr <cmd> NvimTreeRefresh <CR>
 " nnoremap <leader>n :NvimTreeFindFile<CR>
 " NvimTreeOpen, NvimTreeClose and NvimTreeFocus are also available if you need them
 
 " telescope
 " nnoremap <silent> <C-p> <cmd>Telescope find_files theme=get_dropdown<cr>
-nnoremap <leader>ff <cmd> Telescope find_files   <cr>
-nnoremap <leader>b  <cmd> Telescope buffers      <cr>
-nnoremap <leader>fb <cmd> Telescope file_browser <cr>
-nnoremap <leader>tc <cmd> Telescope colorscheme  <cr>
-nnoremap <leader>lg <cmd> Telescope live_grep    <cr>
+nnoremap <leader>f <cmd>Telescope find_files<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
+nnoremap <leader>tb <cmd>Telescope file_browser<cr>
+nnoremap <leader>cs <cmd>Telescope colorscheme<cr>
+nnoremap <leader>lg <cmd>Telescope live_grep<cr>
+
+
+nnoremap <leader>gp <cmd>FormatWrite<cr>
 
 " buffers
 " nnoremap <silent> <Tab> :bnext<cr>
@@ -364,18 +388,17 @@ nnoremap <leader>lg <cmd> Telescope live_grep    <cr>
 " nnoremap <leader>x <cmd> bd <cr>
 
 " tabline
-nnoremap <Tab>   <cmd> TablineBufferNext     <cr>
-nnoremap <S-Tab> <cmd> TablineBufferPrevious <cr>
+nnoremap <Tab> <cmd>TablineBufferNext<cr>
+nnoremap <S-Tab> <cmd>TablineBufferPrevious<cr>
 
 " lsp
-nnoremap <leader>tb  <cmd>TroubleToggle <cr>
-nnoremap <leader>ld  <cmd>lua vim.lsp.diagnostic.show_line_diagnostics() <cr>
-nnoremap <leader>d   <cmd>lua vim.lsp.buf.definition() <cr>
-nnoremap <leader>h   <cmd>lua vim.lsp.buf.hover() <cr>
-nnoremap <leader>rs  <cmd>lua require('rest-nvim').run() <cr>
-nnoremap <leader>rn  <cmd>lua vim.lsp.buf.rename() <cr>
+nnoremap <leader>tt <cmd>TroubleToggle <cr>
+nnoremap <leader>ld <cmd>lua vim.lsp.diagnostic.show_line_diagnostics() <cr>
+nnoremap <leader>d <cmd>lua vim.lsp.buf.definition() <cr>
+nnoremap <leader>h <cmd>lua vim.lsp.buf.hover() <cr>
+nnoremap <leader>rs <cmd>lua require('rest-nvim').run() <cr>
+nnoremap <leader>rn <cmd>lua vim.lsp.buf.rename() <cr>
 
-vnoremap <leader>c gc
 
 " using system clipboard
 nnoremap <leader>y "+y
