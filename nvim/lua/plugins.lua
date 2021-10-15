@@ -17,14 +17,22 @@ local colors = {
     brightred = '#ff0000'
 }
 
+require'nvim_comment'.setup()
+require'colorizer'.setup()
+
+require'indent_blankline'.setup {
+    char = '▏',
+    buftype_exclude = {'terminal', 'startify', 'TelescopePrompt'}
+}
+
 -- LUALINE
 
-local custom_gruvbox = require 'lualine.themes.gruvbox'
-custom_gruvbox.normal.a.bg = colors.yellow
-custom_gruvbox.normal.c.fg = colors.white
-custom_gruvbox.insert.a.bg = colors.red
-custom_gruvbox.visual.a.bg = colors.orange
-custom_gruvbox.command.a.bg = colors.green
+-- local custom_gruvbox = require 'lualine.themes.gruvbox'
+-- custom_gruvbox.normal.a.bg = colors.yellow
+-- custom_gruvbox.normal.c.fg = colors.white
+-- custom_gruvbox.insert.a.bg = colors.red
+-- custom_gruvbox.visual.a.bg = colors.orange
+-- custom_gruvbox.command.a.bg = colors.green
 
 require'lualine'.setup {
     options = {
@@ -55,7 +63,6 @@ require'lualine'.setup {
             }
         },
         lualine_b = {
-            -- directory,
             {
                 'filename',
                 file_status = true,
@@ -78,7 +85,9 @@ require'lualine'.setup {
                 if next(clients) == nil then end
                 for _, client in ipairs(clients) do
                     local filetypes = client.config.filetypes
-                    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then return client.name end
+                    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                        return client.name
+                    end
                 end
             end,
             color = {
@@ -111,7 +120,10 @@ local cmp = require 'cmp'
 
 cmp.setup({
     formatting = {
-        format = lspkind.cmp_format({with_text = false, maxwidth = 50})
+        format = lspkind.cmp_format({
+            with_text = false,
+            maxwidth = 50
+        })
     },
     snippet = {
         expand = function(args) require('luasnip').lsp_expand(args.body) end
@@ -132,7 +144,7 @@ cmp.setup({
             name = 'nvim_lsp'
         }, {
             name = 'luasnip'
-        } 
+        }
     },
     experimental = {
         native_menu = false,
@@ -155,7 +167,7 @@ require'lspconfig'.hls.setup {
 }
 
 require'lspconfig'.vimls.setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()) 
 }
 
 require'lspconfig'.rust_analyzer.setup {}
@@ -176,7 +188,11 @@ require'lspconfig'.html.setup {
 
 require'lspconfig'.jsonls.setup {
     commands = {
-        Format = {function() vim.lsp.buf.range_formatting({}, {0, 0}, {vim.fn.line('$'), 0}) end}
+        Format = {
+            function()
+                vim.lsp.buf.range_formatting({}, {0, 0}, {vim.fn.line('$'), 0})
+            end
+        }
     },
     capabilities = capabilities
 }
@@ -190,22 +206,24 @@ require('telescope').setup {
     },
     pickers = {
         buffers = {
-            theme = 'dropdown',
-            sort_lastused = true,
-            previewer = false
+            -- theme = 'dropdown',
+            -- sort_lastused = true,
+            previewer = false,
         },
         find_files = {
-            theme = 'dropdown',
-            hidden = true
+            -- theme = 'dropdown',
+            hidden = true,
+            previewer = false,
         },
         file_browser = {
-            theme = 'dropdown',
+            -- theme = 'dropdown',
             sort_lastused = true,
-            hidden = true
+            hidden = true,
+            previewer = false,
         },
         live_grep = {
             theme = 'dropdown',
-            sort_lastused = true,
+            -- sort_lastused = true,
             hidden = true
         }
     }
@@ -213,12 +231,13 @@ require('telescope').setup {
 
 -- LSP CONFIG
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = true,
-    update_in_insert = false,
-    underline = false,
-    signs = true
-})
+vim.lsp.handlers['textDocument/publishDiagnostics'] =
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false,
+        update_in_insert = false,
+        underline = false,
+        signs = true
+    })
 
 require('trouble').setup {
     icons = true
@@ -226,15 +245,15 @@ require('trouble').setup {
 
 -- TREESITTER PARSERS
 
-local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
-
-parser_configs.norg = {
-    install_info = {
-        url = 'https://github.com/nvim-neorg/tree-sitter-norg',
-        files = {'src/parser.c', 'src/scanner.cc'},
-        branch = 'main'
-    }
-}
+-- local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
+-- 
+-- parser_configs.norg = {
+--     install_info = {
+--         url = 'https://github.com/nvim-neorg/tree-sitter-norg',
+--         files = {'src/parser.c', 'src/scanner.cc'},
+--         branch = 'main'
+--     }
+-- }
 
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 parser_configs.http = {
@@ -249,7 +268,9 @@ parser_configs.http = {
 
 require'nvim-treesitter.configs'.setup {
     -- ensure_installed = 'all', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
-    ensure_installed = {'typescript', 'javascript', 'tsx', 'lua', 'haskell', 'norg', 'http'},
+    ensure_installed = {
+        'typescript', 'javascript', 'tsx', 'lua', 'haskell', 'http'
+    },
     ignore_install = {}, -- List of parsers to ignore installing
     highlight = {
         enable = true,
@@ -274,7 +295,10 @@ require'nvim-treesitter.configs'.setup {
     },
     autotag = {
         enable = true,
-        filetypes = {'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'tsx'}
+        filetypes = {
+            'html', 'javascript', 'javascriptreact', 'typescriptreact',
+            'svelte', 'tsx'
+        }
     }
 }
 
@@ -308,33 +332,33 @@ require('nvim-autopairs.completion.cmp').setup({
 
 -- NEORG
 
-require('neorg').setup {
-    -- Tell Neorg what modules to load
-    load = {
-        ['core.defaults'] = {}, -- Load all the default modules
-        ['core.norg.concealer'] = {}, -- Allows for use of icons
-        ['core.keybinds'] = {
-            -- Configure core.keybinds
-            config = {
-                default_keybinds = true, -- Generate the default keybinds
-                neorg_leader = '<Leader>o' -- This is the default if unspecified
-            }
-        },
-        ['core.norg.dirman'] = {
-            -- Manage your directories with Neorg
-            config = {
-                workspaces = {
-                    my_workspace = '~/neorg'
-                }
-            }
-        },
-        ['core.norg.completion'] = {
-            config = {
-                engine = 'nvim-cmp'
-            }
-        }
-    }
-}
+-- require('neorg').setup {
+--     -- Tell Neorg what modules to load
+--     load = {
+--         ['core.defaults'] = {}, -- Load all the default modules
+--         ['core.norg.concealer'] = {}, -- Allows for use of icons
+--         ['core.keybinds'] = {
+--             -- Configure core.keybinds
+--             config = {
+--                 default_keybinds = true, -- Generate the default keybinds
+--                 neorg_leader = '<Leader>o' -- This is the default if unspecified
+--             }
+--         },
+--         ['core.norg.dirman'] = {
+--             -- Manage your directories with Neorg
+--             config = {
+--                 workspaces = {
+--                     my_workspace = '~/neorg'
+--                 }
+--             }
+--         },
+--         ['core.norg.completion'] = {
+--             config = {
+--                 engine = 'nvim-cmp'
+--             }
+--         }
+--     }
+-- }
 
 -- REST NVIM
 
@@ -409,8 +433,9 @@ local prettier = function()
         exe = 'prettier',
         -- args = {vim.api.nvim_buf_get_name(0)},
         args = {
-            '--stdin-filepath', vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote', '--print-width', 80,
-            '--tab-width', 4, '--arrow-parens', 'avoid'
+            '--stdin-filepath',
+            vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote',
+            '--print-width', 120, '--tab-width', 4, '--arrow-parens', 'avoid'
         },
         stdin = true
     }
@@ -428,7 +453,8 @@ local luaformat = function()
     return {
         exe = 'lua-format',
         args = {
-            vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--double-quote-to-single-quote', '--column-limit=80'
+            vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+            '--double-quote-to-single-quote', '--column-limit=80'
         },
         stdin = true
     }

@@ -2,16 +2,17 @@
 call plug#begin('~/.vim/plugged')
 
     " COLORSCEMES
-    Plug 'gruvbox-community/gruvbox'
-    " Plug 'morhetz/gruvbox'
-    Plug 'sainnhe/gruvbox-material'
-    " Plug 'dracula/vim', { 'as': 'dracula' }
-    Plug 'Mofiqul/dracula.nvim'
+    " Plug 'gruvbox-community/gruvbox'
+    Plug 'morhetz/gruvbox'
+    " Plug 'sainnhe/gruvbox-material'
+    Plug 'dracula/vim', { 'as': 'dracula' }
+    " Plug 'Mofiqul/dracula.nvim'
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     Plug 'fenetikm/falcon'
     Plug 'dikiaap/minimalist'
     Plug 'kaicataldo/material.vim', { 'branch': 'main' }
     " Plug 'marko-cerovac/material.nvim'
+    Plug 'mhartington/oceanic-next'
 
 
     " DEPENDENCIES
@@ -42,7 +43,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-telescope/telescope.nvim'
     " Plug 'sbdchd/neoformat'
     Plug 'mhartington/formatter.nvim'
-    Plug 'tpope/vim-commentary'
+    Plug 'terrortylor/nvim-comment'
     Plug 'mhinz/vim-startify'
     Plug 'hoob3rt/lualine.nvim'
     Plug 'kdheepak/tabline.nvim'
@@ -50,9 +51,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'NTBBloodbath/rest.nvim'
     Plug 'windwp/nvim-ts-autotag'
     Plug 'windwp/nvim-autopairs'
-    Plug 'nvim-neorg/neorg'
+    " Plug 'nvim-neorg/neorg'
     Plug 'airblade/vim-gitgutter' "git signcolumn
     " Plug 'wellle/context.vim'
+    Plug 'norcalli/nvim-colorizer.lua'
+    " Plug 'voldikss/vim-floaterm'
+    Plug 'lukas-reineke/indent-blankline.nvim'
 
 call plug#end()
 
@@ -65,9 +69,10 @@ set relativenumber
 "set statusline=%F
 set mouse+=a
 set ruler
-set showcmd
-set guicursor+=n-v-c:blinkon0
-" set cursorline
+" set showcmd
+set guicursor+=n-v-c-sm:blinkon0
+set cursorline
+set culopt=number
 set shortmess+=c
 set tabstop=4
 set softtabstop=4
@@ -85,7 +90,7 @@ set ignorecase "case insensitive search
 set smartcase "case sensitive if capital
 set scrolloff=8
 set signcolumn=yes
-set colorcolumn=120
+" set colorcolumn=80
 set termguicolors
 set noswapfile
 set re=0
@@ -112,22 +117,23 @@ filetype plugin indent on
 
 " colorscheme minimalist
 
- let g:material_terminal_italics = 0
- let g:material_theme_style = 'darker-community' 
+ let g:material_terminal_italics = 1
+ let g:material_theme_style = 'darker' 
 " | 'palenight' | 'ocean' | 'lighter' | 'darker' | 'default-community' | 'palenight-community' | 'ocean-community' | 'lighter-community' | 'darker-community'
  colorscheme material
+
 
 " let g:gruvbox_contrast_dark='dark'
 " let g:gruvbox_invert_selection='0'
 " let g:gruvbox_bold='1'
 " set background=dark
-
+"  
 " colorscheme gruvbox
 
 " colorscheme dracula
 
 " set background=dark
-" let g:gruvbox_material_palette = 'mix'
+" let g:gruvbox_material_palette = 'original'
 " let g:gruvbox_material_background = 'hard'
 " let g:gruvbox_material_enable_bold = 1
 " let g:gruvbox_material_enable_italic = 0
@@ -135,7 +141,6 @@ filetype plugin indent on
 " let g:gruvbox_material_cursor = 'yellow'
 " let g:gruvbox_material_transparent_background = 1
 " let g:gruvbox_material_visual = 'green background'
-" let g:gruvbox_material_ui_contrast = 'high'
 " let g:gruvbox_material_diagnostic_text_highlight = 1
 " let g:gruvbox_material_diagnostic_line_highlight = 1
 " let g:gruvbox_material_diagnostic_virtual_text = 'colored'
@@ -143,20 +148,33 @@ filetype plugin indent on
 " let g:gruvbox_material_cursor = 'yellow'
 " let g:gruvbox_material_ui_contrast = 'high'
 " let g:gruvbox_material_show_eob = 0
-
+" 
 " colorscheme gruvbox-material
 
 " colorscheme tokyonight
 
-" let g:falcon_italic = 1
+" let g:falcon_italic = 0
 " let g:falcon_bold = 1
-" let g:falcon_background = 0
+" let g:falcon_background = 1
 " let g:falcon_inactive = 0
 " colorscheme falcon
 
-hi LineNr ctermbg=NONE guibg=NONE
+" let g:oceanic_next_terminal_bold = 1
+" let g:oceanic_next_terminal_italic = 0
+" colorscheme OceanicNext
+
 hi Normal guibg=NONE ctermbg=NONE
-hi SignColumn guibg=NONE ctermbg=NONE
+hi LineNr ctermbg=NONE guibg=NONE 
+" hi SignColumn guibg=NONE ctermbg=NONE
+hi EndOfBuffer guibg=NONE ctermbg=NONE
+hi Visual guibg=#2D1078  guifg=#f0f0f0 
+hi Pmenu guibg=#002538
+hi CursorLineNr guibg=#222222 guifg=#5FAFD7
+
+" #2D1078
+" guifg=#5FAFD7 
+" CursorLineNr
+
 
 " COMPLETION
 " Avoid showing message extra message when using completion
@@ -255,40 +273,44 @@ let g:nvim_tree_icons = {  'default': '' ,
 
 " AUTOCOMMANDS
 
-autocmd BufNewFile,BufRead *.tsx set filetype=typescriptreact
+au BufNewFile,BufRead *.tsx set filetype=typescriptreact
 
-augroup highlight_yank
-    autocmd!
+aug highlight_yank
+    au!
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=200}
-augroup END
+aug END
 
-augroup format_options
+aug format_options
     " do not insert comment in new line
-    autocmd BufNewFile,BufRead,BufEnter * setlocal formatoptions-=ro
-augroup END
+    au BufNewFile,BufRead,BufEnter * setlocal formatoptions-=ro
+aug END
 
-" augroup Neoformat
-"     autocmd BufWritePre *.js,*.ts,*.tsx,*.json,*.css,*.html,*.graphql Neoformat prettier
-"     autocmd BufWritePre * Neoformat
-" augroup END
+" aug Neoformat
+"     au BufWritePre *.js,*.ts,*.tsx,*.json,*.css,*.html,*.graphql Neoformat prettier
+"     au BufWritePre * Neoformat
+" aug END
 
-" augroup Formatter
-"     " autocmd!
-"     autocmd BufWritePost *.js,*.ts,*.tsx,*.json,*.css,*.html,*.graphql,*.lua,*.rs FormatWrite
-" augroup END
+" aug Formatter
+"     " au!
+"     au BufWritePost *.js,*.ts,*.tsx,*.json,*.css,*.html,*.graphql,*.lua,*.rs FormatWrite
+" aug END
 
-augroup run
-    " autocmd Filetype javascript,typescript nnoremap <silent> <leader>r :sp<CR> :term deno run %<CR> :startinsert<CR>
-    " autocmd Filetype typescript nnoremap <silent> <leader>r :vsp<CR> :term deno run %<CR> :startinsert<CR>
-    autocmd Filetype lua nnoremap <silent> <leader>r <cmd>term lua %<cr> <cmd>startinsert<cr> 
-    " autocmd Filetype lua nnoremap <silent> <leader>r <cmd>!lua %<cr>
-    autocmd Filetype rust nnoremap <silent> <leader>r <cmd>term cargo run<cr> <cmd>startinsert<cr>
-augroup END
+aug run
+    " au Filetype javascript,typescript nnoremap <silent> <leader>r :sp<CR> :term deno run %<CR> :startinsert<CR>
+    " au Filetype typescript nnoremap <silent> <leader>r :vsp<CR> :term deno run %<CR> :startinsert<CR>
+    au Filetype lua nnoremap <silent> <leader>r <cmd>term lua %<cr> <cmd>startinsert<cr> 
+    " au Filetype lua nnoremap <silent> <leader>r <cmd>!lua %<cr>
+    au Filetype rust nnoremap <silent> <leader>r <cmd>term cargo run<cr> <cmd>startinsert<cr>
+aug END
 
-" augroup cursorline
-"     autocmd InsertEnter * set nocul
-"     autocmd InsertLeave * set cul
-" augroup END
+" aug floaterm
+"     au Filetype floaterm hi Normal guibg=NONE ctermbg=NONE
+" aug END
+
+" aug cursorline
+"     au InsertEnter * set nocul
+"     au InsertLeave * set cul
+" aug END
 
 let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'},
             \{'l': '~/.config/nvim/lua/plugins.lua'} ,
@@ -379,6 +401,9 @@ nnoremap <leader>tb <cmd>Telescope file_browser<cr>
 nnoremap <leader>cs <cmd>Telescope colorscheme<cr>
 nnoremap <leader>lg <cmd>Telescope live_grep<cr>
 
+" nnoremap <leader>tt <cmd>FloatermToggle<cr>
+" nnoremap <leader>tn <cmd>FloatermNew<cr>
+
 
 nnoremap <leader>gp <cmd>FormatWrite<cr>
 
@@ -392,13 +417,15 @@ nnoremap <Tab> <cmd>TablineBufferNext<cr>
 nnoremap <S-Tab> <cmd>TablineBufferPrevious<cr>
 
 " lsp
-nnoremap <leader>tt <cmd>TroubleToggle <cr>
+nnoremap <leader>- <cmd>TroubleToggle <cr>
 nnoremap <leader>ld <cmd>lua vim.lsp.diagnostic.show_line_diagnostics() <cr>
 nnoremap <leader>d <cmd>lua vim.lsp.buf.definition() <cr>
 nnoremap <leader>h <cmd>lua vim.lsp.buf.hover() <cr>
 nnoremap <leader>rs <cmd>lua require('rest-nvim').run() <cr>
 nnoremap <leader>rn <cmd>lua vim.lsp.buf.rename() <cr>
 
+nnoremap <leader>/ :CommentToggle<cr>
+vnoremap <leader>/ :'<,'>CommentToggle<cr>gv
 
 " using system clipboard
 nnoremap <leader>y "+y
