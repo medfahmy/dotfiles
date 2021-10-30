@@ -101,15 +101,13 @@ bindkey "^N" down-line-or-beginning-search # Down
 # export GOPATH=$HOME/go
 # export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
+export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*}"'
+
 # Load zsh-syntax-highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 
 # Aliases
-
-
-
-
 
 alias c=clear
 alias ls="exa -a --color=auto --group-directories-first"
@@ -126,4 +124,3 @@ alias path='echo -e ${PATH//:/\\n}'         # echo all executable paths
 
 # alias grep=rg
 alias code=vscodium
-

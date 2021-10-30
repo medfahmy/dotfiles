@@ -58,6 +58,7 @@ linecolor = #11edcc
 bordercolor = #333
 accent = #e60053
 
+
 [bar/main]
 monitor = DP-1
 width = 100%
