@@ -17,36 +17,55 @@ local colors = {
   brightred = '#ff0000'
 }
 
-require'nvim_comment'.setup()
 
-require'colorizer'.setup()
-
-require'stabilize'.setup()
-
-require'lspinstall'.setup()
-local servers = require'lspinstall'.installed_servers()
-local lspconfig = require'lspconfig'
-for _, server in pairs(servers) do
-  lspconfig[server].setup {}
-end
-
-lspconfig.lua.setup{
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' }
-      }
-    }
+require'nvim-treesitter.configs'.setup {
+  -- ensure_installed = 'all', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
+  ensure_installed = {'typescript', 'javascript', 'tsx', 'lua', 'http'},
+  ignore_install = {}, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,
+    -- disable = {'tsx', 'typescript'}, -- list of language that will be disabled
+    disable = {},
+    -- disable = true,
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = true
+  },
+  indent = {
+    enable = false
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil -- Do not enable for files with more than n lines, int
+    -- colors = {}, -- table of hex strings
+    -- termcolors = {} -- table of colour name strings
+  },
+  autotag = {
+    enable = true,
+    filetypes = {'javascript', 'javascriptreact', 'typescriptreact', 'tsx'}
   }
 }
 
--- require'neogit'.setup {}
+vim.lsp.handlers['textDocument/publishDiagnostics'] =
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = true,
+      update_in_insert = false,
+      underline = true,
+      signs = true
+    })
+
+require'nvim_comment'.setup()
+
+require'stabilize'.setup()
 
 require'lualine'.setup {
   options = {
     icons_enabled = true,
     padding = 1,
-    theme = 'seoul256',
+    theme = 'auto',
     section_separators = {'█▎'},
     component_separators = {'▎'},
     disabled_filetypes = {'help', 'netrw'}
@@ -101,7 +120,7 @@ require'lualine'.setup {
           end
           return msg
         end,
-        icon = ' lsp:',
+        -- icon = ' ',
         color = {
           fg = '#ffffff',
           gui = 'bold'
@@ -112,9 +131,9 @@ require'lualine'.setup {
         sources = {'nvim_lsp'},
         -- symbols = {error = '', warn = '', info = ''},
         -- symbols = {error = 'x', warn = '!', info = '*'},
-        color_error = colors.red,
-        color_warn = colors.orange,
-        color_info = colors.green
+        color_error = colors.brightred,
+        color_warn = colors.brightyellow,
+        color_info = colors.brightgreen
       },
       color = {
         fg = colors.white
@@ -189,13 +208,6 @@ cmp.setup({
   }
 })
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = true,
-      update_in_insert = false,
-      underline = true,
-      signs = true
-    })
 
 local capabilities = require('cmp_nvim_lsp')
   .update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -299,36 +311,6 @@ parser_configs.http = {
   }
 }
 
-require'nvim-treesitter.configs'.setup {
-  -- ensure_installed = 'all', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
-  ensure_installed = {'typescript', 'javascript', 'tsx', 'lua', 'http'},
-  ignore_install = {}, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,
-    -- disable = {'tsx', 'typescript'}, -- list of language that will be disabled
-    disable = {},
-    -- disable = true,
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = true
-  },
-  indent = {
-    enable = false
-  },
-  rainbow = {
-    enable = true,
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil -- Do not enable for files with more than n lines, int
-    -- colors = {}, -- table of hex strings
-    -- termcolors = {} -- table of colour name strings
-  },
-  autotag = {
-    enable = true,
-    filetypes = {'javascript', 'javascriptreact', 'typescriptreact', 'tsx'}
-  }
-}
 
 require('nvim-autopairs').setup({
   disable_filetype = {'TelescopePrompt'}
@@ -357,7 +339,7 @@ require('rest-nvim').setup({
     timeout = 250
   },
   -- Jump to request line on run
-  jump_to_request = false
+  jump_to_request = true
 })
 
 -- local prettierd = function()
@@ -428,12 +410,32 @@ require('formatter').setup({
   }
 })
 
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader><leader>',
-  '<Cmd>lua require(\'telescope\').extensions.frecency.frecency()<CR>',
-  {
-    noremap = true,
-    silent = true
+-- vim.api.nvim_set_keymap(
+--   'n',
+--   '<leader><leader>',
+--   '<Cmd>lua require(\'telescope\').extensions.frecency.frecency()<CR>',
+--   {
+--     noremap = true,
+--     silent = true
+--   }
+-- )
+
+
+require'lspinstall'.setup()
+local servers = require'lspinstall'.installed_servers()
+local lspconfig = require'lspconfig'
+for _, server in pairs(servers) do
+  lspconfig[server].setup {}
+end
+
+lspconfig.lua.setup{
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
   }
-)
+}
+
+require'colorizer'.setup()

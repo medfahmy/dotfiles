@@ -1,8 +1,13 @@
-" Plugins
 call plug#begin('~/.vim/plugged')
+
+  Plug 'rakr/vim-one'
+  Plug 'joshdick/onedark.vim'
+  Plug 'EdenEast/nightfox.nvim'
 
   Plug 'morhetz/gruvbox'
   Plug 'sainnhe/gruvbox-material'
+  Plug 'sainnhe/sonokai'
+  Plug 'sainnhe/edge'
   " Plug 'Mofiqul/dracula.nvim'
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'dikiaap/minimalist'
@@ -112,7 +117,6 @@ set splitbelow splitright
 set guioptions-=e
 set completeopt=menu,menuone,noselect
 
-" file navigation
 " set wildmenu
 " set wildmode=list:lastused
 set wildignorecase
@@ -124,60 +128,13 @@ filetype plugin indent on
 
 let g:vim_json_conceal=0
 
-
-" COLORSCHEME
-
-" set background=dark
-" let g:gruvbox_material_palette = 'original'
-" let g:gruvbox_material_background = 'hard'
-" let g:gruvbox_material_enable_bold = 1
-" let g:gruvbox_material_enable_italic = 1
-" let g:gruvbox_material_disable_italic_comment = 1
-" let g:gruvbox_material_transparent_background = 1
-" let g:gruvbox_material_diagnostic_text_highlight = 1
-" let g:gruvbox_material_diagnostic_line_highlight = 1
-" let g:gruvbox_material_diagnostic_virtual_text = 'colored'
-" let g:gruvbox_material_better_performance = 1
-" let g:gruvbox_material_cursor = 'yellow'
-
-" colorscheme gruvbox-material
-
-colorscheme OceanicNext
-
-hi Normal guibg=NONE
-hi LineNr guibg=NONE guifg=#666666
-hi SignColumn guibg=NONE guifg=NONE
-hi EndOfBuffer guibg=NONE
-hi Visual guibg=#444444  guifg=#f0f0f0 
-hi Pmenu guibg=#222222
-hi CursorLineNr guibg=NONE guifg=#fac863 
-
-" #2D1078
-" #fabd2f
-" #5fafd7 
-" #83a598 
-
-" base 00: #1B2B34
-" base 01: #343D46
-" base 02: #4F5B66
-" base 03: #65737E
-" base 04: #A7ADBA
-" base 05: #C0C5CE
-" base 06: #CDD3DE
-" base 07: #D8DEE9
-" base 08: #EC5f67
-" base 09: #F99157
-" base 0A: #FAC863
-" base 0B: #99C794
-" base 0C: #5FB3B3
-" base 0D: #6699CC
-" base 0E: #C594C5
-" base 0F: #AB7967
-
+let g:srcery_inverse=0
+let g:srcery_inverse_match_paren=1
+let g:srcery_italic_types=1
+let g:srcery_italic=1
+colorscheme srcery
 
 " AUTOCOMMANDS
-
-" au BufNewFile,BufRead *.tsx set filetype=typescriptreact
 
 aug highlight_yank
   au!
@@ -185,7 +142,6 @@ aug highlight_yank
 aug END
 
 aug format_options
-  " do not insert comment in new line
   au BufNewFile,BufRead,BufEnter * setlocal formatoptions-=ro
 aug END
 
@@ -194,7 +150,6 @@ au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
 
 " PLUGINS LUA SETUP
 lua require('plugins')
-
 
 " KEYMAPS
 let mapleader = "\<Space>"
@@ -216,6 +171,7 @@ nnoremap <leader>lg <cmd>Telescope live_grep<cr>
 " nnoremap <leader>tp <cmd>Telescope project<cr>
 nnoremap <leader>tp <cmd>lua require'telescope'.extensions.project.project{ display_type = 'full'}<cr>
 nnoremap <leader>ts <cmd>Telescope lsp_dynamic_workspace_symbols<cr>
+nnoremap <leader><leader> <cmd>lua require'telescope'.extensions.frecency.frecency()<cr>
 
 nnoremap <leader>gp <cmd>FormatWrite<cr>
 
@@ -305,3 +261,35 @@ vnoremap <leader>{ <esc>`>a}<esc>`<i{<esc>
 
 nnoremap <silent>{ :keepjumps normal! {<cr>
 nnoremap <silent>} :keepjumps normal! }<cr>
+
+
+hi Normal guibg=NONE
+hi LineNr guibg=NONE guifg=#666666
+hi SignColumn guibg=NONE guifg=NONE
+hi EndOfBuffer guibg=NONE
+hi Visual guibg=#444444  guifg=#f0f0f0 
+hi Pmenu guibg=#222222
+" hi CursorLineNr guibg=NONE guifg=#fac863 
+
+" #2D1078
+" #fabd2f
+" #5fafd7 
+" #83a598 
+
+" base 00: #1B2B34
+" base 01: #343D46
+" base 02: #4F5B66
+" base 03: #65737E
+" base 04: #A7ADBA
+" base 05: #C0C5CE
+" base 06: #CDD3DE
+" base 07: #D8DEE9
+" base 08: #EC5f67
+" base 09: #F99157
+" base 0A: #FAC863
+" base 0B: #99C794
+" base 0C: #5FB3B3
+" base 0D: #6699CC
+" base 0E: #C594C5
+" base 0F: #AB7967
+
