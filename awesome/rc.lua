@@ -46,12 +46,13 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-local theme_path = string.format("%s/.config/awesome/themes/theme0.lua", os.getenv("HOME"))
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "xresources")
 beautiful.init(theme_path)
+-- beautiful.useless_gap = 5
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
-editor = os.getenv("EDITOR") or "nvim"
+editor = "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -171,7 +172,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8"}, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -230,6 +231,9 @@ root.buttons(gears.table.join(
 -- }}}
 
 -- {{{ Key bindings
+local rofi_launcher = "rofi -modi drun -show drun -sidebar-mode -color-window -show-icons '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
+local rofi_switcher = "rofi -modi window -show window -sidebar-mode -terminal kitty -color-window -show-icons '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'" 
+
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
@@ -266,19 +270,31 @@ globalkeys = gears.table.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "Tab",
+
+    awful.key({ modkey,           }, "v",
         function ()
             awful.client.focus.history.previous()
             if client.focus then
                 client.focus:raise()
             end
         end,
+              {description = "jump to urgent client", group = "client"}),
+    awful.key({ modkey,           }, "b",
+        function ()
+            local c = awful.client.focus.history.list[2]
+            client.focus = c
+            local t = client.focus and client.focus.first_tag or nil
+            if t then
+                t:view_only()
+            end
+            c:raise()
+        end,
         {description = "go back", group = "client"}),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey, "Control" }, "r", awesome.restart,
+    awful.key({ modkey, "Shift" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
@@ -326,10 +342,20 @@ globalkeys = gears.table.join(
                   }
               end,
               {description = "lua execute prompt", group = "awesome"}),
+    -- -- Menubar
+    -- awful.key({ modkey }, "d", function() menubar.show() end,
+    --           {description = "show the menubar", group = "launcher"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+    awful.key({ modkey }, "d", function() awful.spawn(rofi_launcher) end,
+              {description = "rodi application launcher", group = "launcher"}),
+    -- window switcher
+    awful.key({ modkey }, "p", function() awful.spawn(rofi_switcher) end,
+              {description = "rofi window switcher", group = "launcher"}),
+    -- lock screen
+    awful.key({ modkey }, "9", function() awful.util.spawn_with_shell("~/.config/awesome/lock.sh") end,
+              {description = "lock screen", group = "launcher"})
 )
+
 
 clientkeys = gears.table.join(
     awful.key({ modkey,           }, "f",
@@ -377,8 +403,8 @@ clientkeys = gears.table.join(
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
--- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+-- This should map on the top row of your keyboard, usually 1 to 8.
+for i = 1, 8 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
