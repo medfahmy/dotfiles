@@ -46,7 +46,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "xresources")
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "medfahmy")
 beautiful.init(theme_path)
 -- beautiful.useless_gap = 5
 
@@ -342,10 +342,10 @@ globalkeys = gears.table.join(
                   }
               end,
               {description = "lua execute prompt", group = "awesome"}),
-    -- -- Menubar
-    -- awful.key({ modkey }, "d", function() menubar.show() end,
+    -- menubar
+    -- awful.key({ modkey }, "z", function() menubar.show() end,
     --           {description = "show the menubar", group = "launcher"}),
-    -- Menubar
+    -- rofi
     awful.key({ modkey }, "d", function() awful.spawn(rofi_launcher) end,
               {description = "rodi application launcher", group = "launcher"}),
     -- window switcher
@@ -563,12 +563,12 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.fixed.horizontal
         },
         { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
-            buttons = buttons,
-            layout  = wibox.layout.flex.horizontal
+            -- { -- Title
+            --     align  = "center",
+            --     widget = awful.titlebar.widget.titlewidget(c)
+            -- },
+            -- buttons = buttons,
+            -- layout  = wibox.layout.flex.horizontal
         },
         { -- Right
             awful.titlebar.widget.floatingbutton (c),

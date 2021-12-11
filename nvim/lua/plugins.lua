@@ -85,8 +85,8 @@ return require('packer').startup(function()
         config = function()
             require'nvim_comment'.setup()
             vim.cmd([[
-                nnoremap <silent> <leader>/ :CommentToggle<cr>
-                vnoremap <silent> <leader>/ :'<,'>CommentToggle<cr>
+                nnoremap <silent> <c-_> :CommentToggle<cr>
+                vnoremap <silent> <c-_> :'<,'>CommentToggle<cr>
             ]])
         end
     }
