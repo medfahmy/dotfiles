@@ -15,8 +15,6 @@ return require('packer').startup(function()
 
     use 'mhartington/oceanic-next'
 
-    use 'mhartington/formatter.nvim'
-
     use 'neovim/nvim-lspconfig'
     use 'kabouzeid/nvim-lspinstall'
     use {
@@ -73,7 +71,7 @@ return require('packer').startup(function()
     }
 
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    -- use 'windwp/nvim-ts-autotag' -- deprecated?
+    use 'windwp/nvim-ts-autotag'
 
     use {
         'luukvbaal/stabilize.nvim',

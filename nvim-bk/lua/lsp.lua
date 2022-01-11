@@ -17,12 +17,6 @@ require'lspconfig'.tsserver.setup {
   capabilities = capabilities
 }
 
-require'lspconfig'.svelte.setup{}
-
-require'lspconfig'.pylsp.setup{}
-
--- require'lspconfig'.pyright.setup{}
-
 -- require'lspconfig'.graphql.setup {
 --     filetypes = {'graphql', 'graphqls'},
 --     capabilities = capabilities

@@ -80,3 +80,6 @@ bindkey '^e' edit-command-line
 # Load aliases and shortcuts if existent.
 alias ls='exa -a --color=auto --group-directories-first'
 alias c=clear
+
+# Created by `pipx` on 2022-01-11 11:59:07
+export PATH="$PATH:/home/mf/.local/bin"

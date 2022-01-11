@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
   -- ensure_installed = 'all', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
-  ensure_installed = {'python', 'svelte', 'lua', 'c', 'go', 'rust', 'ocaml', 'haskell', 'typescript', 'javascript', 'tsx', 'http', 'html', 'css'},
+  ensure_installed = {'lua', 'c', 'go','rust', 'ocaml', 'haskell', 'typescript', 'javascript', 'tsx', 'http'},
   ignore_install = {}, -- List of parsers to ignore installing
   highlight = {
     enable = true,
@@ -14,7 +14,7 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = true
   },
   indent = {
-    enable = true
+    enable = false
   },
   rainbow = {
     enable = true,
@@ -25,6 +25,6 @@ require'nvim-treesitter.configs'.setup {
   },
   autotag = {
     enable = true,
-    filetypes = {'javascript', 'javascriptreact', 'typescriptreact', 'tsx', 'svelte'}
+    filetypes = {'javascript', 'javascriptreact', 'typescriptreact', 'tsx'}
   }
 }
