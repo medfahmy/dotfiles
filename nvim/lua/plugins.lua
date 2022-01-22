@@ -17,6 +17,8 @@ return require('packer').startup(function()
 
     use 'mhartington/formatter.nvim'
 
+    use 'dikiaap/minimalist'
+
     use 'neovim/nvim-lspconfig'
     use 'kabouzeid/nvim-lspinstall'
     use {

@@ -110,6 +110,11 @@ _G.packer_plugins = {
     path = "/home/mf/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  minimalist = {
+    loaded = true,
+    path = "/home/mf/.local/share/nvim/site/pack/packer/start/minimalist",
+    url = "https://github.com/dikiaap/minimalist"
+  },
   ["nvim-autopairs"] = {
     config = { "\27LJ\1\2µ\2\0\0\6\0\f\0\0164\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\4\0003\2\3\0:\2\5\0014\2\6\0007\2\a\2%\3\b\0%\4\t\0%\5\n\0>\2\4\2:\2\v\1>\0\2\1G\0\1\0\22ignored_next_char\5\b%s+\21 [%w%%%'%[%\"%.] \tgsub\vstring\21disable_filetype\1\0\b\22enable_afterquote\2\21enable_moveright\2\vmap_cr\2\rcheck_ts\1\fmap_c_w\2\21disable_in_macro\2\vmap_bs\2\30enable_check_bracket_line\1\1\2\0\0\20TelescopePrompt\nsetup\19nvim-autopairs\frequire\0" },
     loaded = true,
