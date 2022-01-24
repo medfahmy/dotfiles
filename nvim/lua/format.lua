@@ -4,7 +4,7 @@ local prettier = function()
     -- args = {vim.api.nvim_buf_get_name(0)},
     args = {
       '--stdin-filepath', vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-      '--single-quote', '--print-width', 80, '--tab-width', 2, '--arrow-parens',
+      '--single-quote', '--print-width', 80, '--tab-width', 4, '--arrow-parens',
       'avoid'
     },
     stdin = true
