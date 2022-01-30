@@ -94,6 +94,11 @@ _G.packer_plugins = {
     path = "/home/mf/.local/share/nvim/site/pack/packer/start/formatter.nvim",
     url = "https://github.com/mhartington/formatter.nvim"
   },
+  ["gruber-darker-vim"] = {
+    loaded = true,
+    path = "/home/mf/.local/share/nvim/site/pack/packer/start/gruber-darker-vim",
+    url = "https://github.com/drsooch/gruber-darker-vim"
+  },
   ["lsp-colors.nvim"] = {
     config = { "\27LJ\1\2~\0\0\2\0\4\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0>\0\2\1G\0\1\0\1\0\4\16Information\f#0db9d7\tHint\f#10B981\nError\f#db4b4b\fWarning\f#e0af68\nsetup\15lsp-colors\frequire\0" },
     loaded = true,

@@ -47,6 +47,7 @@ require'colorizer'.setup()
 vim.cmd([[
     syntax enable
     colorscheme OceanicNext
+
     hi Normal guibg=NONE
     hi LineNr guibg=NONE guifg=#666666
     hi SignColumn guibg=NONE guifg=NONE

@@ -67,11 +67,11 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
-# bindkey '^P' history-beginning-search-backward
-# bindkey '^N' history-beginning-search-forward
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
 
-bindkey '^P' up-line-or-search
-bindkey '^n' down-line-or-search
+# bindkey '^P' up-line-or-search
+# bindkey '^n' down-line-or-search
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
