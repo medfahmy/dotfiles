@@ -121,7 +121,7 @@ return require('packer').startup(function()
           env_file = '.env',
           custom_dynamic_variables = {},
         })
-        vim.cmd("nnoremap <leader>rs <cmd>lua require('rest-nvim').run() <cr>")
+        -- vim.cmd("nnoremap <leader>rs <cmd>lua require('rest-nvim').run() <cr>")
 
       end
     }

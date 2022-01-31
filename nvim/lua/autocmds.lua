@@ -7,4 +7,13 @@ vim.cmd([[
     aug format_options
       au BufNewFile,BufRead,BufEnter * setlocal formatoptions-=ro
     aug END
+
+    aug run
+        au!
+
+        au FileType rust nnoremap <buffer> <leader>r <cmd>sp<cr> <cmd>term cargo run<cr> 
+    aug END
+
 ]])
+
+-- <cmd>startinsert<cr>

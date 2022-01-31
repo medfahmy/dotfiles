@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
   -- ensure_installed = 'all', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
-  ensure_installed = {'python', 'svelte', 'lua', 'c', 'go', 'rust', 'ocaml', 'haskell', 'typescript', 'javascript', 'tsx', 'http', 'html', 'css'},
+  ensure_installed = {'python', 'svelte', 'c', 'go', 'rust', 'ocaml', 'haskell', 'typescript', 'javascript', 'tsx', 'http', 'html', 'css'},
   ignore_install = {}, -- List of parsers to ignore installing
   highlight = {
     enable = true,

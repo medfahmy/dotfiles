@@ -1,5 +1,7 @@
 local o = vim.o
 
+vim.cmd([[set splitbelow splitright]])
+
 o.pumblend = 17
 o.wildmode = "longest:full"
 o.wildoptions = "pum"

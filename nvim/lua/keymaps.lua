@@ -8,12 +8,12 @@ vim.cmd([[
     cnoremap <C-p> <Up>
     cnoremap <C-n> <Down>
 
-    nnoremap <leader>o :%bd\|e#\|bd#<cr>
 
     " buffers
-    nnoremap <silent> <Tab> :bnext<cr>
-    nnoremap <silent> <S-Tab> :bprevious<cr>
-    " nnoremap <leader>x <cmd> bd <cr>
+    nnoremap <silent> <Tab> <cmd>bnext<cr>
+    nnoremap <silent> <S-Tab> <cmd>bprevious<cr>
+    nnoremap <leader>x <cmd>bd<cr>
+    nnoremap <leader>o :%bd\|e#\|bd#<cr>
 
     " using system clipboard
     nnoremap <leader>y "+y

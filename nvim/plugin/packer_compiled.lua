@@ -184,7 +184,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["rest.nvim"] = {
-    config = { "\27LJ\1\2æ\2\0\0\3\0\f\0\0174\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\4\0:\2\5\0013\2\6\0:\2\a\0012\2\0\0:\2\b\1>\0\2\0014\0\t\0007\0\n\0%\1\v\0>\0\2\1G\0\1\0Annoremap <leader>rs <cmd>lua require('rest-nvim').run() <cr>\bcmd\bvim\29custom_dynamic_variables\vresult\1\0\3\19show_http_info\2\17show_headers\2\rshow_url\2\14highlight\1\0\2\fenabled\2\ftimeout\3–\1\1\0\4\20jump_to_request\1\26skip_ssl_verification\1\28result_split_horizontal\1\renv_file\t.env\nsetup\14rest-nvim\frequire\0" },
+    config = { "\27LJ\1\2‘\2\0\0\3\0\t\0\r4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\4\0:\2\5\0013\2\6\0:\2\a\0012\2\0\0:\2\b\1>\0\2\1G\0\1\0\29custom_dynamic_variables\vresult\1\0\3\19show_http_info\2\17show_headers\2\rshow_url\2\14highlight\1\0\2\fenabled\2\ftimeout\3–\1\1\0\4\20jump_to_request\1\26skip_ssl_verification\1\28result_split_horizontal\1\renv_file\t.env\nsetup\14rest-nvim\frequire\0" },
     loaded = true,
     path = "/home/mf/.local/share/nvim/site/pack/packer/start/rest.nvim",
     url = "https://github.com/NTBBloodbath/rest.nvim"
@@ -227,7 +227,7 @@ try_loadstring("\27LJ\1\2;\0\0\2\0\3\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0002\1\0\0>
 time([[Config for nvim-tree.lua]], false)
 -- Config for: rest.nvim
 time([[Config for rest.nvim]], true)
-try_loadstring("\27LJ\1\2æ\2\0\0\3\0\f\0\0174\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\4\0:\2\5\0013\2\6\0:\2\a\0012\2\0\0:\2\b\1>\0\2\0014\0\t\0007\0\n\0%\1\v\0>\0\2\1G\0\1\0Annoremap <leader>rs <cmd>lua require('rest-nvim').run() <cr>\bcmd\bvim\29custom_dynamic_variables\vresult\1\0\3\19show_http_info\2\17show_headers\2\rshow_url\2\14highlight\1\0\2\fenabled\2\ftimeout\3–\1\1\0\4\20jump_to_request\1\26skip_ssl_verification\1\28result_split_horizontal\1\renv_file\t.env\nsetup\14rest-nvim\frequire\0", "config", "rest.nvim")
+try_loadstring("\27LJ\1\2‘\2\0\0\3\0\t\0\r4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0003\2\4\0:\2\5\0013\2\6\0:\2\a\0012\2\0\0:\2\b\1>\0\2\1G\0\1\0\29custom_dynamic_variables\vresult\1\0\3\19show_http_info\2\17show_headers\2\rshow_url\2\14highlight\1\0\2\fenabled\2\ftimeout\3–\1\1\0\4\20jump_to_request\1\26skip_ssl_verification\1\28result_split_horizontal\1\renv_file\t.env\nsetup\14rest-nvim\frequire\0", "config", "rest.nvim")
 time([[Config for rest.nvim]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
