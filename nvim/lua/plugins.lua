@@ -13,6 +13,8 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
+    use 'morhetz/gruvbox'
+    use 'sainnhe/gruvbox-material'
     use 'mhartington/oceanic-next'
     use 'drsooch/gruber-darker-vim'
 

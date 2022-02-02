@@ -1,7 +1,7 @@
 require('telescope').setup {
   defaults = {
     prompt_prefix = '>> ',
-    file_ignore_patterns = {'node_modules/', 'dist/', '.git/', 'bin/', '__pycache__', 'lib'},
+    file_ignore_patterns = {'node_modules/', 'dist/', '.git/', 'bin/', '__pycache__', 'target/'},
     file_sorter = require('telescope.sorters').get_fzy_sorter,
     color_devicons = true,
     -- file_previewer = require('telescope.previewers').vim_buffer_cat.new,
