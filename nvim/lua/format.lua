@@ -62,7 +62,6 @@ require('formatter').setup({
     lua = {luaformat},
     rust = {rustfmt},
     python = {pyfmt}
-
   }
 })
 
