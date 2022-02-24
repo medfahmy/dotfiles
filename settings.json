@@ -1,0 +1,17 @@
+{
+  "workbench.colorCustomizations": {
+        // "list.inactiveSelectionBackground": "#C5DEF0",
+        "sideBar.background": "#111111",
+        "sideBar.foreground": "#ffffff",
+        "editor.background": "#111111",
+        "editor.foreground": "#ffffff",
+        "sideBarSectionHeader.background": "#111111",
+        "sideBarSectionHeader.foreground": "#ffffff",
+        "activityBar.border": "#111111",
+        "statusBar.background": "#99c794",
+        "statusBar.foreground": "#111111",
+        "scrollbarSlider.activeBackground": "#111111",
+        "scrollbarSlider.hoverBackground": "#348900",
+        "badge.background": "#111111"
+    },
+}
