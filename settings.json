@@ -14,4 +14,7 @@
         "scrollbarSlider.hoverBackground": "#348900",
         "badge.background": "#111111"
     },
+  "editor.tokenColorCustomizations": {
+        "comments": "#608B4E"
+    },
 }
