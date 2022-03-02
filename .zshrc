@@ -46,6 +46,7 @@ function zle-keymap-select {
     echo -ne '\e[5 q'
   fi
 }
+
 zle -N zle-keymap-select
 zle-line-init() {
     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
@@ -65,6 +66,7 @@ lfcd () {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
+
 bindkey -s '^o' 'lfcd\n'
 
 bindkey '^P' history-beginning-search-backward
@@ -81,5 +83,5 @@ bindkey '^e' edit-command-line
 alias ls='exa -a --color=auto --group-directories-first'
 alias c=clear
 
-# Created by `pipx` on 2022-01-11 11:59:07
+
 export PATH="$PATH:/home/mf/.local/bin"
