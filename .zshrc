@@ -10,6 +10,7 @@ autoload -U colors && colors
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 PROMPT=" %B%F{magenta}%~%f%b %(?.%F{green}>.%F{red}[%?] >)%f "
 
+# PS1=" %F{yellow}%m%f%# %B%F{magenta}%~%f%b >> "
 
 # History in cache directory:
 HISTSIZE=10000
@@ -82,6 +83,7 @@ bindkey '^e' edit-command-line
 # Load aliases and shortcuts if existent.
 alias ls='exa -a --color=auto --group-directories-first'
 alias c=clear
+
 
 
 export PATH="$PATH:/home/mf/.local/bin"
