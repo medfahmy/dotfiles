@@ -6,7 +6,7 @@ window:
 
 font:
   normal:
-    family: consolas
+    family: "Victor Mono SemiBold"
   size: 11.0
 
 colors:
