@@ -15,6 +15,20 @@ inoremap = bind("i")
 tnoremap = bind("t")
 cnoremap = bind("c")
 
+-- maps = { "c-c" = "esc" }
+
+-- for k, v in pairs(maps) do
+--     map(k, v)
+-- end
+--
+-- local noremaps = {
+--     -- "<space>" = "<nop>",
+--     -- "<tab>"= "<cmd>bnext<cr>"
+-- }
+--
+-- local inoremaps = {}
+-- local vnoremaps = {}
+-- local cnoremaps = {}
 
 -- globals
 nnoremap("<space>", "<nop>")
@@ -30,7 +44,7 @@ cnoremap("<c-n>", "<down>")
 nnoremap("<tab>", "<cmd>bnext<cr>")
 nnoremap("<s-tab>", "<cmd>bprevious<cr>")
 nnoremap("<space>x", "<cmd>bd<cr>")
-nnoremap("<space>o", "<cr>%bd\\|e#\\|bd#<cr>")
+nnoremap("<space>c", "<cmd>%bd|e#<cr>")
 
 -- using system clipboard
 nnoremap("<space>y", '"+y')
@@ -81,8 +95,8 @@ inoremap("<", "<<c-g>u")
 inoremap(">", "><c-g>u")
 
 -- jumplist mutations
-nnoremap("<expr>", "k (v:count > 5 ? \"m'\" . v:count : \"\") . 'k'")
-nnoremap("<expr>", "j (v:count > 5 ? \"m'\" . v:count : \"\") . 'j'")
+nnoremap("k", '(v:count > 5 ? "m\'" . v:count : "") . \'k\'', { expr = true })
+nnoremap("j", '(v:count > 5 ? "m\'" . v:count : "") . \'j\'', { expr = true })
 
 vnoremap('<space>"', '<esc>`>a"<esc>`<i"<esc>')
 vnoremap("<space>(", "<esc>`>a)<esc>`<i(<esc>")
@@ -92,7 +106,6 @@ vnoremap("<space>{", "<esc>`>a}<esc>`<i{<esc>")
 
 nnoremap("<silent>{", ":keepjumps normal! {<cr>")
 nnoremap("<silent>}", ":keepjumps normal! }<cr>")
-
 
 -- telescope
 local telescope = require("telescope.builtin")
@@ -107,7 +120,6 @@ nnoremap("<space>ts", telescope.lsp_dynamic_workspace_symbols)
 nnoremap("<space>tk", telescope.keymaps)
 nnoremap("<space>th", telescope.help_tags)
 
-
 -- formatter
 nnoremap("<space>=", ":Format<cr>")
 
@@ -116,3 +128,4 @@ nnoremap("<c-_>", ":CommentToggle<cr>")
 vnoremap("<c-_>", ":'<, '>CommentToggle<cr>")
 
 nnoremap("<space>n", "<cmd>NvimTreeToggle<cr>")
+nnoremap("<space>m", "<cmd>NvimTreeToggle<cr>")

@@ -21,17 +21,17 @@ return require("packer").startup(function()
         end,
     })
 
-    use({
-        "kyazdani42/nvim-tree.lua",
-        config = function()
-            require("nvim-tree").setup({
-                disable_netrw = true,
-                hijack_unnamed_buffer_when_opening = true,
-                reload_on_bufenter = true,
-                open_on_setup = true,
-            })
-        end,
-    })
+    -- use({
+    --     "kyazdani42/nvim-tree.lua",
+    --     config = function()
+    --         require("nvim-tree").setup({
+    --             disable_netrw = true,
+    --             hijack_unnamed_buffer_when_opening = false,
+    --             reload_on_bufenter = true,
+    --             open_on_setup = true,
+    --         })
+    --     end,
+    -- })
 
     use("neovim/nvim-lspconfig")
 
@@ -103,5 +103,14 @@ return require("packer").startup(function()
         end,
     })
 
-    -- nvim tree
+    use({
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("indent_blankline").setup({
+                show_current_context = true,
+                show_current_context_start = true,
+                show_end_of_line = true,
+            })
+        end,
+    })
 end)

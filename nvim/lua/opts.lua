@@ -117,4 +117,8 @@ o.updatetime = 50
 
 -- vim.opt.fillchars = { eob = "" }
 
-vim.cmd([[set formatoptions-=cro]])
+vim.cmd("set formatoptions-=cro")
+
+o.list = true
+o.listchars = "eol:↴"
+-- o.fillchars = { eob = "" }

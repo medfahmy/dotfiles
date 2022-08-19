@@ -26,8 +26,7 @@ local config = {
     capabilities = capabilities,
 }
 
--- TODO: lua, ocaml
-local lsps = { "tsserver", "cssls", "rust_analyzer", "gopls", "pyright" }
+local lsps = { "tsserver", "cssls", "rust_analyzer", "pyright" }
 
 for _, lsp in ipairs(lsps) do
     lspconfig[lsp].setup(config)

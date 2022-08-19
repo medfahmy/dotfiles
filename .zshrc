@@ -70,6 +70,7 @@ bindkey '^e' edit-command-line
 # aliases
 alias ls='exa -a --color=auto --group-directories-first'
 alias c=clear
+alias py='python3'
 
 # path
 export PATH="$PATH:/home/mf/.local/bin:/home/mf/.cargo/bin"
