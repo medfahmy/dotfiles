@@ -4,26 +4,28 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    function nnoremap(remap, orig)
-        vim.keymap.set("n", remap, orig, bufopts)
-    end
+    local nnoremap = require("keymap").nnoremap
 
     nnoremap("<space>lc", vim.lsp.buf.declaration)
-    nnoremap("<space>ld", vim.lsp.buf.definition)
-    nnoremap("<space>lh", vim.lsp.buf.hover)
-    nnoremap("<space>ll", vim.diagnostic.open_float)
+    nnoremap("<space>d", vim.lsp.buf.definition)
+    nnoremap("<space>h", vim.lsp.buf.hover)
+    nnoremap("<space>e", vim.diagnostic.open_float)
     nnoremap("<space>lr", vim.lsp.buf.rename)
     nnoremap("<space>la", vim.lsp.buf.code_action)
     nnoremap("<space>le", vim.lsp.buf.references)
     nnoremap("<space>lf", vim.lsp.buf.formatting)
 
-    nnoremap("<space>tr", "<cmd>TroubleToggle<cr>")
+    nnoremap("<space>/", "<cmd>TroubleToggle<cr>")
 end
 
 local config = {
     on_attach = on_attach,
     capabilities = capabilities,
+    handlers = {
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+            virtual_text = false,
+        }),
+    },
 }
 
 local lsps = { "tsserver", "cssls", "rust_analyzer", "pyright" }

@@ -1,19 +1,9 @@
-function bind(op, outer_opts)
-    outer_opts = outer_opts or { noremap = true, silent = true }
-    return function(lhs, rhs, opts)
-        opts = vim.tbl_extend("force", outer_opts, opts or {})
-        vim.keymap.set(op, lhs, rhs, opts)
-    end
-end
-
-map = bind("", { noremap = false })
-nmap = bind("n", { noremap = false })
-nnoremap = bind("n")
-vnoremap = bind("v")
-xnoremap = bind("x")
-inoremap = bind("i")
-tnoremap = bind("t")
-cnoremap = bind("c")
+local map = require("keymap").map
+local nnoremap = require("keymap").nnoremap
+local inoremap = require("keymap").inoremap
+local vnoremap = require("keymap").vnoremap
+local cnoremap = require("keymap").cnoremap
+local tnoremap = require("keymap").tnoremap
 
 -- maps = { "c-c" = "esc" }
 
@@ -32,6 +22,8 @@ cnoremap = bind("c")
 
 -- globals
 nnoremap("<space>", "<nop>")
+
+nnoremap("<space>q", "<cmd>q<cr>")
 
 inoremap("<c-c>", "<esc>")
 vnoremap("<c-c>", "<esc>")
@@ -108,17 +100,6 @@ nnoremap("<silent>{", ":keepjumps normal! {<cr>")
 nnoremap("<silent>}", ":keepjumps normal! }<cr>")
 
 -- telescope
-local telescope = require("telescope.builtin")
-
-nnoremap("<space>tt", "<cmd>Telescope<cr>")
-nnoremap("<space>f", telescope.find_files)
-nnoremap("<space>tg", telescope.live_grep)
-nnoremap("<space>tf", telescope.git_files)
-nnoremap("<space>b", telescope.buffers)
-nnoremap("<space>tc", telescope.colorscheme)
-nnoremap("<space>ts", telescope.lsp_dynamic_workspace_symbols)
-nnoremap("<space>tk", telescope.keymaps)
-nnoremap("<space>th", telescope.help_tags)
 
 -- formatter
 nnoremap("<space>=", ":Format<cr>")
@@ -126,6 +107,3 @@ nnoremap("<space>=", ":Format<cr>")
 -- comment
 nnoremap("<c-_>", ":CommentToggle<cr>")
 vnoremap("<c-_>", ":'<, '>CommentToggle<cr>")
-
-nnoremap("<space>n", "<cmd>NvimTreeToggle<cr>")
-nnoremap("<space>m", "<cmd>NvimTreeToggle<cr>")

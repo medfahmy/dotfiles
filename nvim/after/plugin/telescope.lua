@@ -41,3 +41,16 @@ require("telescope").setup({
         -- }
     },
 })
+
+local nnoremap = require("keymap").nnoremap
+local telescope = require("telescope.builtin")
+
+nnoremap("<space>tt", "<cmd>Telescope<cr>")
+nnoremap("<space>f", telescope.find_files)
+nnoremap("<space>tg", telescope.live_grep)
+nnoremap("<space>tf", telescope.git_files)
+nnoremap("<space>b", telescope.buffers)
+nnoremap("<space>tc", telescope.colorscheme)
+nnoremap("<space>ts", telescope.lsp_dynamic_workspace_symbols)
+nnoremap("<space>tk", telescope.keymaps)
+nnoremap("<space>th", telescope.help_tags)
