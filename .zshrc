@@ -72,5 +72,18 @@ alias ls='exa -a --color=auto --group-directories-first'
 alias c=clear
 alias py='python3'
 
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gp='git push'
+alias gpu='git push -u'
+alias gpl='git pull'
+
 # path
 export PATH="$PATH:/home/mf/.local/bin:/home/mf/.cargo/bin"
+
+# pnpm
+export PNPM_HOME="/Users/fahmymohamed/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
