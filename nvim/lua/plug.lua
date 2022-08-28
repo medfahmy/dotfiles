@@ -10,8 +10,6 @@ return require("packer").startup(function()
         run = ":TSUpdate",
     })
 
-    use("gruvbox-community/gruvbox")
-    use("folke/tokyonight.nvim")
     use("mhartington/oceanic-next")
 
     use({
@@ -35,7 +33,12 @@ return require("packer").startup(function()
 
     use("neovim/nvim-lspconfig")
 
-    use("mhartington/formatter.nvim")
+    use({
+        "mhartington/formatter.nvim",
+        config = function()
+            vim.keymap.set("n", "<space>=", ":Format<cr>", { noremap = true, silent = true })
+        end,
+    })
 
     use("kyazdani42/nvim-web-devicons")
 
@@ -57,6 +60,8 @@ return require("packer").startup(function()
         "terrortylor/nvim-comment",
         config = function()
             require("nvim_comment").setup()
+            vim.keymap.set("n", "<c-_>", "<cmd>CommentToggle<cr>", { noremap = true, silent = true })
+            vim.keymap.set("v", "<c-_>", "<cmd>'<, '>CommentToggle<cr>", { noremap = true, silent = true })
         end,
     })
 

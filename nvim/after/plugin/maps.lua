@@ -5,21 +5,6 @@ local vnoremap = require("keymap").vnoremap
 local cnoremap = require("keymap").cnoremap
 local tnoremap = require("keymap").tnoremap
 
--- maps = { "c-c" = "esc" }
-
--- for k, v in pairs(maps) do
---     map(k, v)
--- end
---
--- local noremaps = {
---     -- "<space>" = "<nop>",
---     -- "<tab>"= "<cmd>bnext<cr>"
--- }
---
--- local inoremaps = {}
--- local vnoremaps = {}
--- local cnoremaps = {}
-
 -- globals
 nnoremap("<space>", "<nop>")
 
@@ -35,7 +20,7 @@ cnoremap("<c-n>", "<down>")
 -- buffers
 nnoremap("<tab>", "<cmd>bnext<cr>")
 nnoremap("<s-tab>", "<cmd>bprevious<cr>")
-nnoremap("<space>x", "<cmd>bd<cr>")
+nnoremap("<space>x", "<cmd>bd!<cr>")
 nnoremap("<space>c", "<cmd>%bd|e#<cr>")
 
 -- using system clipboard
@@ -49,7 +34,7 @@ vnoremap("<space>p", '"+p')
 -- nnoremap("<space>mr", "<cmd>make run<cr>")
 -- nnoremap("<space>mb", "<cmd>make build<cr>")
 
-tnoremap("<c-[>", "<c-\\><c-N>")
+tnoremap("<c-[>", "<c-\\><c-n>")
 
 nnoremap("Y", "y$")
 map("q:", "<nop>")
@@ -98,12 +83,3 @@ vnoremap("<space>{", "<esc>`>a}<esc>`<i{<esc>")
 
 nnoremap("<silent>{", ":keepjumps normal! {<cr>")
 nnoremap("<silent>}", ":keepjumps normal! }<cr>")
-
--- telescope
-
--- formatter
-nnoremap("<space>=", ":Format<cr>")
-
--- comment
-nnoremap("<c-_>", ":CommentToggle<cr>")
-vnoremap("<c-_>", ":'<, '>CommentToggle<cr>")

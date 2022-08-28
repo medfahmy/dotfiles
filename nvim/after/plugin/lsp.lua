@@ -6,16 +6,16 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 local on_attach = function(client, bufnr)
     local nnoremap = require("keymap").nnoremap
 
-    nnoremap("<space>lc", vim.lsp.buf.declaration)
     nnoremap("<space>d", vim.lsp.buf.definition)
     nnoremap("<space>h", vim.lsp.buf.hover)
     nnoremap("<space>e", vim.diagnostic.open_float)
+    nnoremap("<space>lc", vim.lsp.buf.declaration)
     nnoremap("<space>lr", vim.lsp.buf.rename)
     nnoremap("<space>la", vim.lsp.buf.code_action)
     nnoremap("<space>le", vim.lsp.buf.references)
     nnoremap("<space>lf", vim.lsp.buf.formatting)
 
-    nnoremap("<space>/", "<cmd>TroubleToggle<cr>")
+    nnoremap("<space>-", "<cmd>TroubleToggle<cr>")
 end
 
 local config = {
