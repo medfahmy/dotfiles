@@ -56,9 +56,16 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+#
+# bindkey '^P' history-beginning-search-backward
+# bindkey '^N' history-beginning-search-forward
 
-bindkey '^P' history-beginning-search-backward
-bindkey '^N' history-beginning-search-forward
+
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
 
 # bindkey '^P' up-line-or-search
 # bindkey '^n' down-line-or-search
@@ -81,7 +88,9 @@ alias gpu='git push -u'
 alias gpl='git pull'
 
 # path
-export PATH="$PATH:/home/mf/.local/bin:/home/mf/.cargo/bin"
+export LOCAL_BIN="$HOME/.local/bin"
+export CARGO="$HOME/.cargo/bin"
+export PATH=$PATH:$LOCAL_BIN:$CARGO
 
 # pnpm
 export PNPM_HOME="/Users/fahmymohamed/Library/pnpm"
