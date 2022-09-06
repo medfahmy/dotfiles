@@ -75,22 +75,22 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 # aliases
-alias ls='exa -a --color=auto --group-directories-first'
+alias ls='exa -a --color=auto --group-directories-first --ignore-glob=".DS_Store|target"'
 alias c=clear
 alias py='python3'
+alias cat='bat'
 
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gcm='git commit -m'
-alias gp='git push'
-alias gpu='git push -u'
-alias gpl='git pull'
+alias cp='echo cp; cp -v'
+alias mv='mv -v'
+alias rm='rm -v'
+alias mkdir='mkdir -v'
+alias rmdir='rmdir -v'
 
 # path
 export LOCAL_BIN="$HOME/.local/bin"
-export CARGO="$HOME/.cargo/bin"
-export PATH=$PATH:$LOCAL_BIN:$CARGO
+export CARGO_HOME="$HOME/.cargo/bin"
+export PATH=$PATH:$LOCAL_BIN:$CARGO_HOME
+export CARGO="$HOME/.cargo/bin/cargo"
 
 # pnpm
 export PNPM_HOME="/Users/fahmymohamed/Library/pnpm"
