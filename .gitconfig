@@ -1,7 +1,7 @@
 [user]
-	email = medfahmy99@gmail.com
-	name = medfahmy
+    email = medfahmyxo@gmail.com
+    name = medfahmy
 [core]
-	editor = nvim
+    editor = nvim
 [init]
-	defaultBranch = main
+    defaultBranch = main
