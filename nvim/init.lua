@@ -1,7 +1,6 @@
 require("opts")
 require("plug")
 
-
 local augroup = vim.api.nvim_create_augroup
 main_group = augroup("Main", {})
 
@@ -19,7 +18,7 @@ autocmd("TextYankPost", {
     end,
 })
 
-autocmd({ "BufWritePre" }, {
+autocmd("BufWritePre", {
     group = main,
     pattern = "*",
     command = "%s/\\s\\+$//e",

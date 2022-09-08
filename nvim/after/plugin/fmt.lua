@@ -1,3 +1,10 @@
+vim.keymap.set(
+    "n",
+    "<space>=",
+    "<cmd>Format<cr>",
+    { noremap = true, silent = true }
+)
+
 local prettier = function()
     return {
         exe = "prettier",
@@ -9,8 +16,7 @@ local prettier = function()
             80,
             "--tab-width",
             4,
-            "--arrow-parens",
-            "avoid",
+            "--arrow-parens avoid",
             -- '--single-quote',
         },
         stdin = true,
@@ -44,6 +50,7 @@ local stylua = function()
         args = {
             "--search-parent-directories",
             "--indent-type Spaces",
+            "--column-width 80",
             "--stdin-filepath",
             util.escape_path(util.get_current_buffer_file_path()),
             "--",
@@ -61,6 +68,13 @@ local rustfmt = function()
     }
 end
 
+local gofmt = function()
+    return {
+        exe = "gofmt",
+        args = { "-w", util.escape_path(util.get_current_buffer_file_path()) },
+    }
+end
+
 require("formatter").setup({
     logging = true,
     filetype = {
@@ -74,5 +88,6 @@ require("formatter").setup({
         lua = { stylua },
         rust = { rustfmt },
         python = { pyfmt },
+        go = { gofmt },
     },
 })

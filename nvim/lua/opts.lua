@@ -1,3 +1,10 @@
+vim.cmd([[
+    set guioptions-=e " Use showtabline in gui vim
+    set guioptions+=! " Use showtabline in gui vim
+    set sessionoptions+=tabpages,globals " store tabpages and globals in session
+    set shellcmdflag-=ic
+]])
+
 local o = vim.o
 
 o.pumblend = 17
@@ -23,7 +30,7 @@ o.relativenumber = false
 o.ignorecase = true
 o.smartcase = true
 o.hidden = true
-o.cursorline = true
+o.cursorline = false
 -- o.colorcolumn = "80"
 
 -- o.cursorlineopt = "number"

@@ -7,6 +7,8 @@ local tnoremap = require("keymap").tnoremap
 
 -- globals
 nnoremap("<space>", "<nop>")
+map("q:", "<nop>")
+map("Q", "<nop>")
 
 nnoremap("<space>q", "<cmd>q<cr>")
 
@@ -34,11 +36,9 @@ vnoremap("<space>p", '"+p')
 -- nnoremap("<space>mr", "<cmd>make run<cr>")
 -- nnoremap("<space>mb", "<cmd>make build<cr>")
 
-tnoremap("<c-[>", "<c-\\><c-n>")
+tnoremap("<space>[", "<c-\\><c-n>")
 
 nnoremap("Y", "y$")
-map("q:", "<nop>")
-nnoremap("Q", "<nop>")
 
 -- moving text
 -- vnoremap <silent> J :m '>+1<CR>gv=gv")
@@ -75,11 +75,13 @@ inoremap(">", "><c-g>u")
 nnoremap("k", '(v:count > 5 ? "m\'" . v:count : "") . \'k\'', { expr = true })
 nnoremap("j", '(v:count > 5 ? "m\'" . v:count : "") . \'j\'', { expr = true })
 
+-- wrapping visual selection
 vnoremap('<space>"', '<esc>`>a"<esc>`<i"<esc>')
 vnoremap("<space>(", "<esc>`>a)<esc>`<i(<esc>")
 vnoremap("<space>[", "<esc>`>a]<esc>`<i[<esc>")
 vnoremap("<space>'", "<esc>`>a'<esc>`<i'<esc>")
 vnoremap("<space>{", "<esc>`>a}<esc>`<i{<esc>")
 
+-- dont mutate jump list
 nnoremap("<silent>{", ":keepjumps normal! {<cr>")
 nnoremap("<silent>}", ":keepjumps normal! }<cr>")

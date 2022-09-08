@@ -1,5 +1,16 @@
+local function nnoremap(lhs, rhs)
+    vim.keymap.set("n", lhs, rhs, { noremap = true, silent = true })
+end
+
 return require("packer").startup(function()
     use("wbthomason/packer.nvim")
+
+    use({
+        "lewis6991/impatient.nvim",
+        config = function()
+            require("impatient")
+        end,
+    })
 
     use("nvim-lua/plenary.nvim")
     use("nvim-lua/popup.nvim")
@@ -9,8 +20,16 @@ return require("packer").startup(function()
     use("nvim-treesitter/nvim-treesitter", {
         run = ":TSUpdate",
     })
+    use("nvim-treesitter/nvim-treesitter-context")
 
     use("mhartington/oceanic-next")
+    use("folke/tokyonight.nvim")
+    use({
+        "projekt0n/github-nvim-theme",
+        config = function()
+            require("github-theme").setup()
+        end,
+    })
 
     use({
         "norcalli/nvim-colorizer.lua",
@@ -33,12 +52,7 @@ return require("packer").startup(function()
 
     use("neovim/nvim-lspconfig")
 
-    use({
-        "mhartington/formatter.nvim",
-        config = function()
-            vim.keymap.set("n", "<space>=", ":Format<cr>", { noremap = true, silent = true })
-        end,
-    })
+    use("mhartington/formatter.nvim")
 
     use("kyazdani42/nvim-web-devicons")
 
@@ -60,8 +74,6 @@ return require("packer").startup(function()
         "terrortylor/nvim-comment",
         config = function()
             require("nvim_comment").setup()
-            vim.keymap.set("n", "<c-_>", "<cmd>CommentToggle<cr>", { noremap = true, silent = true })
-            vim.keymap.set("v", "<c-_>", "<cmd>'<, '>CommentToggle<cr>", { noremap = true, silent = true })
         end,
     })
 
@@ -89,17 +101,17 @@ return require("packer").startup(function()
         end,
     })
 
-    use({
-        "folke/lsp-colors.nvim",
-        config = function()
-            require("lsp-colors").setup({
-                Error = "#db4b4b",
-                Warning = "#e0af68",
-                Information = "#0db9d7",
-                Hint = "#10B981",
-            })
-        end,
-    })
+    -- use({
+    --     "folke/lsp-colors.nvim",
+    --     config = function()
+            -- require("lsp-colors").setup({
+            --     Error = "#db4b4b",
+            --     Warning = "#e0af68",
+            --     Information = "#0db9d7",
+            --     Hint = "#10B981",
+            -- })
+    --     end,
+    -- })
 
     use({
         "windwp/nvim-autopairs",
@@ -108,16 +120,16 @@ return require("packer").startup(function()
         end,
     })
 
-    use({
-        "lukas-reineke/indent-blankline.nvim",
-        config = function()
-            require("indent_blankline").setup({
-                show_current_context = true,
-                show_current_context_start = true,
-                show_end_of_line = true,
-            })
-        end,
-    })
+    -- use({
+    --     "lukas-reineke/indent-blankline.nvim",
+    --     config = function()
+    --         require("indent_blankline").setup({
+    --             show_current_context = true,
+    --             show_current_context_start = true,
+    --             show_end_of_line = true,
+    --         })
+    --     end,
+    -- })
 
     use({
         "rmagatti/auto-session",

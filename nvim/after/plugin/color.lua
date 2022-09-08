@@ -18,7 +18,8 @@ local colors = {
 }
 
 vim.g.colorscheme = "OceanicNext"
--- vim.g.colorscheme = "tokyonight"
+-- vim.g.colorscheme = "tokyonight-night"
+-- vim.g.colorscheme = "github_dark"
 
 vim.g.gruvbox_contrast_dark = "hard"
 vim.g.tokyonight_transparent_sidebar = true
