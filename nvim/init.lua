@@ -1,5 +1,6 @@
 require("opts")
 require("plug")
+-- require("statusline")
 
 local augroup = vim.api.nvim_create_augroup
 main_group = augroup("Main", {})

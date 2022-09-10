@@ -18,6 +18,7 @@ local on_attach = function(client, bufnr)
     nnoremap("<space>v", "<cmd>TroubleToggle<cr>")
 end
 
+
 local config = {
     on_attach = on_attach,
     capabilities = capabilities,

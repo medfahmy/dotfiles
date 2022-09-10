@@ -1,6 +1,6 @@
 vim.cmd([[
-    set guioptions-=e " Use showtabline in gui vim
-    set guioptions+=! " Use showtabline in gui vim
+    set guioptions-=e
+    set guioptions+=!
     set sessionoptions+=tabpages,globals " store tabpages and globals in session
     set shellcmdflag-=ic
 ]])
@@ -30,10 +30,10 @@ o.relativenumber = false
 o.ignorecase = true
 o.smartcase = true
 o.hidden = true
-o.cursorline = false
+o.cursorline = true
 -- o.colorcolumn = "80"
 
--- o.cursorlineopt = "number"
+o.cursorlineopt = "number"
 o.equalalways = false
 o.splitright = true
 o.splitbelow = true
@@ -64,6 +64,8 @@ o.inccommand = "split"
 -- o.shada = { "!", "'1000", "<50", "s10", "h" }
 
 o.mouse = o.mouse .. "a"
+
+o.laststatus = 2
 
 -- o.shortmess = "c"
 
@@ -129,3 +131,25 @@ vim.cmd("set formatoptions-=cro")
 o.list = true
 o.listchars = "eol:↴"
 -- o.fillchars = { eob = "" }
+
+-- vim.cmd([[set statusline+='hello"]])
+
+
+local function get_lsp()
+    local msg = ""
+    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+    local clients = vim.lsp.get_active_clients()
+    if next(clients) == nil then
+        return msg
+    end
+    for _, client in ipairs(clients) do
+        local filetypes = client.config.filetypes
+        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+            msg = msg .. " " .. client.name
+        end
+    end
+    return msg
+end
+
+o.statusline = [[%<%f %h%m%r%=%-14.(%l, %c%V%) %P]]
+

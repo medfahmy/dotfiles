@@ -36,17 +36,13 @@ vnoremap("<space>p", '"+p')
 -- nnoremap("<space>mr", "<cmd>make run<cr>")
 -- nnoremap("<space>mb", "<cmd>make build<cr>")
 
-tnoremap("<space>[", "<c-\\><c-n>")
+tnoremap("<c-[>", [[<c-\><c-n>]])
 
 nnoremap("Y", "y$")
 
 -- moving text
--- vnoremap <silent> J :m '>+1<CR>gv=gv")
--- vnoremap <silent> K :m '<-2<CR>gv=gv")
--- inoremap <C-j> <esc>:m .+1<CR>==")
--- inoremap <C-k> <esc>:m .-2<CR>==")
--- nnoremap <space>j :m .+1<CR>==")
--- nnoremap <space>k :m .-2<CR>==")
+vnoremap("J", ":m '>+1<CR>gv=gv")
+vnoremap("K", ":m '<-2<CR>gv=gv")
 
 -- indenting selection while staying in visual mode
 vnoremap("<", "<gv")
@@ -83,5 +79,7 @@ vnoremap("<space>'", "<esc>`>a'<esc>`<i'<esc>")
 vnoremap("<space>{", "<esc>`>a}<esc>`<i{<esc>")
 
 -- dont mutate jump list
-nnoremap("<silent>{", ":keepjumps normal! {<cr>")
-nnoremap("<silent>}", ":keepjumps normal! }<cr>")
+nnoremap("{", ":keepjumps normal! {<cr>")
+nnoremap("}", ":keepjumps normal! }<cr>")
+
+nnoremap("<space>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { silent = false })
