@@ -6,9 +6,11 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 local on_attach = function(client, bufnr)
     local nnoremap = require("keymap").nnoremap
 
-    nnoremap("<space>d",  vim.lsp.buf.definition)
-    nnoremap("<space>h",  vim.lsp.buf.hover)
-    nnoremap("<space>e",  vim.diagnostic.open_float)
+    nnoremap("<space>lw", vim.diagnostic.enable)
+
+    nnoremap("<space>d", vim.lsp.buf.definition)
+    nnoremap("<space>h", vim.lsp.buf.hover)
+    nnoremap("<space>e", vim.diagnostic.open_float)
     nnoremap("<space>lc", vim.lsp.buf.declaration)
     nnoremap("<space>lr", vim.lsp.buf.rename)
     nnoremap("<space>la", vim.lsp.buf.code_action)
@@ -18,19 +20,21 @@ local on_attach = function(client, bufnr)
     nnoremap("<space>v", "<cmd>TroubleToggle<cr>")
 end
 
-
 local config = {
     on_attach = on_attach,
     capabilities = capabilities,
     handlers = {
-        ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-            virtual_text = false,
-            underline = false,
-        }),
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(
+            vim.lsp.diagnostic.on_publish_diagnostics,
+            {
+                virtual_text = false,
+                underline = false,
+            }
+        ),
     },
 }
 
-local lsps = { "tsserver", "cssls", "rust_analyzer", "gopls" }
+local lsps = { "tsserver", "cssls", "rust_analyzer", "svelte" }
 
 for _, lsp in ipairs(lsps) do
     lspconfig[lsp].setup(config)

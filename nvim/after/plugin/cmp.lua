@@ -86,14 +86,17 @@ cmp.setup.cmdline(":", {
 })
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local lsp = require("lspconfig")
+local lspconfig = require("lspconfig")
 
-lsp.tsserver.setup({
-    capabilities = capabilities,
-})
-lsp.rust_analyzer.setup({
-    capabilities = capabilities,
-})
+
+local lsps = { "tsserver", "cssls", "rust_analyzer", "svelte" }
+
+for _, lsp in ipairs(lsps) do
+    lspconfig[lsp].setup({
+        capabilities = capabilities,
+    })
+end
+
 
 local lspkind = require("lspkind")
 cmp.setup({

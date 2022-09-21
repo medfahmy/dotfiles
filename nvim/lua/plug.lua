@@ -16,6 +16,15 @@ return require("packer").startup(function()
     use("nvim-lua/popup.nvim")
 
     use("nvim-telescope/telescope.nvim")
+    use("nvim-telescope/telescope-fzy-native.nvim")
+
+    use({
+        "nvim-telescope/telescope-frecency.nvim",
+        config = function()
+            require("telescope").load_extension("frecency")
+        end,
+        requires = { "kkharji/sqlite.lua" },
+    })
 
     use("nvim-treesitter/nvim-treesitter", {
         run = ":TSUpdate",
@@ -23,13 +32,6 @@ return require("packer").startup(function()
     use("nvim-treesitter/nvim-treesitter-context")
 
     use("mhartington/oceanic-next")
-    use("folke/tokyonight.nvim")
-    use({
-        "projekt0n/github-nvim-theme",
-        config = function()
-            require("github-theme").setup()
-        end,
-    })
 
     use({
         "norcalli/nvim-colorizer.lua",
@@ -38,24 +40,13 @@ return require("packer").startup(function()
         end,
     })
 
-    -- use({
-    --     "kyazdani42/nvim-tree.lua",
-    --     config = function()
-    --         require("nvim-tree").setup({
-    --             disable_netrw = true,
-    --             hijack_unnamed_buffer_when_opening = false,
-    --             reload_on_bufenter = true,
-    --             open_on_setup = true,
-    --         })
-    --     end,
-    -- })
-
-
     use("mhartington/formatter.nvim")
 
     use("kyazdani42/nvim-web-devicons")
 
     use("neovim/nvim-lspconfig")
+
+    use("mfussenegger/nvim-dap")
 
     use("hrsh7th/cmp-nvim-lsp")
     use("hrsh7th/cmp-buffer")
@@ -102,17 +93,17 @@ return require("packer").startup(function()
         end,
     })
 
-    -- use({
-    --     "folke/lsp-colors.nvim",
-    --     config = function()
-            -- require("lsp-colors").setup({
-            --     Error = "#db4b4b",
-            --     Warning = "#e0af68",
-            --     Information = "#0db9d7",
-            --     Hint = "#10B981",
-            -- })
-    --     end,
-    -- })
+    use({
+        "folke/lsp-colors.nvim",
+        config = function()
+            require("lsp-colors").setup({
+                Error = "#db4b4b",
+                Warning = "#e0af68",
+                Information = "#0db9d7",
+                Hint = "#10B981",
+            })
+        end,
+    })
 
     use({
         "windwp/nvim-autopairs",
@@ -121,23 +112,23 @@ return require("packer").startup(function()
         end,
     })
 
-    -- use({
-    --     "lukas-reineke/indent-blankline.nvim",
-    --     config = function()
-    --         require("indent_blankline").setup({
-    --             show_current_context = true,
-    --             show_current_context_start = true,
-    --             show_end_of_line = true,
-    --         })
-    --     end,
-    -- })
-
     use({
-        "rmagatti/auto-session",
+        "lukas-reineke/indent-blankline.nvim",
         config = function()
-            require("auto-session").setup({
-                log_level = "error",
+            require("indent_blankline").setup({
+                show_current_context = true,
+                show_current_context_start = true,
+                show_end_of_line = true,
             })
         end,
     })
+
+    -- use({
+    --     "rmagatti/auto-session",
+    --     config = function()
+    --         require("auto-session").setup({
+    --             log_level = "error",
+    --         })
+    --     end,
+    -- })
 end)

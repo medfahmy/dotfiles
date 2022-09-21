@@ -81,6 +81,7 @@ require("formatter").setup({
         javascript = { prettier },
         typescript = { prettier },
         typescriptreact = { prettier },
+        svelte = { prettier },
         graphql = { prettier },
         html = { prettier },
         css = { prettier },

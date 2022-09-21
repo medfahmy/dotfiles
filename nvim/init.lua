@@ -14,7 +14,7 @@ autocmd("TextYankPost", {
     callback = function()
         vim.highlight.on_yank({
             higroup = "IncSearch",
-            timeout = 200,
+            timeout = 100,
         })
     end,
 })
@@ -24,3 +24,23 @@ autocmd("BufWritePre", {
     pattern = "*",
     command = "%s/\\s\\+$//e",
 })
+
+autocmd("BufReadPost", {
+    group = main,
+    pattern = "*",
+    command = [[if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]],
+})
+
+-- autocmd("BufEnter", {
+--     group = main,
+--     pattern = "*",
+--     callback = function()
+--         vim.diagnostic.disable()
+--     end,
+-- })
+
+vim.cmd([[
+    tnoremap <esc> <c-\><c-n>
+    nnoremap <c-t> :vertical term<cr>
+    set formatoptions-=cro
+]])

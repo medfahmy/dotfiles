@@ -74,13 +74,30 @@ bindkey "^N" history-beginning-search-forward-end
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+function clear-scrollback-buffer {
+  # Behavior of clear:
+  # 1. clear scrollback if E3 cap is supported (terminal, platform specific)
+  # 2. then clear visible screen
+  # For some terminal 'e[3J' need to be sent explicitly to clear scrollback
+  clear && printf '\e[3J'
+  # .reset-prompt: bypass the zsh-syntax-highlighting wrapper
+  # https://github.com/sorin-ionescu/prezto/issues/1026
+  # https://github.com/zsh-users/zsh-autosuggestions/issues/107#issuecomment-183824034
+  # -R: redisplay the prompt to avoid old prompts being eaten up
+  # https://github.com/Powerlevel9k/powerlevel9k/pull/1176#discussion_r299303453
+  zle && zle .reset-prompt && zle -R
+}
+
+zle -N clear-scrollback-buffer
+bindkey '^L' clear-scrollback-buffer
+
 # aliases
-alias ls='exa -a --color=auto --group-directories-first --ignore-glob=".DS_Store|target"'
-alias c=clear
+alias c=clear-scrollback-buffer
+alias ls='exa -a --color=auto --group-directories-first'
 alias py='python3'
 alias cat='bat'
 
-alias cp='echo cp; cp -v'
+alias cp='cp -v'
 alias mv='mv -v'
 alias rm='rm -v'
 alias mkdir='mkdir -v'

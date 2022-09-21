@@ -1,7 +1,15 @@
 require("telescope").setup({
     defaults = {
         prompt_prefix = " >> ",
-        file_ignore_patterns = { "node_modules/", "dist/", ".git/", "__pycache__", "target/", "venv", ".next" },
+        file_ignore_patterns = {
+            "node_modules/",
+            "dist/",
+            ".git/",
+            "__pycache__",
+            "target/",
+            "venv",
+            ".next",
+        },
         file_sorter = require("telescope.sorters").get_fzy_sorter,
         color_devicons = true,
 
@@ -20,10 +28,17 @@ require("telescope").setup({
         },
         file_browser = {
             sort_lastused = true,
+            hidden = true,
         },
         live_grep = {
             sort_lastused = true,
             hidden = true,
+        },
+    },
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = true,
+            override_file_sorter = true,
         },
     },
 })
@@ -40,3 +55,4 @@ nnoremap("<space>tc", telescope.colorscheme)
 nnoremap("<space>ts", telescope.lsp_dynamic_workspace_symbols)
 nnoremap("<space>tk", telescope.keymaps)
 nnoremap("<space>th", telescope.help_tags)
+

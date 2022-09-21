@@ -18,11 +18,7 @@ local colors = {
     brown = "#ab7967",
 }
 
--- vim.g.colorscheme = "OceanicNext"
--- vim.g.colorscheme = "tokyonight-night"
-vim.g.colorscheme = "github_dark"
-
-
+vim.g.colorscheme = "OceanicNext"
 vim.cmd("syntax enable")
 vim.cmd("colorscheme " .. vim.g.colorscheme)
 
@@ -35,8 +31,13 @@ local none = none
 hl("SignColumn", { bg = none, fg = none })
 hl("Visual", { bg = colors.gray0, fg = colors.white })
 hl("EndOfBuffer", { bg = none, fg = none })
-hl("CursorLineNr", { fg = colors.blue })
+hl("CursorLineNr", { fg = colors.yellow })
 hl("Normal", { bg = none })
 hl("Pmenu", { bg = colors.bg })
 hl("LineNr", { fg = colors.gray1 })
+hl("IncSearch", { fg = colors.black, bg = colors.yellow })
+hl("TreesitterContextLineNumber", { fg = colors.white, bg = colors.gray0 })
+hl("TreesitterContext", { bg = colors.gray0 })
+hl("NormalFloat", { bg = colors.gray0 })
+
 -- vim.cmd("hi StatusLine guifg=Black guibg=Gray")
