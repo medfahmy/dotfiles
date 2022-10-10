@@ -1,9 +1,5 @@
-vim.keymap.set(
-    "n",
-    "<space>=",
-    "<cmd>Format<cr>",
-    { noremap = true, silent = true }
-)
+local nnoremap = require("keymap").nnoremap
+nnoremap("<space>=", "<cmd>Format<cr>")
 
 local prettier = function()
     return {

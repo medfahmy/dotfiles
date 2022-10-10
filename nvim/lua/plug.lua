@@ -1,9 +1,8 @@
-local function nnoremap(lhs, rhs)
-    vim.keymap.set("n", lhs, rhs, { noremap = true, silent = true })
-end
-
 return require("packer").startup(function()
     use("wbthomason/packer.nvim")
+
+    use("mhartington/oceanic-next")
+    use("gruvbox-community/gruvbox")
 
     use({
         "lewis6991/impatient.nvim",
@@ -14,6 +13,7 @@ return require("packer").startup(function()
 
     use("nvim-lua/plenary.nvim")
     use("nvim-lua/popup.nvim")
+    use("kyazdani42/nvim-web-devicons")
 
     use("nvim-telescope/telescope.nvim")
     use("nvim-telescope/telescope-fzy-native.nvim")
@@ -29,24 +29,17 @@ return require("packer").startup(function()
     use("nvim-treesitter/nvim-treesitter", {
         run = ":TSUpdate",
     })
+    use("p00f/nvim-ts-rainbow")
     use("nvim-treesitter/nvim-treesitter-context")
 
-    use("mhartington/oceanic-next")
-
-    use({
-        "norcalli/nvim-colorizer.lua",
-        config = function()
-            require("colorizer").setup()
-        end,
-    })
+    use("TimUntersberger/neogit")
 
     use("mhartington/formatter.nvim")
-
-    use("kyazdani42/nvim-web-devicons")
 
     use("neovim/nvim-lspconfig")
 
     use("mfussenegger/nvim-dap")
+    use("rcarriga/nvim-dap-ui")
 
     use("hrsh7th/cmp-nvim-lsp")
     use("hrsh7th/cmp-buffer")
@@ -58,6 +51,22 @@ return require("packer").startup(function()
     use("saadparwaiz1/cmp_luasnip")
 
     use("onsails/lspkind-nvim")
+
+    vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
+    use({
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        requires = { "MunifTanjim/nui.nvim" },
+        config = function() end,
+    })
+
+    use({
+        "norcalli/nvim-colorizer.lua",
+        config = function()
+            require("colorizer").setup()
+        end,
+    })
 
     -- use("nvim-lualine/lualine.nvim")
     -- use("kdheepak/tabline.nvim")
@@ -122,6 +131,8 @@ return require("packer").startup(function()
             })
         end,
     })
+
+    use("tjdevries/express_line.nvim")
 
     -- use({
     --     "rmagatti/auto-session",

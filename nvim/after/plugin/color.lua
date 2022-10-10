@@ -1,6 +1,6 @@
 local colors = {
     bg = "#222222",
-    black = "#343d46",
+    black = "#000000",
     gray0 = "#444444",
     gray1 = "#666666",
     gray2 = "#a7adba",
@@ -20,13 +20,14 @@ local colors = {
 
 vim.g.colorscheme = "OceanicNext"
 vim.cmd("syntax enable")
+vim.cmd("let $NVIM_TUI_ENABLE_TRUE_COLOR = 1")
 vim.cmd("colorscheme " .. vim.g.colorscheme)
 
 local hl = function(thing, opts)
     vim.api.nvim_set_hl(0, thing, opts)
 end
 
-local none = none
+local none = "none"
 
 hl("SignColumn", { bg = none, fg = none })
 hl("Visual", { bg = colors.gray0, fg = colors.white })
@@ -38,6 +39,8 @@ hl("LineNr", { fg = colors.gray1 })
 hl("IncSearch", { fg = colors.black, bg = colors.yellow })
 hl("TreesitterContextLineNumber", { fg = colors.white, bg = colors.gray0 })
 hl("TreesitterContext", { bg = colors.gray0 })
-hl("NormalFloat", { bg = colors.gray0 })
+hl("NormalFloat", { bg = colors.black })
+hl("StatusLine", { bg = colors.gray1, fg = "#dddddd" })
+hl("TSTag", { fg = colors.purple })
 
 -- vim.cmd("hi StatusLine guifg=Black guibg=Gray")

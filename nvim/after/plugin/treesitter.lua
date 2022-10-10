@@ -1,23 +1,19 @@
 require("nvim-treesitter.configs").setup({
-    ensure_installed = "all",
+    ensure_installed = {"c", "lua", "rust", "typescript", "javascript", "python", "sql", "toml", "json"},
+    auto_install = true,
     ignore_install = {},
     highlight = {
         enable = true,
-        disable = {},
+        disable = { "toml" },
         additional_vim_regex_highlighting = true,
     },
     textobjects = {
         select = {
-            enable = true
-        }
+            enable = true,
+        },
     },
     indent = {
         enable = true,
-    },
-    rainbow = {
-        enable = true,
-        extended_mode = true,
-        max_file_lines = 1000,
     },
     autotag = {
         enable = true,

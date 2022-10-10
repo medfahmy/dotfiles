@@ -7,8 +7,18 @@
 
 # Enable colors and change prompt:
 autoload -U colors && colors
-# PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+# Load version control information
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats 'on branch %b'
+
+# Set up the prompt (with git branch name)
+setopt PROMPT_SUBST
 PROMPT=" %B%F{magenta}%~%f%b %(?.%F{green}>.%F{red}[%?] >)%f "
+# PROMPT+=' ${vcs_info_msg_0_} > '
+# PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 # PS1=" %F{yellow}%m%f%# %B%F{magenta}%~%f%b >> "
 
@@ -94,7 +104,6 @@ bindkey '^L' clear-scrollback-buffer
 # aliases
 alias c=clear-scrollback-buffer
 alias ls='exa -a --color=auto --group-directories-first'
-alias py='python3'
 alias cat='bat'
 
 alias cp='cp -v'
@@ -102,6 +111,8 @@ alias mv='mv -v'
 alias rm='rm -v'
 alias mkdir='mkdir -v'
 alias rmdir='rmdir -v'
+
+alias py='python3'
 
 # path
 export LOCAL_BIN="$HOME/.local/bin"

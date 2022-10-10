@@ -1,12 +1,6 @@
-vim.cmd([[
-    set guioptions-=e
-    set guioptions+=!
-    set sessionoptions+=tabpages,globals " store tabpages and globals in session
-    set shellcmdflag-=ic
-]])
-
 local o = vim.o
 
+o.guicursor = "a:block"
 o.pumblend = 17
 o.wildmode = "longest:full"
 o.wildoptions = "pum"
@@ -29,8 +23,8 @@ o.ignorecase = true
 o.smartcase = true
 o.hidden = true
 o.cursorline = true
--- o.colorcolumn = "80"
-o.cursorlineopt = "number"
+-- o.colorcolumn = "80"opt
+-- o.cursorlineopt = "number"
 o.equalalways = false
 o.splitright = true
 o.splitbelow = true
@@ -65,9 +59,10 @@ o.incsearch = true
 o.termguicolors = true
 o.scrolloff = 8
 o.signcolumn = "yes"
-o.cmdheight = 2
+-- o.cmdheight = 2
 o.updatetime = 50
 o.list = true
 o.listchars = "eol:↴"
 o.fillchars = "eob: "
+o.formatoptions = ""
 -- o.statusline = [[%<%f %h%m%r%=%-14.(%l, %c%V%) %P]]

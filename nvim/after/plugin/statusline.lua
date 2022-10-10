@@ -1,3 +1,46 @@
+-- local extensions = require("el.extensions")
+-- local subscribe = require("el.subscribe")
+-- local generator = function(_window, buffer)
+--     local segments = {}
+--
+--     table.insert(
+--         segments,
+--         subscribe.buf_autocmd(
+--             "el_git_status",
+--             "BufWritePost",
+--             function(window, buffer)
+--                 local changes = extensions.git_changes(window, buffer)
+--                 if changes then
+--                     return changes
+--                 end
+--             end
+--         )
+--     )
+--
+--     table.insert(
+--         segments,
+--         subscribe.buf_autocmd(
+--             "el_git_branch",
+--             "BufEnter",
+--             function(window, buffer)
+--                 local branch = extensions.git_branch(window, buffer)
+--                 if branch then
+--                     return branch
+--                 end
+--             end
+--         )
+--     )
+--
+--     table.insert(
+--         segments,
+--         subscribe.buf_autocmd("el_file_icon", "BufRead", function(_, buffer)
+--             return extensions.file_icon(_, buffer)
+--         end)
+--     )
+-- end
+--
+-- require("el").setup({ generator = generator })
+
 vim.cmd([[
     hi statusline guibg=Grey ctermfg=8 guifg=Black ctermbg=15
 

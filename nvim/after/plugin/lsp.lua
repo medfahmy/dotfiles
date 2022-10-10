@@ -10,7 +10,9 @@ local on_attach = function(client, bufnr)
 
     nnoremap("<space>d", vim.lsp.buf.definition)
     nnoremap("<space>h", vim.lsp.buf.hover)
-    nnoremap("<space>e", vim.diagnostic.open_float)
+    nnoremap("<space>e", function()
+        vim.diagnostic.open_float({ border = "single" })
+    end)
     nnoremap("<space>lc", vim.lsp.buf.declaration)
     nnoremap("<space>lr", vim.lsp.buf.rename)
     nnoremap("<space>la", vim.lsp.buf.code_action)
@@ -29,12 +31,13 @@ local config = {
             {
                 virtual_text = false,
                 underline = false,
+                float = { border = "single" },
             }
         ),
     },
 }
 
-local lsps = { "tsserver", "cssls", "rust_analyzer", "svelte" }
+local lsps = { "tsserver", "cssls", "rust_analyzer", "svelte", "pyright" }
 
 for _, lsp in ipairs(lsps) do
     lspconfig[lsp].setup(config)
@@ -55,3 +58,12 @@ lspconfig.tailwindcss.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
+
+local handlers = vim.lsp.handlers
+local with = vim.lsp.with
+local border = { border = "single" }
+
+handlers["textDocument/hover"] = with(handlers.hover, border)
+handlers["textDocument/signatureHelp"] = with(handlers.signature_help, border)
+handlers["textDocument/diagnostic"] = with(handlers.hover, border)
+handlers["textDocument/diagnostics"] = with(handlers.hover, border)

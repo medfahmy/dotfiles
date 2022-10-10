@@ -1,4 +1,4 @@
-local map      = require("keymap").map
+local map = require("keymap").map
 local nnoremap = require("keymap").nnoremap
 local inoremap = require("keymap").inoremap
 local vnoremap = require("keymap").vnoremap
@@ -9,8 +9,8 @@ local tnoremap = require("keymap").tnoremap
 nnoremap("<space>", "<nop>")
 map("q:", "<nop>")
 map("Q", "<nop>")
-nnoremap("<space>q", "<cmd>q<cr>")
-nnoremap("<space>w", "<cmd>w<cr>")
+tnoremap("<esc>", "<c-\\><c-n>")
+nnoremap("<c-t>", "<cmd>vsp<cr> <cmd>term<cr>")
 
 inoremap("<c-c>", "<esc>")
 vnoremap("<c-c>", "<esc>")
@@ -84,4 +84,8 @@ nnoremap("{", ":keepjumps normal! {<cr>")
 nnoremap("}", ":keepjumps normal! }<cr>")
 
 -- /s current word
-nnoremap("<space>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { silent = false })
+nnoremap(
+    "<space>s",
+    ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+    { silent = false }
+)
