@@ -1,8 +1,21 @@
 return require("packer").startup(function()
     use("wbthomason/packer.nvim")
 
-    use("mhartington/oceanic-next")
-    use("gruvbox-community/gruvbox")
+    use("kaiuri/onigiri.nvim")
+    -- use("mhartington/oceanic-next")
+    -- use("gruvbox-community/gruvbox")
+    -- use("wojciechkepka/vim-github-dark")
+    -- use("jacoborus/tender.vim")
+    -- use("EdenEast/nightfox.nvim")
+    -- use("axvr/photon.vim")
+    -- use("folke/tokyonight.nvim")
+    -- use({
+    --     "phha/zenburn.nvim",
+    --     config = function()
+    --         require("zenburn").setup()
+    --     end,
+    -- })
+    -- use("JoosepAlviste/palenightfall.nvim")
 
     use({
         "lewis6991/impatient.nvim",
@@ -30,7 +43,7 @@ return require("packer").startup(function()
         run = ":TSUpdate",
     })
     use("p00f/nvim-ts-rainbow")
-    use("nvim-treesitter/nvim-treesitter-context")
+    -- use("nvim-treesitter/nvim-treesitter-context")
 
     use("TimUntersberger/neogit")
 
@@ -68,8 +81,8 @@ return require("packer").startup(function()
         end,
     })
 
-    -- use("nvim-lualine/lualine.nvim")
-    -- use("kdheepak/tabline.nvim")
+    use("nvim-lualine/lualine.nvim")
+    use("kdheepak/tabline.nvim")
 
     use({
         "terrortylor/nvim-comment",
@@ -126,20 +139,19 @@ return require("packer").startup(function()
         config = function()
             require("indent_blankline").setup({
                 show_current_context = true,
-                show_current_context_start = true,
+                show_current_context_start = false,
+                show_current_context_start_on_current_line = false,
                 show_end_of_line = true,
             })
         end,
     })
 
-    use("tjdevries/express_line.nvim")
-
-    -- use({
-    --     "rmagatti/auto-session",
-    --     config = function()
-    --         require("auto-session").setup({
-    --             log_level = "error",
-    --         })
-    --     end,
-    -- })
+    use({
+        "rmagatti/auto-session",
+        config = function()
+            require("auto-session").setup({
+                log_level = "error",
+            })
+        end,
+    })
 end)

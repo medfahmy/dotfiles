@@ -1,6 +1,7 @@
-[user]
-    email = medfahmyxo@gmail.com
-    name = medfahmy
+[include]
+    path = ~/.git-perso.conf
+[includeIf "gitdir:~/bcg/"]
+    path = ~/.git-bcg.conf
 [core]
     editor = nvim
 [init]

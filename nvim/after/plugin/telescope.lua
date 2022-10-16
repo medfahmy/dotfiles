@@ -10,44 +10,48 @@ require("telescope").setup({
             "venv",
             ".next",
         },
-        file_sorter = require("telescope.sorters").get_fzy_sorter,
+        -- file_sorter = require("telescope.sorters").get_fzy_sorter,
         color_devicons = true,
 
-        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-        qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+        -- file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+        -- grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+        -- qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
     },
 
     pickers = {
         buffers = {
-            sort_lastused = true,
+            sort_last_used = true,
         },
         find_files = {
             hidden = true,
-            sort_lastused = true,
+            sort_last_used = true,
         },
         file_browser = {
-            sort_lastused = true,
+            sort_last_used = true,
             hidden = true,
         },
         live_grep = {
-            sort_lastused = true,
+            sort_last_used = true,
             hidden = true,
         },
     },
-    extensions = {
-        fzy_native = {
-            override_generic_sorter = true,
-            override_file_sorter = true,
-        },
-    },
+    -- extensions = {
+        -- frecency = {
+        --     default_workspace = "CWD",
+        -- },
+        --     fzy_native = {
+        --         override_generic_sorter = true,
+        --         override_file_sorter = true,
+        --     },
+    -- },
 })
 
 local nnoremap = require("keymap").nnoremap
 local telescope = require("telescope.builtin")
 
-nnoremap("<space>f", telescope.find_files)
+-- nnoremap("<space>f", telescope.find_files)
 nnoremap("<space>b", telescope.buffers)
+nnoremap("<space>tr", telescope.resume)
 nnoremap("<space>tt", "<cmd>Telescope<cr>")
 nnoremap("<space>tg", telescope.live_grep)
 nnoremap("<space>tf", telescope.git_files)
@@ -55,4 +59,4 @@ nnoremap("<space>tc", telescope.colorscheme)
 nnoremap("<space>ts", telescope.lsp_dynamic_workspace_symbols)
 nnoremap("<space>tk", telescope.keymaps)
 nnoremap("<space>th", telescope.help_tags)
-
+nnoremap("<space>f", "<Cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>")

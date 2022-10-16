@@ -18,7 +18,46 @@ local colors = {
     brown = "#ab7967",
 }
 
-vim.g.colorscheme = "OceanicNext"
+vim.g.colorscheme = "onigiri"
+
+local presets = require("onigiri").presets["mariana"]
+
+-- presets.Background = {
+--     default = "#ffffff",
+--     emphasis = "#2e353e",
+--     muted = "#46525c",
+-- }
+--
+presets.Foreground = {
+    default = "#d8dee9",
+    emphasis = "#f7f7f7",
+    muted = "#a6acb8",
+    surface = "#46525c",
+}
+
+presets.Shade = {
+    default  = "None",
+    emphasis = "None",
+}
+
+-- Colors = {
+--     Accent    = "#95B2D6",
+--     Caution   = "#f9ae58",
+--     Danger    = "#f97b58",
+--     Error     = "#ec5f66",
+--     Hint      = "#5fb4b4",
+--     Important = "#fac761",
+--     Info      = "#99c794",
+--     Note      = "#5c99d6",
+--     Trace     = "#cc8ec6",
+--     Warn      = "#ee932b",
+-- }
+--}
+
+vim.g.onigiri = {
+    theme = presets,
+}
+
 vim.cmd("syntax enable")
 vim.cmd("let $NVIM_TUI_ENABLE_TRUE_COLOR = 1")
 vim.cmd("colorscheme " .. vim.g.colorscheme)
@@ -29,18 +68,21 @@ end
 
 local none = "none"
 
+hl("Normal", { bg = none })
 hl("SignColumn", { bg = none, fg = none })
-hl("Visual", { bg = colors.gray0, fg = colors.white })
+hl("Visual", { bg = "#444444", fg = colors.white })
 hl("EndOfBuffer", { bg = none, fg = none })
 hl("CursorLineNr", { fg = colors.yellow })
-hl("Normal", { bg = none })
 hl("Pmenu", { bg = colors.bg })
 hl("LineNr", { fg = colors.gray1 })
 hl("IncSearch", { fg = colors.black, bg = colors.yellow })
 hl("TreesitterContextLineNumber", { fg = colors.white, bg = colors.gray0 })
 hl("TreesitterContext", { bg = colors.gray0 })
-hl("NormalFloat", { bg = colors.black })
+hl("NormalFloat", { bg = colors.gray0, fg = colors.white })
+hl("FloatBorder", { bg = colors.gray0 })
 hl("StatusLine", { bg = colors.gray1, fg = "#dddddd" })
 hl("TSTag", { fg = colors.purple })
+hl("NonText", { fg = colors.gray1 })
+hl("IndentBlankLineChar", { fg = colors.gray1 })
 
 -- vim.cmd("hi StatusLine guifg=Black guibg=Gray")

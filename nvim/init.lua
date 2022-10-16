@@ -15,11 +15,10 @@ require("nvim-treesitter.configs").setup({
         extended_mode = true,
         max_file_lines = 1000,
         colors = {
-            "#5b9c90",
             "#c594c5",
-            "#fac863",
+            "#f99157",
             "#5fafd7",
-            "#99c794",
+            "#c594c5",
             "#f99157",
             "#5fafd7",
         },

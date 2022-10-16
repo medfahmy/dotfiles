@@ -22,9 +22,9 @@ require("tabline").setup({
     options = {
         -- If lualine is installed tabline will use separators configured in lualine by default.
         -- These options can be used to override those settings.
-        section_separators = { "", "" },
-        component_separators = { "", "" },
-        max_bufferline_percent = 100, -- set to nil by default, and it uses vim.o.columns * 2/3
+        section_separators = { "█▎", "█▎" },
+        component_separators = { "▎", "▎" },
+        max_bufferline_percent = 130, -- set to nil by default, and it uses vim.o.columns * 2/3
         show_tabs_always = false, -- this shows tabs only when there are more than one tab or if the first tab is named
         show_devicons = false, -- this shows devicons in buffer section
         show_bufnr = false, -- this appends [bufnr] to buffer section,
@@ -36,7 +36,7 @@ require("tabline").setup({
 require("lualine").setup({
     options = {
         icons_enabled = true,
-        theme = "iceberg_dark",
+        -- theme = "iceberg_dark",
         section_separators = { "█▎", "█▎" },
         component_separators = { "▎", "▎" },
         disabled_filetypes = {},
@@ -47,7 +47,7 @@ require("lualine").setup({
         },
     },
     sections = {
-        lualine_a = { "filename" },
+        lualine_a = { { "filename", path = 1 } },
         lualine_x = {
             {
                 function()
@@ -59,14 +59,17 @@ require("lualine").setup({
                     end
                     for _, client in ipairs(clients) do
                         local filetypes = client.config.filetypes
-                        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                        if
+                            filetypes
+                            and vim.fn.index(filetypes, buf_ft) ~= -1
+                        then
                             msg = msg .. " " .. client.name
                         end
                     end
                     return msg
                 end,
                 -- icon = " lsp:",
-                icon = " lsp:",
+                -- icon = " lsp:",
                 color = {
                     fg = "#ffffff",
                     gui = "bold",

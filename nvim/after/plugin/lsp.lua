@@ -10,6 +10,7 @@ local on_attach = function(client, bufnr)
 
     nnoremap("<space>d", vim.lsp.buf.definition)
     nnoremap("<space>h", vim.lsp.buf.hover)
+    nnoremap("<space>lh", vim.lsp.buf.signature_help)
     nnoremap("<space>e", function()
         vim.diagnostic.open_float({ border = "single" })
     end)
@@ -22,19 +23,35 @@ local on_attach = function(client, bufnr)
     nnoremap("<space>v", "<cmd>TroubleToggle<cr>")
 end
 
+local border = { " ", " ", " ", " ", " ", " ", " ", " " }
+
+local handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics,
+        {
+            virtual_text = false,
+            underline = false,
+            float = {
+                pad_top = 1,
+                pad_bottom = 1,
+            },
+        }
+    ),
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = border,
+    }),
+    ["textDocument/signatureHelp"] = vim.lsp.with(
+        vim.lsp.handlers.signature_help,
+        {
+            border = border,
+        }
+    ),
+}
+
 local config = {
     on_attach = on_attach,
     capabilities = capabilities,
-    handlers = {
-        ["textDocument/publishDiagnostics"] = vim.lsp.with(
-            vim.lsp.diagnostic.on_publish_diagnostics,
-            {
-                virtual_text = false,
-                underline = false,
-                float = { border = "single" },
-            }
-        ),
-    },
+    handlers = handlers,
 }
 
 local lsps = { "tsserver", "cssls", "rust_analyzer", "svelte", "pyright" }
@@ -57,13 +74,5 @@ lspconfig.tailwindcss.setup({
     },
     on_attach = on_attach,
     capabilities = capabilities,
+    handlers = handlers,
 })
-
-local handlers = vim.lsp.handlers
-local with = vim.lsp.with
-local border = { border = "single" }
-
-handlers["textDocument/hover"] = with(handlers.hover, border)
-handlers["textDocument/signatureHelp"] = with(handlers.signature_help, border)
-handlers["textDocument/diagnostic"] = with(handlers.hover, border)
-handlers["textDocument/diagnostics"] = with(handlers.hover, border)
