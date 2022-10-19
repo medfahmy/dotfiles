@@ -3,24 +3,30 @@ local lspconfig = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local on_attach = function(client, bufnr)
-    local nnoremap = require("keymap").nnoremap
+local on_attacher = function(disable_diagnostic)
+    return function(client, bufnr)
+        local nnoremap = require("keymap").nnoremap
 
-    nnoremap("<space>lw", vim.diagnostic.enable)
+        nnoremap("<space>lw", vim.diagnostic.enable)
 
-    nnoremap("<space>d", vim.lsp.buf.definition)
-    nnoremap("<space>h", vim.lsp.buf.hover)
-    nnoremap("<space>lh", vim.lsp.buf.signature_help)
-    nnoremap("<space>e", function()
-        vim.diagnostic.open_float({ border = "single" })
-    end)
-    nnoremap("<space>lc", vim.lsp.buf.declaration)
-    nnoremap("<space>lr", vim.lsp.buf.rename)
-    nnoremap("<space>la", vim.lsp.buf.code_action)
-    nnoremap("<space>le", vim.lsp.buf.references)
-    nnoremap("<space>lf", vim.lsp.buf.formatting)
+        nnoremap("<space>d", vim.lsp.buf.definition)
+        nnoremap("<space>h", vim.lsp.buf.hover)
+        nnoremap("<space>lh", vim.lsp.buf.signature_help)
+        nnoremap("<space>e", function()
+            vim.diagnostic.open_float({ border = "single" })
+        end)
+        nnoremap("<space>lc", vim.lsp.buf.declaration)
+        nnoremap("<space>lr", vim.lsp.buf.rename)
+        nnoremap("<space>la", vim.lsp.buf.code_action)
+        nnoremap("<space>le", vim.lsp.buf.references)
+        nnoremap("<space>lf", vim.lsp.buf.formatting)
 
-    nnoremap("<space>v", "<cmd>TroubleToggle<cr>")
+        nnoremap("<space>v", "<cmd>TroubleToggle<cr>")
+
+        if disable_diagnostic then
+            vim.diagnostic.disable()
+        end
+    end
 end
 
 local border = { " ", " ", " ", " ", " ", " ", " ", " " }
@@ -49,16 +55,22 @@ local handlers = {
 }
 
 local config = {
-    on_attach = on_attach,
+    on_attach = on_attacher(false),
     capabilities = capabilities,
     handlers = handlers,
 }
 
-local lsps = { "tsserver", "cssls", "rust_analyzer", "svelte", "pyright" }
+local servers = { "tsserver", "rust_analyzer", "svelte", "pyright" }
 
-for _, lsp in ipairs(lsps) do
-    lspconfig[lsp].setup(config)
+for _, server in ipairs(servers) do
+    lspconfig[server].setup(config)
 end
+
+lspconfig.cssls.setup({
+    on_attach = on_attacher(true),
+    capabilities = capabilities,
+    handlers = handlers,
+})
 
 lspconfig.tailwindcss.setup({
     filetypes = {
@@ -72,7 +84,7 @@ lspconfig.tailwindcss.setup({
         "typescriptreact",
         "svelte",
     },
-    on_attach = on_attach,
+    on_attach = on_attacher(false),
     capabilities = capabilities,
     handlers = handlers,
 })

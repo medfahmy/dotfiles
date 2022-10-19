@@ -6,7 +6,6 @@ vim.cmd([[
     set guioptions+=!
     set sessionoptions+=tabpages,globals
     set shellcmdflag-=ic
-    set termguicolors
 ]])
 
 require("nvim-treesitter.configs").setup({
@@ -24,3 +23,11 @@ require("nvim-treesitter.configs").setup({
         },
     },
 })
+
+vim.cmd([[
+    augroup vimrc-incsearch-highlight
+        autocmd!
+        autocmd CmdlineEnter /,\? :set hlsearch
+        autocmd InsertEnter :set nohlsearch
+    augroup END
+]])

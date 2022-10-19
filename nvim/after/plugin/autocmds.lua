@@ -50,23 +50,24 @@ autocmd({ "InsertLeave", "WinEnter" }, {
 
 local hl_incsearch = augroup("HighlightIncSearch", {})
 
+-- autocmd("CmdlineEnter /,\\?", {
 --     callback = function()
 --         vim.opt.hlsearch = true
 --     end,
 -- })
 --
--- autocmd("CmdlineLeave /", {
+-- -- autocmd("CmdlineLeave /", {
+-- autocmd({ "CursorMoved", "InsertEnter" }, {
 --     callback = function()
 --         vim.opt.hlsearch = false
 --     end,
 -- })
 
--- autocmd("BufEnter", {
---     group = main,
---     pattern = "*",
---     callback = function()
---     end,
--- })
+autocmd("BufEnter", {
+    group = main,
+    pattern = "*",
+    callback = function() end,
+})
 
 autocmd("BufEnter", {
     pattern = "*",
@@ -79,3 +80,11 @@ autocmd("BufEnter", {
         -- vim.diagnostic.disable()
     end,
 })
+
+vim.cmd([[
+    augroup vimrc-incsearch-highlight
+      autocmd!
+      autocmd CmdlineEnter /,\? :set hlsearch
+      autocmd CmdlineLeave /,\? :set nohlsearch
+    augroup END
+]])

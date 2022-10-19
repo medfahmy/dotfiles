@@ -9,7 +9,7 @@ local prettier = function()
             "--stdin-filepath",
             vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             "--print-width",
-            80,
+            160,
             "--tab-width",
             4,
             "--arrow-parens avoid",
