@@ -115,12 +115,10 @@ alias rmdir='rmdir -v'
 alias py='python3'
 
 # path
-export LOCAL_BIN="$HOME/.local/bin"
-export CARGO_HOME="$HOME/.cargo/bin"
-export PATH=$PATH:$LOCAL_BIN:$CARGO_HOME
-export CARGO="$HOME/.cargo/bin/cargo"
+LOCAL_BIN="$HOME/.local/bin"
+CARGO_HOME="$HOME/.cargo/bin"
+CARGO="$HOME/.cargo/bin/cargo"
+POETRY="$HOME/.local/share/poetry/bin"
+export PATH=$PATH:$LOCAL_BIN:$CARGO_HOME:$POETRY
 
-# pnpm
-export PNPM_HOME="/Users/fahmymohamed/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
+export RUST_BACKTRACE=1
