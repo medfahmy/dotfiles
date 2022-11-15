@@ -2,20 +2,23 @@ return require("packer").startup(function()
     use("wbthomason/packer.nvim")
 
     use("kaiuri/onigiri.nvim")
-    -- use("mhartington/oceanic-next")
-    -- use("gruvbox-community/gruvbox")
-    -- use("wojciechkepka/vim-github-dark")
-    -- use("jacoborus/tender.vim")
-    -- use("EdenEast/nightfox.nvim")
-    -- use("axvr/photon.vim")
-    -- use("folke/tokyonight.nvim")
-    -- use({
-    --     "phha/zenburn.nvim",
-    --     config = function()
-    --         require("zenburn").setup()
-    --     end,
-    -- })
-    -- use("JoosepAlviste/palenightfall.nvim")
+    use("mhartington/oceanic-next")
+    use("gruvbox-community/gruvbox")
+    use("wojciechkepka/vim-github-dark")
+    use("jacoborus/tender.vim")
+    use("EdenEast/nightfox.nvim")
+    use("axvr/photon.vim")
+    use("folke/tokyonight.nvim")
+    use("JoosepAlviste/palenightfall.nvim")
+    use("arcticicestudio/nord-vim")
+    use("glepnir/zephyr-nvim")
+    use("tomasiser/vim-code-dark")
+
+    use({
+        "catppuccin/nvim",
+        as = "catppuccin",
+        config = function() end,
+    })
 
     use({
         "lewis6991/impatient.nvim",

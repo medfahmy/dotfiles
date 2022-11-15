@@ -36,7 +36,7 @@ require("tabline").setup({
 require("lualine").setup({
     options = {
         icons_enabled = true,
-        -- theme = "iceberg_dark",
+        theme = "iceberg_dark",
         section_separators = { "█▎", "█▎" },
         component_separators = { "▎", "▎" },
         disabled_filetypes = {},
@@ -47,8 +47,12 @@ require("lualine").setup({
         },
     },
     sections = {
-        lualine_a = { { "filename", path = 1 } },
+        lualine_a = { "mode" },
+        lualine_c = { "diff" },
         lualine_x = {
+            { "diagnostics", sources = { "nvim_diagnostic" } },
+        },
+        lualine_y = {
             {
                 function()
                     local msg = ""
@@ -76,9 +80,7 @@ require("lualine").setup({
                 },
             },
         },
-        lualine_c = { { "diagnostics", sources = { "nvim_diagnostic" } } },
-        lualine_b = { "branch", "diff" },
-        lualine_y = { "filetype" },
-        lualine_z = { "location" },
+        lualine_z = { "branch" },
+        lualine_b = { { "filename", path = 1 } },
     },
 })

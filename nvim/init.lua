@@ -15,19 +15,12 @@ require("nvim-treesitter.configs").setup({
         max_file_lines = 1000,
         colors = {
             "#c594c5",
+            "#fac863",
+            "#5fafd7",
+            "#99c794",
             "#f99157",
             "#5fafd7",
             "#c594c5",
-            "#f99157",
-            "#5fafd7",
         },
     },
 })
-
-vim.cmd([[
-    augroup vimrc-incsearch-highlight
-        autocmd!
-        autocmd CmdlineEnter /,\? :set hlsearch
-        autocmd InsertEnter :set nohlsearch
-    augroup END
-]])

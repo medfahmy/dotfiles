@@ -48,7 +48,7 @@ autocmd({ "InsertLeave", "WinEnter" }, {
     group = cursorline,
 })
 
-local hl_incsearch = augroup("HighlightIncSearch", {})
+-- local hl_incsearch = augroup("HighlightIncSearch", {})
 
 -- autocmd("CmdlineEnter /,\\?", {
 --     callback = function()
@@ -81,10 +81,10 @@ autocmd("BufEnter", {
     end,
 })
 
-vim.cmd([[
-    augroup vimrc-incsearch-highlight
-      autocmd!
-      autocmd CmdlineEnter /,\? :set hlsearch
-      autocmd CmdlineLeave /,\? :set nohlsearch
-    augroup END
-]])
+-- vim.cmd([[
+--     augroup vimrc-incsearch-highlight
+--       autocmd!
+--       autocmd CmdlineEnter /,\? :set hlsearch
+--       autocmd CmdlineLeave /,\? :set nohlsearch
+--     augroup END
+-- ]])

@@ -1,4 +1,5 @@
 local map = require("keymap").map
+local noremap = require("keymap").noremap
 local nnoremap = require("keymap").nnoremap
 local inoremap = require("keymap").inoremap
 local vnoremap = require("keymap").vnoremap
@@ -9,34 +10,32 @@ local tnoremap = require("keymap").tnoremap
 nnoremap("<space>", "<nop>")
 map("q:", "<nop>")
 map("Q", "<nop>")
-tnoremap("<esc>", "<c-\\><c-n>")
-nnoremap("<c-t>", "<cmd>vsp<cr> <cmd>term<cr>")
+-- tnoremap("<esc>", "<c-\\><c-n>")
+-- nnoremap("<c-t>", "<cmd>vsp<cr> <cmd>term<cr>")
 
-inoremap("<c-c>", "<esc>")
-vnoremap("<c-c>", "<esc>")
-nnoremap("<c-c>", "<esc>")
+-- inoremap("<c-c>", "<esc>")
+-- vnoremap("<c-c>", "<esc>")
+-- nnoremap("<c-c>", "<esc>")
 
-cnoremap("<c-p>", "<up>")
-cnoremap("<c-n>", "<down>")
+-- cnoremap("<c-p>", "<up>")
+-- cnoremap("<c-n>", "<down>")
 
 -- buffers
 nnoremap("<tab>", "<cmd>bnext<cr>")
 nnoremap("<s-tab>", "<cmd>bprevious<cr>")
 -- nnoremap("<tab>", "<c-6>")
-nnoremap("<space>x", "<cmd>bd!<cr>")
+-- nnoremap("<space>x", "<cmd>bd!<cr>")
 nnoremap("<space>o", "<cmd>%bd|e#|bd#<cr>")
 
 nnoremap("<c-w>", "<c-w>w")
 
-vnoremap("r", [["_dP]])
+-- vnoremap("r", [["_dP]])
 
 -- using system clipboard
-nnoremap("<space>y", '"+y')
-nnoremap("<space>Y", '"+y$')
-nnoremap("<space>p", '"+p')
-vnoremap("<space>y", '"+y')
-nnoremap("<space>Y", '"+y$')
-vnoremap("<space>p", '"+p')
+noremap("<space>y", '"+y')
+noremap("<space>Y", '"+y$')
+noremap("<space>p", '"+p')
+noremap("<space>P", '"+P')
 
 -- nnoremap("<space>mr", "<cmd>make run<cr>")
 -- nnoremap("<space>mb", "<cmd>make build<cr>")
