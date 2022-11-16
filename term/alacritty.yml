@@ -1,0 +1,27 @@
+window:
+  padding:
+    x: 10
+    y: 10
+  opacity: 1
+
+font:
+  normal:
+    family: "Victor Mono SemiBold"
+  size: 11.0
+
+colors:
+  primary:
+    background: "#000000"
+    foreground: "#ffffff"
+  cursor:
+    text: "#000000"
+    cursor: "#ffffff"
+  normal:
+    black: "#222222"
+    red: "#ec5f67"
+    green: "#99c794"
+    yellow: "#fac863"
+    blue: "#6699cc"
+    magenta: "#c594c5"
+    cyan: "#6bc1d0"
+    white: "#ffffff"
