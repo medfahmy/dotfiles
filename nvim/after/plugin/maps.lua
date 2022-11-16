@@ -21,8 +21,8 @@ map("Q", "<nop>")
 -- cnoremap("<c-n>", "<down>")
 
 -- buffers
-nnoremap("<tab>", "<cmd>bnext<cr>")
-nnoremap("<s-tab>", "<cmd>bprevious<cr>")
+-- nnoremap("<tab>", "<cmd>bnext<cr>")
+-- nnoremap("<s-tab>", "<cmd>bprevious<cr>")
 -- nnoremap("<tab>", "<c-6>")
 -- nnoremap("<space>x", "<cmd>bd!<cr>")
 nnoremap("<space>o", "<cmd>%bd|e#|bd#<cr>")
