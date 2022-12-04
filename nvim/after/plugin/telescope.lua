@@ -1,6 +1,11 @@
 require("telescope").setup({
     defaults = {
         prompt_prefix = " >> ",
+        mappings = {
+            i = {
+              ["<esc>"] = require('telescope.actions').close,
+            },
+        },
         file_ignore_patterns = {
             "node_modules/",
             "dist/",
@@ -17,7 +22,6 @@ require("telescope").setup({
         -- grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
         -- qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
     },
-
     pickers = {
         buffers = {
             sort_last_used = true,
@@ -46,8 +50,12 @@ require("telescope").setup({
     },
 })
 
-local nnoremap = require("keymap").nnoremap
-local telescope = require("telescope.builtin")
+local _, keymap = pcall(require, "keymap")
+local ok, telescope = pcall(require, "telescope.builtin")
+
+if not ok then return end
+
+local nnoremap = keymap.nnoremap
 
 nnoremap("<space>f", telescope.find_files)
 nnoremap("<space>b", telescope.buffers)
@@ -59,4 +67,3 @@ nnoremap("<space>tc", telescope.colorscheme)
 nnoremap("<space>ts", telescope.lsp_dynamic_workspace_symbols)
 nnoremap("<space>tk", telescope.keymaps)
 nnoremap("<space>th", telescope.help_tags)
--- nnoremap("<space>f", "<Cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>")

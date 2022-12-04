@@ -57,9 +57,9 @@ vim.g.onigiri = {
     theme = presets,
 }
 
-require("catppuccin").setup({
-    flavour = "mocha", -- mocha, macchiato, frappe, latte
-})
+-- require("catppuccin").setup({
+--     flavour = "mocha", -- mocha, macchiato, frappe, latte
+-- })
 
 vim.g.colorscheme = "onigiri"
 

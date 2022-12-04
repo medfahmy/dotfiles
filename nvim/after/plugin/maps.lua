@@ -55,6 +55,8 @@ vnoremap(">", ">gv")
 nnoremap("n", "nzzzv")
 nnoremap("N", "Nzzzv")
 nnoremap("J", "mzJ`z")
+nnoremap("<c-d>", "<c-d>zz")
+nnoremap("<c-u>", "<c-u>zz")
 
 -- undo break points
 inoremap(",", ",<c-g>u")
