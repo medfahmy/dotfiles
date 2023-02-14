@@ -13,10 +13,6 @@ map("Q", "<nop>")
 -- tnoremap("<esc>", "<c-\\><c-n>")
 -- nnoremap("<c-t>", "<cmd>vsp<cr> <cmd>term<cr>")
 
--- inoremap("<c-c>", "<esc>")
--- vnoremap("<c-c>", "<esc>")
--- nnoremap("<c-c>", "<esc>")
-
 -- cnoremap("<c-p>", "<up>")
 -- cnoremap("<c-n>", "<down>")
 
@@ -25,7 +21,9 @@ map("Q", "<nop>")
 -- nnoremap("<s-tab>", "<cmd>bprevious<cr>")
 -- nnoremap("<tab>", "<c-6>")
 -- nnoremap("<space>x", "<cmd>bd!<cr>")
-nnoremap("<space>o", "<cmd>%bd|e#|bd#<cr>")
+nnoremap("<space>q", "<cmd>%bd|e#|bd#<cr>")
+
+nnoremap("<space>o", "O<esc>O")
 
 nnoremap("<c-w>", "<c-w>w")
 
@@ -41,7 +39,7 @@ noremap("<space>P", '"+P')
 -- nnoremap("<space>mb", "<cmd>make build<cr>")
 
 -- tnoremap("<c-[>", [[<c-\><c-n>]])
--- vim.cmd([[tnoremap <c-[><c-[> <c-\><c-n>]])
+vim.cmd([[tnoremap <c-[><c-[> <c-\><c-n>]])
 
 -- moving text
 vnoremap("J", ":m '>+1<CR>gv=gv")

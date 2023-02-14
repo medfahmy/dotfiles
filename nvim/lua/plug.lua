@@ -1,7 +1,14 @@
 return require("packer").startup(function()
     use("wbthomason/packer.nvim")
 
+    use("~/w/cargo.nvim")
+
     use("kaiuri/onigiri.nvim")
+    -- use("medfahmy/onigiri.nvim")
+    use("mhartington/oceanic-next")
+    use("EdenEast/nightfox.nvim")
+    use("NTBBloodbath/doom-one.nvim")
+    use("arturgoms/moonbow.nvim")
 
     use({
         "lewis6991/impatient.nvim",
@@ -13,6 +20,8 @@ return require("packer").startup(function()
     use("nvim-lua/plenary.nvim")
     use("nvim-lua/popup.nvim")
     use("kyazdani42/nvim-web-devicons")
+
+    use("ThePrimeagen/harpoon")
 
     use("nvim-telescope/telescope.nvim")
     use("nvim-telescope/telescope-fzy-native.nvim")
@@ -32,34 +41,35 @@ return require("packer").startup(function()
     -- use("nvim-treesitter/nvim-treesitter-context")
 
     -- use("TimUntersberger/neogit")
+    -- use("tpope/vim-fugitive")
 
-    -- use("mhartington/formatter.nvim")
+    use("mhartington/formatter.nvim")
 
     use("neovim/nvim-lspconfig")
 
-    use({
-        "folke/lsp-colors.nvim",
-        config = function()
-            require("lsp-colors").setup({
-                Error = "#db4b4b",
-                Warning = "#e0af68",
-                Information = "#0db9d7",
-                Hint = "#10B981",
-            })
-        end,
-    })
+    -- use({
+    --     "folke/lsp-colors.nvim",
+    --     config = function()
+    --         require("lsp-colors").setup({
+    --             Error = "#db4b4b",
+    --             Warning = "#e0af68",
+    --             Information = "#0db9d7",
+    --             Hint = "#10B981",
+    --         })
+    --     end,
+    -- })
 
     use({
         "folke/trouble.nvim",
         config = function()
-            require("trouble").setup()
-            -- auto_preview = false,
-            -- auto_fold = true,
-            -- })
+            require("trouble").setup({
+                auto_preview = false,
+                auto_fold = true,
+            })
         end,
     })
 
-    use("onsails/lspkind-nvim")
+    -- use("onsails/lspkind-nvim")
 
     use("hrsh7th/cmp-nvim-lsp")
     use("hrsh7th/cmp-buffer")
@@ -72,8 +82,6 @@ return require("packer").startup(function()
 
     -- use("mfussenegger/nvim-dap")
     -- use("rcarriga/nvim-dap-ui")
-
-    vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
     use({
         "nvim-neo-tree/neo-tree.nvim",
@@ -116,7 +124,7 @@ return require("packer").startup(function()
     use({
         "windwp/nvim-autopairs",
         config = function()
-            require("nvim-autopairs").setup({})
+            require("nvim-autopairs").setup()
         end,
     })
 

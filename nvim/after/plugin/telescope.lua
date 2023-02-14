@@ -3,7 +3,7 @@ require("telescope").setup({
         prompt_prefix = " >> ",
         mappings = {
             i = {
-              ["<esc>"] = require('telescope.actions').close,
+                ["<esc>"] = require("telescope.actions").close,
             },
         },
         file_ignore_patterns = {
@@ -53,13 +53,15 @@ require("telescope").setup({
 local _, keymap = pcall(require, "keymap")
 local ok, telescope = pcall(require, "telescope.builtin")
 
-if not ok then return end
+if not ok then
+    return
+end
 
 local nnoremap = keymap.nnoremap
 
 nnoremap("<space>f", telescope.find_files)
 nnoremap("<space>b", telescope.buffers)
-nnoremap("<space>tr", telescope.resume)
+nnoremap("<space><space>", telescope.resume)
 nnoremap("<space>tt", "<cmd>Telescope<cr>")
 nnoremap("<space>tg", telescope.live_grep)
 nnoremap("<space>tf", telescope.git_files)

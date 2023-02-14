@@ -58,13 +58,13 @@ require("lualine").setup({
                 end,
                 -- icon = " lsp:",
                 -- icon = " lsp:",
-                color = {
-                    fg = "#ffffff",
-                    gui = "bold",
-                },
+                -- color = {
+                --     fg = "#ffffff",
+                --     gui = "bold",
+                -- },
             },
         },
         lualine_z = { "branch" },
-        lualine_b = { { "filename", path = 1 } },
+        lualine_b = {{ "filename", path = 1 }},
     },
 })

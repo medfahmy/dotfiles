@@ -19,26 +19,27 @@ local colors = {
 }
 
 
-local presets = require("onigiri").presets["mariana"]
-
+-- local presets = require("onigiri").presets["mariana"]
+-- -- local presets = {}
+--
 -- presets.Background = {
 --     default = "#ffffff",
 --     emphasis = "#2e353e",
 --     muted = "#46525c",
 -- }
 --
-presets.Foreground = {
-    default = "#d8dee9",
-    emphasis = "#f7f7f7",
-    muted = "#a6acb8",
-    surface = "#46525c",
-}
-
-presets.Shade = {
-    default = "None",
-    emphasis = "None",
-}
-
+-- presets.Foreground = {
+--     default = "#d8dee9",
+--     emphasis = "#f7f7f7",
+--     muted = "#a6acb8",
+--     surface = "#46525c",
+-- }
+--
+-- presets.Shade = {
+--     default = "None",
+--     emphasis = "None",
+-- }
+--
 -- Colors = {
 --     Accent    = "#95B2D6",
 --     Caution   = "#f9ae58",
@@ -51,20 +52,18 @@ presets.Shade = {
 --     Trace     = "#cc8ec6",
 --     Warn      = "#ee932b",
 -- }
---}
-
-vim.g.onigiri = {
-    theme = presets,
-}
+--
+-- vim.g.onigiri = {
+--     theme = presets,
+-- }
 
 -- require("catppuccin").setup({
 --     flavour = "mocha", -- mocha, macchiato, frappe, latte
 -- })
 
-vim.g.colorscheme = "onigiri"
+vim.g.colorscheme = "habamax"
 
 vim.cmd("syntax enable")
-vim.cmd("let $NVIM_TUI_ENABLE_TRUE_COLOR = 1")
 vim.cmd("colorscheme " .. vim.g.colorscheme)
 
 local hl = function(thing, opts)
@@ -77,14 +76,15 @@ hl("Normal", { bg = none })
 hl("SignColumn", { bg = none, fg = none })
 hl("Visual", { bg = "#444444", fg = colors.white })
 hl("EndOfBuffer", { bg = none, fg = none })
--- hl("CursorLineNr", { fg = colors.yellow })
+-- hl("LineNr")
+hl("CursorLineNr", { fg = colors.yellow })
 hl("Pmenu", { bg = colors.bg })
--- hl("LineNr", { fg = colors.gray1 })
+hl("LineNr", { bg = none, fg = colors.gray1 })
 hl("IncSearch", { fg = colors.black, bg = colors.yellow })
 hl("TreesitterContextLineNumber", { fg = colors.white, bg = colors.gray0 })
 hl("TreesitterContext", { bg = colors.gray0 })
--- hl("NormalFloat", { bg = colors.gray0, fg = colors.white })
--- hl("FloatBorder", { bg = colors.gray0 })
+hl("NormalFloat", { bg = "#222222" })
+hl("FloatBorder", { bg = none })
 hl("StatusLine", { bg = colors.gray1, fg = "#dddddd" })
 hl("TSTag", { fg = colors.purple })
 hl("NonText", { fg = colors.gray1 })

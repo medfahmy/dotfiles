@@ -10,8 +10,7 @@ local on_attacher = function(disable_diagnostic)
         nnoremap("<space>lw", vim.diagnostic.enable)
 
         nnoremap("<space>d", vim.lsp.buf.definition)
-        nnoremap("<space>h", vim.lsp.buf.hover)
-        nnoremap("<space>lh", vim.lsp.buf.signature_help)
+        -- nnoremap("<space>lh", vim.lsp.buf.signature_help)
         nnoremap("<space>e", function()
             vim.diagnostic.open_float({ border = "single" })
         end)
@@ -37,16 +36,17 @@ local handlers = {
     ["textDocument/publishDiagnostics"] = vim.lsp.with(
         vim.lsp.diagnostic.on_publish_diagnostics,
         {
-            virtual_text = false,
+            virtual_text = true,
             underline = false,
             float = {
                 pad_top = 1,
                 pad_bottom = 1,
             },
+            border = "single",
         }
     ),
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = border,
+        border = "single",
     }),
     ["textDocument/signatureHelp"] = vim.lsp.with(
         vim.lsp.handlers.signature_help,
@@ -62,11 +62,23 @@ local config = {
     handlers = handlers,
 }
 
-local servers = { "tsserver", "rust_analyzer", "svelte", "pyright" }
+local servers = { "tsserver", "svelte", "pyright" }
 
 for _, server in ipairs(servers) do
     lspconfig[server].setup(config)
 end
+
+lspconfig.rust_analyzer.setup({
+    on_attach = on_attacher(false),
+    capabilities = capabilities,
+    handlers = handlers,
+    -- cmd = {
+    --     "rustup",
+    --     "run",
+    --     "stable",
+    --     "rust-analyzer",
+    -- }
+})
 
 lspconfig.cssls.setup({
     on_attach = on_attacher(true),

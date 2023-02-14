@@ -93,16 +93,17 @@ alias rm='rm -v'
 alias mkdir='mkdir -v'
 alias rmdir='rmdir -v'
 
-# replace coreutils
-alias ls='exa -a --color=auto --group-directories-first'
+alias ls='exa -aF --color=auto --group-directories-first'
 alias cat='bat'
-alias grep='rg'
 
 # path
 LOCAL_BIN="$HOME/.local/bin"
 CARGO_HOME="$HOME/.cargo/bin"
 CARGO="$HOME/.cargo/bin/cargo"
+PYTHON="/usr/local/opt/python@3.10/libexec/bin"
 POETRY="$HOME/.local/share/poetry/bin"
-export PATH=$PATH:$LOCAL_BIN:$CARGO_HOME:$POETRY
+
+export PATH=$PATH:$LOCAL_BIN:$CARGO_HOME:$PYTHON:$POETRY
 
 export RUST_BACKTRACE=1
+export HOMEBREW_NO_ENV_HINTS=1
