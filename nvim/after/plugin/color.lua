@@ -61,7 +61,7 @@ local colors = {
 --     flavour = "mocha", -- mocha, macchiato, frappe, latte
 -- })
 
-vim.g.colorscheme = "habamax"
+vim.g.colorscheme = "onigiri"
 
 vim.cmd("syntax enable")
 vim.cmd("colorscheme " .. vim.g.colorscheme)

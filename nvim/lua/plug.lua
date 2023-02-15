@@ -3,8 +3,8 @@ return require("packer").startup(function()
 
     use("~/w/cargo.nvim")
 
+    use("Alexis12119/nightly.nvim")
     use("kaiuri/onigiri.nvim")
-    -- use("medfahmy/onigiri.nvim")
     use("mhartington/oceanic-next")
     use("EdenEast/nightfox.nvim")
     use("NTBBloodbath/doom-one.nvim")
