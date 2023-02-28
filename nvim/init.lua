@@ -6,10 +6,10 @@ vim.cmd([[
     set guioptions+=!
     set sessionoptions+=tabpages,globals
     set shellcmdflag-=ic
+    syntax enable
 ]])
 
 P = function(v)
     print(vim.inspect(v))
     return v
 end
-

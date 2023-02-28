@@ -1,15 +1,6 @@
 return require("packer").startup(function()
     use("wbthomason/packer.nvim")
 
-    use("~/w/cargo.nvim")
-
-    use("Alexis12119/nightly.nvim")
-    use("kaiuri/onigiri.nvim")
-    use("mhartington/oceanic-next")
-    use("EdenEast/nightfox.nvim")
-    use("NTBBloodbath/doom-one.nvim")
-    use("arturgoms/moonbow.nvim")
-
     use({
         "lewis6991/impatient.nvim",
         config = function()
@@ -37,15 +28,16 @@ return require("packer").startup(function()
     use("nvim-treesitter/nvim-treesitter", {
         run = ":TSUpdate",
     })
+    use('nvim-treesitter/playground')
     use("p00f/nvim-ts-rainbow")
     -- use("nvim-treesitter/nvim-treesitter-context")
 
     -- use("TimUntersberger/neogit")
     -- use("tpope/vim-fugitive")
 
-    use("mhartington/formatter.nvim")
+    -- use("mhartington/formatter.nvim")
 
-    use("neovim/nvim-lspconfig")
+    -- use("neovim/nvim-lspconfig")
 
     -- use({
     --     "folke/lsp-colors.nvim",
@@ -59,26 +51,26 @@ return require("packer").startup(function()
     --     end,
     -- })
 
-    use({
-        "folke/trouble.nvim",
-        config = function()
-            require("trouble").setup({
-                auto_preview = false,
-                auto_fold = true,
-            })
-        end,
-    })
+    -- use({
+    --     "folke/trouble.nvim",
+    --     config = function()
+    --         require("trouble").setup({
+    --             auto_preview = false,
+    --             auto_fold = true,
+    --         })
+    --     end,
+    -- })
 
     -- use("onsails/lspkind-nvim")
 
-    use("hrsh7th/cmp-nvim-lsp")
-    use("hrsh7th/cmp-buffer")
-    use("hrsh7th/cmp-path")
-    use("hrsh7th/cmp-cmdline")
-    use("hrsh7th/nvim-cmp")
-
-    use("L3MON4D3/LuaSnip")
-    use("saadparwaiz1/cmp_luasnip")
+    -- use("hrsh7th/cmp-nvim-lsp")
+    -- use("hrsh7th/cmp-buffer")
+    -- use("hrsh7th/cmp-path")
+    -- use("hrsh7th/cmp-cmdline")
+    -- use("hrsh7th/nvim-cmp")
+    --
+    -- use("L3MON4D3/LuaSnip")
+    -- use("saadparwaiz1/cmp_luasnip")
 
     -- use("mfussenegger/nvim-dap")
     -- use("rcarriga/nvim-dap-ui")
@@ -90,14 +82,14 @@ return require("packer").startup(function()
         config = function() end,
     })
 
-    -- use({
-    --     "norcalli/nvim-colorizer.lua",
-    --     config = function()
-    --         require("colorizer").setup()
-    --     end,
-    -- })
+    use({
+        "norcalli/nvim-colorizer.lua",
+        config = function()
+            require("colorizer").setup()
+        end,
+    })
 
-    use("nvim-lualine/lualine.nvim")
+    -- use("nvim-lualine/lualine.nvim")
     -- use("kdheepak/tabline.nvim")
 
     use({

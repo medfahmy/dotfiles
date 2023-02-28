@@ -7,23 +7,7 @@ local cnoremap = require("keymap").cnoremap
 local tnoremap = require("keymap").tnoremap
 
 -- globals
-nnoremap("<space>", "<nop>")
-map("q:", "<nop>")
-map("Q", "<nop>")
--- tnoremap("<esc>", "<c-\\><c-n>")
--- nnoremap("<c-t>", "<cmd>vsp<cr> <cmd>term<cr>")
-
--- cnoremap("<c-p>", "<up>")
--- cnoremap("<c-n>", "<down>")
-
--- buffers
--- nnoremap("<tab>", "<cmd>bnext<cr>")
--- nnoremap("<s-tab>", "<cmd>bprevious<cr>")
--- nnoremap("<tab>", "<c-6>")
--- nnoremap("<space>x", "<cmd>bd!<cr>")
 nnoremap("<space>q", "<cmd>%bd|e#|bd#<cr>")
-
-nnoremap("<space>o", "O<esc>O")
 
 nnoremap("<c-w>", "<c-w>w")
 

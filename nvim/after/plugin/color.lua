@@ -1,93 +1,226 @@
 local colors = {
-    bg = "#222222",
-    black = "#000000",
-    gray0 = "#444444",
-    gray1 = "#777777",
-    gray2 = "#a7adba",
-    gray3 = "#c0c5ce",
-    gray4 = "#cdd3de",
-    white = "#f0f0f0",
-    red = "#ec5f67",
-    orange = "#f99157",
-    yellow = "#fac863",
-    green = "#99c794",
-    cyan = "#5fafd7",
-    blue = "#54aeff",
-    purple = "#c594c5",
-    -- purple = "#8250df",
-    brown = "#ab7967",
+    comment = "#999999",
+    comment_light = "#999999",
+    contrast = "#191919",
+    background = "none",
+    black = "#121111",
+    foreground = "#dfdddd",
+    cursorline = "#333333",
+    cursor = "#dfdddd",
+    color0 = "#1b1b1b",
+    color1 = "#dddddd",
+    color2 = "#99c794",
+    color3 = "#fac863",
+    color4 = "#5fafd7",
+    color5 = "#c594c5",
+    color6 = "#99c794",
+    color7 = "#b7b7b7",
+    color8 = "#272727",
+    color9 = "#ec5f67",
+    color10 = "#99c794",
+    color11 = "#f99157",
+    color12 = "#8097fb",
+    color13 = "#8250df",
+    color14 = "#54aeff",
+    color15 = "#d4d5d5",
 }
 
+local highlights = {
+    Normal = { fg = colors.foreground, bg = colors.background },
+    SignColumn = { bg = colors.background, fg = colors.background },
+    MsgArea = { fg = colors.foreground, bg = colors.background },
+    ModeMsg = { fg = colors.foreground, bg = colors.background },
+    MsgSeparator = { fg = colors.foreground, bg = colors.background },
+    SpellBad = { fg = colors.color2 },
+    SpellCap = { fg = colors.color12 },
+    SpellLocal = { fg = colors.color12 },
+    SpellRare = { fg = colors.color4 },
+    NormalNC = { fg = colors.foreground, bg = colors.background },
+    Pmenu = { fg = colors.foreground, bg = colors.background },
+    PmenuSel = { fg = colors.black, bg = colors.color4 },
+    WildMenu = { fg = colors.color7, bg = colors.color4 },
+    CursorLineNr = { fg = colors.color3 },
+    Comment = { fg = colors.comment, italic = true },
+    Folded = { fg = colors.color4, bg = colors.background },
+    FoldColumn = { fg = colors.color12, bg = colors.background },
+    LineNr = { fg = "#555555", bg = colors.background },
+    FloatBorder = { fg = colors.foreground, bg = colors.background },
+    Whitespace = { fg = colors.color0 },
+    VertSplit = { fg = colors.cursorline, bg = colors.background },
+    CursorLine = { bg = colors.cursorline },
+    CursorColumn = { bg = colors.background },
+    ColorColumn = { bg = colors.background },
+    NormalFloat = { bg = colors.background },
+    Visual = { bg = "#444444" },
+    VisualNOS = { bg = colors.background },
+    WarningMsg = { fg = colors.color3, bg = colors.background },
+    DiffAdd = { bg = colors.background, fg = colors.color12 },
+    DiffChange = { bg = colors.background, fg = colors.color5 },
+    DiffDelete = { bg = colors.background, fg = colors.color1 },
+    QuickFixLine = { bg = colors.color2 },
+    PmenuSbar = { bg = colors.background },
+    PmenuThumb = { bg = colors.color2 },
+    MatchParen = { fg = colors.color12, bg = colors.background },
+    Cursor = { fg = colors.comment, bg = colors.cursor },
+    lCursor = { fg = colors.foreground, bg = colors.cursor },
+    CursorIM = { fg = colors.foreground, bg = colors.cursor },
+    TermCursor = { fg = colors.foreground, bg = colors.cursor },
+    TermCursorNC = { fg = colors.foreground, bg = colors.cursor },
+    Conceal = { fg = colors.color4, bg = colors.background },
+    Directory = { fg = colors.color12 },
+    SpecialKey = { fg = colors.color12 },
+    Title = { fg = colors.color11 },
+    ErrorMsg = { fg = colors.color1, bg = colors.background },
+    Search = { fg = colors.background, bg = colors.color10 },
+    IncSearch = { fg = colors.background, bg = colors.color11 },
+    Substitute = { fg = colors.color3, bg = colors.color12 },
+    MoreMsg = { fg = colors.color5 },
+    Question = { fg = colors.color5 },
+    EndOfBuffer = { fg = colors.background },
+    NonText = { fg = "#666666" },
+    Variable = { fg = colors.color5 },
+    String = { fg = colors.color10 },
+    Character = { fg = colors.color4 },
+    Constant = { fg = colors.color4 },
+    Number = { fg = colors.color4 },
+    Boolean = { fg = colors.color5 },
+    Float = { fg = colors.color4 },
+    Identifier = { fg = colors.color1 },
+    Function = { fg = colors.color4 },
+    Operator = { fg = colors.color4 },
+    Type = { fg = colors.color12 },
+    StorageClass = { fg = colors.color3 },
+    Structure = { fg = colors.color12 },
+    Typedef = { fg = colors.color5 },
+    Keyword = { fg = colors.color5 },
+    Statement = { fg = colors.color5 },
+    Conditional = { fg = colors.color1 },
+    Repeat = { fg = colors.color5 },
+    Label = { fg = colors.color12 },
+    Exception = { fg = colors.color7 },
+    Include = { fg = colors.color14 },
+    PreProc = { fg = colors.color12 },
+    Define = { fg = colors.color12 },
+    Macro = { fg = colors.color12 },
+    PreCondit = { fg = colors.color12 },
+    Special = { fg = colors.color12 },
+    SpecialChar = { fg = colors.color12 },
+    Tag = { fg = colors.color15 },
+    Debug = { fg = colors.color13 },
+    Delimiter = { fg = colors.color7 },
+    SpecialComment = { fg = colors.color8 },
+    Ignore = { fg = colors.color7, bg = colors.background },
+    Todo = { fg = colors.color1, bg = colors.background },
+    Error = { fg = colors.color3, bg = colors.background },
+    TabLine = { fg = colors.color2, bg = colors.background },
+    TabLineSel = { fg = colors.foreground, bg = colors.background },
+    TabLineFill = { fg = colors.foreground, bg = colors.background },
+    IndentBlanklineChar = { fg = "#666666" },
+    TelescopePromptNormal = {
+        fg = colors.foreground,
+        bg = colors.background,
+    },
+    TelescopePromptPrefix = {
+        fg = colors.color1,
+        bg = colors.color8,
+    },
+    TelescopeNormal = { bg = colors.background },
+    TelescopePreviewTitle = {
+        fg = colors.cursorline,
+        bg = colors.cursorline,
+    },
+    TelescopePromptTitle = {
+        fg = colors.background,
+        bg = colors.color9,
+    },
+    TelescopeResultsTitle = {
+        fg = colors.cursorline,
+        bg = colors.cursorline,
+    },
+    TelescopeSelection = { bg = colors.color0, fg = colors.foreground },
+    TelescopeResultsDiffAdd = {
+        fg = colors.color10,
+    },
+    TelescopeResultsDiffChange = {
+        fg = colors.color11,
+    },
+    TelescopeResultsDiffDelete = {
+    fg = colors.color9,
+    },
+    GitSignsAdd = { fg = colors.color2 },
+    GitSignsChange = { fg = colors.color5 },
+    GitSignsDelete = { fg = colors.color1 },
+    BufflineBufOnActive = { bg = colors.color4, fg = colors.background },
+    BufflineBufOnInactive = { fg = colors.color7, bg = colors.contrast },
+    BuffLineBufOnModified = { bg = colors.color4, fg = colors.background },
+    BuffLineBufOnClose = { bg = colors.color4, fg = colors.background },
+    BuffLineBufOffClose = { fg = colors.color9, bg = colors.contrast },
+    BuffLineTree = { bg = colors.background, fg = colors.white },
+    BuffLineEmpty = { bg = colors.background, fg = colors.white },
+    TSAttribute = { fg = colors.color4 },
+    TSBoolean = { fg = colors.color4 },
+    TSCharacter = { fg = colors.color4 },
+    TSComment = { fg = colors.comment, italic = true },
+    TSConditional = { fg = colors.color1 },
+    TSConstant = { fg = colors.color4 },
+    TSConstBuiltin = { fg = colors.color4 },
+    TSConstMacro = { fg = colors.color3 },
+    TSConstructor = { fg = colors.color4 },
+    TSException = { fg = colors.color8 },
+    TSField = { fg = colors.color1 },
+    TSFloat = { fg = colors.color8 },
+    TSFunction = { fg = colors.color1 },
+    TSFuncBuiltin = { fg = colors.color14 },
+    TSFuncMacro = { fg = colors.color2 },
+    TSInclude = { fg = colors.color9 },
+    TSKeyword = { fg = colors.color5 },
+    TSKeywordFunction = { fg = colors.color4 },
+    TsKeywordOperator = { fg = colors.color4 },
+    TSKeywordReturn = { fg = colors.color4 },
+    TSLabel = { fg = colors.color4 },
+    TSMethod = { fg = colors.color12 },
+    TSNamespace = { fg = colors.color9 },
+    TSNumber = { fg = colors.color3 },
+    TSParameter = { fg = colors.color1 },
+    TSParameterReference = { fg = colors.color9 },
+    TSProperty = { fg = colors.color1 },
+    TSPunctDelimiter = { fg = colors.color7 },
+    TSPunctBracket = { fg = colors.color7 },
+    TSPunctSpecial = { fg = colors.color7 },
+    TSRepeat = { fg = colors.color11 },
+    TSString = { fg = colors.color2 },
+    TSStringRegex = { fg = colors.color2 },
+    TSStringEscape = { fg = colors.color4 },
+    TSStringSpecial = { fg = colors.color4 },
+    TSSymbol = { fg = colors.color14 },
+    TSTag = { fg = colors.color0 },
+    TSTagAttribute = { fg = colors.color1 },
+    TSTagDelimiter = { fg = colors.color7 },
+    TSText = { fg = colors.color7 },
+    TSStrong = { fg = colors.color7 },
+    TSEmphasis = { italic = true, fg = colors.color7 },
+    TSUnderline = { fg = colors.color5 },
+    TSStrike = { fg = colors.color7 },
+    TSTitle = { fg = colors.color3 },
+    TSLiteral = { fg = colors.color2 },
+    TSURI = { fg = colors.color3 },
+    TSMath = { fg = colors.color4 },
+    TSTextReference = { fg = colors.color12 },
+    TSEnvirontment = { fg = colors.color5 },
+    TSEnvironmentName = { fg = colors.color3 },
+    TSNote = { fg = colors.color8 },
+    TSWarning = { fg = colors.color0, bg = colors.color1 },
+    TSDanger = { fg = colors.color8 },
+    TSType = { fg = colors.color3 },
+    TSTypeBuiltin = { fg = colors.color3 },
+    TSVariable = { fg = colors.color7 },
+    TSVariableBuiltin = { fg = colors.color4 },
+}
 
--- local presets = require("onigiri").presets["mariana"]
--- -- local presets = {}
---
--- presets.Background = {
---     default = "#ffffff",
---     emphasis = "#2e353e",
---     muted = "#46525c",
--- }
---
--- presets.Foreground = {
---     default = "#d8dee9",
---     emphasis = "#f7f7f7",
---     muted = "#a6acb8",
---     surface = "#46525c",
--- }
---
--- presets.Shade = {
---     default = "None",
---     emphasis = "None",
--- }
---
--- Colors = {
---     Accent    = "#95B2D6",
---     Caution   = "#f9ae58",
---     Danger    = "#f97b58",
---     Error     = "#ec5f66",
---     Hint      = "#5fb4b4",
---     Important = "#fac761",
---     Info      = "#99c794",
---     Note      = "#5c99d6",
---     Trace     = "#cc8ec6",
---     Warn      = "#ee932b",
--- }
---
--- vim.g.onigiri = {
---     theme = presets,
--- }
-
--- require("catppuccin").setup({
---     flavour = "mocha", -- mocha, macchiato, frappe, latte
--- })
-
-vim.g.colorscheme = "onigiri"
-
-vim.cmd("syntax enable")
-vim.cmd("colorscheme " .. vim.g.colorscheme)
-
-local hl = function(thing, opts)
-    vim.api.nvim_set_hl(0, thing, opts)
+function highlight()
+    for group, properties in pairs(highlights) do
+        vim.api.nvim_set_hl(0, group, properties)
+    end
 end
 
-local none = "none"
-
-hl("Normal", { bg = none })
-hl("SignColumn", { bg = none, fg = none })
-hl("Visual", { bg = "#444444", fg = colors.white })
-hl("EndOfBuffer", { bg = none, fg = none })
--- hl("LineNr")
-hl("CursorLineNr", { fg = colors.yellow })
-hl("Pmenu", { bg = colors.bg })
-hl("LineNr", { bg = none, fg = colors.gray1 })
-hl("IncSearch", { fg = colors.black, bg = colors.yellow })
-hl("TreesitterContextLineNumber", { fg = colors.white, bg = colors.gray0 })
-hl("TreesitterContext", { bg = colors.gray0 })
-hl("NormalFloat", { bg = "#222222" })
-hl("FloatBorder", { bg = none })
-hl("StatusLine", { bg = colors.gray1, fg = "#dddddd" })
-hl("TSTag", { fg = colors.purple })
-hl("NonText", { fg = colors.gray1 })
-hl("IndentBlankLineChar", { fg = colors.gray1 })
-
--- vim.cmd("hi StatusLine guifg=Black guibg=Gray")
+highlight()

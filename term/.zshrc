@@ -70,6 +70,8 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
+bindkey -s "^F" "tmux-sessionizer\n"
+
 # bindkey '^P' history-beginning-search-backward
 # bindkey '^N' history-beginning-search-forward
 # bindkey '^P' up-line-or-search
@@ -98,12 +100,13 @@ alias cat='bat'
 
 # path
 LOCAL_BIN="$HOME/.local/bin"
+LOCAL_SCRIPTS="$HOME/.local/scripts"
 CARGO_HOME="$HOME/.cargo/bin"
 CARGO="$HOME/.cargo/bin/cargo"
 PYTHON="/usr/local/opt/python@3.10/libexec/bin"
 POETRY="$HOME/.local/share/poetry/bin"
 
-export PATH=$PATH:$LOCAL_BIN:$CARGO_HOME:$PYTHON:$POETRY
+export PATH=$PATH:$LOCAL_BIN:$LOCAL_SCRIPTS:$CARGO_HOME:$PYTHON:$POETRY
 
 export RUST_BACKTRACE=1
 export HOMEBREW_NO_ENV_HINTS=1

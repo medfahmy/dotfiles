@@ -65,4 +65,4 @@ o.list = true
 o.listchars = "eol:↴"
 o.fillchars = "eob: "
 o.formatoptions = ""
-o.statusline = " "
+-- o.statusline = " "
