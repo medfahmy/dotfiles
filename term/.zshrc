@@ -70,7 +70,13 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
-bindkey -s "^F" "tmux-sessionizer\n"
+bindkey -s "^T" "tmux-sessionizer\n"
+
+cdf() {
+    find ~/personal -type d | fzf
+}
+zle -N cdf
+bindkey "^F" cdf
 
 # bindkey '^P' history-beginning-search-backward
 # bindkey '^N' history-beginning-search-forward
@@ -97,6 +103,8 @@ alias rmdir='rmdir -v'
 
 alias ls='exa -aF --color=auto --group-directories-first'
 alias cat='bat'
+alias py='python'
+alias z='zoxide'
 
 # path
 LOCAL_BIN="$HOME/.local/bin"
@@ -105,8 +113,12 @@ CARGO_HOME="$HOME/.cargo/bin"
 CARGO="$HOME/.cargo/bin/cargo"
 PYTHON="/usr/local/opt/python@3.10/libexec/bin"
 POETRY="$HOME/.local/share/poetry/bin"
+OPENCV="/usr/local/Cellar/opencv/4.7.0_2/lib/pkgconfig/opencv4.pc"
 
 export PATH=$PATH:$LOCAL_BIN:$LOCAL_SCRIPTS:$CARGO_HOME:$PYTHON:$POETRY
 
 export RUST_BACKTRACE=1
 export HOMEBREW_NO_ENV_HINTS=1
+export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
+
+export PKG_CONFIG_PATH="/usr/local/opt/opencv@2/lib/pkgconfig"

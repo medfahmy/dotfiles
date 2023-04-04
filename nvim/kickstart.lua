@@ -50,7 +50,7 @@ require("lazy").setup({
         "nvim-lualine/lualine.nvim",
         opts = {
             options = {
-                icons_enabled = true,
+                icons_enabled = false,
                 theme = "iceberg_dark",
                 section_separators = { "█▎", "█▎" },
                 component_separators = { "▎", "▎" },

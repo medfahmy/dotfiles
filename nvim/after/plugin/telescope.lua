@@ -22,6 +22,7 @@ require("telescope").setup({
         -- grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
         -- qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
     },
+
     pickers = {
         buffers = {
             sort_last_used = true,
@@ -59,6 +60,7 @@ end
 
 local nnoremap = keymap.nnoremap
 
+nnoremap("<space>/", telescope.oldfiles, { desc = "[?] Find recently opened files" })
 nnoremap("<space>f", telescope.find_files)
 nnoremap("<space>b", telescope.buffers)
 nnoremap("<space><space>", telescope.resume)
@@ -69,3 +71,4 @@ nnoremap("<space>tc", telescope.colorscheme)
 nnoremap("<space>ts", telescope.lsp_dynamic_workspace_symbols)
 nnoremap("<space>tk", telescope.keymaps)
 nnoremap("<space>th", telescope.help_tags)
+nnoremap("<space>te", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
