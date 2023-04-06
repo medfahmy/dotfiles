@@ -8,10 +8,16 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 
 # Format the vcs_info_msg_0_ variable
-zstyle ':vcs_info:git:*' formats 'on branch %b'
+# zstyle ':vcs_info:git:*' formats 'on branch %b'
+zstyle ':vcs_info:git:*' formats '%b'
+
+# Set up the prompt (with git branch name)
+setopt PROMPT_SUBST
+
+# PROMPT='%F{green}(${vcs_info_msg_0_})'
 
 # Set up the promptsetopt PROMPT_SUBST
-PROMPT=" %B%F{magenta}%~%f%b %(?.%F{green}>.%F{red}[%?] >)%f "
+PROMPT=' %B%F{magenta}%~%f%b %F{yellow}(${vcs_info_msg_0_}) %(?.%F{green}>.%F{red}[%?] >)%f '
 
 # git branch name
 # PROMPT+=' ${vcs_info_msg_0_} > '
@@ -105,6 +111,7 @@ alias ls='exa -aF --color=auto --group-directories-first'
 alias cat='bat'
 alias py='python'
 alias z='zoxide'
+# alias cdf='cdf | cd'
 
 # path
 LOCAL_BIN="$HOME/.local/bin"
