@@ -70,13 +70,13 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
-bindkey -s "^T" "tmux-sessionizer\n"
+bindkey -s "^F" "tmux-sessionizer\n"
 
-cdf() {
-    find ~/personal -type d | fzf
-}
-zle -N cdf
-bindkey "^F" cdf
+# cdf() {
+#     find ~/personal -type d | fzf
+# }
+# zle -N cdf
+# bindkey "^F" cdf
 
 # bindkey '^P' history-beginning-search-backward
 # bindkey '^N' history-beginning-search-forward
