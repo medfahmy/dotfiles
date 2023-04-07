@@ -42,8 +42,8 @@ local handlers = {
             float = {
                 pad_top = 1,
                 pad_bottom = 1,
+                border = "single",
             },
-            border = "single",
         }
     ),
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
