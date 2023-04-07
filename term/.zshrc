@@ -18,10 +18,8 @@ setopt PROMPT_SUBST
 
 # Set up the promptsetopt PROMPT_SUBST
 # PROMPT=' %B%F{magenta}%~%f%b %F{yellow}(${vcs_info_msg_0_}) %(?.%F{green}>.%F{red}[%?] >)%f '
-###
-# ADD GIT INFO TO PROMPT
-###
-parse_git_branch() {
+
+git_branch() {
   local branch=""
   branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
   local git_status=$(git status --porcelain 2>/dev/null)
@@ -44,10 +42,12 @@ parse_git_branch() {
   fi
   echo "$branch"
 }
+
 update_prompt() {
     # PS1="%n %1~$(parse_git_branch) %#"
-    PS1=' %B%F{magenta}%~%f%b $(parse_git_branch)%(?.%F{cyan}>.%F{red}[%?] >)%f '
+    PS1=' %B%F{magenta}%~%f%b $(git_branch)%(?.%F{cyan}>.%F{red}[%?] >)%f '
 }
+
 precmd_functions+=(update_prompt)
 update_prompt
 
