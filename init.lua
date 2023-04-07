@@ -296,11 +296,6 @@ local handlers = {
         {
             virtual_text = false,
             underline = true,
-            float = {
-                pad_top = 1,
-                pad_bottom = 1,
-            },
-            border = "single",
         }
     ),
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
@@ -309,9 +304,15 @@ local handlers = {
     ["textDocument/signatureHelp"] = vim.lsp.with(
         vim.lsp.handlers.signature_help,
         {
-            border = border,
+            border = "single",
         }
     ),
+}
+
+vim.diagnostic.config {     
+    float = { 
+        border = "single",
+    }, 
 }
 
 -- Setup neovim lua configuration
@@ -894,5 +895,7 @@ M.setup({
 })
 
 vim.cmd("hi CursorLineNr guifg=#fac863")
+vim.cmd("hi WhichKeyFloat guibg=#333333")
+-- vim.cmd("hi NormalFloat guibg=#333333")
 -- vim.cmd("hi LineNr guibg=#333333 guifg=#777777")
 -- vim.cmd("hi SignColumn guibg=#333333")
