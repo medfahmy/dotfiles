@@ -13,14 +13,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    -- {
-    --     'RRethy/nvim-base16', 
-    --     opts = {
-    --     },
-    -- },
-    -- {
-    --     "norcalli/nvim-colorizer.lua", opts = {},
-    -- },
+    -- { 'RRethy/nvim-base16', opts = {} },
+    -- { "norcalli/nvim-colorizer.lua", opts = {}, },
     {
         "neovim/nvim-lspconfig",
         dependencies = {
@@ -38,10 +32,7 @@ require("lazy").setup({
             "saadparwaiz1/cmp_luasnip"
         },
     },
-    {
-        "folke/which-key.nvim",
-        opts = {}
-    },
+    { "folke/which-key.nvim", opts = {} },
     {
         "lewis6991/gitsigns.nvim",
         opts = {
@@ -107,10 +98,7 @@ require("lazy").setup({
             show_end_of_line = true,
         },
     },
-    {
-        "rmagatti/auto-session",
-        opts = { log_level = "error" }
-    },
+    { "rmagatti/auto-session", opts = { log_level = "error" } },
     { "numToStr/Comment.nvim", opts = {} },
     {
         "nvim-telescope/telescope.nvim",
@@ -142,6 +130,7 @@ require("lazy").setup({
 
 -- options
 local o = vim.o
+
 o.showmode = false
 o.swapfile = false
 o.backup = false
@@ -154,7 +143,7 @@ o.breakindent = true
 o.undofile = true
 o.ignorecase = true
 o.smartcase = true
-o.signcolumn = "yes"
+o.signcolumn = "auto"
 o.updatetime = 250
 o.timeout = true
 o.timeoutlen = 300
@@ -373,264 +362,12 @@ cmp.setup {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         },
-        -- ["<Tab>"] = cmp.mapping(function(fallback)
-        --     if cmp.visible() then
-        --         cmp.select_next_item()
-        --     elseif luasnip.expand_or_jumpable() then
-        --         luasnip.expand_or_jump()
-        --     else
-        --         fallback()
-        --     end
-        -- end, { "i", "s" }),
-        -- ["<S-Tab>"] = cmp.mapping(function(fallback)
-        --     if cmp.visible() then
-        --         cmp.select_prev_item()
-        --     elseif luasnip.jumpable(-1) then
-        --         luasnip.jump(-1)
-        --     else
-        --         fallback()
-        --     end
-        -- end, { "i", "s" }),
     },
     sources = {
         { name = "nvim_lsp" },
         { name = "luasnip" },
     },
 }
-
-local colors = {
-    comment = "#999999",
-    comment_light = "#999999",
-    contrast = "#191919",
-    background = "none",
-    black = "#121111",
-    foreground = "#dfdddd",
-    cursorline = "#333333",
-    cursor = "#dfdddd",
-    color0 = "#1b1b1b",
-    color1 = "#dddddd",
-    color2 = "#99c794",
-    color3 = "#fac863",
-    color5 = "#5fafd7",
-    color4 = "#8097fb",
-    color6 = "#99c794",
-    color7 = "#b7b7b7",
-    color8 = "#272727",
-    color9 = "#ec5f67",
-    color10 = "#99c794",
-    color11 = "#f99157",
-    color12 = "#c594c5",
-    color13 = "#8250df",
-    color14 = "#54aeff",
-    color15 = "#d4d5d5",
-}
-
--- local highlights = {
---     Normal = { fg = colors.foreground, bg = colors.background },
---     SignColumn = { bg = colors.background, fg = colors.background },
---     MsgArea = { fg = colors.foreground, bg = colors.background },
---     ModeMsg = { fg = colors.foreground, bg = colors.background },
---     MsgSeparator = { fg = colors.foreground, bg = colors.background },
---     SpellBad = { fg = colors.color2 },
---     SpellCap = { fg = colors.color12 },
---     SpellLocal = { fg = colors.color12 },
---     SpellRare = { fg = colors.color4 },
---     NormalNC = { fg = colors.foreground, bg = colors.background },
---     Pmenu = { fg = colors.foreground, bg = colors.background },
---     PmenuSel = { fg = colors.black, bg = colors.color4 },
---     WildMenu = { fg = colors.color7, bg = colors.color4 },
---     CursorLineNr = { fg = colors.color3 },
---     Comment = { fg = colors.comment, italic = true },
---     Folded = { fg = colors.color4, bg = colors.background },
---     FoldColumn = { fg = colors.color12, bg = colors.background },
---     LineNr = { fg = "#555555", bg = colors.background },
---     FloatBorder = { fg = colors.foreground, bg = colors.background },
---     Whitespace = { fg = colors.color0 },
---     VertSplit = { fg = colors.cursorline, bg = colors.background },
---     CursorLine = { bg = colors.background },
---     CursorColumn = { bg = colors.background },
---     ColorColumn = { bg = colors.background },
---     NormalFloat = { bg = colors.background },
---     Visual = { bg = "#444444" },
---     VisualNOS = { bg = colors.background },
---     WarningMsg = { fg = colors.color3, bg = colors.background },
---     DiffAdd = { bg = colors.background, fg = colors.color12 },
---     DiffChange = { bg = colors.background, fg = colors.color5 },
---     DiffDelete = { bg = colors.background, fg = colors.color1 },
---     QuickFixLine = { bg = colors.color2 },
---     PmenuSbar = { bg = colors.background },
---     PmenuThumb = { bg = colors.color2 },
---     MatchParen = { fg = colors.color12, bg = colors.background },
---     Cursor = { fg = colors.comment, bg = colors.cursor },
---     lCursor = { fg = colors.foreground, bg = colors.cursor },
---     CursorIM = { fg = colors.foreground, bg = colors.cursor },
---     TermCursor = { fg = colors.foreground, bg = colors.cursor },
---     TermCursorNC = { fg = colors.foreground, bg = colors.cursor },
---     Conceal = { fg = colors.color4, bg = colors.background },
---     Directory = { fg = colors.color12 },
---     SpecialKey = { fg = colors.color12 },
---     Title = { fg = colors.color11 },
---     ErrorMsg = { fg = colors.color1, bg = colors.background },
---     Search = { fg = colors.background, bg = colors.color10 },
---     IncSearch = { fg = colors.background, bg = colors.color11 },
---     Substitute = { fg = colors.color3, bg = colors.color12 },
---     MoreMsg = { fg = colors.color5 },
---     Question = { fg = colors.color5 },
---     EndOfBuffer = { fg = colors.background },
---     NonText = { fg = "#666666" },
---     Variable = { fg = colors.color5 },
---     String = { fg = colors.color10 },
---     Character = { fg = colors.color12 },
---     Constant = { fg = colors.color12 },
---     Number = { fg = colors.color12 },
---     Boolean = { fg = colors.color5 },
---     Float = { fg = colors.color12 },
---     Identifier = { fg = colors.color1 },
---     Function = { fg = colors.color12 },
---     Operator = { fg = colors.color12 },
---     Type = { fg = colors.color12 },
---     StorageClass = { fg = colors.color3 },
---     Structure = { fg = colors.color12 },
---     Typedef = { fg = colors.color5 },
---     Keyword = { fg = colors.color5 },
---     Statement = { fg = colors.color5 },
---     Conditional = { fg = colors.color1 },
---     Repeat = { fg = colors.color5 },
---     Label = { fg = colors.color12 },
---     Exception = { fg = colors.color7 },
---     Include = { fg = colors.color1 },
---     PreProc = { fg = colors.color12 },
---     Define = { fg = colors.color12 },
---     Macro = { fg = colors.color12 },
---     PreCondit = { fg = colors.color12 },
---     Special = { fg = colors.color12 },
---     SpecialChar = { fg = colors.color12 },
---     Tag = { fg = colors.color15 },
---     Debug = { fg = colors.color13 },
---     Delimiter = { fg = colors.color7 },
---     SpecialComment = { fg = colors.color8 },
---     Ignore = { fg = colors.color7, bg = colors.background },
---     Todo = { fg = colors.color1, bg = colors.background },
---     Error = { fg = colors.color3, bg = colors.background },
---     TabLine = { fg = colors.color2, bg = colors.background },
---     TabLineSel = { fg = colors.foreground, bg = colors.background },
---     TabLineFill = { fg = colors.foreground, bg = colors.background },
---     IndentBlanklineChar = { fg = "#666666" },
---     TelescopePromptNormal = {
---         fg = colors.foreground,
---         bg = colors.color8,
---     },
---     TelescopePromptPrefix = {
---         fg = colors.color1,
---         bg = colors.color8,
---     },
---     TelescopeNormal = { bg = colors.cursorline },
---     TelescopePreviewTitle = {
---         fg = colors.cursorline,
---         bg = colors.cursorline,
---     },
---     TelescopePromptTitle = {
---         fg = colors.background,
---         bg = colors.color9,
---     },
---     TelescopeResultsTitle = {
---         fg = colors.cursorline,
---         bg = colors.cursorline,
---     },
---     TelescopeSelection = { bg = colors.color0, fg = colors.foreground },
---     TelescopeResultsDiffAdd = {
---         fg = colors.color10,
---     },
---     TelescopeResultsDiffChange = {
---         fg = colors.color11,
---     },
---     TelescopeResultsDiffDelete = {
---     fg = colors.color9,
---     },
---     GitSignsAdd = { fg = colors.color2 },
---     GitSignsChange = { fg = colors.color5 },
---     GitSignsDelete = { fg = colors.color1 },
---     BufflineBufOnActive = { bg = colors.color4, fg = colors.background },
---     BufflineBufOnInactive = { fg = colors.color7, bg = colors.contrast },
---     BuffLineBufOnModified = { bg = colors.color4, fg = colors.background },
---     BuffLineBufOnClose = { bg = colors.color4, fg = colors.background },
---     BuffLineBufOffClose = { fg = colors.color9, bg = colors.contrast },
---     BuffLineTree = { bg = colors.background, fg = colors.white },
---     BuffLineEmpty = { bg = colors.background, fg = colors.white },
---     TSAttribute = { fg = colors.color4 },
---     TSBoolean = { fg = colors.color12 },
---     TSCharacter = { fg = colors.color4 },
---     TSComment = { fg = colors.comment, italic = true },
---     TSConditional = { fg = colors.color1 },
---     TSConstant = { fg = colors.color12 },
---     TSConstBuiltin = { fg = colors.color4 },
---     TSConstMacro = { fg = colors.color3 },
---     TSConstructor = { fg = colors.color4 },
---     TSException = { fg = colors.color8 },
---     TSField = { fg = colors.color1 },
---     TSFloat = { fg = colors.color8 },
---     TSFunction = { fg = colors.color1 },
---     TSFuncBuiltin = { fg = colors.color14 },
---     TSFuncMacro = { fg = colors.color2 },
---     TSInclude = { fg = colors.color9 },
---     TSKeyword = { fg = colors.color5 },
---     TSKeywordFunction = { fg = colors.color4 },
---     TsKeywordOperator = { fg = colors.color12 },
---     TSKeywordReturn = { fg = colors.color4 },
---     TSLabel = { fg = colors.color4 },
---     TSMethod = { fg = colors.color12 },
---     TSNamespace = { fg = colors.color9 },
---     TSNumber = { fg = colors.color3 },
---     TSParameter = { fg = colors.color1 },
---     TSParameterReference = { fg = colors.color9 },
---     TSProperty = { fg = colors.color1 },
---     TSPunctDelimiter = { fg = colors.color7 },
---     TSPunctBracket = { fg = colors.color7 },
---     TSPunctSpecial = { fg = colors.color7 },
---     TSRepeat = { fg = colors.color11 },
---     TSString = { fg = colors.color2 },
---     TSStringRegex = { fg = colors.color2 },
---     TSStringEscape = { fg = colors.color4 },
---     TSStringSpecial = { fg = colors.color4 },
---     TSSymbol = { fg = colors.color1 },
---     TSTag = { fg = colors.color0 },
---     TSTagAttribute = { fg = colors.color1 },
---     TSTagDelimiter = { fg = colors.color7 },
---     TSText = { fg = colors.color7 },
---     TSStrong = { fg = colors.color7 },
---     TSEmphasis = { italic = true, fg = colors.color7 },
---     TSUnderline = { fg = colors.color5 },
---     TSStrike = { fg = colors.color7 },
---     TSTitle = { fg = colors.color3 },
---     TSLiteral = { fg = colors.color2 },
---     TSURI = { fg = colors.color3 },
---     TSMath = { fg = colors.color12 },
---     TSTextReference = { fg = colors.color12 },
---     TSEnvirontment = { fg = colors.color5 },
---     TSEnvironmentName = { fg = colors.color3 },
---     TSNote = { fg = colors.color8 },
---     TSWarning = { fg = colors.color0, bg = colors.color1 },
---     TSDanger = { fg = colors.color8 },
---     TSType = { fg = colors.color3 },
---     TSTypeBuiltin = { fg = colors.color3 },
---     TSVariable = { fg = colors.color7 },
---     TSVariableBuiltin = { fg = colors.color4 },
--- }
---
--- function highlight()
---     for group, properties in pairs(highlights) do
---         vim.api.nvim_set_hl(0, group, properties)
---     end
--- end
---
--- highlight()
-
-
--- Some useful links for making your own colorscheme:
--- https://github.com/chriskempson/base16
--- https://colourco.de/
--- https://color.adobe.com/create/color-wheel
--- http://vrl.cs.brown.edu/color
 
 local M = {}
 local hex_re = vim.regex('#\\x\\x\\x\\x\\x\\x')
@@ -707,52 +444,14 @@ M.highlight = setmetatable({}, {
     end
 })
 
-function M.with_config(config)
-    M.config = vim.tbl_extend("force", {
-        telescope = true,
-        telescope_borders = false,
-        indentblankline = true,
-        notify = true,
-        ts_rainbow = true,
-        cmp = true,
-        illuminate = true,
-        lsp_semantic = true,
-        mini_completion = true,
-    }, config or M.config or {})
-end
-
---- Creates a base16 colorscheme using the colors specified.
---
--- Builtin colorschemes can be found in the M.colorschemes table.
---
--- The default Vim highlight groups (including User[1-9]), highlight groups
--- pertaining to Neovim's builtin LSP, and highlight groups pertaining to
--- Treesitter will be defined.
---
--- It's worth noting that many colorschemes will specify language specific
--- highlight groups like rubyConstant or pythonInclude. However, I don't do
--- that here since these should instead be linked to an existing highlight
--- group.
---
--- @param colors (table) table with keys 'base00', 'base01', 'base02',
---   'base03', 'base04', 'base05', 'base06', 'base07', 'base08', 'base09',
---   'base0A', 'base0B', 'base0C', 'base0D', 'base0E', 'base0F'. Each key should
---   map to a valid 6 digit hex color. If a string is provided, the
---   corresponding table specifying the colorscheme will be used.
-function M.setup(colors, config)
-    M.with_config(config)
-
-    if type(colors) == 'string' then
-        colors = M.colorschemes[colors]
-    end
+function M.setup(colors)
 
     if vim.fn.exists('syntax_on') then
         vim.cmd('syntax reset')
     end
     vim.cmd('set termguicolors')
 
-    M.colors                              = colors or M.colorschemes[vim.env.BASE16_THEME] or
-        M.colorschemes['schemer-dark']
+    M.colors                              = colors
     local hi                              = M.highlight
 
     -- Vim editor colors
@@ -953,90 +652,78 @@ function M.setup(colors, config)
 
     hi.LspInlayHint                       = { guifg = M.colors.base03, guibg = nil, gui = 'italic', guisp = nil }
 
-    if vim.fn.has('nvim-0.8.0') then
-        hi['@comment'] = 'TSComment'
-        hi['@error'] = 'TSError'
-        hi['@none'] = 'TSNone'
-        hi['@preproc'] = 'PreProc'
-        hi['@define'] = 'Define'
-        hi['@operator'] = 'TSOperator'
-        hi['@punctuation.delimiter'] = 'TSPunctDelimiter'
-        hi['@punctuation.bracket'] = 'TSPunctBracket'
-        hi['@punctuation.special'] = 'TSPunctSpecial'
-        hi['@string'] = 'TSString'
-        hi['@string.regex'] = 'TSStringRegex'
-        hi['@string.escape'] = 'TSStringEscape'
-        hi['@string.special'] = 'SpecialChar'
-        hi['@character'] = 'TSCharacter'
-        hi['@character.special'] = 'SpecialChar'
-        hi['@boolean'] = 'TSBoolean'
-        hi['@number'] = 'TSNumber'
-        hi['@float'] = 'TSFloat'
-        hi['@function'] = 'TSFunction'
-        hi['@function.call'] = 'TSFunction'
-        hi['@function.builtin'] = 'TSFuncBuiltin'
-        hi['@function.macro'] = 'TSFuncMacro'
-        hi['@method'] = 'TSMethod'
-        hi['@method.call'] = 'TSMethod'
-        hi['@constructor'] = 'TSConstructor'
-        hi['@parameter'] = 'TSParameter'
-        hi['@keyword'] = 'TSKeyword'
-        hi['@keyword.function'] = 'TSKeywordFunction'
-        hi['@keyword.operator'] = 'TSKeywordOperator'
-        hi['@keyword.return'] = 'TSKeyword'
-        hi['@conditional'] = 'TSConditional'
-        hi['@repeat'] = 'TSRepeat'
-        hi['@debug'] = 'Debug'
-        hi['@label'] = 'TSLabel'
-        hi['@include'] = 'TSInclude'
-        hi['@exception'] = 'TSException'
-        hi['@type'] = 'TSType'
-        hi['@type.builtin'] = 'TSTypeBuiltin'
-        hi['@type.qualifier'] = 'TSType'
-        hi['@type.definition'] = 'TSType'
-        hi['@storageclass'] = 'StorageClass'
-        hi['@attribute'] = 'TSAttribute'
-        hi['@field'] = 'TSField'
-        hi['@property'] = 'TSProperty'
-        hi['@variable'] = 'TSVariable'
-        hi['@variable.builtin'] = 'TSVariableBuiltin'
-        hi['@constant'] = 'TSConstant'
-        hi['@constant.builtin'] = 'TSConstant'
-        hi['@constant.macro'] = 'TSConstant'
-        hi['@namespace'] = 'TSNamespace'
-        hi['@symbol'] = 'TSSymbol'
-        hi['@text'] = 'TSText'
-        hi['@text.diff.add'] = 'DiffAdd'
-        hi['@text.diff.delete'] = 'DiffDelete'
-        hi['@text.strong'] = 'TSStrong'
-        hi['@text.emphasis'] = 'TSEmphasis'
-        hi['@text.underline'] = 'TSUnderline'
-        hi['@text.strike'] = 'TSStrike'
-        hi['@text.title'] = 'TSTitle'
-        hi['@text.literal'] = 'TSLiteral'
-        hi['@text.uri'] = 'TSUri'
-        hi['@text.math'] = 'Number'
-        hi['@text.environment'] = 'Macro'
-        hi['@text.environment.name'] = 'Type'
-        hi['@text.reference'] = 'TSParameterReference'
-        hi['@text.todo'] = 'Todo'
-        hi['@text.note'] = 'Tag'
-        hi['@text.warning'] = 'DiagnosticWarn'
-        hi['@text.danger'] = 'DiagnosticError'
-        hi['@tag'] = 'TSTag'
-        hi['@tag.attribute'] = 'TSAttribute'
-        hi['@tag.delimiter'] = 'TSTagDelimiter'
-    end
-
-    if M.config.ts_rainbow then
-        hi.rainbowcol1 = { guifg = M.colors.base06 }
-        hi.rainbowcol2 = { guifg = M.colors.base09 }
-        hi.rainbowcol3 = { guifg = M.colors.base0A }
-        hi.rainbowcol4 = { guifg = M.colors.base07 }
-        hi.rainbowcol5 = { guifg = M.colors.base0C }
-        hi.rainbowcol6 = { guifg = M.colors.base0D }
-        hi.rainbowcol7 = { guifg = M.colors.base0E }
-    end
+    hi['@comment'] = 'TSComment'
+    hi['@error'] = 'TSError'
+    hi['@none'] = 'TSNone'
+    hi['@preproc'] = 'PreProc'
+    hi['@define'] = 'Define'
+    hi['@operator'] = 'TSOperator'
+    hi['@punctuation.delimiter'] = 'TSPunctDelimiter'
+    hi['@punctuation.bracket'] = 'TSPunctBracket'
+    hi['@punctuation.special'] = 'TSPunctSpecial'
+    hi['@string'] = 'TSString'
+    hi['@string.regex'] = 'TSStringRegex'
+    hi['@string.escape'] = 'TSStringEscape'
+    hi['@string.special'] = 'SpecialChar'
+    hi['@character'] = 'TSCharacter'
+    hi['@character.special'] = 'SpecialChar'
+    hi['@boolean'] = 'TSBoolean'
+    hi['@number'] = 'TSNumber'
+    hi['@float'] = 'TSFloat'
+    hi['@function'] = 'TSFunction'
+    hi['@function.call'] = 'TSFunction'
+    hi['@function.builtin'] = 'TSFuncBuiltin'
+    hi['@function.macro'] = 'TSFuncMacro'
+    hi['@method'] = 'TSMethod'
+    hi['@method.call'] = 'TSMethod'
+    hi['@constructor'] = 'TSConstructor'
+    hi['@parameter'] = 'TSParameter'
+    hi['@keyword'] = 'TSKeyword'
+    hi['@keyword.function'] = 'TSKeywordFunction'
+    hi['@keyword.operator'] = 'TSKeywordOperator'
+    hi['@keyword.return'] = 'TSKeyword'
+    hi['@conditional'] = 'TSConditional'
+    hi['@repeat'] = 'TSRepeat'
+    hi['@debug'] = 'Debug'
+    hi['@label'] = 'TSLabel'
+    hi['@include'] = 'TSInclude'
+    hi['@exception'] = 'TSException'
+    hi['@type'] = 'TSType'
+    hi['@type.builtin'] = 'TSTypeBuiltin'
+    hi['@type.qualifier'] = 'TSType'
+    hi['@type.definition'] = 'TSType'
+    hi['@storageclass'] = 'StorageClass'
+    hi['@attribute'] = 'TSAttribute'
+    hi['@field'] = 'TSField'
+    hi['@property'] = 'TSProperty'
+    hi['@variable'] = 'TSVariable'
+    hi['@variable.builtin'] = 'TSVariableBuiltin'
+    hi['@constant'] = 'TSConstant'
+    hi['@constant.builtin'] = 'TSConstant'
+    hi['@constant.macro'] = 'TSConstant'
+    hi['@namespace'] = 'TSNamespace'
+    hi['@symbol'] = 'TSSymbol'
+    hi['@text'] = 'TSText'
+    hi['@text.diff.add'] = 'DiffAdd'
+    hi['@text.diff.delete'] = 'DiffDelete'
+    hi['@text.strong'] = 'TSStrong'
+    hi['@text.emphasis'] = 'TSEmphasis'
+    hi['@text.underline'] = 'TSUnderline'
+    hi['@text.strike'] = 'TSStrike'
+    hi['@text.title'] = 'TSTitle'
+    hi['@text.literal'] = 'TSLiteral'
+    hi['@text.uri'] = 'TSUri'
+    hi['@text.math'] = 'Number'
+    hi['@text.environment'] = 'Macro'
+    hi['@text.environment.name'] = 'Type'
+    hi['@text.reference'] = 'TSParameterReference'
+    hi['@text.todo'] = 'Todo'
+    hi['@text.note'] = 'Tag'
+    hi['@text.warning'] = 'DiagnosticWarn'
+    hi['@text.danger'] = 'DiagnosticError'
+    hi['@tag'] = 'TSTag'
+    hi['@tag.attribute'] = 'TSAttribute'
+    hi['@tag.delimiter'] = 'TSTagDelimiter'
 
     hi.NvimInternalError = { guifg = M.colors.base00, guibg = M.colors.base08, gui = 'none', guisp = nil }
 
@@ -1058,115 +745,82 @@ function M.setup(colors, config)
 
     hi.TreesitterContext = { guifg = nil, guibg = M.colors.base01, gui = 'italic', guisp = nil }
 
-    if M.config.telescope then
-        if not M.config.telescope_borders and hex_re:match_str(M.colors.base00) and hex_re:match_str(M.colors.base01) and
-            hex_re:match_str(M.colors.base02) then
-            local darkerbg           = darken(M.colors.base00, 0.1)
-            local darkercursorline   = darken(M.colors.base01, 0.1)
-            local darkerstatusline   = darken(M.colors.base02, 0.1)
-            hi.TelescopeBorder       = { guifg = darkerbg, guibg = darkerbg, gui = nil, guisp = nil }
-            hi.TelescopePromptBorder = { guifg = darkerstatusline, guibg = darkerstatusline, gui = nil, guisp = nil }
-            hi.TelescopePromptNormal = { guifg = M.colors.base05, guibg = darkerstatusline, gui = nil, guisp = nil }
-            hi.TelescopePromptPrefix = { guifg = M.colors.base08, guibg = darkerstatusline, gui = nil, guisp = nil }
-            hi.TelescopeNormal       = { guifg = nil, guibg = darkerbg, gui = nil, guisp = nil }
-            hi.TelescopePreviewTitle = { guifg = darkercursorline, guibg = M.colors.base0B, gui = nil, guisp = nil }
-            hi.TelescopePromptTitle  = { guifg = darkercursorline, guibg = M.colors.base08, gui = nil, guisp = nil }
-            hi.TelescopeResultsTitle = { guifg = darkerbg, guibg = darkerbg, gui = nil, guisp = nil }
-            hi.TelescopeSelection    = { guifg = nil, guibg = darkerstatusline, gui = nil, guisp = nil }
-            hi.TelescopePreviewLine  = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil }
-        else
-            hi.TelescopeBorder       = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
-            hi.TelescopePromptBorder = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
-            hi.TelescopePromptNormal = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
-            hi.TelescopePromptPrefix = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
-            hi.TelescopeNormal       = { guifg = nil, guibg = M.colors.base00, gui = nil, guisp = nil }
-            hi.TelescopePreviewTitle = { guifg = M.colors.base01, guibg = M.colors.base0B, gui = nil, guisp = nil }
-            hi.TelescopePromptTitle  = { guifg = M.colors.base01, guibg = M.colors.base08, gui = nil, guisp = nil }
-            hi.TelescopeResultsTitle = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
-            hi.TelescopeSelection    = { guifg = nil, guibg = M.colors.base01, gui = nil, guisp = nil }
-            hi.TelescopePreviewLine  = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil }
-        end
+    if hex_re:match_str(M.colors.base00) and hex_re:match_str(M.colors.base01) and
+        hex_re:match_str(M.colors.base02) then
+        local darkerbg           = darken(M.colors.base00, 0.1)
+        local darkercursorline   = darken(M.colors.base01, 0.1)
+        local darkerstatusline   = darken(M.colors.base02, 0.1)
+        hi.TelescopeBorder       = { guifg = darkerbg, guibg = darkerbg, gui = nil, guisp = nil }
+        hi.TelescopePromptBorder = { guifg = darkerstatusline, guibg = darkerstatusline, gui = nil, guisp = nil }
+        hi.TelescopePromptNormal = { guifg = M.colors.base05, guibg = darkerstatusline, gui = nil, guisp = nil }
+        hi.TelescopePromptPrefix = { guifg = M.colors.base08, guibg = darkerstatusline, gui = nil, guisp = nil }
+        hi.TelescopeNormal       = { guifg = nil, guibg = darkerbg, gui = nil, guisp = nil }
+        hi.TelescopePreviewTitle = { guifg = darkercursorline, guibg = M.colors.base0B, gui = nil, guisp = nil }
+        hi.TelescopePromptTitle  = { guifg = darkercursorline, guibg = M.colors.base08, gui = nil, guisp = nil }
+        hi.TelescopeResultsTitle = { guifg = darkerbg, guibg = darkerbg, gui = nil, guisp = nil }
+        hi.TelescopeSelection    = { guifg = nil, guibg = darkerstatusline, gui = nil, guisp = nil }
+        hi.TelescopePreviewLine  = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil }
+    else
+        hi.TelescopeBorder       = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
+        hi.TelescopePromptBorder = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
+        hi.TelescopePromptNormal = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
+        hi.TelescopePromptPrefix = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
+        hi.TelescopeNormal       = { guifg = nil, guibg = M.colors.base00, gui = nil, guisp = nil }
+        hi.TelescopePreviewTitle = { guifg = M.colors.base01, guibg = M.colors.base0B, gui = nil, guisp = nil }
+        hi.TelescopePromptTitle  = { guifg = M.colors.base01, guibg = M.colors.base08, gui = nil, guisp = nil }
+        hi.TelescopeResultsTitle = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
+        hi.TelescopeSelection    = { guifg = nil, guibg = M.colors.base01, gui = nil, guisp = nil }
+        hi.TelescopePreviewLine  = { guifg = nil, guibg = M.colors.base01, gui = 'none', guisp = nil }
     end
 
-    if M.config.notify then
-        hi.NotifyERRORBorder = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyWARNBorder  = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyINFOBorder  = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyDEBUGBorder = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyTRACEBorder = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyERRORIcon   = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyWARNIcon    = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyINFOIcon    = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyDEBUGIcon   = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyTRACEIcon   = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyERRORTitle  = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyWARNTitle   = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyINFOTitle   = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyDEBUGTitle  = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyTRACETitle  = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
-        hi.NotifyERRORBody   = 'Normal'
-        hi.NotifyWARNBody    = 'Normal'
-        hi.NotifyINFOBody    = 'Normal'
-        hi.NotifyDEBUGBody   = 'Normal'
-        hi.NotifyTRACEBody   = 'Normal'
-    end
 
-    if M.config.indentblankline then
-        hi.IndentBlanklineChar        = { guifg = M.colors.base02, gui = 'nocombine' }
-        hi.IndentBlanklineContextChar = { guifg = M.colors.base04, gui = 'nocombine' }
-    end
+    hi.IndentBlanklineChar        = { guifg = M.colors.base02, gui = 'nocombine' }
+    hi.IndentBlanklineContextChar = { guifg = M.colors.base04, gui = 'nocombine' }
 
-    if M.config.cmp then
-        hi.CmpDocumentationBorder   = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
-        hi.CmpDocumentation         = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
-        hi.CmpItemAbbr              = { guifg = M.colors.base05, guibg = M.colors.base01, gui = nil, guisp = nil }
-        hi.CmpItemAbbrDeprecated    = { guifg = M.colors.base03, guibg = nil, gui = 'strikethrough', guisp = nil }
-        hi.CmpItemAbbrMatch         = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemAbbrMatchFuzzy    = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindDefault       = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemMenu              = { guifg = M.colors.base04, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindKeyword       = { guifg = M.colors.base0E, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindVariable      = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindConstant      = { guifg = M.colors.base09, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindReference     = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindValue         = { guifg = M.colors.base09, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindFunction      = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindMethod        = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindConstructor   = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindClass         = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindInterface     = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindStruct        = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindEvent         = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindEnum          = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindUnit          = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindModule        = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindProperty      = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindField         = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindTypeParameter = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindEnumMember    = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindOperator      = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil }
-        hi.CmpItemKindSnippet       = { guifg = M.colors.base04, guibg = nil, gui = nil, guisp = nil }
-    end
+    hi.CmpDocumentationBorder   = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
+    hi.CmpDocumentation         = { guifg = M.colors.base05, guibg = M.colors.base00, gui = nil, guisp = nil }
+    hi.CmpItemAbbr              = { guifg = M.colors.base05, guibg = M.colors.base01, gui = nil, guisp = nil }
+    hi.CmpItemAbbrDeprecated    = { guifg = M.colors.base03, guibg = nil, gui = 'strikethrough', guisp = nil }
+    hi.CmpItemAbbrMatch         = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemAbbrMatchFuzzy    = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindDefault       = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemMenu              = { guifg = M.colors.base04, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindKeyword       = { guifg = M.colors.base0E, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindVariable      = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindConstant      = { guifg = M.colors.base09, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindReference     = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindValue         = { guifg = M.colors.base09, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindFunction      = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindMethod        = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindConstructor   = { guifg = M.colors.base0D, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindClass         = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindInterface     = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindStruct        = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindEvent         = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindEnum          = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindUnit          = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindModule        = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindProperty      = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindField         = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindTypeParameter = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindEnumMember    = { guifg = M.colors.base0A, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindOperator      = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil }
+    hi.CmpItemKindSnippet       = { guifg = M.colors.base04, guibg = nil, gui = nil, guisp = nil }
 
-    if M.config.illuminate then
-        hi.IlluminatedWordText  = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04 }
-        hi.IlluminatedWordRead  = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04 }
-        hi.IlluminatedWordWrite = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04 }
-    end
+    -- hi.IlluminatedWordText  = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04 }
+    -- hi.IlluminatedWordRead  = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04 }
+    -- hi.IlluminatedWordWrite = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04 }
 
-    if M.config.lsp_semantic then
-        hi['@class'] = 'TSType'
-        hi['@struct'] = 'TSType'
-        hi['@enum'] = 'TSType'
-        hi['@enumMember'] = 'Constant'
-        hi['@event'] = 'Identifier'
-        hi['@interface'] = 'Structure'
-        hi['@modifier'] = 'Identifier'
-        hi['@regexp'] = 'TSStringRegex'
-        hi['@typeParameter'] = 'Type'
-        hi['@decorator'] = 'Identifier'
-    end
-
+    hi['@class'] = 'TSType'
+    hi['@struct'] = 'TSType'
+    hi['@enum'] = 'TSType'
+    hi['@enumMember'] = 'Constant'
+    hi['@event'] = 'Identifier'
+    hi['@interface'] = 'Structure'
+    hi['@modifier'] = 'Identifier'
+    hi['@regexp'] = 'TSStringRegex'
+    hi['@typeParameter'] = 'Type'
+    hi['@decorator'] = 'Identifier'
 
 
     vim.g.terminal_color_0  = M.colors.base00
@@ -1240,3 +894,5 @@ M.setup({
 })
 
 vim.cmd("hi CursorLineNr guifg=#fac863")
+-- vim.cmd("hi LineNr guibg=#333333 guifg=#777777")
+-- vim.cmd("hi SignColumn guibg=#333333")
