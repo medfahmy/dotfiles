@@ -17,7 +17,41 @@ setopt PROMPT_SUBST
 # PROMPT='%F{green}(${vcs_info_msg_0_})'
 
 # Set up the promptsetopt PROMPT_SUBST
-PROMPT=' %B%F{magenta}%~%f%b %F{yellow}(${vcs_info_msg_0_}) %(?.%F{green}>.%F{red}[%?] >)%f '
+# PROMPT=' %B%F{magenta}%~%f%b %F{yellow}(${vcs_info_msg_0_}) %(?.%F{green}>.%F{red}[%?] >)%f '
+###
+# ADD GIT INFO TO PROMPT
+###
+parse_git_branch() {
+  local branch=""
+  branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+  local git_status=$(git status --porcelain 2>/dev/null)
+  local color=green
+  if echo "$git_status" | grep -q "^ M"; then
+    color=yellow
+    branch="${branch}*"
+  fi
+  if echo "$git_status" | grep -qE "^ A|^\?\?"; then
+    color=yellow
+    branch="${branch}+"
+  fi
+  if echo "$git_status" | grep -q "^ D"; then
+    color=yellow
+    branch="${branch}-"
+  fi
+
+  if [[ -n "$branch" ]]; then
+      branch="on %F{${color}}${branch}%F{reset} "
+  fi
+  echo "$branch"
+}
+update_prompt() {
+    # PS1="%n %1~$(parse_git_branch) %#"
+    PS1=' %B%F{magenta}%~%f%b $(parse_git_branch)%(?.%F{cyan}>.%F{red}[%?] >)%f '
+}
+precmd_functions+=(update_prompt)
+update_prompt
+
+# PROMPT=' %B%F{magenta}%~%f%b $(parse_git_branch) %(?.%F{green}>.%F{red}[%?] >)%f '
 
 # git branch name
 # PROMPT+=' ${vcs_info_msg_0_} > '
