@@ -167,6 +167,11 @@ vim.keymap.set({ "n", "v" }, "<space>", "<nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "q:", "<nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "Q", "<nop>", { silent = true })
 
+vim.keymap.set("n", "<c-w>", "<c-w><c-w>")
+vim.keymap.set({ "n", "v" }, "<space>x", "<cmd>bd<cr>", { silent = true })
+-- vim.cmd([[tnoremap <c-[><c-[> <c-\><c-n>]])
+vim.keymap.set("t", "<c-[><c-[>", "<c-\\><c-n>")
+
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set({ "n", "v" }, "<space>y", '"+y', { silent = true })
