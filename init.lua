@@ -138,10 +138,10 @@ require("lazy").setup({
         "ThePrimeagen/harpoon",
         dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
-            vim.keymap.set("n", "<space>l", function() require("harpoon.ui").toggle_quick_menu() end, { silent = true, desc = "[l]ist harpoon marks" })
-            vim.keymap.set("n", "<space>m", function() require("harpoon.mark").add_file() end, { silent = true, desc = "add harpoon [m]ark" })
-            vim.keymap.set("n", "<tab>", function() require("harpoon.ui").nav_next() end, { silent = true, desc = "add harpoon [m]ark" })
-            vim.keymap.set("n", "<s-tab>", function() require("harpoon.ui").nav_prev() end, { silent = true, desc = "add harpoon [m]ark" })
+            vim.keymap.set("n", "<space>l", function() require("harpoon.ui").toggle_quick_menu() end, { silent = true, desc = "list harpoon marks" })
+            vim.keymap.set("n", "<space>m", function() require("harpoon.mark").add_file() end, { silent = true, desc = "add harpoon mark" })
+            vim.keymap.set("n", "<tab>", function() require("harpoon.ui").nav_next() end, { silent = true, desc = "nav next harpoon" })
+            vim.keymap.set("n", "<s-tab>", function() require("harpoon.ui").nav_prev() end, { silent = true, desc = "nav prev harpoon" })
         end,
     },
     {
@@ -198,7 +198,6 @@ vim.keymap.set({ "n", "v" }, "<space>", "<nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "q:", "<nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "Q", "<nop>", { silent = true })
 
-vim.keymap.set("n", "<c-w>", "<c-w><c-w>")
 vim.keymap.set({ "n", "v" }, "<space>x", "<cmd>bd<cr>", { silent = true })
 -- vim.cmd([[tnoremap <c-[><c-[> <c-\><c-n>]])
 vim.keymap.set("t", "<c-[><c-[>", "<c-\\><c-n>")
@@ -308,7 +307,6 @@ require("nvim-treesitter.configs").setup {
 -- Diagnostic keymaps
 vim.keymap.set("n", "<space>k", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "<space>j", vim.diagnostic.goto_next)
-vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
 
 local nmap = function(keys, func, desc)
@@ -318,27 +316,28 @@ end
     vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 end
 
-nmap("<leader>r", vim.lsp.buf.rename, "[r]ename")
-nmap("<leader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
+nmap("<space>r", vim.lsp.buf.rename, "rename")
+nmap("<space>ca", vim.lsp.buf.code_action, "code action")
 
-nmap("gd", vim.lsp.buf.definition, "[g]oto [d]efinition")
-nmap("gr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
-nmap("gI", vim.lsp.buf.implementation, "[g]oto [I]mplementation")
-nmap("<leader>D", vim.lsp.buf.type_definition, "type [d]efinition")
-nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[d]ocument [s]ymbols")
-nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[w]orkspace [s]ymbols")
+nmap("gd", vim.lsp.buf.definition, "goto definition")
+nmap("gr", require("telescope.builtin").lsp_references, "goto references")
+nmap("gI", vim.lsp.buf.implementation, "goto implementation")
+nmap("<leader>D", vim.lsp.buf.type_definition, "type definition")
+nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "document symbols")
+nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "workspace symbols")
 
-nmap("<space>h", vim.lsp.buf.hover, "[h]over documentation")
-nmap("<space>vh", vim.lsp.buf.signature_help, "[hover] signature Documentation")
+nmap("<space>h", vim.lsp.buf.hover, "hover documentation")
+nmap("<space>vh", vim.lsp.buf.signature_help, "hover signature Documentation")
+nmap("<space>e", vim.diagnostic.open_float, "show error")
 
-nmap("<space>d", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[w]orkspace [a]dd folder")
-nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[w]orkspace [r]emove folder")
+nmap("<space>d", vim.lsp.buf.declaration, "goto declaration")
+nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "workspace add folder")
+nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "workspace remove folder")
 nmap("<space>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-end, "[w]orkspace [l]ist folders")
+end, "workspace list folders")
 
-nmap("<space>gf", vim.lsp.buf.format, "[f]ormat buffer")
+nmap("<space>gf", vim.lsp.buf.format, "format buffer")
 
 local servers = {
     pyright = {},
