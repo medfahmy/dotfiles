@@ -145,7 +145,16 @@ alias ls='exa -aF --color=auto --group-directories-first'
 alias cat='bat'
 alias py='python'
 alias z='zoxide'
-# alias cdf='cdf | cd'
+
+alias gs='git status -s'
+alias ga='git add'
+alias gr='git restore'
+alias gcm='git commit -m'
+alias gcm='git commit -am'
+alias gp='git push'
+alias gpl='git pull'
+alias gd='git diff'
+alias gsw='git switch'
 
 # path
 LOCAL_BIN="$HOME/.local/bin"
