@@ -12,37 +12,58 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local colors = {
+    bg1 = "none",
+    bg2 = "#191919",
+    bg3 = "#333333",
+    gray = "#999999",
+    fg1 = "#ffffff",
+    fg2 = "#dfdfdf",
+    fg3 = "#d4d5d5",
+    green = "#99c794",
+    yellow = "#fac863",
+    cyan = "#5fafd7",
+    blue1 = "#54aeff",
+    blue2 = "#8097fb",
+    color7 = "#b7b7b7",
+    color8 = "#272727",
+    red = "#ec5f67",
+    orange = "#f99157",
+    purple1 = "#c594c5",
+    purple2 = "#8250df",
+}
+
 require("lazy").setup({
     -- { 'RRethy/nvim-base16', opts = {} },
     -- { "norcalli/nvim-colorizer.lua", opts = {}, },
     -- { "rmehri01/onenord.nvim" },
-    {
-        'kaiuri/nvim-juliana',
-        lazy = false,
-        opts = { 
-            colors = {
-                bg1 = '#3b454e',
-                bg2 = '#303841',
-                bg3 = '#2e353e',
-                fg1 = '#ffffff',
-                fg2 = '#d8dee9',
-                fg3 = '#a6acb8',
-                fg4 = '#46525c',
-                shade1 = '#2f373f',
-                shade2 = '#2e363e',
-                blue1 = '#95b2d6',
-                blue2 = '#5c99d6',
-                cyan = '#5fb4b4',
-                green = '#99c794',
-                magenta = '#cc8ec6',
-                orange = '#f97b58',
-                red = '#ec5f66',
-                yellow1 = '#fac761',
-                yellow2 = '#f9ae58',
-                yellow3 = '#ee932b',
-            }
-        },
-    },
+    -- {
+    --     'kaiuri/nvim-juliana',
+    --     lazy = false,
+    --     opts = { 
+    --         colors = {
+    --             bg1 = colors.bg1,
+    --             bg2 = colors.bg2,
+    --             bg3 = colors.bg3,
+    --             fg1 = colors.fg1,
+    --             fg2 = colors.fg2,
+    --             fg3 = colors.fg3,
+    --             fg4 = colors.fg3,
+    --             shade1 = colors.gray,
+    --             shade2 = colors.color7,
+    --             blue1 = colors.blue1,
+    --             blue2 = colors.blue2,
+    --             cyan = colors.cyan,
+    --             green = colors.green,
+    --             magenta = colors.purple1,
+    --             orange = colors.orange,
+    --             red = colors.red,
+    --             yellow1 = colors.yellow,
+    --             yellow2 = colors.yellow,
+    --             yellow3 = colors.yellow,
+    --         }
+    --     },
+    -- },
     { "AlexvZyl/nordic.nvim" },
     {
         "neovim/nvim-lspconfig",
@@ -198,6 +219,8 @@ vim.keymap.set({ "n", "v" }, "<space>", "<nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "q:", "<nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "Q", "<nop>", { silent = true })
 
+vim.keymap.set("n", "<c-w>", "<c-w>w", { silent = true, desc = "toggle window" })
+
 vim.keymap.set({ "n", "v" }, "<space>x", "<cmd>bd<cr>", { silent = true })
 -- vim.cmd([[tnoremap <c-[><c-[> <c-\><c-n>]])
 vim.keymap.set("t", "<c-[><c-[>", "<c-\\><c-n>")
@@ -266,7 +289,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 require("telescope").setup({
     defaults = {
         file_ignore_patterns = {
-            "node_modules/", ".git/",
+            "node_modules/", ".git/", "__pycache__", "target", "venv",
         },
         mappings = {
             i = {
@@ -344,6 +367,7 @@ local servers = {
     rust_analyzer = {},
     tsserver = {},
     gopls = {},
+    svelte = {},
 }
 
 local handlers = {
@@ -910,32 +934,6 @@ function M.setup(colors)
     vim.g.base16_gui0F      = M.colors.base0F
 end
 
-local colors = {
-    comment = "#999999",
-    comment_light = "#999999",
-    contrast = "#191919",
-    background = "none",
-    black = "#121111",
-    foreground = "#dfdddd",
-    cursorline = "#333333",
-    cursor = "#dfdddd",
-    color0 = "#1b1b1b",
-    color1 = "#dddddd",
-    color2 = "#99c794",
-    color3 = "#fac863",
-    color5 = "#5fafd7",
-    color4 = "#8097fb",
-    color6 = "#99c794",
-    color7 = "#b7b7b7",
-    color8 = "#272727",
-    color9 = "#ec5f67",
-    color10 = "#99c794",
-    color11 = "#f99157",
-    color12 = "#c594c5",
-    color13 = "#8250df",
-    color14 = "#54aeff",
-    color15 = "#d4d5d5",
-}
 
 
 M.setup({
@@ -946,7 +944,7 @@ M.setup({
 })
 
 -- vim.cmd("colorscheme juliana")
-vim.cmd("hi CursorLine guibg=#333333")
+vim.cmd("hi CursorLine guibg=#222222")
 vim.cmd("hi CursorLineNr guifg=#fac863 guibg=#333333")
 vim.cmd("hi WhichKeyFloat guibg=#333333")
 vim.cmd("hi Normal guibg=none")
