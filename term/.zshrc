@@ -144,7 +144,6 @@ alias rmdir='rmdir -v'
 alias ls='exa -aF --color=auto --group-directories-first'
 alias cat='bat'
 alias py='python'
-alias z='zoxide'
 
 alias gs='git status -s'
 alias gl='git log --oneline'
