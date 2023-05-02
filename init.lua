@@ -34,37 +34,6 @@ local colors = {
 }
 
 require("lazy").setup({
-    -- { 'RRethy/nvim-base16', opts = {} },
-    -- { "norcalli/nvim-colorizer.lua", opts = {}, },
-    -- { "rmehri01/onenord.nvim" },
-    -- {
-    --     'kaiuri/nvim-juliana',
-    --     lazy = false,
-    --     opts = { 
-    --         colors = {
-    --             bg1 = colors.bg1,
-    --             bg2 = colors.bg2,
-    --             bg3 = colors.bg3,
-    --             fg1 = colors.fg1,
-    --             fg2 = colors.fg2,
-    --             fg3 = colors.fg3,
-    --             fg4 = colors.fg3,
-    --             shade1 = colors.gray,
-    --             shade2 = colors.color7,
-    --             blue1 = colors.blue1,
-    --             blue2 = colors.blue2,
-    --             cyan = colors.cyan,
-    --             green = colors.green,
-    --             magenta = colors.purple1,
-    --             orange = colors.orange,
-    --             red = colors.red,
-    --             yellow1 = colors.yellow,
-    --             yellow2 = colors.yellow,
-    --             yellow3 = colors.yellow,
-    --         }
-    --     },
-    -- },
-    { "AlexvZyl/nordic.nvim" },
     {
         "neovim/nvim-lspconfig",
         dependencies = {
@@ -943,8 +912,7 @@ M.setup({
     base0C = '#f99157', base0D = '#a8a6ff', base0E = '#c594c5', base0F = '#eeeeee',
 })
 
--- vim.cmd("colorscheme juliana")
-vim.cmd("hi CursorLine guibg=#222222")
+vim.cmd("hi CursorLine guibg=#333333")
 vim.cmd("hi CursorLineNr guifg=#fac863 guibg=#333333")
 vim.cmd("hi WhichKeyFloat guibg=#333333")
 vim.cmd("hi Normal guibg=none")
