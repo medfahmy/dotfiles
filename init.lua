@@ -35,6 +35,10 @@ local colors = {
 
 require("lazy").setup({
     {
+        "TimUntersberger/neogit",
+        dependencies = { "nvim-lua/plenary.nvim" }
+    },
+    {
         "neovim/nvim-lspconfig",
         dependencies = {
             "williamboman/mason.nvim",
@@ -246,6 +250,9 @@ vim.keymap.set("n", "{", ":keepjumps normal! {<cr>", { silent = true })
 vim.keymap.set("n", "}", ":keepjumps normal! }<cr>", { silent = true })
 
 
+vim.keymap.set("n", "<space>g", "<cmd>Neogit<cr>", { silent = true })
+
+
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
@@ -329,7 +336,7 @@ nmap("<space>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, "workspace list folders")
 
-nmap("<space>gf", vim.lsp.buf.format, "format buffer")
+nmap("gp", vim.lsp.buf.format, "format buffer")
 
 local servers = {
     pyright = {},
