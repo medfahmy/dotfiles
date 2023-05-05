@@ -35,8 +35,48 @@ local colors = {
 
 require("lazy").setup({
     {
+        "github/copilot.vim"
+    },
+    {
+        "nvim-tree/nvim-tree.lua",
+        version = "*",
+        config = function()
+            require("nvim-tree").setup({
+                renderer = {
+                    icons = {
+                        show = {
+                            file = false,
+                            folder = false,
+                            folder_arrow = false,
+                            git = false,
+                            modified = false,
+                        },
+                    },
+                },
+            })
+            vim.keymap.set("n", "<space>n", vim.cmd.NvimTreeToggle, { silent = true })
+        end,
+    },
+    {
         "TimUntersberger/neogit",
-        dependencies = { "nvim-lua/plenary.nvim" }
+        dependencies = { 
+            "nvim-lua/plenary.nvim",
+            "sindrets/diffview.nvim",
+        },
+        options = {
+            integrations = {
+                diffview = true
+            },
+        },
+        config = function()
+            vim.keymap.set("n", "<space>g", vim.cmd.Neogit, { silent = true })
+        end,
+    },
+    {
+        "mbbill/undotree",
+        config = function()
+            vim.keymap.set("n", "<space>u", vim.cmd.UndotreeToggle, { silent = true })
+        end,
     },
     {
         "neovim/nvim-lspconfig",
