@@ -64,6 +64,7 @@ require("lazy").setup({
             "sindrets/diffview.nvim",
         },
         options = {
+            disable_builtin_notifications = true,
             integrations = {
                 diffview = true
             },
@@ -289,10 +290,6 @@ vim.keymap.set("v", "<space>{", "<esc>`>a}<esc>`<i{<esc>", { silent = true })
 vim.keymap.set("n", "{", ":keepjumps normal! {<cr>", { silent = true })
 vim.keymap.set("n", "}", ":keepjumps normal! }<cr>", { silent = true })
 
-
-vim.keymap.set("n", "<space>g", "<cmd>Neogit<cr>", { silent = true })
-
-
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
@@ -465,28 +462,28 @@ local M = {}
 local hex_re = vim.regex('#\\x\\x\\x\\x\\x\\x')
 
 local HEX_DIGITS = {
-        ['0'] = 0,
-        ['1'] = 1,
-        ['2'] = 2,
-        ['3'] = 3,
-        ['4'] = 4,
-        ['5'] = 5,
-        ['6'] = 6,
-        ['7'] = 7,
-        ['8'] = 8,
-        ['9'] = 9,
-        ['a'] = 10,
-        ['b'] = 11,
-        ['c'] = 12,
-        ['d'] = 13,
-        ['e'] = 14,
-        ['f'] = 15,
-        ['A'] = 10,
-        ['B'] = 11,
-        ['C'] = 12,
-        ['D'] = 13,
-        ['E'] = 14,
-        ['F'] = 15,
+    ['0'] = 0,
+    ['1'] = 1,
+    ['2'] = 2,
+    ['3'] = 3,
+    ['4'] = 4,
+    ['5'] = 5,
+    ['6'] = 6,
+    ['7'] = 7,
+    ['8'] = 8,
+    ['9'] = 9,
+    ['a'] = 10,
+    ['b'] = 11,
+    ['c'] = 12,
+    ['d'] = 13,
+    ['e'] = 14,
+    ['f'] = 15,
+    ['A'] = 10,
+    ['B'] = 11,
+    ['C'] = 12,
+    ['D'] = 13,
+    ['E'] = 14,
+    ['F'] = 15,
 }
 
 local function hex_to_rgb(hex)
@@ -949,8 +946,6 @@ function M.setup(colors)
     vim.g.base16_gui0E      = M.colors.base0E
     vim.g.base16_gui0F      = M.colors.base0F
 end
-
-
 
 M.setup({
     base00 = '#none', base01 = '#333333', base02 = '#3e4451', base03 = '#6c7891',
