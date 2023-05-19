@@ -14,52 +14,9 @@ zstyle ':vcs_info:git:*' formats '%b'
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
 
-# PROMPT='%F{green}(${vcs_info_msg_0_})'
-
-# Set up the promptsetopt PROMPT_SUBST
-# PROMPT=' %B%F{magenta}%~%f%b %F{yellow}(${vcs_info_msg_0_}) %(?.%F{green}>.%F{red}[%?] >)%f '
-
-# git_branch() {
-#   local branch=""
-#   branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-#   local git_status=$(git status --porcelain 2>/dev/null)
-#   local color=green
-#   if echo "$git_status" | grep -q "^ M"; then
-#     color=yellow
-#     branch="${branch}*"
-#   fi
-#   if echo "$git_status" | grep -qE "^ A|^\?\?"; then
-#     color=yellow
-#     branch="${branch}+"
-#   fi
-#   if echo "$git_status" | grep -q "^ D"; then
-#     color=yellow
-#     branch="${branch}-"
-#   fi
-#
-#   if [[ -n "$branch" ]]; then
-#       branch="on %F{${color}}${branch}%F{reset} "
-#   fi
-#   echo "$branch"
-# }
-#
-# update_prompt() {
-#     # PS1="%n %1~$(parse_git_branch) %#"
-#     PROMPT=' %B%F{magenta}%~%f%b $(git_branch)%(?.%F{cyan}>.%F{red}[%?] >)%f '
-# }
-#
-# precmd_functions+=(update_prompt)
-# update_prompt
-
-# PROMPT=' %B%F{magenta}%~%f%b $(parse_git_branch) %(?.%F{green}>.%F{red}[%?] >)%f '
-
-# git branch name
-# PROMPT+=' ${vcs_info_msg_0_} > '
-# PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-
-# PS1=" %F{yellow}%m%f%# %B%F{magenta}%~%f%b >> "
-
-PS1=' %B%F{magenta}%~%f%b %(?.%F{cyan}>.%F{red}[%?] >)%f '
+BRANCH='%F{green}${vcs_info_msg_0_} '
+PS1=" %B%F{magenta}%~%f%b $BRANCH%(?.%F{cyan}>.%F{red}[%?] >)%f "
+# PROMPT=" %B%F{magenta}%~%f%b %(?.%F{cyan}>.%F{red}[%?] >)%f "
 
 # History in cache directory
 HISTSIZE=10000
@@ -166,8 +123,10 @@ CARGO="$HOME/.cargo/bin/cargo"
 PYTHON="/usr/local/opt/python@3.10/libexec/bin"
 POETRY="$HOME/.local/share/poetry/bin"
 OPENCV="/usr/local/Cellar/opencv/4.7.0_2/lib/pkgconfig/opencv4.pc"
+DENO="/Users/fahmymohamed/.deno/bin:$PATH"
 
-export PATH=$PATH:$LOCAL_BIN:$LOCAL_SCRIPTS:$CARGO_HOME:$PYTHON:$POETRY
+
+export PATH=$PATH:$LOCAL_BIN:$LOCAL_SCRIPTS:$CARGO_HOME:$PYTHON:$POETRY:$DENO
 
 export RUST_BACKTRACE=1
 export HOMEBREW_NO_ENV_HINTS=1
