@@ -13,6 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    { "norcalli/nvim-colorizer.lua" },
     { "RRethy/nvim-base16" },
     { 'rose-pine/neovim', name = 'rose-pine' },
     { "mhartington/oceanic-next" },
@@ -196,8 +197,9 @@ require("lazy").setup({
         "ThePrimeagen/harpoon",
         dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
-            vim.keymap.set("n", "<space>l", function() require("harpoon.ui").toggle_quick_menu() end, { silent = true, desc = "list harpoon marks" })
-            vim.keymap.set("n", "<space>m", function() require("harpoon.mark").add_file() end, { silent = true, desc = "add harpoon mark" })
+            vim.keymap.set("n", "<space>l", require("harpoon.ui").toggle_quick_menu, { silent = true, desc = "list harpoon marks" })
+            vim.keymap.set("n", "<space>m", require("harpoon.mark").add_file, { silent = true, desc = "add harpoon mark" })
+            vim.keymap.set("n", "<space>b", require("harpoon.ui").nav_next, { silent = true, desc = "switch harpoon file" })
             -- vim.keymap.set("n", "<space>,", function() require("harpoon.ui").nav_file(1) end, { silent = true, desc = "nav next harpoon" })
             -- vim.keymap.set("n", "<space>.", function() require("harpoon.ui").nav_prev(2) end, { silent = true, desc = "nav prev harpoon" })
             -- vim.keymap.set("n", "<space>/", function() require("harpoon.ui").nav_prev(3) end, { silent = true, desc = "nav prev harpoon" })
@@ -349,8 +351,8 @@ pcall(require("telescope").load_extension, "fzf")
 local telescope = require("telescope.builtin")
 
 vim.keymap.set("n", "<space>f", telescope.find_files, { desc = "telescope files" })
-vim.keymap.set("n", "<space>/", telescope.oldfiles, { desc = "find recently opened files" })
-vim.keymap.set("n", "<space>b", telescope.buffers, { desc = "find existing buffers" })
+-- vim.keymap.set("n", "<space>/", telescope.oldfiles, { desc = "find recently opened files" })
+vim.keymap.set("n", "<space>tb", telescope.buffers, { desc = "find existing buffers" })
 
 vim.keymap.set("n", "<space>th", telescope.help_tags, { desc = "telescope help" })
 vim.keymap.set("n", "<space>tg", telescope.live_grep, { desc = "telescope grep" })
@@ -406,6 +408,7 @@ local servers = {
     tsserver = {},
     gopls = {},
     svelte = {},
+    tailwindcss = {},
 }
 
 local handlers = {
@@ -493,7 +496,8 @@ local colors = {
     gray4 = "#d4d5d5",
     white = "#ffffff",
     green = "#99c794",
-    cyan = "#5fafd7",
+    -- cyan = "#5fafd7",
+    cyan = "#6cc9f9",
     blue = "#54aeff",
     purple1 = "#8097fb",
     purple2 = "#c594c5",
