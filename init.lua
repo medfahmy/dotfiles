@@ -13,11 +13,22 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    {
+        "X3eRo0/dired.nvim",
+        dependencies = "MunifTanjim/nui.nvim",
+        config = {
+            path_separator = "/",
+            show_banner = false,
+            show_hidden = true,
+            show_dot_dirs = true,
+            show_colors = true,
+        },
+    },
     { "norcalli/nvim-colorizer.lua" },
     { "RRethy/nvim-base16" },
     { 'rose-pine/neovim', name = 'rose-pine' },
     { "mhartington/oceanic-next" },
-    { "github/copilot.vim" },
+    -- { "github/copilot.vim" },
     {
         "nvim-tree/nvim-tree.lua",
         version = "*",
@@ -379,10 +390,12 @@ end
     vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 end
 
+nmap("<space>d", "<cmd>Dired<cr>", "dired")
+
 nmap("<space>r", vim.lsp.buf.rename, "rename")
 nmap("<space>ca", vim.lsp.buf.code_action, "code action")
 
-nmap("<space>d", vim.lsp.buf.definition, "goto definition")
+nmap("gd", vim.lsp.buf.definition, "goto definition")
 nmap("gr", require("telescope.builtin").lsp_references, "goto references")
 nmap("gI", vim.lsp.buf.implementation, "goto implementation")
 nmap("<leader>D", vim.lsp.buf.type_definition, "type definition")
