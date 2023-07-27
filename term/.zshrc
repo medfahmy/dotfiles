@@ -238,7 +238,6 @@ CARGO_HOME="$HOME/.cargo/bin"
 CARGO="$HOME/.cargo/bin/cargo"
 PYTHON="/usr/local/opt/python@3.10/libexec/bin"
 POETRY="$HOME/.local/share/poetry/bin"
-OPENCV="/usr/local/Cellar/opencv/4.7.0_2/lib/pkgconfig/opencv4.pc"
 DENO="/Users/fahmymohamed/.deno/bin:$PATH"
 
 
@@ -248,5 +247,4 @@ export RUST_BACKTRACE=1
 export HOMEBREW_NO_ENV_HINTS=1
 export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
 
-export PKG_CONFIG_PATH="/usr/local/opt/opencv@2/lib/pkgconfig"
-
+export GOPATH="/Users/fahmymohamed/go"
