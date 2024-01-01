@@ -4,6 +4,11 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+xwayland disable
+
+exec swaymsg "workspace 1; exec foot;"
+exec swaymsg "workspace 2; exec firefox;"
+
 input type:keyboard {
   # Capslock key should work as escape key
   # See /usr/share/X11/xkb/rules/xorg.lst for options
@@ -77,11 +82,11 @@ set $menu kickoff
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+m exec $menu
+    bindsym $mod+d exec $menu
 
     bindsym $mod+n workspace back_and_forth
     
-    bindsym $mod+l exec swaylock -f -c 191970
+    bindsym $mod+x exec swaylock -f -c 191970
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -99,10 +104,10 @@ set $menu kickoff
 # Moving around:
 #
     # Move your focus around
-#     bindsym $mod+$left focus left
+    bindsym $mod+$left focus left
 #     bindsym $mod+$down focus down
 #     bindsym $mod+$up focus up
-#     bindsym $mod+$right focus right
+    bindsym $mod+$right focus right
 #     # Or use $mod+[up|down|left|right]
 #     # bindsym $mod+Left focus left
 #     bindsym $mod+Down focus down
@@ -217,7 +222,8 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+    status_command while date +'%d-%m-%Y %I:%M %p'; do sleep 1; done
+    # status_command "hello"
 
     # status_command while date+[$(cat /sys/class/power_supply/BAT0/capacity)%]; do sleep 1; done
     # status_command +$(cat /sys/class/power_supply/BAT0/capacity

@@ -210,6 +210,7 @@ function clear-scrollback-buffer {
 zle -N clear-scrollback-buffer
 bindkey '^L' clear-scrollback-buffer
 
+
 alias cp='cp -v'
 alias mv='mv -v'
 alias rm='rm -v'
@@ -248,3 +249,6 @@ export HOMEBREW_NO_ENV_HINTS=1
 export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
 
 export GOPATH="/Users/fahmymohamed/go"
+
+# Turso
+export PATH="/home/medfahmy/.turso:$PATH"
