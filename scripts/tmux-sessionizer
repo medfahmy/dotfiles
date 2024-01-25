@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd --full-path ~/ws --min-depth 2 --max-depth 1 --type d | fzf)
+    selected=$(fd . ~/ws --maxdepth 1 | fzf)
 fi
 
 if [[ -z $selected ]]; then
