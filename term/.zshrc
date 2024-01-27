@@ -219,18 +219,8 @@ alias rmdir='rmdir -v'
 
 alias ls='exa -aF --color=auto --group-directories-first'
 alias cat='bat'
-alias py='python'
+alias grep='rg'
 
-alias gs='git status -s'
-alias gl='git log --oneline'
-alias ga='git add'
-alias gr='git remote'
-alias grs='git restore'
-alias gc='git commit'
-alias gp='git push'
-alias gpl='git pull'
-alias gd='git diff'
-alias gsw='git switch'
 
 # path
 LOCAL_BIN="$HOME/.local/bin"
