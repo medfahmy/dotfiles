@@ -41,7 +41,7 @@ o.showmode = false
 o.showcmd = true
 o.showmatch = true
 o.number = true
-o.relativenumber = false
+o.relativenumber = true
 o.ignorecase = true
 o.smartcase = true
 o.hidden = true
@@ -358,7 +358,7 @@ local on_attach = function(_, bufnr)
     nmap("<space>r", vim.lsp.buf.rename, "[R]e[n]ame")
     nmap("<space>a", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
-    nmap("<space>d", vim.lsp.buf.definition, "[G]oto [D]efinition")
+    nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
     nmap("<space>lr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
     nmap("<space>i", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
     nmap("<space>D", vim.lsp.buf.type_definition, "Type [D]efinition")
@@ -548,95 +548,56 @@ cmp.setup {
 }
 
 function bind(op, outer_opts)
-    outer_opts = outer_opts or { noremap = true, silent = true }
-
-    return function(lhs, rhs, opts)
-        opts = vim.tbl_extend("force", outer_opts, opts or {})
-        vim.keymap.set(op, lhs, rhs, opts)
-    end
 end
 
-map = bind("", { noremap = false })
-nmap = bind("n", { noremap = false })
-noremap = bind("", { noremap = false })
-nnoremap = bind("n")
-vnoremap = bind("v")
-inoremap = bind("i")
+local set = vim.keymap.set
 
+function map(op, lhs, rhs, opts)
+    opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
+    vim.keymap.set(op, lhs, rhs, opts)
+end
 
-vim.keymap.set(
-    { "n", "v" },
-    "<space>",
-    "<nop>",
-    { silent = true }
-)
-vim.keymap.set(
-    { "n", "v" },
-    "q:",
-    "<nop>",
-    { silent = true }
-)
-vim.keymap.set(
-    { "n", "v" },
-    "Q",
-    "<nop>",
-    { silent = true }
-)
+map({ "n", "v" }, "<space>", "<nop>")
+map({ "n", "v" }, "q:", "<nop>")
+map({ "n", "v" }, "Q", "<nop>")
 
-vim.keymap.set(
-    'n',
-    'k',
-    "v:count == 0 ? 'gk' : 'k'",
-    { expr = true, silent = true }
-)
-vim.keymap.set(
-    'n',
-    'j',
-    "v:count == 0 ? 'gj' : 'j'",
-    { expr = true, silent = true }
-)
-vim.keymap.set(
-    "n",
-    "<space>y",
-    '"+y',
-    { silent = true }
-)
-vim.keymap.set(
-    "n",
-    "<space>p",
-    '"+p',
-    { silent = true }
-)
+map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+map( "n", "<space>y", '"+y')
+map( "n", "<space>p", '"+p')
 
--- dont mutate jump list
-nnoremap("{", ":keepjumps normal! {<cr>")
-nnoremap("}", ":keepjumps normal! }<cr>")
---
+map("n", "<c-w>", "<c-w>w")
+
+-- jumplist mutations
+map("n", "k", '(v:count > 5 ? "m\'" . v:count : "") . \'k\'', { expr = true })
+map("n", "j", '(v:count > 5 ? "m\'" . v:count : "") . \'j\'', { expr = true })
+map( "n", "{", ":keepjumps normal! {<cr>")
+map( "n", "}", ":keepjumps normal! }<cr>")
+
 -- -- indenting selection while staying in visual mode
-vnoremap("<", "<gv")
-vnoremap(">", ">gv")
---
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+
 -- -- keeping it centered
-nnoremap("n", "nzzzv")
-nnoremap("N", "Nzzzv")
-nnoremap("J", "mzJ`z")
-nnoremap("<c-d>", "<c-d>zz")
-nnoremap("<c-u>", "<c-u>zz")
---
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+map("n", "J", "mzJ`z")
+map("n", "<c-d>", "<c-d>zz")
+map("n", "<c-u>", "<c-u>zz")
+map("n", "{", "{zz")
+map("n", "}", "}zz")
+
 -- -- undo break points
-inoremap(",", ",<c-g>u")
-inoremap(".", ".<c-g>u")
-inoremap("!", "!<c-g>u")
-inoremap("?", "?<c-g>u")
-inoremap("(", "(<c-g>u")
-inoremap(")", ")<c-g>u")
-inoremap("{", "{<c-g>u")
-inoremap("}", "}<c-g>u")
-inoremap("[", "[<c-g>u")
-inoremap("]", "]<c-g>u")
-inoremap("<", "<<c-g>u")
-inoremap(">", "><c-g>u")
---
--- -- jumplist mutations
-nnoremap("k", '(v:count > 5 ? "m\'" . v:count : "") . \'k\'', { expr = true })
-nnoremap("j", '(v:count > 5 ? "m\'" . v:count : "") . \'j\'', { expr = true })
+map("i", ",", ",<c-g>u")
+map("i", ".", ".<c-g>u")
+map("i", "!", "!<c-g>u")
+map("i", "?", "?<c-g>u")
+map("i", "(", "(<c-g>u")
+map("i", ")", ")<c-g>u")
+map("i", "{", "{<c-g>u")
+map("i", "}", "}<c-g>u")
+map("i", "[", "[<c-g>u")
+map("i", "]", "]<c-g>u")
+map("i", "<", "<<c-g>u")
+map("i", ">", "><c-g>u")
+
