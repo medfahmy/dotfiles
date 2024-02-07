@@ -1,0 +1,10 @@
+[user]
+	email = medfahmy99@gmail.com
+	name = medfahmy
+
+[merge]
+    conflictstyle = diff3
+[core]
+	editor = vim
+[init]
+	defaultBranch = main
