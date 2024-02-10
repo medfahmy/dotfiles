@@ -12,9 +12,13 @@ default_border none
 
 exec swaymsg "workspace 1; exec foot;"
 exec swaymsg "workspace 2; exec firefox;"
+exec swaymsg "workspace 3; exec chromium;"
+
+exec_always kanshi
+
+for_window [app_id="chromium"] gaps inner -20
 
 input type:keyboard {
-  # Capslock key should work as escape key
   # See /usr/share/X11/xkb/rules/xorg.lst for options
   xkb_options ctrl:nocaps
 }
@@ -165,9 +169,9 @@ set $menu kickoff
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    # bindsym $mod+s layout stacking
+    # bindsym $mod+w layout tabbed
+    # bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen

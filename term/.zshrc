@@ -1,6 +1,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+source /usr/share/nvm/init-nvm.sh
+
 # Enable colors and change prompt:
 autoload -U colors && colors
 # Load version control information
