@@ -93,6 +93,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    { "mfussenegger/nvim-dap" },
+    { "rcarriga/nvim-dap-ui" },
     {
         'projekt0n/github-nvim-theme',
         lazy = false,
@@ -199,8 +201,6 @@ require("lazy").setup({
         end,
     },
 }, {})
-
-
 
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -381,6 +381,8 @@ map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 map( "n", "<space>y", '"+y')
 map( "n", "<space>p", '"+p')
+map( "v", "<space>y", '"+y')
+map( "v", "<space>p", '"+p')
 
 map("n", "<c-w>", "<c-w>w")
 

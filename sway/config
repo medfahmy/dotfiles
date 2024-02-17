@@ -12,7 +12,6 @@ default_border none
 
 exec swaymsg "workspace 1; exec foot;"
 exec swaymsg "workspace 2; exec firefox;"
-exec swaymsg "workspace 3; exec chromium;"
 
 exec_always kanshi
 
