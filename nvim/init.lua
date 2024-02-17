@@ -147,9 +147,9 @@ require("lazy").setup({
             sections = {
                 lualine_a = { "mode" },
                 lualine_c = { "diff" },
-                -- lualine_x = {
-                --     { "diagnostics", sources = { "nvim_diagnostic" } },
-                -- },
+                lualine_x = {
+                    { "diagnostics", sources = { "nvim_diagnostic" } },
+                },
                 lualine_y = {
                     {
                         function()
@@ -229,7 +229,7 @@ vim.keymap.set("n", "<space>f", require("telescope.builtin").find_files, { desc 
 vim.keymap.set("n", "<space>th", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
 vim.keymap.set("n", "<space>tw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
 vim.keymap.set("n", "<space>tg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
--- vim.keymap.set("n", "<space>td", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
+vim.keymap.set("n", "<space>td", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
 require("nvim-treesitter.configs").setup {
     -- Add languages to be installed here that you want installed for treesitter
@@ -251,10 +251,10 @@ require("nvim-treesitter.configs").setup {
     },
 }
 
--- vim.keymap.set("n", "<space>[", vim.diagnostic.goto_prev)
--- vim.keymap.set("n", "<space>]", vim.diagnostic.goto_next)
--- vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
--- vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+vim.keymap.set("n", "<space>[", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "<space>]", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 
 local on_attach = function(_, bufnr)
     local nmap = function(keys, func, desc)
@@ -300,18 +300,18 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 local border = { " ", " ", " ", " ", " ", " ", " ", " " }
 
 local handlers = {
-    -- ["textDocument/publishDiagnostics"] = vim.lsp.with(
-    --     vim.lsp.diagnostic.on_publish_diagnostics,
-    --     {
-    --         virtual_text = false,
-    --         underline = false,
-    --         float = {
-    --             pad_top = 1,
-    --             pad_bottom = 1,
-    --             border = "single",
-    --         },
-    --     }
-    -- ),
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics,
+        {
+            virtual_text = true,
+            underline = false,
+            float = {
+                pad_top = 1,
+                pad_bottom = 1,
+                border = "single",
+            },
+        }
+    ),
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "single",
     }),
@@ -329,7 +329,7 @@ local config = {
     handlers = handlers,
 }
 
-local servers = { "rust_analyzer", "tsserver" }
+local servers = { "rust_analyzer", "tsserver", "gopls" }
 
 for _, server in ipairs(servers) do
     lspconfig[server].setup(config)
