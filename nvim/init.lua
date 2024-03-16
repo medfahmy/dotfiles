@@ -389,11 +389,11 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- -- keeping it centered
-map("n", "n", "nzzzv")
-map("n", "N", "Nzzzv")
-map("n", "J", "mzJ`z")
-map("n", "<c-d>", "<c-d>zz")
-map("n", "<c-u>", "<c-u>zz")
+-- map("n", "n", "nzzzv")
+-- map("n", "N", "Nzzzv")
+-- map("n", "J", "mzJ`z")
+-- map("n", "<c-d>", "<c-d>zz")
+-- map("n", "<c-u>", "<c-u>zz")
 -- map("n", "{", "{zz")
 -- map("n", "}", "}zz")
 
