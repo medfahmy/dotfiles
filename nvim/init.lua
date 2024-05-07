@@ -465,7 +465,7 @@ local highlights = {
     CursorColumn = { bg = colors.background },
     ColorColumn = { bg = colors.background },
     NormalFloat = { bg = colors.background },
-    Visual = { bg = "#222222" },
+    Visual = { bg = "#444444" },
     VisualNOS = { bg = colors.background },
     WarningMsg = { fg = colors.color3, bg = colors.background },
     DiffAdd = { bg = colors.background, fg = colors.color12 },
