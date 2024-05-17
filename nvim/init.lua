@@ -1,3 +1,5 @@
+vim.cmd[[set rtp^="/home/mohamed/.opam/ocaml5.1.1/share/ocp-indent/vim"]]
+
 local o = vim.o
 
 o.timeout = true
@@ -207,7 +209,7 @@ require("telescope").setup()
 
 pcall(require("telescope").load_extension, "fzf")
 
-vim.keymap.set("n", "<space>g", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
+-- vim.keymap.set("n", "<space>g", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 vim.keymap.set("n", "<space>b", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
 vim.keymap.set("n", "<space>/", function()
     -- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -225,10 +227,12 @@ vim.keymap.set("n", "<space>td", require("telescope.builtin").diagnostics, { des
 
 require("nvim-treesitter.configs").setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "tsx", "typescript", "vim", "markdown" },
+    -- ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "tsx", "typescript", "vim", "markdown", "ocaml", "haskell" },
+
+    -- ensure_installed
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-    auto_install = false,
+    auto_install = true,
 
     highlight = { enable = true },
     indent = { enable = true },
@@ -321,7 +325,7 @@ local config = {
     handlers = handlers,
 }
 
-local servers = { "rust_analyzer", "tsserver", "gopls" }
+local servers = { "rust_analyzer", "tsserver" }
 
 for _, server in ipairs(servers) do
     lspconfig[server].setup(config)
@@ -332,27 +336,27 @@ local cmp = require "cmp"
 
 cmp.setup {
     mapping = cmp.mapping.preset.insert {
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        -- ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete {},
         ["<CR>"] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         },
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
+        -- ["<Tab>"] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_next_item()
+        --     else
+        --         fallback()
+        --     end
+        -- end, { "i", "s" }),
+        -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_prev_item()
+        --     else
+        --         fallback()
+        --     end
+        -- end, { "i", "s" }),
     },
     sources = {
         { name = "nvim_lsp" },
@@ -425,14 +429,14 @@ local colors = {
     color1 = "#dddddd",
     color2 = "#99c794",
     color3 = "#fac863",
-    color5 = "#c594c5",
+    color5 = "#f99157",
     color12 = "#8097fb",
     color6 = "#99c794",
     color7 = "#b7b7b7",
     color8 = "#272727",
     color9 = "#ec5f67",
     color10 = "#99c794",
-    color11 = "#f99157",
+    color11 = "#c594c5",
     color14 = "#5fafd7",
     color13 = "#8250df",
     color4 = "#54aeff",
@@ -571,64 +575,64 @@ local highlights = {
     BuffLineBufOffClose = { fg = colors.color9, bg = colors.contrast },
     BuffLineTree = { bg = colors.background, fg = colors.white },
     BuffLineEmpty = { bg = colors.background, fg = colors.white },
-    TSAttribute = { fg = colors.color4 },
-    TSBoolean = { fg = colors.color4 },
-    TSCharacter = { fg = colors.color4 },
-    TSComment = { fg = colors.comment, italic = true },
-    TSConditional = { fg = colors.color11 },
-    TSConstant = { fg = colors.color4 },
-    TSConstBuiltin = { fg = colors.color4 },
-    TSConstMacro = { fg = colors.color5 },
-    TSConstructor = { fg = colors.color4 },
-    TSException = { fg = colors.color8 },
-    TSField = { fg = colors.color1 },
-    TSFloat = { fg = colors.color8 },
-    TSFunction = { fg = colors.color1 },
-    TSFuncBuiltin = { fg = colors.color14 },
-    TSFuncMacro = { fg = colors.color2 },
-    TSInclude = { fg = colors.color9 },
-    TSKeyword = { fg = colors.color11 },
-    TSKeywordFunction = { fg = colors.color4 },
-    TsKeywordOperator = { fg = colors.color4 },
-    TSKeywordReturn = { fg = colors.color4 },
-    TSLabel = { fg = colors.color4 },
-    TSMethod = { fg = colors.color12 },
-    TSNamespace = { fg = colors.color9 },
-    TSNumber = { fg = colors.color3 },
-    TSParameter = { fg = colors.color1 },
-    TSParameterReference = { fg = colors.color9 },
-    TSProperty = { fg = colors.color1 },
-    TSPunctDelimiter = { fg = colors.color7 },
-    TSPunctBracket = { fg = colors.color7 },
-    TSPunctSpecial = { fg = colors.color7 },
-    TSRepeat = { fg = colors.color11 },
-    TSString = { fg = colors.color2 },
-    TSStringRegex = { fg = colors.color2 },
-    TSStringEscape = { fg = colors.color4 },
-    TSStringSpecial = { fg = colors.color4 },
-    TSSymbol = { fg = colors.color14 },
-    TSTag = { fg = colors.color0 },
-    TSTagAttribute = { fg = colors.color1 },
-    TSTagDelimiter = { fg = colors.color7 },
-    TSText = { fg = colors.color7 },
-    TSStrong = { fg = colors.color7 },
-    TSEmphasis = { italic = true, fg = colors.color7 },
-    -- TSUnderline = { fg = colors.color5 },
-    TSStrike = { fg = colors.color7 },
-    TSTitle = { fg = colors.color3 },
-    TSLiteral = { fg = colors.color2 },
-    TSURI = { fg = colors.color3 },
-    TSMath = { fg = colors.color4 },
-    TSTextReference = { fg = colors.color12 },
-    TSEnvirontment = { fg = colors.color5 },
-    TSEnvironmentName = { fg = colors.color3 },
-    TSNote = { fg = colors.color8 },
-    TSWarning = { fg = colors.color0, bg = colors.color1 },
-    TSDanger = { fg = colors.color8 },
-    TSType = { fg = colors.color4 },
-    TSTypeBuiltin = { fg = colors.color4 },
-    TSVariable = { fg = colors.color7 },
-    TSVariableBuiltin = { fg = colors.color4 },
+    -- TSAttribute = { fg = colors.color4 },
+    -- TSBoolean = { fg = colors.color4 },
+    -- TSCharacter = { fg = colors.color4 },
+    -- TSComment = { fg = colors.comment, italic = true },
+    -- TSConditional = { fg = colors.color11 },
+    -- TSConstant = { fg = colors.color4 },
+    -- TSConstBuiltin = { fg = colors.color4 },
+    -- TSConstMacro = { fg = colors.color5 },
+    -- TSConstructor = { fg = colors.color4 },
+    -- TSException = { fg = colors.color8 },
+    -- TSField = { fg = colors.color1 },
+    -- TSFloat = { fg = colors.color8 },
+    -- TSFunction = { fg = colors.color1 },
+    -- TSFuncBuiltin = { fg = colors.color14 },
+    -- TSFuncMacro = { fg = colors.color2 },
+    -- TSInclude = { fg = colors.color9 },
+    -- TSKeyword = { fg = colors.color11 },
+    -- TSKeywordFunction = { fg = colors.color4 },
+    -- TsKeywordOperator = { fg = colors.color4 },
+    -- TSKeywordReturn = { fg = colors.color4 },
+    -- TSLabel = { fg = colors.color4 },
+    -- TSMethod = { fg = colors.color12 },
+    -- TSNamespace = { fg = colors.color9 },
+    -- TSNumber = { fg = colors.color3 },
+    -- TSParameter = { fg = colors.color1 },
+    -- TSParameterReference = { fg = colors.color9 },
+    -- TSProperty = { fg = colors.color1 },
+    -- TSPunctDelimiter = { fg = colors.color7 },
+    -- TSPunctBracket = { fg = colors.color7 },
+    -- TSPunctSpecial = { fg = colors.color7 },
+    -- TSRepeat = { fg = colors.color11 },
+    -- TSString = { fg = colors.color2 },
+    -- TSStringRegex = { fg = colors.color2 },
+    -- TSStringEscape = { fg = colors.color4 },
+    -- TSStringSpecial = { fg = colors.color4 },
+    -- TSSymbol = { fg = colors.color14 },
+    -- TSTag = { fg = colors.color0 },
+    -- TSTagAttribute = { fg = colors.color1 },
+    -- TSTagDelimiter = { fg = colors.color7 },
+    -- TSText = { fg = colors.color7 },
+    -- TSStrong = { fg = colors.color7 },
+    -- TSEmphasis = { italic = true, fg = colors.color7 },
+    -- -- TSUnderline = { fg = colors.color5 },
+    -- TSStrike = { fg = colors.color7 },
+    -- TSTitle = { fg = colors.color3 },
+    -- TSLiteral = { fg = colors.color2 },
+    -- TSURI = { fg = colors.color3 },
+    -- TSMath = { fg = colors.color4 },
+    -- TSTextReference = { fg = colors.color12 },
+    -- TSEnvirontment = { fg = colors.color5 },
+    -- TSEnvironmentName = { fg = colors.color3 },
+    -- TSNote = { fg = colors.color8 },
+    -- TSWarning = { fg = colors.color0, bg = colors.color1 },
+    -- TSDanger = { fg = colors.color8 },
+    -- TSType = { fg = colors.color4 },
+    -- TSTypeBuiltin = { fg = colors.color4 },
+    -- TSVariable = { fg = colors.color7 },
+    -- TSVariableBuiltin = { fg = colors.color4 },
 }
 
 for group, properties in pairs(highlights) do
