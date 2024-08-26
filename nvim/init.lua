@@ -95,7 +95,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    -- { "norcalli/nvim-colorizer.lua" },
+    { "norcalli/nvim-colorizer.lua" },
     -- { "mfussenegger/nvim-dap" },
     -- { "rcarriga/nvim-dap-ui" },
     -- {
@@ -141,31 +141,31 @@ require("lazy").setup({
             sections = {
                 lualine_a = { "mode" },
                 lualine_c = { "diff" },
-                lualine_x = {
-                    { "diagnostics", sources = { "nvim_diagnostic" } },
-                },
-                lualine_y = {
-                    {
-                        function()
-                            local msg = ""
-                            local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-                            local clients = vim.lsp.get_active_clients()
-                            if next(clients) == nil then
-                                return msg
-                            end
-                            for _, client in ipairs(clients) do
-                                local filetypes = client.config.filetypes
-                                if
-                                    filetypes
-                                    and vim.fn.index(filetypes, buf_ft) ~= -1
-                                then
-                                    msg = msg .. " " .. client.name
-                                end
-                            end
-                            return msg
-                        end,
-                    },
-                },
+                -- lualine_x = {
+                --     { "diagnostics", sources = { "nvim_diagnostic" } },
+                -- },
+                -- lualine_y = {
+                --     {
+                --         function()
+                --             local msg = ""
+                --             local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+                --             local clients = vim.lsp.get_active_clients()
+                --             if next(clients) == nil then
+                --                 return msg
+                --             end
+                --             for _, client in ipairs(clients) do
+                --                 local filetypes = client.config.filetypes
+                --                 if
+                --                     filetypes
+                --                     and vim.fn.index(filetypes, buf_ft) ~= -1
+                --                 then
+                --                     msg = msg .. " " .. client.name
+                --                 end
+                --             end
+                --             return msg
+                --         end,
+                --     },
+                -- },
                 lualine_z = { "branch" },
                 lualine_b = { { "filename", path = 1 } },
             },
@@ -247,10 +247,6 @@ require("nvim-treesitter.configs").setup {
     -- },
 }
 
--- vim.keymap.set("n", "<space>[", vim.diagnostic.goto_prev)
--- vim.keymap.set("n", "<space>]", vim.diagnostic.goto_next)
--- vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
--- vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 
 -- local on_attach = function(_, bufnr)
 --     local nmap = function(keys, func, desc)
@@ -284,17 +280,22 @@ require("nvim-treesitter.configs").setup {
 --     nmap("<space>gf", function(_)
 --         vim.lsp.buf.format()
 --     end, "Format current buffer with LSP")
+--
+--     nmap("<space>[", vim.diagnostic.goto_prev)
+--     nmap("<space>]", vim.diagnostic.goto_next)
+--     nmap("<space>e", vim.diagnostic.open_float)
+--     nmap("<space>q", vim.diagnostic.setloclist)
 -- end
 
 
 -- require("neodev").setup()
-
+--
 -- local lspconfig = require("lspconfig")
-
+--
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-
+--
 -- local border = { " ", " ", " ", " ", " ", " ", " ", " " }
-
+--
 -- local handlers = {
 --     ["textDocument/publishDiagnostics"] = vim.lsp.with(
 --         vim.lsp.diagnostic.on_publish_diagnostics,
@@ -318,20 +319,20 @@ require("nvim-treesitter.configs").setup {
 --         }
 --     ),
 -- }
-
+--
 -- local config = {
 --     on_attach = on_attach,
 --     capabilities = capabilities,
 --     handlers = handlers,
 -- }
-
--- local servers = { "rust_analyzer", "tsserver" }
-
+--
+-- local servers = { "rust_analyzer" }
+--
 -- for _, server in ipairs(servers) do
 --     lspconfig[server].setup(config)
 -- end
-
-
+--
+--
 -- local cmp = require "cmp"
 --
 -- cmp.setup {
@@ -362,7 +363,7 @@ require("nvim-treesitter.configs").setup {
 --         { name = "nvim_lsp" },
 --     },
 -- }
---
+
 
 function map(op, lhs, rhs, opts)
     opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
