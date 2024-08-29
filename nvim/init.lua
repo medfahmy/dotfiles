@@ -1,5 +1,3 @@
-vim.cmd[[set rtp^="/home/mohamed/.opam/ocaml5.1.1/share/ocp-indent/vim"]]
-
 local o = vim.o
 
 o.timeout = true
@@ -29,8 +27,8 @@ o.ignorecase = true
 o.smartcase = true
 o.hidden = true
 o.cursorline = true
--- o.colorcolumn = "80"
--- o.cursorlineopt = "number"
+o.colorcolumn = "80"
+o.cursorlineopt = "number"
 o.equalalways = false
 o.splitright = true
 o.splitbelow = false
@@ -96,21 +94,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     { "norcalli/nvim-colorizer.lua" },
-    -- { "mfussenegger/nvim-dap" },
-    -- { "rcarriga/nvim-dap-ui" },
-    -- {
-    --     "neovim/nvim-lspconfig",
-    --     dependencies = {
-    --         { "j-hui/fidget.nvim", opts = {} },
-    --         "folke/neodev.nvim",
-    --     },
-    -- },
-    -- {
-    --     "hrsh7th/nvim-cmp",
-    --     dependencies = {
-    --         "hrsh7th/cmp-nvim-lsp",
-    --     },
-    -- },
     {
         "folke/which-key.nvim",
         opts = {}
@@ -124,50 +107,6 @@ require("lazy").setup({
                 delete = { text = "_" },
                 topdelete = { text = "‾" },
                 changedelete = { text = "~" },
-            },
-        },
-    },
-    {
-        "nvim-lualine/lualine.nvim",
-        opts = {
-            options = {
-                icons_enabled = false,
-                theme = "onedark",
-                section_separators = { "█▎", "█▎" },
-                component_separators = { "▎", "▎" },
-                disabled_filetypes = {},
-                always_divide_middle = true,
-            },
-            sections = {
-                lualine_a = { "mode" },
-                lualine_c = { "diff" },
-                -- lualine_x = {
-                --     { "diagnostics", sources = { "nvim_diagnostic" } },
-                -- },
-                -- lualine_y = {
-                --     {
-                --         function()
-                --             local msg = ""
-                --             local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-                --             local clients = vim.lsp.get_active_clients()
-                --             if next(clients) == nil then
-                --                 return msg
-                --             end
-                --             for _, client in ipairs(clients) do
-                --                 local filetypes = client.config.filetypes
-                --                 if
-                --                     filetypes
-                --                     and vim.fn.index(filetypes, buf_ft) ~= -1
-                --                 then
-                --                     msg = msg .. " " .. client.name
-                --                 end
-                --             end
-                --             return msg
-                --         end,
-                --     },
-                -- },
-                lualine_z = { "branch" },
-                lualine_b = { { "filename", path = 1 } },
             },
         },
     },
@@ -186,12 +125,6 @@ require("lazy").setup({
         build = "make",
         cond = function()
             return vim.fn.executable "make" == 1
-        end,
-    },
-    {
-        "nvim-treesitter/nvim-treesitter",
-        config = function()
-            pcall(require("nvim-treesitter.install").update { with_sync = true })
         end,
     },
 }, {})
@@ -225,146 +158,6 @@ vim.keymap.set("n", "<space>tw", require("telescope.builtin").grep_string, { des
 vim.keymap.set("n", "<space>tg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
 vim.keymap.set("n", "<space>td", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
-require("nvim-treesitter.configs").setup {
-    -- Add languages to be installed here that you want installed for treesitter
-    -- ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "tsx", "typescript", "vim", "markdown", "ocaml", "haskell" },
-
-    -- ensure_installed
-
-    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-    auto_install = true,
-
-    highlight = { enable = true },
-    indent = { enable = true },
-    -- incremental_selection = {
-    --     enable = true,
-    --     keymaps = {
-    --         init_selection = "<c-space>",
-    --         node_incremental = "<c-space>",
-    --         scope_incremental = "<c-s>",
-    --         node_decremental = "<M-space>",
-    --     },
-    -- },
-}
-
-
--- local on_attach = function(_, bufnr)
---     local nmap = function(keys, func, desc)
---         if desc then
---             desc = "LSP: " .. desc
---         end
---
---         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
---     end
---
---     nmap("<space>r", vim.lsp.buf.rename, "[R]e[n]ame")
---     nmap("<space>la", vim.lsp.buf.code_action, "[C]ode [A]ction")
---
---     nmap("<space>d", vim.lsp.buf.definition, "[G]oto [D]efinition")
---     nmap("<space>lr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
---     nmap("<space>li", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
---     nmap("<space>ld", vim.lsp.buf.type_definition, "Type [D]efinition")
---     nmap("<space>ls", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
---     nmap("<space>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
---
---     nmap("<space>h", vim.lsp.buf.hover, "Hover Documentation")
---     nmap("<space>k", vim.lsp.buf.signature_help, "Signature Documentation")
---
---     nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
---     nmap("<space>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
---     nmap("<space>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
---     nmap("<space>wl", function()
---         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
---     end, "[W]orkspace [L]ist Folders")
---
---     nmap("<space>gf", function(_)
---         vim.lsp.buf.format()
---     end, "Format current buffer with LSP")
---
---     nmap("<space>[", vim.diagnostic.goto_prev)
---     nmap("<space>]", vim.diagnostic.goto_next)
---     nmap("<space>e", vim.diagnostic.open_float)
---     nmap("<space>q", vim.diagnostic.setloclist)
--- end
-
-
--- require("neodev").setup()
---
--- local lspconfig = require("lspconfig")
---
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
---
--- local border = { " ", " ", " ", " ", " ", " ", " ", " " }
---
--- local handlers = {
---     ["textDocument/publishDiagnostics"] = vim.lsp.with(
---         vim.lsp.diagnostic.on_publish_diagnostics,
---         {
---             virtual_text = false,
---             underline = false,
---             float = {
---                 pad_top = 1,
---                 pad_bottom = 1,
---                 border = "single",
---             },
---         }
---     ),
---     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
---         border = "single",
---     }),
---     ["textDocument/signatureHelp"] = vim.lsp.with(
---         vim.lsp.handlers.signature_help,
---         {
---             border = border,
---         }
---     ),
--- }
---
--- local config = {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     handlers = handlers,
--- }
---
--- local servers = { "rust_analyzer" }
---
--- for _, server in ipairs(servers) do
---     lspconfig[server].setup(config)
--- end
---
---
--- local cmp = require "cmp"
---
--- cmp.setup {
---     mapping = cmp.mapping.preset.insert {
---         -- ["<C-d>"] = cmp.mapping.scroll_docs(-4),
---         -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
---         ["<C-Space>"] = cmp.mapping.complete {},
---         ["<CR>"] = cmp.mapping.confirm {
---             behavior = cmp.ConfirmBehavior.Replace,
---             select = true,
---         },
---         -- ["<Tab>"] = cmp.mapping(function(fallback)
---         --     if cmp.visible() then
---         --         cmp.select_next_item()
---         --     else
---         --         fallback()
---         --     end
---         -- end, { "i", "s" }),
---         -- ["<S-Tab>"] = cmp.mapping(function(fallback)
---         --     if cmp.visible() then
---         --         cmp.select_prev_item()
---         --     else
---         --         fallback()
---         --     end
---         -- end, { "i", "s" }),
---     },
---     sources = {
---         { name = "nvim_lsp" },
---     },
--- }
-
-
 function map(op, lhs, rhs, opts)
     opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
     vim.keymap.set(op, lhs, rhs, opts)
@@ -394,13 +187,13 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- -- keeping it centered
--- map("n", "n", "nzzzv")
--- map("n", "N", "Nzzzv")
--- map("n", "J", "mzJ`z")
--- map("n", "<c-d>", "<c-d>zz")
--- map("n", "<c-u>", "<c-u>zz")
--- map("n", "{", "{zz")
--- map("n", "}", "}zz")
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+map("n", "J", "mzJ`z")
+map("n", "<c-d>", "<c-d>zz")
+map("n", "<c-u>", "<c-u>zz")
+map("n", "{", "{zz")
+map("n", "}", "}zz")
 
 -- -- undo break points
 map("i", ",", ",<c-g>u")
@@ -576,64 +369,6 @@ local highlights = {
     BuffLineBufOffClose = { fg = colors.color9, bg = colors.contrast },
     BuffLineTree = { bg = colors.background, fg = colors.white },
     BuffLineEmpty = { bg = colors.background, fg = colors.white },
-    -- TSAttribute = { fg = colors.color4 },
-    -- TSBoolean = { fg = colors.color4 },
-    -- TSCharacter = { fg = colors.color4 },
-    -- TSComment = { fg = colors.comment, italic = true },
-    -- TSConditional = { fg = colors.color11 },
-    -- TSConstant = { fg = colors.color4 },
-    -- TSConstBuiltin = { fg = colors.color4 },
-    -- TSConstMacro = { fg = colors.color5 },
-    -- TSConstructor = { fg = colors.color4 },
-    -- TSException = { fg = colors.color8 },
-    -- TSField = { fg = colors.color1 },
-    -- TSFloat = { fg = colors.color8 },
-    -- TSFunction = { fg = colors.color1 },
-    -- TSFuncBuiltin = { fg = colors.color14 },
-    -- TSFuncMacro = { fg = colors.color2 },
-    -- TSInclude = { fg = colors.color9 },
-    -- TSKeyword = { fg = colors.color11 },
-    -- TSKeywordFunction = { fg = colors.color4 },
-    -- TsKeywordOperator = { fg = colors.color4 },
-    -- TSKeywordReturn = { fg = colors.color4 },
-    -- TSLabel = { fg = colors.color4 },
-    -- TSMethod = { fg = colors.color12 },
-    -- TSNamespace = { fg = colors.color9 },
-    -- TSNumber = { fg = colors.color3 },
-    -- TSParameter = { fg = colors.color1 },
-    -- TSParameterReference = { fg = colors.color9 },
-    -- TSProperty = { fg = colors.color1 },
-    -- TSPunctDelimiter = { fg = colors.color7 },
-    -- TSPunctBracket = { fg = colors.color7 },
-    -- TSPunctSpecial = { fg = colors.color7 },
-    -- TSRepeat = { fg = colors.color11 },
-    -- TSString = { fg = colors.color2 },
-    -- TSStringRegex = { fg = colors.color2 },
-    -- TSStringEscape = { fg = colors.color4 },
-    -- TSStringSpecial = { fg = colors.color4 },
-    -- TSSymbol = { fg = colors.color14 },
-    -- TSTag = { fg = colors.color0 },
-    -- TSTagAttribute = { fg = colors.color1 },
-    -- TSTagDelimiter = { fg = colors.color7 },
-    -- TSText = { fg = colors.color7 },
-    -- TSStrong = { fg = colors.color7 },
-    -- TSEmphasis = { italic = true, fg = colors.color7 },
-    -- -- TSUnderline = { fg = colors.color5 },
-    -- TSStrike = { fg = colors.color7 },
-    -- TSTitle = { fg = colors.color3 },
-    -- TSLiteral = { fg = colors.color2 },
-    -- TSURI = { fg = colors.color3 },
-    -- TSMath = { fg = colors.color4 },
-    -- TSTextReference = { fg = colors.color12 },
-    -- TSEnvirontment = { fg = colors.color5 },
-    -- TSEnvironmentName = { fg = colors.color3 },
-    -- TSNote = { fg = colors.color8 },
-    -- TSWarning = { fg = colors.color0, bg = colors.color1 },
-    -- TSDanger = { fg = colors.color8 },
-    -- TSType = { fg = colors.color4 },
-    -- TSTypeBuiltin = { fg = colors.color4 },
-    -- TSVariable = { fg = colors.color7 },
-    -- TSVariableBuiltin = { fg = colors.color4 },
 }
 
 for group, properties in pairs(highlights) do
