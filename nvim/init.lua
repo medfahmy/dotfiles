@@ -73,6 +73,10 @@ o.formatoptions = ""
 
 
 vim.cmd([[
+    colorscheme habamax
+    hi Normal guibg=none
+    hi Visual guibg=gray
+
     set guioptions-=e
     set guioptions+=!
     set sessionoptions+=tabpages,globals
@@ -110,7 +114,6 @@ vim.cmd([[
     set statusline+=%{&ff}
     set statusline+=\ 
     set statusline+=%{strlen(&fenc)?&fenc:'none'}
-    hi StatusLine guibg=black guifg=white
 
     function! StatuslineMode()
       let l:mode=mode()
@@ -282,169 +285,3 @@ map("i", "[", "[<c-g>u")
 map("i", "]", "]<c-g>u")
 map("i", "<", "<<c-g>u")
 map("i", ">", "><c-g>u")
-
-
-local colors = {
-    comment = "#999999",
-    comment_light = "#999999",
-    contrast = "#191919",
-    background = "none",
-    black = "#121111",
-    foreground = "#dfdddd",
-    cursorline = "#111111",
-    cursor = "#dfdddd",
-    color0 = "#1b1b1b",
-    color1 = "#dddddd",
-    color2 = "#99c794",
-    color3 = "#fac863",
-    color5 = "#f99157",
-    color12 = "#8097fb",
-    color6 = "#99c794",
-    color7 = "#b7b7b7",
-    color8 = "#272727",
-    color9 = "#ec5f67",
-    color10 = "#99c794",
-    color11 = "#c594c5",
-    color14 = "#5fafd7",
-    color13 = "#8250df",
-    color4 = "#54aeff",
-    color15 = "#d4d5d5",
-}
-
-local highlights = {
-    Normal = { fg = colors.foreground, bg = colors.background },
-    SignColumn = { bg = colors.background, fg = colors.background },
-    MsgArea = { fg = colors.foreground, bg = colors.background },
-    ModeMsg = { fg = colors.foreground, bg = colors.background },
-    MsgSeparator = { fg = colors.foreground, bg = colors.background },
-    SpellBad = { fg = colors.color2 },
-    SpellCap = { fg = colors.color12 },
-    SpellLocal = { fg = colors.color12 },
-    SpellRare = { fg = colors.color4 },
-    NormalNC = { fg = colors.foreground, bg = colors.background },
-    Pmenu = { fg = colors.foreground, bg = colors.background },
-    PmenuSel = { fg = colors.black, bg = colors.color4 },
-    WildMenu = { fg = colors.color7, bg = colors.color4 },
-    CursorLineNr = { fg = colors.color3 },
-    Comment = { fg = colors.comment, italic = true },
-    Folded = { fg = colors.color4, bg = colors.background },
-    FoldColumn = { fg = colors.color12, bg = colors.background },
-    LineNr = { fg = "#555555", bg = colors.background },
-    FloatBorder = { fg = colors.foreground, bg = colors.background },
-    Whitespace = { fg = colors.color0 },
-    VertSplit = { fg = colors.cursorline, bg = colors.background },
-    CursorLine = { bg = colors.cursorline },
-    CursorColumn = { bg = colors.background },
-    ColorColumn = { bg = colors.background },
-    NormalFloat = { bg = colors.background },
-    Visual = { bg = "#444444" },
-    VisualNOS = { bg = colors.background },
-    WarningMsg = { fg = colors.color3, bg = colors.background },
-    DiffAdd = { bg = colors.background, fg = colors.color12 },
-    DiffChange = { bg = colors.background, fg = colors.color5 },
-    DiffDelete = { bg = colors.background, fg = colors.color1 },
-    QuickFixLine = { bg = colors.color2 },
-    PmenuSbar = { bg = colors.background },
-    PmenuThumb = { bg = colors.color2 },
-    MatchParen = { fg = colors.color12, bg = colors.background },
-    Cursor = { fg = colors.comment, bg = colors.cursor },
-    lCursor = { fg = colors.foreground, bg = colors.cursor },
-    CursorIM = { fg = colors.foreground, bg = colors.cursor },
-    TermCursor = { fg = colors.foreground, bg = colors.cursor },
-    TermCursorNC = { fg = colors.foreground, bg = colors.cursor },
-    Conceal = { fg = colors.color4, bg = colors.background },
-    Directory = { fg = colors.color12 },
-    SpecialKey = { fg = colors.color12 },
-    Title = { fg = colors.color11 },
-    ErrorMsg = { fg = colors.color9, bg = colors.background },
-    Search = { fg = colors.background, bg = colors.color10 },
-    IncSearch = { fg = colors.background, bg = colors.color11 },
-    Substitute = { fg = colors.color3, bg = colors.color12 },
-    MoreMsg = { fg = colors.color5 },
-    Question = { fg = colors.color5 },
-    EndOfBuffer = { fg = colors.background },
-    NonText = { fg = "#666666" },
-    Variable = { fg = colors.color5 },
-    String = { fg = colors.color10 },
-    Character = { fg = colors.color3 },
-    Constant = { fg = colors.color4 },
-    Number = { fg = colors.color3 },
-    Boolean = { fg = colors.color3 },
-    Float = { fg = colors.color3 },
-    Identifier = { fg = colors.color1 },
-    Function = { fg = colors.color4 },
-    Operator = { fg = colors.color4 },
-    Type = { fg = colors.color12 },
-    StorageClass = { fg = colors.color3 },
-    Structure = { fg = colors.color12 },
-    Typedef = { fg = colors.color5 },
-    Keyword = { fg = colors.color11 },
-    Statement = { fg = colors.color5 },
-    Conditional = { fg = colors.color11 },
-    Repeat = { fg = colors.color11 },
-    Label = { fg = colors.color12 },
-    Exception = { fg = colors.color7 },
-    Include = { fg = colors.color5 },
-    PreProc = { fg = colors.color12 },
-    Define = { fg = colors.color12 },
-    Macro = { fg = colors.color12 },
-    PreCondit = { fg = colors.color12 },
-    Special = { fg = colors.color12 },
-    SpecialChar = { fg = colors.color12 },
-    Tag = { fg = colors.color15 },
-    Debug = { fg = colors.color13 },
-    Delimiter = { fg = colors.color7 },
-    SpecialComment = { fg = colors.color8 },
-    Ignore = { fg = colors.color7, bg = colors.background },
-    Todo = { fg = colors.color1, bg = colors.background },
-    Error = { fg = colors.color9, bg = colors.background },
-    TabLine = { fg = colors.color2, bg = colors.background },
-    TabLineSel = { fg = colors.foreground, bg = colors.background },
-    TabLineFill = { fg = colors.foreground, bg = colors.background },
-    IndentBlanklineChar = { fg = "#666666" },
-    TelescopePromptNormal = {
-        fg = colors.foreground,
-        bg = colors.background,
-    },
-    TelescopePromptPrefix = {
-        fg = colors.color1,
-        bg = colors.color8,
-    },
-    TelescopeNormal = { bg = colors.background },
-    TelescopePreviewTitle = {
-        fg = colors.cursorline,
-        bg = colors.cursorline,
-    },
-    TelescopePromptTitle = {
-        fg = colors.background,
-        bg = colors.color9,
-    },
-    TelescopeResultsTitle = {
-        fg = colors.cursorline,
-        bg = colors.cursorline,
-    },
-    TelescopeSelection = { bg = colors.color0, fg = colors.foreground },
-    TelescopeResultsDiffAdd = {
-        fg = colors.color10,
-    },
-    TelescopeResultsDiffChange = {
-        fg = colors.color11,
-    },
-    TelescopeResultsDiffDelete = {
-    fg = colors.color9,
-    },
-    GitSignsAdd = { fg = colors.color2 },
-    GitSignsChange = { fg = colors.color5 },
-    GitSignsDelete = { fg = colors.color1 },
-    BufflineBufOnActive = { bg = colors.color4, fg = colors.background },
-    BufflineBufOnInactive = { fg = colors.color7, bg = colors.contrast },
-    BuffLineBufOnModified = { bg = colors.color4, fg = colors.background },
-    BuffLineBufOnClose = { bg = colors.color4, fg = colors.background },
-    BuffLineBufOffClose = { fg = colors.color9, bg = colors.contrast },
-    BuffLineTree = { bg = colors.background, fg = colors.white },
-    BuffLineEmpty = { bg = colors.background, fg = colors.white },
-}
-
-for group, properties in pairs(highlights) do
-    vim.api.nvim_set_hl(0, group, properties)
-end
