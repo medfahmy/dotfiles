@@ -223,6 +223,15 @@ alias ls='exa -aF --color=auto --group-directories-first'
 alias cat='bat'
 alias grep='rg'
 
+alias gs='git status'
+alias gl='git log --oneline'
+alias ga='git add'
+alias gc='git commit'
+alias gca='git commit --amend --no-edit'
+alias gps='git push'
+alias gpl='git pull'
+alias gd='git diff'
+
 
 # path
 LOCAL_BIN="$HOME/.local/bin"
