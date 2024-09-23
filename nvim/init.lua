@@ -27,7 +27,7 @@ o.ignorecase = true
 o.smartcase = true
 o.hidden = true
 o.cursorline = true
-o.colorcolumn = "80"
+-- o.colorcolumn = "80"
 o.cursorlineopt = "number"
 o.equalalways = false
 o.splitright = true
@@ -49,7 +49,7 @@ o.belloff = "all"
 -- o.clipboard = "unnamedplus"
 o.inccommand = "split"
 o.mouse = o.mouse .. "a"
-o.laststatus = 3
+-- o.laststatus = 3
 o.shortmess = "aW"
 -- o.winbar = "%=%m\\ %f"
 o.errorbells = false
@@ -70,91 +70,12 @@ o.listchars = "eol:↴"
 o.fillchars = "eob: "
 o.formatoptions = ""
 
-
-
-vim.cmd([[
-    colorscheme habamax
-    hi Normal guibg=none
-    hi Visual guibg=gray
-
-    set guioptions-=e
-    set guioptions+=!
-    set sessionoptions+=tabpages,globals
-    set shellcmdflag-=ic
-    syntax enable
-
-    set laststatus=3
-    set statusline=
-    set statusline+=%{StatuslineMode()}
-    set statusline+=%=
-    set statusline+=%{b:gitbranch}
-    set statusline+=\ 
-    set statusline+=|
-    set statusline+=\ 
-    set statusline+=%F
-    set statusline+=\ 
-    set statusline+=|
-    set statusline+=\ 
-    set statusline+=%y
-    set statusline+=\ 
-    set statusline+=|
-    set statusline+=\ 
-    set statusline+=%l
-    set statusline+=\ 
-    set statusline+=%c
-    set statusline+=\ 
-    set statusline+=|
-    set statusline+=\ 
-    set statusline+=%P
-    set statusline+=\ 
-    set statusline+=%L
-    set statusline+=\ 
-    set statusline+=|
-    set statusline+=\ 
-    set statusline+=%{&ff}
-    set statusline+=\ 
-    set statusline+=%{strlen(&fenc)?&fenc:'none'}
-
-    function! StatuslineMode()
-      let l:mode=mode()
-      if l:mode==#"n"
-        return "NORMAL"
-      elseif l:mode==?"v"
-        return "VISUAL"
-      elseif l:mode==#"i"
-        return "INSERT"
-      elseif l:mode==#"R"
-        return "REPLACE"
-      elseif l:mode==?"s"
-        return "SELECT"
-      elseif l:mode==#"t"
-        return "TERMINAL"
-      elseif l:mode==#"c"
-        return "COMMAND"
-      elseif l:mode==#"!"
-        return "SHELL"
-      endif
-    endfunction
-
-    function! StatuslineGitBranch()
-      let b:gitbranch=""
-      if &modifiable
-        try
-          let l:dir=expand('%:p:h')
-          let l:gitrevparse = system("git -C ".l:dir." rev-parse --abbrev-ref HEAD")
-          if !v:shell_error
-            let b:gitbranch="(".substitute(l:gitrevparse, '\n', '', 'g').") "
-          endif
-        catch
-        endtry
-      endif
-    endfunction
-
-    augroup GetGitBranch
-      autocmd!
-      autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
-    augroup END
-]])
+-- vim.cmd([[
+--     set guioptions-=e
+--     set guioptions+=!
+--     set sessionoptions+=tabpages,globals
+--     set shellcmdflag-=ic
+-- ]])
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -170,22 +91,28 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    { "norcalli/nvim-colorizer.lua" },
     {
-        "folke/which-key.nvim",
-        opts = {}
+        "projekt0n/github-nvim-theme",
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
+        priority = 1000, -- make sure to load this before all the other start plugins
+        config = function()
+            require("github-theme").setup()
+            vim.cmd([[
+                colorscheme github_dark_high_contrast
+            ]])
+        end,
     },
     {
         "lewis6991/gitsigns.nvim",
-        opts = {
-            signs = {
-                add = { text = "+" },
-                change = { text = "~" },
-                delete = { text = "_" },
-                topdelete = { text = "‾" },
-                changedelete = { text = "~" },
-            },
-        },
+        -- opts = {
+        --     signs = {
+        --         add = { text = "+" },
+        --         change = { text = "~" },
+        --         delete = { text = "_" },
+        --         topdelete = { text = "‾" },
+        --         changedelete = { text = "~" },
+        --     },
+        -- },
     },
     {
         "rmagatti/auto-session",
@@ -204,6 +131,9 @@ require("lazy").setup({
             return vim.fn.executable "make" == 1
         end,
     },
+    {"folke/which-key.nvim", opts = {}},
+    {"norcalli/nvim-colorizer.lua", opts = {}},
+    {"ojroques/nvim-hardline", opts = {}},
 }, {})
 
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
@@ -215,7 +145,27 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     pattern = "*",
 })
 
-require("telescope").setup()
+require('hardline').setup {
+    bufferline = false,  -- disable bufferline
+    bufferline_settings = {
+        exclude_terminal = false,  -- don't show terminal buffers in bufferline
+        show_index = false,        -- show buffer indexes (not the actual buffer numbers) in bufferline
+    },
+    theme = 'default',   -- change theme
+    sections = {         -- define sections
+        {class = 'mode', item = require('hardline.parts.mode').get_item},
+        {class = 'high', item = require('hardline.parts.git').get_item, hide = 100},
+        {class = 'high', item = require('hardline.parts.filename').get_item},
+        '%<',
+        {class = 'med', item = '%='},
+        -- {class = 'high', item = require('hardline.parts.wordcount').get_item, hide = 100},
+        -- {class = 'error', item = require('hardline.parts.lsp').get_error},
+        -- {class = 'warning', item = require('hardline.parts.lsp').get_warning},
+        -- {class = 'high', item = require('hardline.parts.whitespace').get_item},
+        {class = 'high', item = require('hardline.parts.filetype').get_item, hide = 60},
+        {class = 'low', item = require('hardline.parts.line').get_item},
+    },
+}
 
 pcall(require("telescope").load_extension, "fzf")
 

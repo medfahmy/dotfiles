@@ -212,7 +212,6 @@ function clear-scrollback-buffer {
 zle -N clear-scrollback-buffer
 bindkey '^L' clear-scrollback-buffer
 
-
 alias cp='cp -v'
 alias mv='mv -v'
 alias rm='rm -v'
@@ -223,48 +222,13 @@ alias ls='exa -aF --color=auto --group-directories-first'
 alias cat='bat'
 alias grep='rg'
 
-alias gs='git status'
-alias gl='git log --oneline'
-alias ga='git add'
-alias gc='git commit'
-alias gca='git commit --amend --no-edit'
-alias gps='git push'
-alias gpl='git pull'
-alias gd='git diff'
-
-
 # path
-LOCAL_BIN="$HOME/.local/bin"
-LOCAL_SCRIPTS="$HOME/.local/scripts"
+BIN="$HOME/.local/bin"
+SCRIPTS="$HOME/.local/scripts"
 CARGO_HOME="$HOME/.cargo/bin"
 CARGO="$HOME/.cargo/bin/cargo"
 PYTHON="/usr/local/opt/python@3.10/libexec/bin"
-POETRY="$HOME/.local/share/poetry/bin"
-DENO="/Users/fahmymohamed/.deno/bin:$PATH"
 
+export PATH=$PATH:$BIN:$SCRIPTS:$CARGO_HOME:$PYTHON
 
-export PATH=$PATH:$LOCAL_BIN:$LOCAL_SCRIPTS:$CARGO_HOME:$PYTHON:$POETRY:$DENO
-
-export RUST_BACKTRACE=1
-export HOMEBREW_NO_ENV_HINTS=1
-export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
-
-export GOPATH="/Users/fahmymohamed/go"
-
-# Turso
-export PATH="/home/medfahmy/.turso:$PATH"
-
-# pnpm
-export PNPM_HOME="/home/medfahmy/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# opam configuration
-[[ ! -r /home/mohamed/.opam/opam-init/init.zsh ]] || source /home/mohamed/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export RUST_BACKTRACE=0
