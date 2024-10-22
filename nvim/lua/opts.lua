@@ -1,5 +1,6 @@
 local o = vim.o
 
+
 o.timeout = true
 o.timeoutlen = 300
 o.completeopt = "menuone,noselect"
@@ -27,7 +28,7 @@ o.ignorecase = true
 o.smartcase = true
 o.hidden = true
 o.cursorline = true
--- o.colorcolumn = "100"
+-- o.colorcolumn = "80"
 o.cursorlineopt = "number"
 o.equalalways = false
 o.splitright = true
