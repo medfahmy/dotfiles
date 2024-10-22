@@ -20,13 +20,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    -- {
-    --     "tjdevries/colorbuddy.nvim",
+    -- { 
+    --     "wadackel/vim-dogrun",
     --     config = function()
     --         vim.cmd('colorscheme retrobox')
     --         vim.cmd('hi Normal guibg=None')
     --     end,
     -- },
+    {
+        "tjdevries/colorbuddy.nvim",
+    },
     {
         "nvim-treesitter/nvim-treesitter",
         config = function()
@@ -148,3 +151,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 
+
+
+
+local hl_groups = vim.api.nvim_get_hl(0, {})
+
+for key, hl_group in pairs(hl_groups) do
+  if hl_group.italic then
+    vim.api.nvim_set_hl(0, key, vim.tbl_extend("force", hl_group, {italic = false}))
+  end
+end
