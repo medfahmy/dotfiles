@@ -44,7 +44,7 @@ Color.new('yellow', colors.cyan)
 -- Color.new('aqua', colors.sky)
 -- Color.new('cyan', colors.cyan)
 Color.new('purple', colors.purple)
-Color.new('violet', colors.magenta)
+Color.new('violet', '#8e6fbd')
 -- Color.new('orange', colors.cyan)
 -- Color.new('brown', colors.orane)
 

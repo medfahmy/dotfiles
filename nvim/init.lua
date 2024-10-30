@@ -23,6 +23,13 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
+    -- {
+    --     dir = "~/ws/scratch-buffer",
+    --     name = "shell",
+    --     config = function()
+    --         require("scratch-buffer").setup()
+    --     end,
+    -- },
     { "rust-lang/rust.vim" },
     -- { "arcticicestudio/nord-vim" },
     { "tjdevries/colorbuddy.nvim", },

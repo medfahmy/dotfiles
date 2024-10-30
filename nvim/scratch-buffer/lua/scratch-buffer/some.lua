@@ -1,0 +1,22 @@
+-- print("hello from shell-buffer")
+-- local current_line = vim.api.nvim_get_current_line()
+-- print("current line: ", current_line)
+--
+-- function toggle_todo()
+--     local unchecked = ' '
+--     local checked = ' '
+--     local current_line = vim.api.nvim_get_current_line()
+--     local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+--     local new_line = ""
+--
+--     if current_line:find(checked) then
+--         new_line = string.gsub(current_line, checked, '', 1)
+--     elseif current_line:find(unchecked) then
+--         new_line = string.gsub(current_line, unchecked, checked, 1)
+--     else
+--         local first_idx = string.len(current_line) - string.len(ltrim(current_line))
+--         new_line = string.insert(current_line, unchecked, first_idx)
+--     end
+--
+--     vim.api.nvim_buf_set_lines(0, row-1, row, true, {new_line})
+-- end

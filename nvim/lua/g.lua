@@ -29,29 +29,31 @@ vim.keymap.set("n", "<space>w", require("telescope.builtin").grep_string, { desc
 vim.keymap.set("n", "<space>g", require("telescope.builtin").live_grep, { desc = "find by grep" })
 
 
--- require("nvim-treesitter").setup {
---     -- Add languages to be installed here that you want installed for treesitter
---     ensure_installed = { "rust", "lua", "markdown_inline" },
---
---     -- ensure_installed
---
---     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
---     auto_install = true,
---
---     highlight = { enable = false },
---     indent = { enable = true },
---     -- incremental_selection = {
---     --     enable = true,
---     --     keymaps = {
---     --         init_selection = "<c-space>",
---     --         node_incremental = "<c-space>",
---     --         scope_incremental = "<c-s>",
---     --         node_decremental = "<M-space>",
---     --     },
---     -- },
--- }
+require("nvim-treesitter").setup {
+    -- Add languages to be installed here that you want installed for treesitter
+    ensure_installed = { "rust", "lua", "markdown_inline" },
 
-local on_attach = function(_, bufnr)
+    -- ensure_installed
+
+    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
+    auto_install = true,
+
+    highlight = { enable = true },
+    indent = { enable = true },
+    -- incremental_selection = {
+    --     enable = true,
+    --     keymaps = {
+    --         init_selection = "<c-space>",
+    --         node_incremental = "<c-space>",
+    --         scope_incremental = "<c-s>",
+    --         node_decremental = "<M-space>",
+    --     },
+    -- },
+}
+
+local on_attach = function(client, bufnr)
+    -- client.server_capabilities.semanticTokensProvider = nil
+
     local nmap = function(keys, func, desc)
         if desc then
             desc = "LSP: " .. desc
