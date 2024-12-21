@@ -1,10 +1,6 @@
 require("opts")
 require("maps")
 
-vim.g.markdown_fenced_languages = {
-  "ts=typescript"
-}
-
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
 
@@ -21,18 +17,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 require("lazy").setup({
-    -- {
-    --     dir = "~/ws/scratch-buffer",
-    --     name = "shell",
-    --     config = function()
-    --         require("scratch-buffer").setup()
-    --     end,
-    -- },
-    { "rust-lang/rust.vim" },
-    -- { "arcticicestudio/nord-vim" },
-    { "tjdevries/colorbuddy.nvim", },
+    {"sindrets/diffview.nvim"},
     {
         "nvim-treesitter/nvim-treesitter",
         config = function()
@@ -64,7 +50,6 @@ require("lazy").setup({
                         require'luasnip'.lsp_expand(args.body)
                     end
                 },
-
                 sources = {
                     { name = 'luasnip' },
                 },
@@ -104,8 +89,12 @@ require("lazy").setup({
     {"folke/which-key.nvim", opts = {}},
     {"norcalli/nvim-colorizer.lua", opts = {}},
     {"ojroques/nvim-hardline", opts = { }},
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    }
 }, {})
-
 
 require("g")
 require("colors")
