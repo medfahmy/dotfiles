@@ -19,6 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     {"sindrets/diffview.nvim"},
+    {"nvim-tree/nvim-tree.lua"} ,
     {
         "nvim-treesitter/nvim-treesitter",
         config = function()
@@ -69,10 +70,10 @@ require("lazy").setup({
             },
         },
     },
-    {
-        "rmagatti/auto-session",
-        opts = { log_level = "error" }
-    },
+    -- {
+    --     "rmagatti/auto-session",
+    --     opts = { log_level = "error" }
+    -- },
     { "numToStr/Comment.nvim", opts = {} },
     {
         "nvim-telescope/telescope-fzf-native.nvim",
@@ -89,11 +90,6 @@ require("lazy").setup({
     {"folke/which-key.nvim", opts = {}},
     {"norcalli/nvim-colorizer.lua", opts = {}},
     {"ojroques/nvim-hardline", opts = { }},
-    {
-        'stevearc/oil.nvim',
-        opts = {},
-        dependencies = { { "echasnovski/mini.icons", opts = {} } },
-    }
 }, {})
 
 require("g")

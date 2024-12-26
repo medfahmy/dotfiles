@@ -17,11 +17,11 @@ local colors = {
     white = "#D8DEE9",
     blue = "#61afef",
     orange = "#F99157",
-    cyan = "#5FB3B3",
     green = "#99C794",
     yellow = "#FAC863",
     blue = "#6699CC",
     purple = "#C594C5",
+    cyan = "#5FB3B3",
     brown = "#AB7967",
 }
 
@@ -45,13 +45,13 @@ highlight("Normal", colors.white, colors.none)
 highlight("Comment", colors.gray4, nil, "italic")
 highlight("Constant", colors.blue, nil)
 highlight("String", colors.green, nil)
-highlight("Identifier", colors.purple, nil)
-highlight("Function", colors.cyan, nil)
+highlight("Identifier", colors.cyan, nil)
+highlight("Function", colors.purple, nil)
 highlight("Statement", colors.blue, nil)
-highlight("PreProc", colors.purple, nil)
-highlight("Type", colors.purple, nil)
+highlight("PreProc", colors.cyan, nil)
+highlight("Type", colors.cyan, nil)
 highlight("Special", colors.yellow, nil)
-highlight("Underlined", colors.cyan, nil, "underline")
+highlight("Underlined", colors.purple, nil, "underline")
 highlight("Todo", colors.blue, nil, "bold")
 
 -- Set up cursor line and line number colors
@@ -59,7 +59,7 @@ highlight("CursorLine", nil, colors.gray1)
 highlight("CursorLineNr", colors.white, colors.gray1)
 
 -- Set up search highlighting
-highlight("Search", colors.none, colors.cyan)
+highlight("Search", colors.none, colors.purple)
 highlight("IncSearch", colors.none, colors.green)
 
 -- Set up status line and related groups
@@ -69,13 +69,13 @@ highlight("VertSplit", colors.gray3, nil)
 
 -- Set up error and warning groups
 highlight("Error", colors.blue, nil)
-highlight("Warning", colors.cyan, nil)
+highlight("Warning", colors.purple, nil)
 
 -- Set up syntax groups for highlighting
 highlight("Boolean", colors.orange, nil)
 highlight("Number", colors.orange, nil)
 highlight("Operator", colors.blue, nil)
-highlight("Type", colors.purple, nil)
+highlight("Type", colors.cyan, nil)
 highlight("StorageClass", colors.brown, nil)
 
 -- Set up the color for line numbers
