@@ -7,6 +7,7 @@
 --
 -- Define the colors
 local colors = {
+    -- none = "#0F1B22",
     none = "none",
     gray1 = "#343D46",
     gray2 = "#4F5B66",

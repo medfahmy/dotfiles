@@ -1,0 +1,63 @@
+theme = Oceanic-Next
+
+# ghostty +show-config --default --docs
+# ghostty +list-themes
+#
+
+background = 0f1b22
+
+font-family                    = Symbols Nerd Font Mono
+font-family                    = Iosevka Term
+
+font-feature                   = calt
+font-feature                   = dlig
+font-feature                   = ss05
+
+font-size                      = 16
+window-inherit-font-size       = true
+
+window-padding-x = 10
+window-padding-y = 10
+
+
+# Look and Feel
+adjust-cursor-thickness        = 3
+adjust-underline-position      = 3
+bold-is-bright                 = true
+link-url                       = true
+mouse-hide-while-typing        = true
+window-vsync                   = true
+
+# Other
+clipboard-paste-protection     = true
+clipboard-trim-trailing-spaces = true
+copy-on-select                 = true
+macos-auto-secure-input        = true
+macos-secure-input-indication  = true
+scrollback-limit               = 4200
+shell-integration              = zsh
+shell-integration-features     = no-cursor,sudo,title
+
+window-save-state = always
+macos-non-native-fullscreen = true
+
+adjust-cell-height = 10%
+
+cursor-style = bar
+shell-integration-features = true
+
+window-padding-x = 8
+window-padding-y = 8
+
+confirm-close-surface = true
+
+window-save-state = always
+cursor-click-to-move = true
+
+window-vsync = true
+
+minimum-contrast = 1
+
+unfocused-split-opacity = 0.8
+
+macos-secure-input-indication = false
