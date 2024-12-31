@@ -88,9 +88,9 @@ local on_attach = function(client, bufnr)
     --     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     -- end, "[W]orkspace [L]ist Folders")
 
-    nmap("<space>lf", function(_)
+    map("<space>lf", function(_)
         vim.lsp.buf.format()
-    end, "format")
+    end, "Format buffer")
 end
 
 require("neodev").setup()
