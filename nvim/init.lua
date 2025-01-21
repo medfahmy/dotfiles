@@ -1,5 +1,5 @@
-require("opts")
 require("maps")
+require("opts")
 
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
@@ -18,6 +18,34 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    {
+        "ej-shafran/compile-mode.nvim",
+        tag = "v5.*",
+        -- you can just use the latest version:
+        -- branch = "latest",
+        -- or the most up-to-date updates:
+        -- branch = "nightly",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            -- if you want to enable coloring of ANSI escape codes in
+            -- compilation output, add:
+            -- { "m00qek/baleia.nvim", tag = "v1.3.0" },
+        },
+        config = function()
+            ---@type CompileModeOpts
+            vim.g.compile_mode = {
+                -- to add ANSI escape code support, add:
+                -- baleia_setup = true,
+            }
+        end
+    },
+    -- {
+    --     dir = "~/workspace/scratch-buffer.nvim",
+    --     name = "scratch-buffer",
+    --     config = function()
+    --         require("scratch-buffer").setup()
+    --     end,
+    -- },
     {"sindrets/diffview.nvim"},
     {"nvim-tree/nvim-tree.lua"} ,
     {
@@ -92,8 +120,8 @@ require("lazy").setup({
     {"ojroques/nvim-hardline", opts = { }},
 }, {})
 
-require("g")
 require("colors")
+require("g")
 
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {

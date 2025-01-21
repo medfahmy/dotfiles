@@ -3,6 +3,7 @@ function map(op, lhs, rhs, opts)
     vim.keymap.set(op, lhs, rhs, opts)
 end
 
+
 map({ "n", "v" }, "<>", "<nop>")
 map({ "n", "v" }, "q:", "<nop>")
 map({ "n", "v" }, "Q", "<nop>")
@@ -14,7 +15,7 @@ map( "n", "<space>p", '"+p')
 map( "v", "<space>y", '"+y')
 map( "v", "<space>p", '"+p')
 
-map("n", "<c-w>", "<c-w>w")
+map("n", "<space>w", "<c-w>w")
 
 -- jumplist mutations
 map("n", "k", '(v:count > 5 ? "m\'" . v:count : "") . \'k\'', { expr = true })
