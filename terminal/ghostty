@@ -2,18 +2,18 @@ theme = Oceanic-Next
 
 # ghostty +show-config --default --docs
 # ghostty +list-themes
-#
 
 background = 0f1b22
 
 font-family                    = Symbols Nerd Font Mono
 font-family                    = Iosevka Term
 
+
 font-feature                   = -calt
 font-feature                   = -dlig
 font-feature                   = -ss05
 
-font-size                      = 16
+font-size                      = 14
 window-inherit-font-size       = true
 
 window-padding-x = 10

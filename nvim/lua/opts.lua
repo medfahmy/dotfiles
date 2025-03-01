@@ -67,8 +67,8 @@ o.signcolumn = "yes"
 -- o.cmdheight = 2
 o.updatetime = 50
 o.list = true
-o.listchars = "eol:↴"
-o.fillchars = "eob: "
+-- o.listchars = "eol:↴"
+-- o.fillchars = "eob: "
 o.formatoptions = ""
 
 -- vim.cmd([[

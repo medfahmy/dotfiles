@@ -31,6 +31,7 @@ end
 vim.cmd('colorscheme default')
 
 highlight("Normal", colors.white, colors.none)
+highlight("Visual", nil, colors.gray2)
 highlight("Comment", colors.gray4, nil, "italic")
 highlight("Constant", colors.blue, nil)
 highlight("String", colors.green, nil)
@@ -44,7 +45,7 @@ highlight("Underlined", colors.purple, nil, "underline")
 highlight("Todo", colors.blue, nil, "bold")
 
 highlight("CursorLine", nil, colors.gray1)
-highlight("CursorLineNr", colors.white, colors.gray1)
+highlight("CursorLineNr", colors.yellow, colors.gray1)
 
 highlight("Search", colors.none, colors.purple)
 highlight("IncSearch", colors.none, colors.green)

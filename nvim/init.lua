@@ -18,6 +18,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    -- {
+    --     "rjshkhr/shadow.nvim",
+    --     priority = 1000,
+    --     config = function()
+    --         vim.opt.termguicolors = true
+    --         vim.cmd.colorscheme("shadow")
+    --     end,
+    -- },
     {
         "ej-shafran/compile-mode.nvim",
         tag = "v5.*",
