@@ -7,15 +7,15 @@ local colors = {
     gray4 = "#A7ADBA",
     gray5 = "#C0C5CE",
     gray6 = "#CDD3DE",
-    white = "#D8DEE9",
+    white = "#c8ccc9",
     blue = "#61afef",
-    orange = "#F99157",
+    orange = "#c99157",
     green = "#99C794",
-    yellow = "#FAC863",
+    yellow = "#eAb863",
     blue = "#6699CC",
-    purple = "#C594C5",
+    purple = "#a494C5",
     cyan = "#5FB3B3",
-    brown = "#AB7967",
+    brown = "#A07967",
 }
 
 vim.o.background = "dark"
@@ -32,7 +32,7 @@ vim.cmd('colorscheme default')
 
 highlight("Normal", colors.white, colors.none)
 highlight("Visual", nil, colors.gray2)
-highlight("Comment", colors.gray4, nil, "italic")
+highlight("Comment", colors.gray3, nil, "italic")
 highlight("Constant", colors.blue, nil)
 highlight("String", colors.green, nil)
 highlight("Identifier", colors.cyan, nil)
@@ -76,9 +76,9 @@ highlight("PmenuThumb", colors.gray4, nil)
 
 vim.cmd [[
   hi GitSignsAdd          guifg=#99C794 guibg=NONE gui=bold
-  hi GitSignsChange       guifg=#FAC863 guibg=NONE gui=italic
-  hi GitSignsDelete       guifg=#EC5f67 guibg=NONE gui=bold
+  hi GitSignsChange       guifg=#eab813  guibg=NONE gui=italic
+  hi GitSignsDelete       guifg=#dC5f67 guibg=NONE gui=bold
   hi GitSignsAddLn        guifg=#99C794 guibg=NONE
-  hi GitSignsChangeLn     guifg=#FAC863 guibg=NONE
-  hi GitSignsDeleteLn     guifg=#EC5f67 guibg=NONE
+  hi GitSignsChangeLn     guifg=#eab813 guibg=NONE
+  hi GitSignsDeleteLn     guifg=#dC5f67 guibg=NONE
 ]]
