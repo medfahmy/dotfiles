@@ -13,7 +13,7 @@ config.window_close_confirmation = 'NeverPrompt'
 config.color_scheme = 'Oceanic-Next'
 
 config.font = wezterm.font 'Iosevka Term'
-config.font_size = 15.0
+config.font_size = 16.0
 config.cell_width = 1.05
 
 config.enable_tab_bar = false
