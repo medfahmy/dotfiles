@@ -98,18 +98,19 @@ local lsp = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local border = { " ", " ", " ", " ", " ", " ", " ", " " }
 local handlers = {
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(
-        vim.lsp.diagnostic.on_publish_diagnostics,
-        {
-            virtual_text = false,
-            underline = false,
-            float = {
-                pad_top = 1,
-                pad_bottom = 1,
-                border = "single",
-            },
-        }
-    ),
+    -- ["textDocument/publishDiagnostics"] = vim.lsp.with(
+    --     vim.lsp.diagnostic.on_publish_diagnostics,
+    --     {
+    --         virtual_text = true,
+    --         underline = true,
+    --         virtual_lines = true,
+    --         float = {
+    --             pad_top = 1,
+    --             pad_bottom = 1,
+    --             border = "single",
+    --         },
+    --     }
+    -- ),
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "single",
     }),
@@ -127,14 +128,14 @@ local config = {
     handlers = handlers,
 }
 
-local servers = { "rust_analyzer", "sqlls", "denols" }
+local servers = { "rust_analyzer" }
 
-lsp.denols.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    handlers = handlers,
-    root_dir = lsp.util.root_pattern("deno.json", "deno.jsonc"),
-}
+-- lsp.denols.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     handlers = handlers,
+--     root_dir = lsp.util.root_pattern("deno.json", "deno.jsonc"),
+-- }
 
 for _, server in ipairs(servers) do
     lsp[server].setup(config)

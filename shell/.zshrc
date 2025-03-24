@@ -19,6 +19,7 @@ setopt PROMPT_SUBST
 BRANCH='%F{green}${vcs_info_msg_0_} '
 # PS1=" %B%F{magenta}%~%f%b $BRANCH%(?.%F{cyan}>.%F{red}[%?] >)%f  "
 PS1=" %F{magenta}%~%f%b $BRANCH%F{cyan}>%f  "
+# PS1=" %F{magenta}%~%f%b $BRANCH%F %f"
 # PROMPT=" %B%F{magenta}%~%f%b %(?.%F{cyan}>.%F{red}[%?] >)%f "
 
 # History in cache directory

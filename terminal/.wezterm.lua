@@ -20,5 +20,4 @@ config.enable_tab_bar = false
 
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
-
 return config
