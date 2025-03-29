@@ -13,15 +13,35 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     {
+        'ThePrimeagen/harpoon',
+        config = function()
+            opts = { noremap = true, silent = true }
+
+            vim.keymap.set("n", "<space>m", function()
+                require("harpoon.mark").add_file()
+            end, opts)
+            vim.keymap.set("n", "<space>n", function()
+                require("harpoon.ui").toggle_quick_menu()
+            end, opts)
+
+            vim.keymap.set("n", "<space>b", function()
+                require("harpoon.ui").nav_next()
+            end, opts)
+
+            -- :lua require("harpoon.ui").nav_file(3)                  -- navigates to file 3
+            --
+            -- you can also cycle the list in both directions
+            --
+            -- :lua require("harpoon.ui").nav_next()                   -- navigates to next mark
+            -- :lua require("harpoon.ui").nav_prev()
+        end,
+    },
+    {
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
         config = function()
             vim.cmd"colorscheme tokyonight-night"
---             colorscheme tokyonight-night
--- colorscheme tokyonight-storm
--- colorscheme tokyonight-day
--- colorscheme tokyonight-moon
             vim.cmd"hi Normal guibg=none"
         end,
     },
@@ -38,27 +58,27 @@ require("lazy").setup({
     --         vim.cmd.colorscheme("shadow")
     --     end,
     -- },
-    {
-        "ej-shafran/compile-mode.nvim",
-        tag = "v5.*",
-        -- you can just use the latest version:
-        -- branch = "latest",
-        -- or the most up-to-date updates:
-        -- branch = "nightly",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            -- if you want to enable coloring of ANSI escape codes in
-            -- compilation output, add:
-            -- { "m00qek/baleia.nvim", tag = "v1.3.0" },
-        },
-        config = function()
-            ---@type CompileModeOpts
-            vim.g.compile_mode = {
-                -- to add ANSI escape code support, add:
-                -- baleia_setup = true,
-            }
-        end
-    },
+    -- {
+    --     "ej-shafran/compile-mode.nvim",
+    --     tag = "v5.*",
+    --     -- you can just use the latest version:
+    --     -- branch = "latest",
+    --     -- or the most up-to-date updates:
+    --     -- branch = "nightly",
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --         -- if you want to enable coloring of ANSI escape codes in
+    --         -- compilation output, add:
+    --         -- { "m00qek/baleia.nvim", tag = "v1.3.0" },
+    --     },
+    --     config = function()
+    --         ---@type CompileModeOpts
+    --         vim.g.compile_mode = {
+    --             -- to add ANSI escape code support, add:
+    --             -- baleia_setup = true,
+    --         }
+    --     end
+    -- },
     -- {
     --     dir = "~/workspace/scratch-buffer.nvim",
     --     name = "scratch-buffer",
