@@ -28,12 +28,9 @@ vim.keymap.set("n", "<space>th", require("telescope.builtin").help_tags, { desc 
 -- vim.keymap.set("n", "<space>w", require("telescope.builtin").grep_string, { desc = "find word by file" })
 vim.keymap.set("n", "<space>tg", require("telescope.builtin").live_grep, { desc = "find by grep" })
 
-
 require("nvim-treesitter").setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { "rust", "lua", "markdown_inline", "go", "elm", "http" },
-
-    -- ensure_installed
+    ensure_installed = { "rust", "wgsl", "lua", "markdown", "markdown_inline", "elm", "http",  "javascript" },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = true,
@@ -63,10 +60,15 @@ local on_attach = function(client, bufnr)
     end
 
     map("<space>d", vim.lsp.buf.definition, "goto definition")
-    map("<space>h", vim.lsp.buf.hover, "hover")
     map("<space>r", vim.lsp.buf.rename, "rename")
 
-    map("<space>e", vim.diagnostic.open_float, "show error")
+    map("<space>h", function() vim.lsp.buf.hover({
+        border = "single",
+    }) end, "hover")
+
+    map("<space>e", function() vim.diagnostic.open_float({
+        border = "single",
+    }) end, "show error")
     map("<space>[", vim.diagnostic.goto_prev, "prev error")
     map("<space>]", vim.diagnostic.goto_next, "next error")
 
@@ -96,28 +98,21 @@ end
 require("neodev").setup()
 local lsp = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-local border = { " ", " ", " ", " ", " ", " ", " ", " " }
 local handlers = {
-    -- ["textDocument/publishDiagnostics"] = vim.lsp.with(
-    --     vim.lsp.diagnostic.on_publish_diagnostics,
-    --     {
-    --         virtual_text = true,
-    --         underline = true,
-    --         virtual_lines = true,
-    --         float = {
-    --             pad_top = 1,
-    --             pad_bottom = 1,
-    --             border = "single",
-    --         },
-    --     }
-    -- ),
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics,
+        {
+            virtual_text = true,
+            underline = false,
+        }
+    ),
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "single",
     }),
     ["textDocument/signatureHelp"] = vim.lsp.with(
         vim.lsp.handlers.signature_help,
         {
-            border = border,
+            border = "single",
         }
     ),
 }

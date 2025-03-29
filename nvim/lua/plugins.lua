@@ -12,6 +12,24 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd"colorscheme tokyonight-night"
+--             colorscheme tokyonight-night
+-- colorscheme tokyonight-storm
+-- colorscheme tokyonight-day
+-- colorscheme tokyonight-moon
+            vim.cmd"hi Normal guibg=none"
+        end,
+    },
+    {
+        "DingDean/wgsl.vim",
+        lazy = false,
+        priority = 1000,
+    },
     -- {
     --     "rjshkhr/shadow.nvim",
     --     priority = 1000,
@@ -100,10 +118,10 @@ require("lazy").setup({
             },
         },
     },
-    -- {
-    --     "rmagatti/auto-session",
-    --     opts = { log_level = "error" }
-    -- },
+    {
+        "rmagatti/auto-session",
+        opts = { log_level = "error" }
+    },
     { "numToStr/Comment.nvim", opts = {} },
     {
         "nvim-telescope/telescope-fzf-native.nvim",
@@ -117,7 +135,7 @@ require("lazy").setup({
         version = "*",
         dependencies = { "nvim-lua/plenary.nvim" },
     },
-    {"folke/which-key.nvim", opts = {}},
+    {"folke/which-key.nvim", opts = { icons = { mappings = false }}},
     {"norcalli/nvim-colorizer.lua", opts = {}},
     {"ojroques/nvim-hardline", opts = { }},
 }, {})

@@ -7,7 +7,7 @@ local colors = {
     gray4 = "#A7ADBA",
     gray5 = "#C0C5CE",
     gray6 = "#CDD3DE",
-    white = "#c8ccc9",
+    white = "#cfcfcf",
     blue = "#61afef",
     orange = "#c99157",
     green = "#99C794",
@@ -31,48 +31,48 @@ end
 vim.cmd('colorscheme default')
 
 highlight("Normal", colors.white, colors.none)
--- highlight("Visual", nil, colors.gray2)
--- highlight("Comment", colors.gray4, nil, "italic")
--- highlight("Constant", colors.blue, nil)
--- highlight("String", colors.green, nil)
--- highlight("Identifier", colors.cyan, nil)
--- highlight("Function", colors.purple, nil)
--- highlight("Statement", colors.blue, nil)
--- highlight("PreProc", colors.cyan, nil)
--- highlight("Type", colors.cyan, nil)
--- highlight("Special", colors.yellow, nil)
--- highlight("Underlined", colors.purple, nil, "underline")
--- highlight("Todo", colors.blue, nil, "bold")
---
--- highlight("CursorLine", nil, colors.gray1)
--- highlight("CursorLineNr", colors.yellow, colors.gray1)
---
--- highlight("Search", colors.none, colors.purple)
--- highlight("IncSearch", colors.none, colors.green)
---
--- highlight("StatusLine", colors.white, colors.gray2)
--- highlight("StatusLineNC", colors.gray4, colors.gray2)
--- highlight("VertSplit", colors.gray3, nil)
---
--- highlight("Error", colors.blue, nil)
--- highlight("Warning", colors.purple, nil)
---
--- highlight("Boolean", colors.orange, nil)
--- highlight("Number", colors.orange, nil)
--- highlight("Operator", colors.blue, nil)
--- highlight("Type", colors.cyan, nil)
--- highlight("StorageClass", colors.brown, nil)
---
--- highlight("LineNr", colors.gray2, nil)
---
--- highlight("TabLine", colors.gray3, nil)
--- highlight("TabLineFill", colors.gray2, nil)
--- highlight("TabLineSel", colors.white, colors.gray2)
---
--- highlight("Pmenu", colors.white, colors.gray2)
--- highlight("PmenuSel", colors.white, colors.blue)
--- highlight("PmenuSbar", colors.gray3, nil)
--- highlight("PmenuThumb", colors.gray4, nil)
+highlight("Visual", nil, colors.gray2)
+highlight("Comment", colors.gray4, nil, "italic")
+highlight("Constant", colors.blue, nil)
+highlight("String", colors.green, nil)
+highlight("Identifier", colors.cyan, nil)
+highlight("Function", colors.purple, nil)
+highlight("Statement", colors.blue, nil)
+highlight("PreProc", colors.cyan, nil)
+highlight("Type", colors.cyan, nil)
+highlight("Special", colors.yellow, nil)
+highlight("Underlined", colors.purple, nil, "underline")
+highlight("Todo", colors.blue, nil, "bold")
+
+highlight("CursorLine", nil, colors.gray1)
+highlight("CursorLineNr", colors.yellow, colors.gray1)
+
+highlight("Search", colors.none, colors.purple)
+highlight("IncSearch", colors.none, colors.green)
+
+highlight("StatusLine", colors.white, colors.gray2)
+highlight("StatusLineNC", colors.gray4, colors.gray2)
+highlight("VertSplit", colors.gray3, nil)
+
+highlight("Error", colors.blue, nil)
+highlight("Warning", colors.purple, nil)
+
+highlight("Boolean", colors.orange, nil)
+highlight("Number", colors.orange, nil)
+highlight("Operator", colors.blue, nil)
+highlight("Type", colors.cyan, nil)
+highlight("StorageClass", colors.brown, nil)
+
+highlight("LineNr", colors.gray2, nil)
+
+highlight("TabLine", colors.gray3, nil)
+highlight("TabLineFill", colors.gray2, nil)
+highlight("TabLineSel", colors.white, colors.gray2)
+
+highlight("Pmenu", colors.white, colors.gray2)
+highlight("PmenuSel", colors.white, colors.blue)
+highlight("PmenuSbar", colors.gray3, nil)
+highlight("PmenuThumb", colors.gray4, nil)
 
 vim.cmd [[
   hi GitSignsAdd          guifg=#99C794 guibg=NONE gui=bold
