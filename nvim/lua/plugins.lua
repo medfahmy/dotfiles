@@ -36,15 +36,15 @@ require("lazy").setup({
             -- :lua require("harpoon.ui").nav_prev()
         end,
     },
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.cmd"colorscheme tokyonight-night"
-            vim.cmd"hi Normal guibg=none"
-        end,
-    },
+    -- {
+    --     "folke/tokyonight.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         vim.cmd"colorscheme tokyonight-night"
+    --         vim.cmd"hi Normal guibg=none"
+    --     end,
+    -- },
     {
         "DingDean/wgsl.vim",
         lazy = false,

@@ -4,8 +4,11 @@ vim.cmd('filetype plugin indent on')
 require("opts")
 require("keymaps")
 require("plugins")
--- require("colors")
+require("colors")
 require("dev")
+
+
+-- vim.cmd("hi Normal guibg=none")
 
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {

@@ -48,33 +48,36 @@ require("nvim-treesitter").setup {
     -- },
 }
 
-local on_attach = function(client, bufnr)
-    client.server_capabilities.semanticTokensProvider = nil
-
-    local map = function(keys, func, desc)
-        if desc then
-            desc = "LSP: " .. desc
-        end
-
-        vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
-    end
-
-    map("<space>d", vim.lsp.buf.definition, "goto definition")
-    map("<space>r", vim.lsp.buf.rename, "rename")
-
-    map("<space>h", function() vim.lsp.buf.hover({
-        border = "single",
-    }) end, "hover")
-
-    map("<space>e", function() vim.diagnostic.open_float({
-        border = "single",
-    }) end, "show error")
-    map("<space>[", vim.diagnostic.goto_prev, "prev error")
-    map("<space>]", vim.diagnostic.goto_next, "next error")
-
-    map("<space>lq", vim.diagnostic.setloclist, "error list")
-    map("<space>la", vim.lsp.buf.code_action, "[C]ode [A]ction")
-
+-- local on_attach = function(client, bufnr)
+--     client.server_capabilities.semanticTokensProvider = nil
+--
+--     local map = function(keys, func, desc)
+--         if desc then
+--             desc = "LSP: " .. desc
+--         end
+--
+--         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+--     end
+--
+--     map("<space>d", vim.lsp.buf.definition, "goto definition")
+--     map("<space>r", vim.lsp.buf.rename, "rename")
+--
+--     map("<space>h", function() vim.lsp.buf.hover({
+--         border = "single",
+--     }) end, "hover")
+--
+--     map("<space>e", function() vim.diagnostic.open_float({
+--         border = "single",
+--         virtual_lines = true,
+--         virtual_text = true,
+--         underline = false,
+--     }) end, "show error")
+--     map("<space>[", vim.diagnostic.goto_prev, "prev error")
+--     map("<space>]", vim.diagnostic.goto_next, "next error")
+--
+--     map("<space>lq", vim.diagnostic.setloclist, "error list")
+--     map("<space>la", vim.lsp.buf.code_action, "[C]ode [A]ction")
+--
     -- map("<space>lr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
     -- map("<space>li", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
     -- map("<space>ld", vim.lsp.buf.type_definition, "Type [D]efinition")
@@ -89,41 +92,42 @@ local on_attach = function(client, bufnr)
     -- map("<space>wl", function()
     --     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     -- end, "[W]orkspace [L]ist Folders")
+--
+--     map("<space>lf", function(_)
+--         vim.lsp.buf.format()
+--     end, "Format buffer")
+-- end
+--
+-- require("neodev").setup()
+-- local lsp = require("lspconfig")
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- local handlers = {
+--     ["textDocument/publishDiagnostics"] = vim.lsp.with(
+--         vim.lsp.diagnostic.on_publish_diagnostics,
+--         {
+--             virtual_lines = true,
+--             virtual_text = true,
+--             underline = false,
+--         }
+--     ),
+--     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+--         border = "single",
+--     }),
+--     ["textDocument/signatureHelp"] = vim.lsp.with(
+--         vim.lsp.handlers.signature_help,
+--         {
+--             border = "single",
+--         }
+--     ),
+-- }
 
-    map("<space>lf", function(_)
-        vim.lsp.buf.format()
-    end, "Format buffer")
-end
-
-require("neodev").setup()
-local lsp = require("lspconfig")
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local handlers = {
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(
-        vim.lsp.diagnostic.on_publish_diagnostics,
-        {
-            virtual_text = true,
-            underline = false,
-        }
-    ),
-    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "single",
-    }),
-    ["textDocument/signatureHelp"] = vim.lsp.with(
-        vim.lsp.handlers.signature_help,
-        {
-            border = "single",
-        }
-    ),
-}
-
-local config = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    handlers = handlers,
-}
-
-local servers = { "rust_analyzer" }
+-- local config = {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     handlers = handlers,
+-- }
+--
+-- local servers = { "rust_analyzer" }
 
 -- lsp.denols.setup {
 --     on_attach = on_attach,
@@ -131,53 +135,71 @@ local servers = { "rust_analyzer" }
 --     handlers = handlers,
 --     root_dir = lsp.util.root_pattern("deno.json", "deno.jsonc"),
 -- }
-
-for _, server in ipairs(servers) do
-    lsp[server].setup(config)
-end
-
-
-local cmp = require "cmp"
-
-cmp.setup {
-    mapping = cmp.mapping.preset.insert {
-        -- ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete {},
-        ["<CR>"] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-        },
-        -- ["<Tab>"] = cmp.mapping(function(fallback)
-        --     if cmp.visible() then
-        --         cmp.select_next_item()
-        --     else
-        --         fallback()
-        --     end
-        -- end, { "i", "s" }),
-        -- ["<S-Tab>"] = cmp.mapping(function(fallback)
-        --     if cmp.visible() then
-        --         cmp.select_prev_item()
-        --     else
-        --         fallback()
-        --     end
-        -- end, { "i", "s" }),
-    },
-    sources = {
-        { name = "nvim_lsp" },
-        { name = 'luasnip' },
-    },
-    snippet = {
-        expand = function(args)
-            require'luasnip'.lsp_expand(args.body)
-        end
-    },
-
+--
+-- for _, server in ipairs(servers) do
+--     lsp[server].setup(config)
+-- end
+--
+--
+-- local cmp = require "cmp"
+--
+-- vim.diagnostic.config({
+--   virtual_text = {
+--     source = "if_many",
+--     prefix = '● ',
+--   },
+--   update_in_insert = true,
+--   underline = true,
+--   severity_sort = true,
+--   float = {
+--     focusable = false,
+--     style = 'minimal',
+--     border = 'rounded',
+--     source = 'if_many',
+--     header = '',
+--     prefix = '',
+--   },
+-- })
+--
+-- cmp.setup {
+--     mapping = cmp.mapping.preset.insert {
+--         -- ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+--         -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
+--         ["<C-Space>"] = cmp.mapping.complete {},
+--         ["<CR>"] = cmp.mapping.confirm {
+--             behavior = cmp.ConfirmBehavior.Insert,
+--             select = true,
+--         },
+--         -- ["<Tab>"] = cmp.mapping(function(fallback)
+--         --     if cmp.visible() then
+--         --         cmp.select_next_item()
+--         --     else
+--         --         fallback()
+--         --     end
+--         -- end, { "i", "s" }),
+--         -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+--         --     if cmp.visible() then
+--         --         cmp.select_prev_item()
+--         --     else
+--         --         fallback()
+--         --     end
+--         -- end, { "i", "s" }),
+--     },
+--     sources = {
+--         { name = "nvim_lsp" },
+--         { name = 'luasnip' },
+--     },
+--     snippet = {
+--         expand = function(args)
+--             require'luasnip'.lsp_expand(args.body)
+--         end
+--     },
+--
     --             sources = {
     --                 { name = 'luasnip' },
     --                 -- more sources
     --             },
-}
+-- }
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
