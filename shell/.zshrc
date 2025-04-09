@@ -1,8 +1,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# source /usr/share/nvm/init-nvm.sh
-
 # Enable colors and change prompt:
 autoload -U colors && colors
 # Load version control information
@@ -16,11 +14,8 @@ zstyle ':vcs_info:git:*' formats '%b'
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
 
-BRANCH='%F{green}${vcs_info_msg_0_} '
-# PS1=" %B%F{magenta}%~%f%b $BRANCH%(?.%F{cyan}>.%F{red}[%?] >)%f  "
-PS1=" %F{magenta}%~%f%b $BRANCH%F{cyan}>%f  "
-# PS1=" %F{magenta}%~%f%b $BRANCH%F %f"
-# PROMPT=" %B%F{magenta}%~%f%b %(?.%F{cyan}>.%F{red}[%?] >)%f "
+BRANCH=' %F{green}${vcs_info_msg_0_} '
+PS1=" %F{magenta}%~%f%b$BRANCH%F{cyan}>%f "
 
 # History in cache directory
 HISTSIZE=10000
@@ -108,24 +103,11 @@ alias ls='exa -aF --color=auto --group-directories-first'
 alias grep='rg'
 alias cat='bat'
 
-# path
 BIN="$HOME/.local/bin"
 SCRIPTS="$HOME/.local/scripts"
-CARGO_HOME="$HOME/.cargo/bin"
 CARGO="$HOME/.cargo/bin/cargo"
-# PYTHON="/usr/local/opt/python@3.10/libexec/bin"
+CARGO_HOME="$HOME/.cargo/bin"
 
-GO="$HOME/go/bin"
-
-export PATH=$PATH:$BIN:$SCRIPTS:$GO
+export PATH=$PATH:$BIN:$SCRIPTS:$CARGO:$CARGO_HOME
 
 # export RUST_BACKTRACE=0
-
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-# . "/home/mohamed/.deno/env"
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-# [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
