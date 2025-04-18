@@ -14,8 +14,13 @@ zstyle ':vcs_info:git:*' formats '%b'
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
 
-BRANCH=' %F{green}${vcs_info_msg_0_} '
-PS1=" %F{magenta}%~%f%b$BRANCH%F{cyan}>%f "
+BRANCH='%F{green}${vcs_info_msg_0_}'
+
+if [ -n "$BRANCH" ]; then
+    PS1=" %F{magenta}%~%f%b $BRANCH %F{cyan}>%f "
+else
+    PS1=" %F{magenta}%~%f%b %F{cyan}>%f "
+fi
 
 # History in cache directory
 HISTSIZE=10000
