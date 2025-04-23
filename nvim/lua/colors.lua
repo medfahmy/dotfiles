@@ -12,11 +12,31 @@ local colors = {
     orange = "#c99157",
     green = "#99C794",
     yellow = "#eAb863",
-    blue = "#6699CC",
+    -- blue = "#6699CC",
     purple = "#a494C5",
     cyan = "#5FB3B3",
     brown = "#A07967",
+    magenta = "#64c6e3",
 }
+
+-- local colors = {
+--     none = "none",
+--     gray1 = "#343D46",
+--     gray2 = "#4F5B66",
+--     gray3 = "#65737E",
+--     gray4 = "#A7ADBA",
+--     gray5 = "#C0C5CE",
+--     gray6 = "#CDD3DE",
+--     white = "#D8DEE9",
+--     blue = "#61afef",
+--     orange = "#F99157",
+--     green = "#99C794",
+--     yellow = "#FAC863",
+--     blue = "#6699CC",
+--     purple = "#C594C5",
+--     cyan = "#5FB3B3",
+--     brown = "#AB7967",
+-- }
 
 -- base 00: #1B2B34
 -- base 01: #343D46
@@ -53,10 +73,10 @@ highlight("Comment", colors.gray4, nil, "italic")
 highlight("Constant", colors.blue, nil)
 highlight("String", colors.green, nil)
 highlight("Identifier", colors.cyan, nil)
-highlight("Function", colors.purple, nil)
+highlight("Function", colors.cyan, nil)
 highlight("Statement", colors.blue, nil)
-highlight("PreProc", colors.cyan, nil)
-highlight("Type", colors.cyan, nil)
+highlight("PreProc", colors.purple, nil)
+highlight("Type", colors.blue, nil)
 highlight("Special", colors.yellow, nil)
 highlight("Underlined", colors.purple, nil, "underline")
 highlight("Todo", colors.blue, nil, "bold")
@@ -77,7 +97,7 @@ highlight("Warning", colors.purple, nil)
 highlight("Boolean", colors.orange, nil)
 highlight("Number", colors.orange, nil)
 highlight("Operator", colors.blue, nil)
-highlight("Type", colors.cyan, nil)
+highlight("Type", colors.magenta, nil)
 highlight("StorageClass", colors.brown, nil)
 
 highlight("LineNr", colors.gray2, nil)

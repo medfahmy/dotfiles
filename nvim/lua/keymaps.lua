@@ -3,6 +3,7 @@ function map(op, lhs, rhs, opts)
     vim.keymap.set(op, lhs, rhs, opts)
 end
 
+map("n", "<space>g", "<cmd>!cargo fmt<cr>")
 
 map({ "n", "v" }, "<>", "<nop>")
 map({ "n", "v" }, "q:", "<nop>")
