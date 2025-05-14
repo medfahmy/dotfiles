@@ -22,7 +22,7 @@ background = "#000000"
 foreground = "#ffffff"
 
 [window]
-opacity = 0.8
+opacity = 0.9
 
 [window.padding]
 x = 20

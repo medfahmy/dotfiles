@@ -6,13 +6,14 @@
     "margin": "10 10 0 20",
 
     "modules-left": [
-        "hyprland/workspaces"
+        "hyprland/window"
     ],
     "modules-center": [
-        "hyprland/window"
+        "hyprland/workspaces"
     ],
     "modules-right": [
         // "pulseaudio",
+        "network",
         "memory",
         "cpu",
         "battery",
@@ -27,12 +28,19 @@
      "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
 
+    "network": {
+        "format-wifi" : "wifi {bandwidthDownBits}",
+        "format-ethernet": "eth {bandwidthDownBits}",
+        "format-disconnected" : "no network",
+        "interval": 5
+    },
+
     "clock": {
         "format": "{:%a %d/%m - %H:%M}",
         "tooltip": false
     },
     "pulseaudio": {
-        "format": "Sound {volume:2}%",
+        "format": "sound {volume:2}%",
         "format-bluetooth": "{icon}  {volume}%",
         "format-muted": "MUTE",
         "format-icons": {
@@ -48,11 +56,11 @@
     },
     "memory": {
         "interval": 5,
-        "format": "Mem {}%"
+        "format": "mem {}%"
     },
     "cpu": {
         "interval": 5,
-        "format": "CPU {usage:2}%"
+        "format": "cpu {usage:2}%"
     },
     "battery": {
         "states": {
@@ -71,7 +79,7 @@
     },
     "disk": {
         "interval": 5,
-        "format": "Disk {percentage_used:2}%",
+        "format": "disk {percentage_used:2}%",
         "path": "/"
     },
     "tray": {
