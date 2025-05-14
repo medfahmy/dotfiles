@@ -28,7 +28,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.hidden = true
 vim.o.cursorline = true
-vim.o.colorcolumn = "80"
+vim.o.colorcolumn = "96"
 vim.o.cursorlineopt = "number"
 vim.o.equalalways = false
 vim.o.splitright = true
@@ -393,7 +393,7 @@ local colors = {
     gray4 = "#A7ADBA",
     gray5 = "#C0C5CE",
     gray6 = "#CDD3DE",
-    white = "#cfcfcf",
+    white = "#dfdfdf",
     blue = "#61afef",
     orange = "#c99157",
     green = "#99C794",
@@ -567,14 +567,14 @@ local on_attach = function(client, bufnr)
         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
     end
 
-    map("<space>ld", vim.lsp.buf.definition, "goto definition")
-    map("<space>lr", vim.lsp.buf.rename, "rename")
+    map("<space>d", vim.lsp.buf.definition, "goto definition")
+    map("<space>r", vim.lsp.buf.rename, "rename")
 
-    map("<space>lh", function() vim.lsp.buf.hover({
+    map("<space>h", function() vim.lsp.buf.hover({
         border = "single",
     }) end, "hover")
 
-    map("<space>le", function() vim.diagnostic.open_float({
+    map("<space>e", function() vim.diagnostic.open_float({
         border = "single",
         virtual_lines = true,
         virtual_text = true,
@@ -648,7 +648,7 @@ vim.diagnostic.config({
   --   source = "if_many",
   --   prefix = '● ',
   -- },
-  virtual_text = false,
+  virtual_text = true,
   update_in_insert = true,
   underline = true,
   severity_sort = true,

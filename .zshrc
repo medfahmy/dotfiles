@@ -15,12 +15,7 @@ zstyle ':vcs_info:git:*' formats '%b'
 setopt PROMPT_SUBST
 
 BRANCH='%F{green}${vcs_info_msg_0_}'
-
-if [ -n "$BRANCH" ]; then
-    PS1=" %F{magenta}%~%f%b $BRANCH %F{cyan}>%f "
-else
-    PS1=" %F{magenta}%~%f%b %F{cyan}>%f "
-fi
+PS1="  %F{magenta}%~%f%b $BRANCH %F{cyan}>>%f  "
 
 # History in cache directory
 HISTSIZE=10000

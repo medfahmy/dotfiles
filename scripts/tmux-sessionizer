@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd . -d 1 -t d ~ ~/ws ~/.config | fzf)
+    selected=$(fd . -d 1 -t d ~/workspace ~/.config | fzf)
 fi
 
 if [[ -z $selected ]]; then
