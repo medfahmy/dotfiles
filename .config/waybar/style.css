@@ -1,5 +1,5 @@
 * {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
     font-family: "Noto Sans";
 }
@@ -21,19 +21,20 @@ window#waybar {
 #memory,
 #cpu,
 #battery,
-#todo,
 #custom-todo,
+#window,
 #disk {
     padding: 4px 10px;
 }
 
 #window {
-    padding: 4px 64px 4px 4px;
+    padding: 4px 100px 4px 4px;
 }
 
 #workspaces button {
     padding: 4px 8px;
     color: #fdf6e3;
+    margin: 4px;
 }
 #workspaces button.active {
     color: #33ccff;
@@ -47,6 +48,33 @@ window#waybar {
     background: #3c3c3c;
     border: #fdf6e3;
     padding: 0 9px;
+}
+
+/* #workspaces button { */
+/*     padding: 0 0.5em; */
+/*     background-color: #1a1a1a; */
+/*     color: #fdf6e3; */
+/*     margin: 0.35em; */
+/* } */
+/* #workspaces button.empty { */
+/*     color: #33ccff; */
+/* } */
+/* #workspaces button.visible { */
+/*     color: #fdf6e3; */
+/* } */
+/**/
+/* #workspaces button.active { */
+/*     color: #fdf6e3; */
+/* } */
+/**/
+/* #workspaces button.urgent { */
+/*     background: #3c3c3c; */
+/*     border-radius: 1rem; */
+/* } */
+
+
+#custom-todo {
+    color: #ff6969;
 }
 
 #network {
@@ -76,4 +104,7 @@ window#waybar {
 #battery,
 #disk {
     padding: 0 10px;
+    font-size: 14px;
 }
+
+
