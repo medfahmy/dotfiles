@@ -1,7 +1,7 @@
 * {
     font-size: 14px;
     font-weight: bold;
-    font-family: "Iosevka";
+    font-family: "Noto Sans";
 }
 
 window#waybar {
@@ -21,13 +21,18 @@ window#waybar {
 #memory,
 #cpu,
 #battery,
-#disk,
-#tray {
-    padding: 0 10px;
+#todo,
+#custom-todo,
+#disk {
+    padding: 4px 10px;
+}
+
+#window {
+    padding: 4px 64px 4px 4px;
 }
 
 #workspaces button {
-    padding: 0px 8px;
+    padding: 4px 8px;
     color: #fdf6e3;
 }
 #workspaces button.active {

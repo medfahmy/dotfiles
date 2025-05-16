@@ -6,13 +6,14 @@
     "margin": "10 10 0 20",
 
     "modules-left": [
-        "hyprland/window"
+        "hyprland/workspaces"
     ],
     "modules-center": [
-        "hyprland/workspaces"
+        "hyprland/window"
     ],
     "modules-right": [
         // "pulseaudio",
+        "custom/todo",
         "network",
         "memory",
         "cpu",
@@ -22,6 +23,12 @@
         "clock"
     ],
 
+    "custom/todo": {
+        "exec": "head -n 1 ~/.local/share/todo.txt",
+        "format": "todo: {}",
+        "interval": "60"
+    },
+
     "hyprland/workspaces": {
      "format": "{name}",
      "on-scroll-up": "hyprctl dispatch workspace e+1",
@@ -30,7 +37,7 @@
 
     "network": {
         "format-wifi" : "wifi {bandwidthDownBits}",
-        "format-ethernet": "eth {bandwidthDownBits}",
+        "format-ethernet": "net: {bandwidthDownBits}",
         "format-disconnected" : "no network",
         "interval": 5
     },
@@ -56,11 +63,11 @@
     },
     "memory": {
         "interval": 5,
-        "format": "mem {}%"
+        "format": "mem: {}%"
     },
     "cpu": {
         "interval": 5,
-        "format": "cpu {usage:2}%"
+        "format": "cpu: {usage}%"
     },
     "battery": {
         "states": {
@@ -79,7 +86,7 @@
     },
     "disk": {
         "interval": 5,
-        "format": "disk {percentage_used:2}%",
+        "format": "disk: {percentage_used}%",
         "path": "/"
     },
     "tray": {
