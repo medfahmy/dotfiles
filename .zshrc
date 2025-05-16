@@ -1,11 +1,21 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# fortune -s
+# fortune -a | fmt -80 -s | $(shuf -n 1 -e cowsay cowthink) -$(shuf -n 1 -e b d g p s t w y) -f $(shuf -n 1 -e $(cowsay -l | tail -n +2)) -n
+# echo
+
+# pfetch
+echo
+fortune -s
+echo
+
 # Enable colors and change prompt:
 autoload -U colors && colors
 # Load version control information
 autoload -Uz vcs_info
 precmd() { vcs_info }
+
 
 # Format the vcs_info_msg_0_ variable
 # zstyle ':vcs_info:git:*' formats 'on branch %b'
@@ -111,3 +121,5 @@ CARGO_HOME="$HOME/.cargo/bin"
 export PATH=$PATH:$BIN:$SCRIPTS:$CARGO:$CARGO_HOME
 
 # export RUST_BACKTRACE=0
+
+QT_STYLE_OVERRIDE=kvantum

@@ -3,43 +3,115 @@
 {
     "layer": "top",
     "position": "top",
-    "margin": "10 10 0 20",
+    "margin": "8 0 4 0",
 
     "modules-left": [
         "hyprland/workspaces"
     ],
     "modules-center": [
-        "hyprland/window"
+        "hyprland/window",
+        "hyprland/submap"
+        // "custom/fortune"
     ],
     "modules-right": [
         // "pulseaudio",
-        "custom/todo",
+        // "custom/todo",
+        "temperature",
         "network",
         "memory",
         "cpu",
         "battery",
         "disk",
-        "tray",
         "clock"
     ],
 
+    "hyprland/submap": {
+        "format": "✌️ {}",
+        "max-length": 8,
+        "tooltip": false
+    },
+
+    "hyprland/window": {
+        // "format": "<span>{}</span>"
+    },
+
+    "custom/fortune": {
+        "exec": "fortune -n 100 -s",
+        "format": "{}",
+        "interval": 60
+    },
+
     "custom/todo": {
         "exec": "head -n 1 ~/.local/share/todo.txt",
-        "format": "todo: {}",
-        "interval": "60"
+        "format": "TODO: {}",
+        "interval": "60",
+        "on-click": "alacritty -e ls &"
     },
 
     "hyprland/workspaces": {
      "format": "{name}",
      "on-scroll-up": "hyprctl dispatch workspace e+1",
-     "on-scroll-down": "hyprctl dispatch workspace e-1"
+     "on-scroll-down": "hyprctl dispatch workspace e-1",
+
+     "format": "{name}",
+     // "format-icons": {
+     //     "1": "",
+     //     "2": "",
+     //     "3": "",
+     //     "4": "",
+     //     "5": "",
+     //     "active": "",
+     //     "default": ""
+     // },
+     // "format": "{icon}",
+     // "format-icons": {
+     //     "1": "١",
+     //     "2": "٢",
+     //     "3": "٣",
+     //     "4": "٤",
+     //     "5": "٥",
+     //     "6": "٦",
+     //     "7": "٧",
+     //     "8": "٨"
+     // },
+
+     "persistent-workspaces": {
+         "*": [1,2,3,4,5,6,7,8] // 5 workspaces by default on every monitor
+     }
+
+     // "format": "{name}: {icon}",
+     // "format-icons": {
+     //     "1": "",
+     //     "2": "",
+     //     "3": "",
+     //     "4": "",
+     //     "5": "",
+     //     "active": "",
+     //     "default": ""
+     // },
+     // "persistent-workspaces": {
+     //     "*": 5, // 5 workspaces by default on every monitor
+     //     "HDMI-A-1": 3 // but only three on HDMI-A-1
+     // }
     },
 
     "network": {
         "format-wifi" : "wifi {bandwidthDownBits}",
-        "format-ethernet": "net: {bandwidthDownBits}",
+        // "format-ethernet": "{icon} {bandwidthDownBits:bandwidthUpBits}",
+        // "format-ethernet": "󰈀 {ifname}",
+        "format-ethernet": " 🠟 {bandwidthDownBits}  🠝 {bandwidthUpBits}",
+        // "format-wifi": "{essid} ({signalStrength}%) ",
+        // "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-disconnected" : "no network",
-        "interval": 5
+        "interval": 5,
+        "icon-size": 34
+    },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["󱃃", "󰔏", "󱃂"]
+        // "on-click": "kitty -e s-tui"
     },
 
     "clock": {
@@ -63,11 +135,11 @@
     },
     "memory": {
         "interval": 5,
-        "format": "mem: {}%"
+        "format": "  {}%"
     },
     "cpu": {
         "interval": 5,
-        "format": "cpu: {usage}%"
+        "format": "  {usage}%"
     },
     "battery": {
         "states": {
@@ -86,10 +158,8 @@
     },
     "disk": {
         "interval": 5,
-        "format": "disk: {percentage_used}%",
+        // "format": "{icon} {percentage_used}%",
+        "format": "🖴  {percentage_used}%",
         "path": "/"
-    },
-    "tray": {
-        "icon-size": 20
     }
 }

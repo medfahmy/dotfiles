@@ -154,70 +154,70 @@ require("lazy").setup({
     --         vim.cmd[[colorscheme tokyonight-night]]
     --     end,
     -- },
-    {
-        'saghen/blink.cmp',
-        -- optional: provides snippets for the snippet source
-        dependencies = { 'rafamadriz/friendly-snippets' },
-
-        -- use a release tag to download pre-built binaries
-        version = '1.*',
-        -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-        -- build = 'cargo build --release',
-        -- If you use nix, you can build from source using latest nightly rust with:
-        -- build = 'nix run .#build-plugin',
-
-        ---@module 'blink.cmp'
-        ---@type blink.cmp.Config
-        opts = {
-            -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-            -- 'super-tab' for mappings similar to vscode (tab to accept)
-            -- 'enter' for enter to accept
-            -- 'none' for no mappings
-            --
-            -- All presets have the following mappings:
-            -- C-space: Open menu or open docs if already open
-            -- C-n/C-p or Up/Down: Select next/previous item
-            -- C-e: Hide menu
-            -- C-k: Toggle signature help (if signature.enabled = true)
-            --
-            -- See :h blink-cmp-config-keymap for defining your own keymap
-            keymap = { preset = 'enter' },
-
-            appearance = {
-                -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-                -- Adjusts spacing to ensure icons are aligned
-                nerd_font_variant = 'mono'
-            },
-
-            -- (Default) Only show the documentation popup when manually triggered
-            completion = { 
-                documentation = { auto_show = false },
-                menu = {
-                    -- nvim-cmp style menu
-                    draw = {
-                        columns = {
-                            { "label", "label_description", gap = 1 },
-                            { "kind" }
-                        },
-                    }
-                },
-            },
-
-            -- Default list of enabled providers defined so that you can extend it
-            -- elsewhere in your config, without redefining it, due to `opts_extend`
-            sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer' },
-            },
-
-            -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
-            -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
-            -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
-            --
-            -- See the fuzzy documentation for more information
-            fuzzy = { implementation = "prefer_rust_with_warning" },
-        },
-        opts_extend = { "sources.default" }
-    },
+    -- {
+    --     'saghen/blink.cmp',
+    --     -- optional: provides snippets for the snippet source
+    --     dependencies = { 'rafamadriz/friendly-snippets' },
+    --
+    --     -- use a release tag to download pre-built binaries
+    --     version = '1.*',
+    --     -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+    --     -- build = 'cargo build --release',
+    --     -- If you use nix, you can build from source using latest nightly rust with:
+    --     -- build = 'nix run .#build-plugin',
+    --
+    --     ---@module 'blink.cmp'
+    --     ---@type blink.cmp.Config
+    --     opts = {
+    --         -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+    --         -- 'super-tab' for mappings similar to vscode (tab to accept)
+    --         -- 'enter' for enter to accept
+    --         -- 'none' for no mappings
+    --         --
+    --         -- All presets have the following mappings:
+    --         -- C-space: Open menu or open docs if already open
+    --         -- C-n/C-p or Up/Down: Select next/previous item
+    --         -- C-e: Hide menu
+    --         -- C-k: Toggle signature help (if signature.enabled = true)
+    --         --
+    --         -- See :h blink-cmp-config-keymap for defining your own keymap
+    --         keymap = { preset = 'enter' },
+    --
+    --         appearance = {
+    --             -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+    --             -- Adjusts spacing to ensure icons are aligned
+    --             nerd_font_variant = 'mono'
+    --         },
+    --
+    --         -- (Default) Only show the documentation popup when manually triggered
+    --         completion = { 
+    --             documentation = { auto_show = false },
+    --             menu = {
+    --                 -- nvim-cmp style menu
+    --                 draw = {
+    --                     columns = {
+    --                         { "label", "label_description", gap = 1 },
+    --                         { "kind" }
+    --                     },
+    --                 }
+    --             },
+    --         },
+    --
+    --         -- Default list of enabled providers defined so that you can extend it
+    --         -- elsewhere in your config, without redefining it, due to `opts_extend`
+    --         sources = {
+    --             default = { 'lsp', 'path', 'snippets', 'buffer' },
+    --         },
+    --
+    --         -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+    --         -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+    --         -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+    --         --
+    --         -- See the fuzzy documentation for more information
+    --         fuzzy = { implementation = "prefer_rust_with_warning" },
+    --     },
+    --     opts_extend = { "sources.default" }
+    -- },
     {
         'ThePrimeagen/harpoon',
         config = function()
@@ -309,22 +309,22 @@ require("lazy").setup({
     -- },
     {"sindrets/diffview.nvim"},
     -- {"nvim-tree/nvim-tree.lua"} ,
-    {
-        "nvim-treesitter/nvim-treesitter",
-        config = function()
-            pcall(require("nvim-treesitter.install").update { with_sync = true })
-        end,
-    },
-    {
-        'neovim/nvim-lspconfig',
-        dependencies = { },
-
-        dependencies = {
-            { "j-hui/fidget.nvim", opts = {} },
-            "folke/neodev.nvim",
-            'saghen/blink.cmp', 
-        },
-    },
+    -- {
+    --     "nvim-treesitter/nvim-treesitter",
+    --     config = function()
+    --         pcall(require("nvim-treesitter.install").update { with_sync = true })
+    --     end,
+    -- },
+    -- {
+    --     'neovim/nvim-lspconfig',
+    --     dependencies = { },
+    --
+    --     dependencies = {
+    --         { "j-hui/fidget.nvim", opts = {} },
+    --         "folke/neodev.nvim",
+    --         'saghen/blink.cmp', 
+    --     },
+    -- },
     -- {
     --     "hrsh7th/nvim-cmp",
     --     dependencies = {
@@ -536,78 +536,78 @@ vim.keymap.set("n", "<space>th", require("telescope.builtin").help_tags, { desc 
 -- vim.keymap.set("n", "<space>w", require("telescope.builtin").grep_string, { desc = "find word by file" })
 vim.keymap.set("n", "<space>tg", require("telescope.builtin").live_grep, { desc = "find by grep" })
 
-require("nvim-treesitter").setup {
-    -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { "rust", "wgsl", "lua", "markdown", "markdown_inline", "elm", "http",  "javascript" },
+-- require("nvim-treesitter").setup {
+--     -- Add languages to be installed here that you want installed for treesitter
+--     ensure_installed = { "rust", "wgsl", "lua", "markdown", "markdown_inline", "elm", "http",  "javascript" },
+--
+--     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
+--     auto_install = true,
+--
+--     highlight = { enable = true },
+--     indent = { enable = true },
+--     -- incremental_selection = {
+--     --     enable = true,
+--     --     keymaps = {
+--     --         init_selection = "<c-space>",
+--     --         node_incremental = "<c-space>",
+--     --         scope_incremental = "<c-s>",
+--     --         node_decremental = "<M-space>",
+--     --     },
+--     -- },
+-- }
 
-    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-    auto_install = true,
-
-    highlight = { enable = true },
-    indent = { enable = true },
-    -- incremental_selection = {
-    --     enable = true,
-    --     keymaps = {
-    --         init_selection = "<c-space>",
-    --         node_incremental = "<c-space>",
-    --         scope_incremental = "<c-s>",
-    --         node_decremental = "<M-space>",
-    --     },
-    -- },
-}
-
-local on_attach = function(client, bufnr)
-    client.server_capabilities.semanticTokensProvider = nil
-
-    local map = function(keys, func, desc)
-        if desc then
-            desc = "LSP: " .. desc
-        end
-
-        vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
-    end
-
-    map("<space>d", vim.lsp.buf.definition, "goto definition")
-    map("<space>r", vim.lsp.buf.rename, "rename")
-
-    map("<space>h", function() vim.lsp.buf.hover({
-        border = "single",
-    }) end, "hover")
-
-    map("<space>e", function() vim.diagnostic.open_float({
-        border = "single",
-        virtual_lines = true,
-        virtual_text = true,
-        underline = false,
-    }) end, "show error")
-    map("<space>ln", vim.diagnostic.goto_prev, "prev error")
-    map("<space>lp", vim.diagnostic.goto_next, "next error")
-
-    map("<space>lq", vim.diagnostic.setloclist, "error list")
-    map("<space>la", vim.lsp.buf.code_action, "[C]ode [A]ction")
-    map("<space>lr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-
-    map("<space>lf", function(_)
-        vim.lsp.buf.format()
-    end, "Format buffer")
-
-    -- map("<space>li", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-    -- map("<space>ld", vim.lsp.buf.type_definition, "Type [D]efinition")
-    -- map("<space>ls", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-    -- map("<space>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-
-    -- map("<space>k", vim.lsp.buf.signature_help, "Signature Documentation")
-
-    -- map("<space>d", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-    -- map("<space>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-    -- map("<space>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-    -- map("<space>wl", function()
-    --     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    -- end, "[W]orkspace [L]ist Folders")
-end
+-- local on_attach = function(client, bufnr)
+--     client.server_capabilities.semanticTokensProvider = nil
+--
+--     local map = function(keys, func, desc)
+--         if desc then
+--             desc = "LSP: " .. desc
+--         end
+--
+--         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+--     end
+--
+--     map("<space>d", vim.lsp.buf.definition, "goto definition")
+--     map("<space>r", vim.lsp.buf.rename, "rename")
+--
+--     map("<space>h", function() vim.lsp.buf.hover({
+--         border = "single",
+--     }) end, "hover")
+--
+--     map("<space>e", function() vim.diagnostic.open_float({
+--         border = "single",
+--         virtual_lines = true,
+--         virtual_text = true,
+--         underline = false,
+--     }) end, "show error")
+--     map("<space>ln", vim.diagnostic.goto_prev, "prev error")
+--     map("<space>lp", vim.diagnostic.goto_next, "next error")
+--
+--     map("<space>lq", vim.diagnostic.setloclist, "error list")
+--     map("<space>la", vim.lsp.buf.code_action, "[C]ode [A]ction")
+--     map("<space>lr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+--
+--     map("<space>lf", function(_)
+--         vim.lsp.buf.format()
+--     end, "Format buffer")
+--
+--     -- map("<space>li", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+--     -- map("<space>ld", vim.lsp.buf.type_definition, "Type [D]efinition")
+--     -- map("<space>ls", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+--     -- map("<space>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+--
+--     -- map("<space>k", vim.lsp.buf.signature_help, "Signature Documentation")
+--
+--     -- map("<space>d", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+--     -- map("<space>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
+--     -- map("<space>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+--     -- map("<space>wl", function()
+--     --     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+--     -- end, "[W]orkspace [L]ist Folders")
+-- end
 
 
-require("neodev").setup()
+-- require("neodev").setup()
 
 -- local handlers = {
 --     ["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -630,37 +630,37 @@ require("neodev").setup()
 -- }
 --
 
-local config = {
-    capabilities = capabilities,
-}
-
-local capabilities = require('blink.cmp').get_lsp_capabilities()
-local lspconfig = require('lspconfig')
-
-lspconfig['rust_analyzer'].setup({ 
-    on_attach = on_attach,
-    capabilities = capabilities 
-    -- handlers = handlers,
-})
-
-vim.diagnostic.config({
-  -- virtual_text = {
-  --   source = "if_many",
-  --   prefix = '● ',
-  -- },
-  virtual_text = true,
-  update_in_insert = true,
-  underline = true,
-  severity_sort = true,
-  float = {
-    focusable = false,
-    style = 'minimal',
-    border = 'rounded',
-    source = 'if_many',
-    header = '',
-    prefix = '',
-  },
-})
+-- local config = {
+--     capabilities = capabilities,
+-- }
+--
+-- local capabilities = require('blink.cmp').get_lsp_capabilities()
+-- local lspconfig = require('lspconfig')
+--
+-- lspconfig['rust_analyzer'].setup({ 
+--     on_attach = on_attach,
+--     capabilities = capabilities 
+--     -- handlers = handlers,
+-- })
+--
+-- vim.diagnostic.config({
+--   -- virtual_text = {
+--   --   source = "if_many",
+--   --   prefix = '● ',
+--   -- },
+--   virtual_text = true,
+--   update_in_insert = true,
+--   underline = true,
+--   severity_sort = true,
+--   float = {
+--     focusable = false,
+--     style = 'minimal',
+--     border = 'rounded',
+--     source = 'if_many',
+--     header = '',
+--     prefix = '',
+--   },
+-- })
 
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {

@@ -1,7 +1,7 @@
 [font]
-size = 11.0
-normal = { family = "Iosevka SemiBold" }
-offset = { x = 1 }
+size = 10.0
+normal = { family = "Lilex Medium" }
+# offset = { x = 1 }
 
 [colors.cursor]
 cursor = "#ffffff"
