@@ -1,11 +1,13 @@
 * {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
     font-family: "Noto Sans";
 }
 
-#workspaces, #clock {
-    font-size: 14px;
+#clock,
+#workspaces,
+#window {
+    font-size: 13px;
 }
 
 window#waybar {
@@ -26,21 +28,25 @@ window#waybar {
 #battery,
 #custom-todo,
 #window,
+#clock,
 #disk {
-    padding: 0 10px;
+    padding: 0 8px;
 }
 
-#workspaces {
-    padding: 0 20px;
+#custom-fuzzel {
+    padding: 0px 0px 0px 30px;
 }
-
 
 #clock {
     padding: 0 22px 0px 15px;
 }
 
 #window {
-    padding: 4px 100px 4px 4px;
+    /* padding: 4px 100px 4px 4px; */
+}
+
+#workspaces {
+    padding: 0px 0px 0px 12px;
 }
 
 #workspaces button {
@@ -85,6 +91,10 @@ window#waybar {
 /*     border-radius: 1rem; */
 /* } */
 
+
+#custom-fuzzel {
+    color: #ed24a8;
+}
 
 #custom-todo {
     color: #ff6969;

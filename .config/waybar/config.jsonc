@@ -3,10 +3,11 @@
 {
     "layer": "top",
     "position": "top",
-    "margin": "8 0 4 0",
+    "margin": "4 0 2 0",
 
     "modules-left": [
-        "hyprland/workspaces"
+        "custom/fuzzel",
+        "hyprland/workspaces",
     ],
     "modules-center": [
         "hyprland/window",
@@ -24,6 +25,12 @@
         "disk",
         "clock"
     ],
+
+    "custom/fuzzel": {
+        "format": "",
+        "on-click": "fuzzel",
+        "tooltip": "false",
+    },
 
     "hyprland/submap": {
         "format": "✌️ {}",
@@ -100,6 +107,7 @@
         // "format-ethernet": "{icon} {bandwidthDownBits:bandwidthUpBits}",
         // "format-ethernet": "󰈀 {ifname}",
         "format-ethernet": " 🠟 {bandwidthDownBits}  🠝 {bandwidthUpBits}",
+        // "format-ethernet": "{icon} {bandwidthDownBits} {bandwidthUpBits}",
         // "format-wifi": "{essid} ({signalStrength}%) ",
         // "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-disconnected" : "no network",
@@ -135,11 +143,13 @@
     },
     "memory": {
         "interval": 5,
-        "format": "  {}%"
+        // "format": "  {}%"
+        "format": " {}%"
     },
     "cpu": {
         "interval": 5,
-        "format": "  {usage}%"
+        // "format": "  {usage}%"
+        "format": " {usage}%"
     },
     "battery": {
         "states": {
@@ -157,9 +167,19 @@
         ]
     },
     "disk": {
-        "interval": 5,
-        // "format": "{icon} {percentage_used}%",
-        "format": "🖴  {percentage_used}%",
-        "path": "/"
+        "interval": 30,
+        "format": "🖴 {used} / {free}",
     }
+    // "disk": {
+    //     "interval": 5,
+    //     // "format": "🖴  {percentage_used}%",
+    //     // "format": "💾  {percentage_used}%",
+    //     "format": "{icon} {percentage_used}%",
+    //     "path": "/"
+    // }
+    // "disk": {
+    //     "interval": 30,
+    //     "format": "{icon} {specific_free:0.2f}/{specific_total:0.2f}",
+    //     "unit": "GB"
+    // }
 }
