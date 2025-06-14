@@ -3,19 +3,20 @@
 {
     "layer": "top",
     "position": "top",
-    "margin": "4 0 2 0",
+    "margin": "0 10 0 10",
 
     "modules-left": [
         "custom/fuzzel",
-        "hyprland/workspaces",
+        "custom/terminal",
+        "custom/browser",
+        "hyprland/window",
     ],
     "modules-center": [
-        "hyprland/window",
+        "hyprland/workspaces",
         "hyprland/submap"
         // "custom/fortune"
     ],
     "modules-right": [
-        // "pulseaudio",
         // "custom/todo",
         "temperature",
         "network",
@@ -23,13 +24,40 @@
         "cpu",
         "battery",
         "disk",
-        "clock"
+        "pulseaudio",
+        "clock",
+        "custom/lock",
+        "custom/exit",
     ],
 
+    "custom/lock": {
+        "format": "",
+        "on-click": "hyprlock",
+        "tooltip": false,
+    },
+
+    "custom/exit": {
+        "format": "",
+        "on-click": "hyprctl dispatch exit",
+        "tooltip": false,
+    },
+
+    "custom/terminal": {
+        "format": "",
+        "on-click": "alacritty",
+        "tooltip": false,
+    },
+
+    "custom/browser": {
+        "format": "",
+        "on-click": "chromium",
+        "tooltip": false,
+    },
+
     "custom/fuzzel": {
-        "format": "",
+        "format": "",
         "on-click": "fuzzel",
-        "tooltip": "false",
+        "tooltip": false,
     },
 
     "hyprland/submap": {
@@ -83,7 +111,7 @@
      // },
 
      "persistent-workspaces": {
-         "*": [1,2,3,4,5,6,7,8] // 5 workspaces by default on every monitor
+         "*": [1,2,3,4] // 5 workspaces by default on every monitor
      }
 
      // "format": "{name}: {icon}",
@@ -127,7 +155,7 @@
         "tooltip": false
     },
     "pulseaudio": {
-        "format": "sound {volume:2}%",
+        "format": " {volume:2}%",
         "format-bluetooth": "{icon}  {volume}%",
         "format-muted": "MUTE",
         "format-icons": {
@@ -168,7 +196,8 @@
     },
     "disk": {
         "interval": 30,
-        "format": "🖴 {used} / {free}",
+        // "format": "🖴 {percentage_used}% - {used}",
+        "format": "🖴 {percentage_used}%",
     }
     // "disk": {
     //     "interval": 5,

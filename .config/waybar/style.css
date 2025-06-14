@@ -1,14 +1,14 @@
 * {
     font-size: 12px;
     font-weight: bold;
-    font-family: "Noto Sans";
+    font-family: "DM Mono";
 }
 
-#clock,
-#workspaces,
-#window {
-    font-size: 13px;
-}
+/* #clock, */
+/* #workspaces, */
+/* #window { */
+/*     font-size: 13px; */
+/* } */
 
 window#waybar {
     /* background: #1a1a1a; */
@@ -28,17 +28,39 @@ window#waybar {
 #battery,
 #custom-todo,
 #window,
+#disk,
 #clock,
-#disk {
-    padding: 0 8px;
+#custom-lock,
+#custom-exit,
+#custom-fuzzel,
+#custom-terminal,
+#custom-browser
+{
+    padding: 0 14px 0px 14px;
+}
+
+#window {
+    padding: 0 16px;
 }
 
 #custom-fuzzel {
-    padding: 0px 0px 0px 30px;
+    color: #ed24a8;
 }
 
-#clock {
-    padding: 0 22px 0px 15px;
+#custom-terminal {
+    color: #ed24a8;
+}
+
+#custom-browser {
+    color: #ed24a8;
+}
+
+#custom-lock {
+    color: #ed24a8;
+}
+
+#custom-exit {
+    color: #ed24a8;
 }
 
 #window {
@@ -46,7 +68,7 @@ window#waybar {
 }
 
 #workspaces {
-    padding: 0px 0px 0px 12px;
+    /* padding: 0px 0px 0px 12px; */
 }
 
 #workspaces button {
@@ -63,10 +85,23 @@ window#waybar {
     box-shadow: inherit;
     text-shadow: inherit;
 }
+
 #workspaces button:hover {
     background: #3c3c3c;
     border: #fdf6e3;
     padding: 0 9px;
+}
+
+#custom-fuzzel:hover,
+#custom-terminal:hover,
+#custom-browser:hover,
+#custom-lock:hover,
+#custom-exit:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: #3c3c3c;
+    border: #fdf6e3;
+    /* padding: 0 9px; */
 }
 
 /* #workspaces button { */
@@ -93,7 +128,6 @@ window#waybar {
 
 
 #custom-fuzzel {
-    color: #ed24a8;
 }
 
 #custom-todo {
