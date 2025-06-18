@@ -29,14 +29,17 @@ window#waybar {
 #custom-todo,
 #window,
 #disk,
-#clock,
 #custom-lock,
 #custom-exit,
 #custom-fuzzel,
 #custom-terminal,
 #custom-browser
 {
-    padding: 0 14px 0px 14px;
+    padding: 0 16px;
+}
+
+#clock {
+    padding: 0 4px 0 16px;
 }
 
 #window {

@@ -3,31 +3,26 @@
 {
     "layer": "top",
     "position": "top",
-    "margin": "0 10 0 10",
+    "margin": "4 10 4 10",
 
     "modules-left": [
-        "custom/fuzzel",
-        "custom/terminal",
-        "custom/browser",
+        "hyprland/workspaces",
         "hyprland/window",
     ],
-    "modules-center": [
-        "hyprland/workspaces",
-        "hyprland/submap"
-        // "custom/fortune"
-    ],
+    "modules-center": [],
     "modules-right": [
         // "custom/todo",
-        "temperature",
         "network",
         "memory",
         "cpu",
-        "battery",
         "disk",
         "pulseaudio",
-        "clock",
+        "custom/fuzzel",
+        "custom/terminal",
+        "custom/browser",
         "custom/lock",
         "custom/exit",
+        "clock",
     ],
 
     "custom/lock": {
@@ -111,7 +106,7 @@
      // },
 
      "persistent-workspaces": {
-         "*": [1,2,3,4] // 5 workspaces by default on every monitor
+         "*": [1,2,3,4,5,6,7,8] // 5 workspaces by default on every monitor
      }
 
      // "format": "{name}: {icon}",
