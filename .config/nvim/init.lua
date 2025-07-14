@@ -307,6 +307,10 @@ require("lazy").setup({
     --         require("scratch-buffer").setup()
     --     end,
     -- },
+    {
+        dir = "~/workspace/console.nvim",
+        name = "console",
+    },
     {"sindrets/diffview.nvim"},
     -- {"nvim-tree/nvim-tree.lua"} ,
     -- {

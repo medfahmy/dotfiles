@@ -3,33 +3,70 @@
 {
     "layer": "top",
     "position": "top",
-    "margin": "4 10 4 10",
+    "margin": "6 8",
 
     "modules-left": [
-        "hyprland/workspaces",
+        "wlr/taskbar",
         "hyprland/window",
     ],
-    "modules-center": [],
+    "modules-center": [
+        "hyprland/workspaces",
+    ],
     "modules-right": [
         // "custom/todo",
+        // "custom/fuzzel",
+        // "custom/terminal",
+        // "custom/browser",
+        // "custom/screenshot",
+        // "custom/fileman",
+        // "custom/sound",
+        // "custom/lock",
+        // "custom/exit",
         "network",
         "memory",
         "cpu",
         "disk",
         "pulseaudio",
-        "custom/fuzzel",
-        "custom/terminal",
-        "custom/browser",
-        "custom/lock",
-        "custom/exit",
         "clock",
     ],
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 14,
+        "all-outputs": true,
+        // "tooltip-format": "{name}: {title}",
+        "tooltip": false,
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+            "rofi"
+         ]
+    },
+
+    "custom/sound": {
+        "format": " ",
+        "on-click": "pwvucontrol",
+        "tooltip": false,
+    },
+
+    "custom/fileman": {
+        "format": "",
+        "on-click": "Thunar",
+        "tooltip": false,
+    },
+
+    "custom/screenshot": {
+        "format": "",
+        "on-click": "grim -g \"$(slurp)\" $HOME/images/screenshots/$(date +'%d-%m-%Y_%H:%M.png')",
+        "tooltip": false,
+    },
 
     "custom/lock": {
         "format": "",
         "on-click": "hyprlock",
         "tooltip": false,
     },
+
 
     "custom/exit": {
         "format": "",
@@ -62,7 +99,7 @@
     },
 
     "hyprland/window": {
-        // "format": "<span>{}</span>"
+        "format": "<span>{}</span>"
     },
 
     "custom/fortune": {
@@ -80,10 +117,19 @@
 
     "hyprland/workspaces": {
      "format": "{name}",
-     "on-scroll-up": "hyprctl dispatch workspace e+1",
-     "on-scroll-down": "hyprctl dispatch workspace e-1",
+     "disable-scroll": true,
+     // "on-scroll-up": "hyprctl dispatch workspace e+1",
+     // "on-scroll-down": "hyprctl dispatch workspace e-1",
 
-     "format": "{name}",
+     // "format": "{icon}",
+     // "format": "{icon}",
+     // "format-icons": {
+     //     "active": "",
+     //     "default": "",
+     //     "empty": ""
+     //     // "active": "",
+     //     // "default": ""
+     // }, 
      // "format-icons": {
      //     "1": "",
      //     "2": "",
@@ -106,7 +152,7 @@
      // },
 
      "persistent-workspaces": {
-         "*": [1,2,3,4,5,6,7,8] // 5 workspaces by default on every monitor
+         "*": [1,2,3,4, 5, 6, 7, 8]
      }
 
      // "format": "{name}: {icon}",
@@ -150,7 +196,7 @@
         "tooltip": false
     },
     "pulseaudio": {
-        "format": " {volume:2}%",
+        "format": "  {volume:2}%",
         "format-bluetooth": "{icon}  {volume}%",
         "format-muted": "MUTE",
         "format-icons": {

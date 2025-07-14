@@ -1,14 +1,14 @@
 * {
     font-size: 12px;
     font-weight: bold;
-    font-family: "DM Mono";
+    /* font-family: "DM Mono"; */
+    /* font-family: "CodeNewRoman Nerd Font Propo"; */
+    font-family: "Noto Sans Mono";
 }
 
-/* #clock, */
-/* #workspaces, */
-/* #window { */
-/*     font-size: 13px; */
-/* } */
+#workspaces {
+    font-size: 20px;
+}
 
 window#waybar {
     /* background: #1a1a1a; */
@@ -21,49 +21,43 @@ window#waybar {
 	/* border-radius: 5px; */
 }
 
+#taskbar {
+    background-color: rgba(19, 19, 19, 0.5);
+    border-radius: 4px;
+    /* margin: 5px 10px 5px 0px; */
+}
+
 #network,
 #pulseaudio,
 #memory,
 #cpu,
 #battery,
 #custom-todo,
-#window,
+/* #window, */
 #disk,
 #custom-lock,
 #custom-exit,
 #custom-fuzzel,
 #custom-terminal,
-#custom-browser
-{
-    padding: 0 16px;
+#custom-browser,
+#custom-fileman,
+#custom-sound,
+#custom-screenshot {
+    padding: 0 8px;
+    /* background: #191919; */
+    background-color: rgba(19, 19, 19, 0.5);
+    border-radius: 4px;
+    color: #01ffff;
 }
 
 #clock {
     padding: 0 4px 0 16px;
+    margin: 0 16px;
 }
 
 #window {
     padding: 0 16px;
-}
-
-#custom-fuzzel {
-    color: #ed24a8;
-}
-
-#custom-terminal {
-    color: #ed24a8;
-}
-
-#custom-browser {
-    color: #ed24a8;
-}
-
-#custom-lock {
-    color: #ed24a8;
-}
-
-#custom-exit {
-    color: #ed24a8;
+    margin: 0 16px;
 }
 
 #window {
@@ -72,12 +66,14 @@ window#waybar {
 
 #workspaces {
     /* padding: 0px 0px 0px 12px; */
+    background-color: rgba(19, 19, 19, 0.5);
+    border-radius: 4px;
 }
 
 #workspaces button {
     padding: 4px 8px;
     color: #fdf6e3;
-    border-radius: 0;
+    border-radius: 4px;
 }
 #workspaces button.active {
     color: #01ffff;
@@ -93,18 +89,35 @@ window#waybar {
     background: #3c3c3c;
     border: #fdf6e3;
     padding: 0 9px;
+    border-radius: 4px;
+}
+
+#custom-fuzzel,
+#custom-terminal,
+#custom-browser,
+#custom-lock,
+#custom-screenshot,
+#custom-fileman,
+#custom-sound,
+#custom-exit,
+#clock {
+    background-color: rgba(19, 19, 19, 0.5);
+    border-radius: 4px;
+    margin: 0 2px;
 }
 
 #custom-fuzzel:hover,
 #custom-terminal:hover,
 #custom-browser:hover,
 #custom-lock:hover,
+#custom-screenshot:hover,
+#custom-fileman:hover,
+#custom-sound:hover,
 #custom-exit:hover {
     box-shadow: inherit;
     text-shadow: inherit;
     background: #3c3c3c;
     border: #fdf6e3;
-    /* padding: 0 9px; */
 }
 
 /* #workspaces button { */
